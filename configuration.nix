@@ -127,7 +127,7 @@
     git
     neofetch
     attrs.nix-software-center.packages.${system}.nix-software-center
-    attrs.nixos-conf-editor.packages.${system}.nix-software-center
+    attrs.nixos-conf-editor.packages.${system}.nixos-conf-editor
   ];
 
   # Enable Plymouth
