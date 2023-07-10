@@ -94,13 +94,6 @@
     isNormalUser = true;
     description = "Rakarake";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-      firefox
-      thunderbird
-      mullvad-vpn
-      #nix-software-center
-      #nixos-conf-editor
-    ];
   };
 
   # Mullvad Service
@@ -132,7 +125,7 @@
 
   # Enable Plymouth
   boot.plymouth.enable = true;
-  boot.plymouth.theme = "bgrt";
+  boot.initrd.systemd.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
