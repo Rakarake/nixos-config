@@ -1,5 +1,5 @@
 {
-  description = "A super system configuration";
+  description = "A super system conf";
   inputs = {
     # Use nios-unstable as nixpkgs source
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -13,19 +13,12 @@
     nixos-conf-editor.url = "github:vlinkz/nixos-conf-editor";
   };
   outputs = attrs@{ self, nixpkgs, home-manager, ... }: {
-    nixosModules = {
-      declarativeHome = { ... }: {
-        config = {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-        };
-      };
-    };
+    # Thonkpad configuration go wrrom
     nixosConfigurations.rakarake-thinkpad = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = attrs;
       modules = [
-        ./configuration.nix
+        ./hosts/rakarake-thinkpad/configuration.nix
         home-manager.nixosModules.home-manager {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;

@@ -16,6 +16,11 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  # Enable Plymouth
+  boot.plymouth.enable = true;
+  boot.initrd.systemd.enable = true;
+  boot.kernelParams = ["quiet"];
+
   # Setup keyfile
   boot.initrd.secrets = {
     "/crypto_keyfile.bin" = null;
@@ -122,10 +127,6 @@
     attrs.nix-software-center.packages.${system}.nix-software-center
     attrs.nixos-conf-editor.packages.${system}.nixos-conf-editor
   ];
-
-  # Enable Plymouth
-  boot.plymouth.enable = true;
-  boot.initrd.systemd.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

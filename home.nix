@@ -1,4 +1,4 @@
-# Home Manager config for rakarake
+# Shared Home Manager config for rakarake
 { config, pkgs, ... }: {
   home.username = "rakarake";
   home.homeDirectory = "/home/rakarake";
