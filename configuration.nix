@@ -132,6 +132,7 @@
 
   # Enable Plymouth
   boot.plymouth.enable = true;
+  boot.plymouth.theme = "bgrt";
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
