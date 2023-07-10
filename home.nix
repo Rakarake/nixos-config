@@ -12,14 +12,14 @@
   # Gnome settings
   # Use: `dconf watch /` to find the names of gnome settings
   dconf.settings = {
-    "/org/gnome/desktop/background" = {
+    "org/gnome/desktop/background" = {
       picture-uri      = "/run/current-system/sw/share/backgrounds/gnome/design-is-rounded-rectangles-l.webp";
       picture-uri-dark = "/run/current-system/sw/share/backgrounds/gnome/design-is-rounded-rectangles-d.webp";
     };
-    "/system/locale" = {
+    "system/locale" = {
       region = "sv_SE.UTF-8";
     };
-    "/org/gnome/desktop/wm/keybindings" = {
+    "org/gnome/desktop/wm/keybindings" = {
       switch-to-workspace-left  = ["<Control><Super>h"];
       switch-to-workspace-right = ["<Control><Super>l"];
     };
