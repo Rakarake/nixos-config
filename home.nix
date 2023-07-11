@@ -17,8 +17,12 @@ in
     easyeffects
   ];
     
-  # Git Config
-  home.file.".gitconfig".source = ./gitconfig;
+  # Git config
+  home.file.".gitconfig".source = ./.gitconfig;
+  # Generic shell options
+  home.file.".alias".source = ./.alias;
+  # Bash config
+  home.file.".bashrc".source = ./.bashrc;
 
   # Gnome settings
   # Use: `dconf watch /` to find the names of gnome settings
