@@ -12,7 +12,14 @@ in
     firefox
     thunderbird
     mullvad-vpn
+    gnomeExtensions.tray-icons-reloaded
+    tauon
+    easyeffects
   ];
+    
+  # Git Config
+  home.file.".gitconfig".source = ./gitconfig;
+
   # Gnome settings
   # Use: `dconf watch /` to find the names of gnome settings
   dconf.settings = {
@@ -29,10 +36,26 @@ in
     "org/gnome/desktop/wm/keybindings" = {
       switch-to-workspace-left  = ["<Control><Super>h"];
       switch-to-workspace-right = ["<Control><Super>l"];
+      close =                     ["<Super>q"];
+      move-to-workspace-left =    ["<Shift><Control><Super>h"];
+      move-to-workspace-right =   ["<Shift><Control><Super>l"];
     };
     # Caps-Lock as Escape
     "org/gnome/desktop/input-sources" = {
       xkb-options = ["terminate:ctrl_alt_bksp" "caps:escape"];
+    };
+    # Touchpad Tap-to-Click
+    "org/gnome/desktop/peripherals/touchpad" = {
+      tap-to-click = true;
+    };
+    # Don't suspend when plugged in
+    "org/gnome/settings-daemon/plugins/power" = {
+      sleep-inactive-ac-type = "nothing";
+    };
+    # Extentions
+    "org/gnome/shell" = {
+      disable-user-extensions = false;
+      enabled-extensions = ["trayIconsReloaded@selfmade.pl"];
     };
   };
 }

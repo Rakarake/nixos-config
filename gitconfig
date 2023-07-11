@@ -1,0 +1,10 @@
+[user]
+	name = Rakarake
+	email = williambodin2001@gmail.com
+[core]
+	editor = nvim
+	autocrlf = input
+	excludesfile = /home/rakarake/.gitignore
+[color]
+	ui = auto
+
