@@ -1,7 +1,7 @@
 {
   description = "A super system conf";
   inputs = {
-    # Use nios-unstable as nixpkgs source
+    # Use nixos-unstable as nixpkgs source
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     # Home Manager flake dependency
