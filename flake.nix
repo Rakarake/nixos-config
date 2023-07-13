@@ -18,7 +18,8 @@
       system = "x86_64-linux";
       specialArgs = attrs;
       modules = [
-        ./hosts/rakarake-thinkpad/configuration.nix
+        ./desktop-configuration.nix
+        ./hosts/rakarake-thinkpad/configuration.nix 
         home-manager.nixosModules.home-manager {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;

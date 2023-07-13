@@ -20,5 +20,8 @@ PROMPT_COMMAND=restore_prompt_after_nix_shell
 
 # vi-mode
 set -o vi
-# With ctrl-l clearing the screen
+set vi-cmd-mode-string "\1\e[2 q\2"
+set vi-ins-mode-string "\1\e[6 q\2"
+
+# vi-mode with ctrl-l clearing the screen
 bind -x '"\C-l": clear;'

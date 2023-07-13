@@ -1,4 +1,5 @@
 # Universal aliases for different shells
+
 # Extract function
 ex ()
 {
@@ -91,6 +92,10 @@ alias cabi='cabal repl'
 
 # Settings
 stty -ixon   # Disables ctrl-s and ctrl-q
+
+# Fast
+alias nc="cd ~/Projects/nixos-config"
+#alias vimrc="vim ~/Projects/nixos-config/.skdjflksdflj"
 
 # Kitty ssh
 if [ "$TERM" = "xterm-kitty" ]

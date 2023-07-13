@@ -12,7 +12,7 @@ in
     firefox
     thunderbird
     mullvad-vpn
-    gnomeExtensions.tray-icons-reloaded
+    gnomeExtensions.appindicator
     tauon
     easyeffects
   ];
@@ -23,6 +23,23 @@ in
   home.file.".alias".source = ./.alias;
   # Bash config
   home.file.".bashrc".source = ./.bashrc;
+  # ZSH config
+  home.file.".zshrc".source = ./.zshrc;
+  # Kitty config
+  home.file.".config/kitty/kitty.conf".source = ./kitty.conf;
+
+  # Neovim
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+    plugins = with pkgs.vimPlugins; [
+      nvim-lspconfig
+      nvim-treesitter.withAllGrammars
+      plenary-nvim
+      telescope-nvim
+      catppuccin-nvim
+    ];
+  };
 
   # Gnome settings
   # Use: `dconf watch /` to find the names of gnome settings
@@ -36,6 +53,15 @@ in
       picture-uri      = "/run/current-system/sw/share/backgrounds/gnome/design-is-rounded-rectangles-l.webp";
       picture-uri-dark = "/run/current-system/sw/share/backgrounds/gnome/design-is-rounded-rectangles-d.webp";
     };
+    # Custom Shortcuts
+    "org/gnome/settings-daemon/plugins/media-keys" = {
+      custom-keybindings = ["/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"];
+    };
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
+      binding = "<Super>Return";
+      command = "kgx";
+      name = "Terminal";
+    };
     # Keybinds
     "org/gnome/desktop/wm/keybindings" = {
       switch-to-workspace-left  = ["<Control><Super>h"];
@@ -43,6 +69,7 @@ in
       close =                     ["<Super>q"];
       move-to-workspace-left =    ["<Shift><Control><Super>h"];
       move-to-workspace-right =   ["<Shift><Control><Super>l"];
+      toggle-maximized =          ["<Super>m"];
     };
     # Caps-Lock as Escape
     "org/gnome/desktop/input-sources" = {
@@ -59,7 +86,7 @@ in
     # Extentions
     "org/gnome/shell" = {
       disable-user-extensions = false;
-      enabled-extensions = ["trayIconsReloaded@selfmade.pl"];
+      enabled-extensions = ["appindicatorsupport@rgcjonas.gmail.com"];
     };
   };
 }
