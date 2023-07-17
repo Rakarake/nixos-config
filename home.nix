@@ -15,7 +15,20 @@ in
     gnomeExtensions.appindicator
     tauon
     easyeffects
+
+    # Hacker programs
+
+    # Rust
+    rust-analyzer
+    rustc
+    cargo
   ];
+
+  # Direnv
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+  };
     
   # Git config
   home.file.".gitconfig".source = ./.gitconfig;
@@ -27,6 +40,7 @@ in
   home.file.".zshrc".source = ./.zshrc;
   # Kitty config
   home.file.".config/kitty/kitty.conf".source = ./kitty.conf;
+
   # Neovim config
   programs.neovim = {
     enable = true;
@@ -37,6 +51,11 @@ in
       plenary-nvim
       telescope-nvim
       catppuccin-nvim
+      toggleterm-nvim
+      # LSP
+      nvim-lspconfig
+      nvim-cmp
+      luasnip
     ];
   };
   home.file.".config/nvim/init.lua".source = ./init.lua;

@@ -18,10 +18,9 @@ function restore_prompt_after_nix_shell() {
 }
 PROMPT_COMMAND=restore_prompt_after_nix_shell
 
+# Nix direnv
+eval "$(direnv hook bash)"
+
 # vi-mode
 set -o vi
-set vi-cmd-mode-string "\1\e[2 q\2"
-set vi-ins-mode-string "\1\e[6 q\2"
-
-# vi-mode with ctrl-l clearing the screen
-bind -x '"\C-l": clear;'
+bind -x '"\C-l": clear;'  # ctrl-l clearing the screen

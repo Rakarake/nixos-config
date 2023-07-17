@@ -95,7 +95,8 @@ stty -ixon   # Disables ctrl-s and ctrl-q
 
 # Fast
 alias nc="cd ~/Projects/nixos-config"
-#alias vimrc="vim ~/Projects/nixos-config/.skdjflksdflj"
+alias rebuild="sudo nixos-rebuild switch --flake ~/Projects/nixos-config/"
+alias vimrc="nc && v ~/Projects/nixos-config/init.lua"
 
 # Kitty ssh
 if [ "$TERM" = "xterm-kitty" ]

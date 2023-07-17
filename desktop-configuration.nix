@@ -123,6 +123,8 @@
     flatpak
     powertop  # Power usage inspector
     kitty
+    sl
+    wl-clipboard
   ];
 
   # Enable the flatpak service
