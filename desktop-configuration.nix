@@ -95,7 +95,7 @@
   };
 
   # Mullvad Service
-   services.mullvad-vpn.enable = true;
+  services.mullvad-vpn.enable = true;
 
   # Enable automatic login for the user.
   services.xserver.displayManager.autoLogin.enable = true;

@@ -27,8 +27,7 @@ in
   home.file.".zshrc".source = ./.zshrc;
   # Kitty config
   home.file.".config/kitty/kitty.conf".source = ./kitty.conf;
-
-  # Neovim
+  # Neovim config
   programs.neovim = {
     enable = true;
     defaultEditor = true;
@@ -40,9 +39,17 @@ in
       catppuccin-nvim
     ];
   };
+  home.file.".config/nvim/init.lua".source = ./init.lua;
 
   # Gnome settings
   # Use: `dconf watch /` to find the names of gnome settings
+  gtk = {
+    enable = true;
+    theme = {
+      name = "adw-gtk3";
+      package = pkgs.adw-gtk3;
+    };
+  };
   dconf.settings = {
     # Locale
     "system/locale" = {
