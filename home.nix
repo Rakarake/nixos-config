@@ -25,6 +25,8 @@ in
     # C
     clang
     pkgconfig
+    # Haskell
+    ghc
   ];
 
   # Direnv
@@ -32,7 +34,7 @@ in
     enable = true;
     nix-direnv.enable = true;
   };
-    
+
   # Git config
   home.file.".gitconfig".source = ./.gitconfig;
   # Generic shell options
@@ -43,6 +45,8 @@ in
   home.file.".zshrc".source = ./.zshrc;
   # Kitty config
   home.file.".config/kitty/kitty.conf".source = ./kitty.conf;
+  # Ghci prompt
+  home.file.".ghci".source = ./.ghci;
 
   # Neovim config
   programs.neovim = {
