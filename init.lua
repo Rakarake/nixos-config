@@ -1,4 +1,5 @@
 -- Neovim configuration
+vim.g.mapleader = ' '
 
 -- Theme / Colorscheme
 vim.cmd.colorscheme("catppuccin-macchiato")
@@ -10,6 +11,12 @@ require'nvim-treesitter.configs'.setup {
     additional_vim_regex_highlighting = false,
   },
 }
+
+-- Telescope
+vim.keymap.set('n', '<leader>ff', '<cmd>Telescope find_files<cr>')
+vim.keymap.set('n', '<leader>fg', '<cmd>Telescope live_grep<cr>')
+vim.keymap.set('n', '<leader>fb', '<cmd>Telescope buffers<cr>')
+vim.keymap.set('n', '<leader>fh', '<cmd>Telescope help_tags<cr>')
 
 -- Settings
 vim.opt.tabstop = 4                   -- Tab length

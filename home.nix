@@ -22,6 +22,9 @@ in
     rust-analyzer
     rustc
     cargo
+    # C
+    clang
+    pkgconfig
   ];
 
   # Direnv
