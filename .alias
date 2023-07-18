@@ -60,7 +60,7 @@ alias p='cd ~/Projects'
 
 # Open new terminal in directory
 alias gg='gnome-terminal . &'
-alias cc='kgx & disown'
+alias xx='kgx & disown'
 alias aa='alacritty & disown'
 alias kk='kitty & disown'
 
@@ -89,9 +89,6 @@ alias ip-list='nmap -sP 192.168.1.1/24'
 
 # Haskell
 alias cabi='cabal repl'
-
-# Settings
-stty -ixon   # Disables ctrl-s and ctrl-q
 
 # Fast
 alias nc="cd ~/Projects/nixos-config"
