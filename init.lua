@@ -4,6 +4,12 @@ vim.g.mapleader = ' '
 -- Theme / Colorscheme
 vim.cmd.colorscheme("catppuccin-macchiato")
 
+-- Eternal undo
+vim.g.noswapfile = true  -- No swapfiles
+vim.g.nobackup = true
+vim.g.undodir = '~/.config/nvim/undodir'
+vim.g.undofile = true
+
 -- Treesitter setup
 require'nvim-treesitter.configs'.setup {
   highlight = {
@@ -34,6 +40,11 @@ vim.opt.timeoutlen = 500              -- Space delay
 vim.opt.incsearch = true              -- Good search highlighting
 vim.opt.clipboard = "unnamedplus"     -- Set clipboard to system's
 vim.opt.secure = true                 -- Secure files yes
+vim.opt.ignorecase = true             -- Case insensitive search when no caps
+vim.opt.smartcase = true
+
+-- Clear highlighting and everything at bottom
+vim.keymap.set('n', '<leader>p', '<cmd>nohlsearch<Bar>:echo<cr>')
 
 -- Toggleterm
 local toggleterm = require("toggleterm").setup {

@@ -9,24 +9,21 @@ in
   home.stateVersion = "23.05";
   programs.home-manager.enable = true;
   home.packages = with pkgs; [
-    firefox
-    thunderbird
-    mullvad-vpn
-    gnomeExtensions.appindicator
-    tauon
-    easyeffects
-
     # Hacker programs
 
+    # HTML / CSS / JSON / ESLint language server
+    vscode-langservers-extracted
     # Rust
-    rust-analyzer
     rustc
     cargo
+    rust-analyzer # Rust language server
     # C
     clang
     pkgconfig
+    ccls          # A C/C++ language server
     # Haskell
     ghc
+    haskell-language-server
   ];
 
   # Direnv
@@ -59,12 +56,16 @@ in
       telescope-nvim
       catppuccin-nvim
       toggleterm-nvim
+      vimwiki
       # LSP
       nvim-lspconfig
       nvim-cmp
       luasnip
     ];
   };
+  # Make sure undodir exists
+  home.file.".config/nvim/undodir/gamnangstyle".text = "whop\n";
+  # Neovim main configuration file
   home.file.".config/nvim/init.lua".source = ./init.lua;
 
   # Gnome settings

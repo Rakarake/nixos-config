@@ -4,6 +4,33 @@
 
 { config, pkgs, ... }@attrs:
 {
+  # System Packages/Programs
+  # To search, run:
+  # $ nix search wget
+  environment.systemPackages = with pkgs; [
+    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    neovim
+    wget
+    zsh
+    git
+    neofetch
+    attrs.nix-software-center.packages.${system}.nix-software-center
+    attrs.nixos-conf-editor.packages.${system}.nixos-conf-editor
+    flatpak
+    powertop  # Power usage inspector
+    kitty
+    sl
+    wl-clipboard
+    qpwgraph
+
+    firefox
+    thunderbird
+    gnomeExtensions.appindicator
+    tauon
+    easyeffects
+    godot_4
+  ];
+
   # Enable Flakes
   nix.settings.experimental-features = [ "flakes" "nix-command" ];
 
@@ -107,25 +134,6 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-
-  # System Packages/Programs
-  # To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    neovim
-    wget
-    zsh
-    git
-    neofetch
-    attrs.nix-software-center.packages.${system}.nix-software-center
-    attrs.nixos-conf-editor.packages.${system}.nixos-conf-editor
-    flatpak
-    powertop  # Power usage inspector
-    kitty
-    sl
-    wl-clipboard
-  ];
 
   # Enable the flatpak service
   services.flatpak.enable = true;
