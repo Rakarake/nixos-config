@@ -114,6 +114,14 @@ in
       move-to-workspace-right =   ["<Shift><Control><Super>l"];
       toggle-maximized =          ["<Super>m"];
     };
+    # Number of workspaces
+    "org/gnome/desktop/wm/preferences" = {
+      num-workspaces = 6;
+    };
+    # Only workspaces on primary monitor
+    "org/gnome/mutter" = {
+      workspaces-only-on-primary = true;
+    };
     # Caps-Lock as Escape
     "org/gnome/desktop/input-sources" = {
       xkb-options = ["terminate:ctrl_alt_bksp" "caps:escape"];
