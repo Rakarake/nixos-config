@@ -24,12 +24,21 @@ in
     haskell-language-server
     # Nix??? 😲
     nil  # Nix language server
+    # Godot
+    godot_4
   ];
 
   # Direnv
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;
+  };
+
+  # Godot single single window
+  xdg.desktopEntries.godotOneWindow = {
+    name = "Godot 4 Single Window";
+    genericName = "Godot 4 Single Window";
+    exec = "godot4 --single-window";
   };
 
   # Git config

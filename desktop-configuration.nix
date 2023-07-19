@@ -28,7 +28,6 @@
     gnomeExtensions.appindicator
     tauon
     easyeffects
-    godot_4
     mullvad-vpn
   ];
 
