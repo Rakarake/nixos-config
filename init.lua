@@ -12,6 +12,10 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 
+-- Vimwiki
+vim.cmd('filetype plugin on')
+vim.g.vimwiki_list = {{path = '~/vimwiki/', syntax = 'markdown', ext = '.md'}}
+
 -- Telescope
 vim.keymap.set('n', '<leader>ff', '<cmd>Telescope find_files<cr>')
 vim.keymap.set('n', '<leader>fg', '<cmd>Telescope live_grep<cr>')
@@ -54,7 +58,7 @@ vim.keymap.set('n', '<leader>p', '<cmd>nohlsearch<Bar>:echo<cr>')
 local toggleterm = require("toggleterm").setup {
     size = vim.o.columns * 0.45,
     direction = 'vertical', 
-    open_mapping = [[<C-I>]],
+    open_mapping = [[<C-P>]],
     hide_numbers = true, -- hide the number column in toggleterm buffers
     shade_filetypes = {},
     shading_factor = 0,
@@ -223,6 +227,13 @@ require'lspconfig'.jdtls.setup{
      on_attach = on_attach,
      flags = lsp_flags,
  }
+
+-- Nix
+require'lspconfig'.nil_ls.setup{
+     capabilities = capabilities,
+     on_attach = on_attach,
+     flags = lsp_flags,
+}
 
 
 -- Catppuccin theme integrations

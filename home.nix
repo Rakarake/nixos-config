@@ -22,6 +22,8 @@ in
     # Haskell
     ghc
     haskell-language-server
+    # Nix??? 😲
+    nil  # Nix language server
   ];
 
   # Direnv
