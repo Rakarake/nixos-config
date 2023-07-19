@@ -24,6 +24,10 @@ vim.keymap.set('n', '<leader>fg', '<cmd>Telescope live_grep<cr>')
 vim.keymap.set('n', '<leader>fb', '<cmd>Telescope buffers<cr>')
 vim.keymap.set('n', '<leader>fh', '<cmd>Telescope help_tags<cr>')
 
+-- Buffers
+vim.keymap.set('n', '<leader>bn', '<cmd>bnext<cr>')
+vim.keymap.set('n', '<leader>bp', '<cmd>bprevious<cr>')
+
 -- Settings
 vim.opt.tabstop = 4                   -- Tab length
 vim.opt.softtabstop = 4 

@@ -29,6 +29,7 @@
     tauon
     easyeffects
     godot_4
+    mullvad-vpn
   ];
 
   # Enable Flakes
@@ -41,7 +42,6 @@
   # Enable Plymouth
   boot.plymouth.enable = true;
   boot.initrd.systemd.enable = true;
-  boot.kernelParams = ["quiet"];
 
   # Setup keyfile
   boot.initrd.secrets = {

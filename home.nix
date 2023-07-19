@@ -9,8 +9,6 @@ in
   home.stateVersion = "23.05";
   programs.home-manager.enable = true;
   home.packages = with pkgs; [
-    # Hacker programs
-
     # HTML / CSS / JSON / ESLint language server
     vscode-langservers-extracted
     # Rust
