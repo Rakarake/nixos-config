@@ -47,10 +47,6 @@
     "/crypto_keyfile.bin" = null;
   };
 
-  # Enable swap on luks
-  boot.initrd.luks.devices."luks-28308eb8-f78c-4235-982e-a0df1555eb1c".device = "/dev/disk/by-uuid/28308eb8-f78c-4235-982e-a0df1555eb1c";
-  boot.initrd.luks.devices."luks-28308eb8-f78c-4235-982e-a0df1555eb1c".keyFile = "/crypto_keyfile.bin";
-
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -61,7 +57,8 @@
   networking.networkmanager.enable = true;
 
   # Set your time zone.
-  time.timeZone = "Europe/Helsinki";
+  time.timeZone = "Europe/Stockholm";
+  services.automatic-timezoned.enable = true;
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
@@ -136,10 +133,6 @@
 
   # Enable the flatpak service
   services.flatpak.enable = true;
-
-  # Enable tlp
-  #services.power-profiles-daemon.enable = false;
-  #services.tlp.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

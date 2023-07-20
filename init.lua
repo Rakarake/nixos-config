@@ -48,7 +48,7 @@ vim.opt.smartcase = true
 -- Eternal undo
 vim.opt.swapfile = false  -- No backup/swap files
 vim.opt.backup = false
-vim.opt.undodir = '~/.config/nvim/undodir'
+vim.opt.undodir = '/home/rakarake/.config/nvim/undodir/'
 vim.opt.undofile = true
 
 -- Clear highlighting and everything at bottom
