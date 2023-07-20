@@ -75,7 +75,9 @@ in
   # Make sure undodir exists
   home.file.".config/nvim/undodir/gamnangstyle".text = "whop\n";
   # Neovim main configuration file
-  home.file.".config/nvim/init.lua".source = ./init.lua;
+  home.file.".config/nvim/init.lua".source = ./nvim/init.lua;
+  # Neovim filetype specific configs
+  home.file.".config/nvim/ftplugin/gdscript.lua".source = ./nvim/ftplugin/gdscript.lua;
 
   # Gnome settings
   # Use: `dconf watch /` to find the names of gnome settings

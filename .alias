@@ -93,7 +93,7 @@ alias cabi='cabal repl'
 # Fast
 alias nc="cd ~/Projects/nixos-config"
 alias rebuild="sudo nixos-rebuild switch --flake ~/Projects/nixos-config/"
-alias vimrc="nc && v ~/Projects/nixos-config/init.lua"
+alias vimrc="nc && v ~/Projects/nixos-config/nvim/init.lua"
 
 # Kitty ssh
 if [ "$TERM" = "xterm-kitty" ]
