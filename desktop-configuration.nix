@@ -21,10 +21,11 @@
     kitty
     sl
     wl-clipboard
-    qpwgraph
+    tree
 
     firefox
     thunderbird
+    qpwgraph
     gnomeExtensions.appindicator
     tauon
     easyeffects
