@@ -41,7 +41,7 @@ PATH=/home/rakarake/Documents/dotnet5:$PATH  # Dotnet
 export MANPAGER='nvim +Man!'
 
 # Standard Aliases
-alias v='nvim'
+alias e='nvim'
 alias open='xdg-open'
 alias :q='exit'
 alias la='ls -a'

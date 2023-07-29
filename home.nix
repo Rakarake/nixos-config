@@ -8,25 +8,9 @@ in
   home.homeDirectory = "/home/rakarake";
   home.stateVersion = "23.05";
   programs.home-manager.enable = true;
-  home.packages = with pkgs; [
-    # HTML / CSS / JSON / ESLint language server
-    vscode-langservers-extracted
-    # Rust
-    rustc
-    cargo
-    rust-analyzer # Rust language server
-    # C
-    clang
-    pkgconfig
-    ccls          # A C/C++ language server
-    # Haskell
-    ghc
-    haskell-language-server
-    # Nix??? 😲
-    nil  # Nix language server
-    # Godot
-    godot_4
-  ];
+  #home.packages = with pkgs; [
+
+  #];
 
   # Direnv
   programs.direnv = {
@@ -115,6 +99,7 @@ in
       move-to-workspace-left =    ["<Shift><Control><Super>h"];
       move-to-workspace-right =   ["<Shift><Control><Super>l"];
       toggle-maximized =          ["<Super>m"];
+      toggle-fullscreen =         ["<Super>F11"];
     };
     # Number of workspaces
     "org/gnome/desktop/wm/preferences" = {

@@ -22,6 +22,28 @@
     sl
     wl-clipboard
     tree
+    openttd
+    clapper
+    timidity
+    freepats
+
+    # HTML / CSS / JSON / ESLint language server
+    vscode-langservers-extracted
+    # C
+    clang
+    pkgconfig
+    ccls          # A C/C++ language server
+    # Haskell
+    ghc
+    haskell-language-server
+    # Nix??? 😲
+    nil  # Nix language server
+    # Godot
+    godot_4
+    # Rust
+    rustc
+    cargo
+    rust-analyzer # Rust language server
 
     firefox
     thunderbird
@@ -34,6 +56,9 @@
 
   # Enable Flakes
   nix.settings.experimental-features = [ "flakes" "nix-command" ];
+
+  # Enable Android stuff
+  programs.adb.enable = true;
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -115,7 +140,7 @@
   users.users.rakarake = {
     isNormalUser = true;
     description = "Rakarake";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "adbusers" ];
   };
 
   # Mullvad Service

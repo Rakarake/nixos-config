@@ -11,8 +11,21 @@
     # Nix Software Center and NixOS-conf-editor dependency
     nix-software-center.url = "github:vlinkz/nix-software-center";
     nixos-conf-editor.url = "github:vlinkz/nixos-conf-editor";
+
+    # Rust Overlay Flake (to use the nightly channel)
+    rust-overlay.url = "github:oxalica/rust-overlay";
   };
-  outputs = attrs@{ self, nixpkgs, home-manager, ... }: {
+
+  outputs = attrs@{ self, nixpkgs, home-manager, rust-overlay, ... }:
+  let
+    overlays = [
+      ({ pkgs, ... }: {
+        nixpkgs.overlays = [ rust-overlay.overlays.default ];
+        environment.systemPackages = [ (pkgs.rust-bin.selectLatestNightlyWith (toolchain: toolchain.default)) ];
+      })
+    ];
+  in
+  {
     # Thonkpad configuration go wrrom
     nixosConfigurations.rakarake-thinkpad = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
@@ -28,7 +41,7 @@
             # Optionally, use home-manager.extraSpecialArgs to pass
             # arguments to home.nix
           }
-      ];
+      ] ++ overlays;
     };
   };
 }
