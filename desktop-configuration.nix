@@ -21,10 +21,15 @@
     sl
     wl-clipboard
     tree
-    openttd
     clapper
     timidity
     freepats
+    krita
+
+    # Games
+    steam
+    openttd
+    prismlauncher
 
     # HTML / CSS / JSON / ESLint language server
     vscode-langservers-extracted
