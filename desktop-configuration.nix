@@ -2,8 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }@attrs:
-{
+{ config, pkgs, ... }@attrs: {
   # System Packages/Programs
   # To search, run:
   # $ nix search wget
@@ -60,7 +59,7 @@
   # Enable Android stuff
   programs.adb.enable = true;
 
-  # Bootloader.
+  # Bootloader
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
@@ -82,11 +81,11 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
-  # Set your time zone.
+  # Set your time zone
   time.timeZone = "Europe/Stockholm";
   services.automatic-timezoned.enable = true;
 
-  # Select internationalisation properties.
+  # Select internationalisation properties
   i18n.defaultLocale = "en_US.UTF-8";
 
   i18n.extraLocaleSettings = {
@@ -146,14 +145,6 @@
   # Mullvad Service
   services.mullvad-vpn.enable = true;
 
-  # Enable automatic login for the user.
-  services.xserver.displayManager.autoLogin.enable = true;
-  services.xserver.displayManager.autoLogin.user = "rakarake";
-
-  # Workaround for GNOME autologin: https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
-  systemd.services."getty@tty1".enable = false;
-  systemd.services."autovt@tty1".enable = false;
-
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
@@ -186,5 +177,5 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.05"; # Did you read the comment?
-
 }
+

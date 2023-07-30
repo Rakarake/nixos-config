@@ -43,5 +43,19 @@
           }
       ] ++ overlays;
     };
+    # PC
+    nixosConfigurations.rakarake-pc = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      specialArgs = attrs;
+      modules = [
+        ./desktop-configuration.nix
+        ./hosts/rakarake-pc/configuration.nix 
+        home-manager.nixosModules.home-manager {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.rakarake = import ./home.nix;
+          }
+      ] ++ overlays;
+    };
   };
 }
