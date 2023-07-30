@@ -123,6 +123,10 @@ local lsp_flags = {
 -- luasnip setup
 local luasnip = require 'luasnip'
 
+-- nvim-cmp configuration
+-- Add additional capabilities supported by nvim-cmp
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp').default_capabilities()
 -- nvim-cmp setup
 local cmp = require 'cmp'
 cmp.setup {

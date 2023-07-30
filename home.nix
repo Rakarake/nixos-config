@@ -53,6 +53,7 @@ in
       # LSP
       nvim-lspconfig
       nvim-cmp
+      cmp-nvim-lsp
       luasnip
     ];
   };
