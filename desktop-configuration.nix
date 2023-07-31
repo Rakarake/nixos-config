@@ -26,14 +26,6 @@
     freepats    # MIDI soundfont
     btrfs-progs
 
-    # Graphical apps
-    krita
-    tuba
-
-    # Games
-    openttd
-    prismlauncher
-
     # HTML / CSS / JSON / ESLint language server
     vscode-langservers-extracted
     # C
@@ -52,6 +44,12 @@
     cargo
     rust-analyzer # Rust language server
 
+    # Other
+    openttd
+    prismlauncher
+
+    krita
+    tuba
     firefox
     thunderbird
     qpwgraph
@@ -59,6 +57,7 @@
     tauon
     easyeffects
     mullvad-vpn
+    fragments
   ];
 
   # Steam
