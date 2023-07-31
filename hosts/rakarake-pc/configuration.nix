@@ -6,6 +6,14 @@
 
   # Mount music
   fileSystems = {
+    "/home/rakarake/MOD" = {
+      label = "MOD";
+      fsType = "btrfs";
+    };
+    "/home/rakarake/MORB" = {
+      label = "MORB";
+      fsType = "btrfs";
+    };
     "/home/rakarake/Music" = {
       label = "MORB";
       fsType = "btrfs";

@@ -102,6 +102,9 @@ in
       toggle-maximized =          ["<Super>m"];
       toggle-fullscreen =         ["<Super>F11"];
     };
+    "org/gnome/settings-daemon/plugins/media-keys" = {
+      home = ["<Super>f"];
+    };
     # Number of workspaces
     "org/gnome/desktop/wm/preferences" = {
       num-workspaces = 6;
