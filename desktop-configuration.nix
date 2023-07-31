@@ -22,8 +22,11 @@
     wl-clipboard
     tree
     clapper
-    timidity
-    freepats
+    timidity    # MIDI CLI player
+    freepats    # MIDI soundfont
+    btrfs-progs
+
+    # Graphical apps
     krita
 
     # Games
