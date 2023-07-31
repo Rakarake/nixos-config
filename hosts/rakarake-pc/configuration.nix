@@ -4,6 +4,13 @@
   # Hostname
   networking.hostName = "rakarake-pc";  # Define your hostname.
 
+  # Guest User
+  users.users.guest = {
+    isNormalUser = true;
+    description = "Guest";
+    extraGroups = [ "networkmanager" ];
+  };
+
   # Mount music
   fileSystems = {
     "/home/rakarake/MOD" = {
