@@ -85,12 +85,20 @@ in
     };
     # Custom Shortcuts
     "org/gnome/settings-daemon/plugins/media-keys" = {
-      custom-keybindings = ["/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"];
+      custom-keybindings = [
+        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
+        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/"
+        ];
     };
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
       binding = "<Super>Return";
       command = "kgx";
       name = "Terminal";
+    };
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
+      binding = "<Super>t";
+      command = "gnome-text-editor";
+      name = "Text Editor";
     };
     # Keybinds
     "org/gnome/desktop/wm/keybindings" = {
@@ -110,8 +118,10 @@ in
       num-workspaces = 6;
     };
     # Only workspaces on primary monitor
+    # and edge tiling
     "org/gnome/mutter" = {
       workspaces-only-on-primary = true;
+      edge-tiling = true;
     };
     # Caps-Lock as Escape
     "org/gnome/desktop/input-sources" = {
