@@ -13,16 +13,16 @@
     nixos-conf-editor.url = "github:vlinkz/nixos-conf-editor";
 
     # Rust Overlay Flake (to use the nightly channel)
-    rust-overlay.url = "github:oxalica/rust-overlay";
+    #rust-overlay.url = "github:oxalica/rust-overlay";
   };
 
-  outputs = attrs@{ self, nixpkgs, home-manager, rust-overlay, ... }:
+  outputs = attrs@{ self, nixpkgs, home-manager, ... }:
   let
     overlays = [
-      ({ pkgs, ... }: {
-        nixpkgs.overlays = [ rust-overlay.overlays.default ];
-        environment.systemPackages = [ (pkgs.rust-bin.selectLatestNightlyWith (toolchain: toolchain.default)) ];
-      })
+      #({ pkgs, ... }: {
+      #  nixpkgs.overlays = [ rust-overlay.overlays.default ];
+      #  environment.systemPackages = [ (pkgs.rust-bin.selectLatestNightlyWith (toolchain: toolchain.default)) ];
+      #})
     ];
   in
   {

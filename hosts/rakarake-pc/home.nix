@@ -6,10 +6,10 @@ let
   default = (import ../../home.nix) attrs;
 in
 default // {
-  dconf.settings = default.dconf.settings // {
-    "org/gnome/desktop/session" = {
-      idle-delay = 0;
-    };
-  };
+  #dconf.settings = default.dconf.settings // {
+  #  "org/gnome/desktop/session" = {
+  #    idle-delay = 0;
+  #  };
+  #};
 }
 
