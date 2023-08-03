@@ -26,6 +26,7 @@
     timidity    # MIDI CLI player
     freepats    # MIDI soundfont
     btrfs-progs
+    noto-fonts-cjk-sans
 
     # HTML / CSS / JSON / ESLint language server
     vscode-langservers-extracted
