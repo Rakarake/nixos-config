@@ -12,6 +12,7 @@
     wget
     zsh
     git
+    openssh
     neofetch
     attrs.nix-software-center.packages.${system}.nix-software-center
     attrs.nixos-conf-editor.packages.${system}.nixos-conf-editor
@@ -48,6 +49,12 @@
     openttd
     prismlauncher
 
+    libreoffice
+    onlyoffice-bin
+    hunspell                 # Libreoffice spelling
+    hunspellDicts.sv_SE      # Swedish
+    hunspellDicts.en_US      # American
+    hunspellDicts.en_GB-ise  # English
     krita
     tuba
     firefox
@@ -58,7 +65,15 @@
     easyeffects
     mullvad-vpn
     fragments
+    gnome.gnome-mines
   ];
+
+  # GnuPG
+  programs.gnupg.agent = {
+    enable = true;
+    pinentryFlavor = "gnome3";
+    #enableSSHSupport = true;
+  };
 
   # Podman
   virtualisation = {
@@ -177,10 +192,6 @@
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
 
   # List services that you want to enable:
 
