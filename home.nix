@@ -47,7 +47,7 @@ in
       nvim-treesitter.withAllGrammars
       plenary-nvim
       telescope-nvim
-      catppuccin-nvim
+      catppuccin-nvim  # Theme
       toggleterm-nvim
       vimwiki
       # LSP

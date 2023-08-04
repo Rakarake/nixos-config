@@ -57,7 +57,6 @@
     hunspellDicts.en_US      # American
     hunspellDicts.en_GB-ise  # English
     krita
-    tuba
     firefox
     thunderbird
     qpwgraph
@@ -67,9 +66,10 @@
     mullvad-vpn
     fragments
     gnome.gnome-mines
+    mission-center
   ];
 
-  # GnuPG
+  # GPG / GnuPG
   programs.gnupg.agent = {
     enable = true;
     pinentryFlavor = "gnome3";
