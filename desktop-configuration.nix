@@ -49,6 +49,7 @@
     # Other
     openttd
     prismlauncher
+    gamescope
 
     libreoffice
     onlyoffice-bin
@@ -59,6 +60,7 @@
     krita
     firefox
     thunderbird
+    blender
     qpwgraph
     gnomeExtensions.appindicator
     tauon
