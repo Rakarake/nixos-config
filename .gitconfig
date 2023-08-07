@@ -1,7 +1,7 @@
 [user]
 	name = Rakarake
 	email = rak@rakarake.xyz
-    signingkey = "98CF6C24F40B3531"
+    signingKey = "98CF6C24F40B3531!"
 [core]
 	editor = nvim
 	autocrlf = input
