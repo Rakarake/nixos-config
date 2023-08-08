@@ -10,10 +10,12 @@
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     neovim
     wget
+    gnumake
     zsh
     git
     openssh
     neofetch
+    bat
     neo-cowsay
     attrs.nix-software-center.packages.${system}.nix-software-center
     attrs.nixos-conf-editor.packages.${system}.nixos-conf-editor

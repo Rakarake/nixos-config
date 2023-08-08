@@ -38,6 +38,9 @@ in
   # Ghci prompt
   home.file.".ghci".source = ./.ghci;
 
+  # Templates
+  home.file."Templates/shell.nix".source = ./Templates/shell.nix;
+
   # Neovim config
   programs.neovim = {
     enable = true;
