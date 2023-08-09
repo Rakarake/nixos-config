@@ -30,6 +30,7 @@
     freepats    # MIDI soundfont
     btrfs-progs
     noto-fonts-cjk-sans
+    steamtinkerlaunch
 
     # HTML / CSS / JSON / ESLint language server
     vscode-langservers-extracted
@@ -47,6 +48,7 @@
     # Rust
     rustc
     cargo
+    rustfmt
     rust-analyzer # Rust language server
 
     # Other

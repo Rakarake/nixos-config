@@ -13,15 +13,26 @@
     nixos-conf-editor.url = "github:vlinkz/nixos-conf-editor";
 
     # Rust Overlay Flake (to use the nightly channel)
-    #rust-overlay.url = "github:oxalica/rust-overlay";
+    #fenix = {
+    #  url = "github:nix-community/fenix/monthly";
+    #  inputs.nixpkgs.follows = "nixpkgs";
+    #};
   };
 
-  outputs = attrs@{ self, nixpkgs, home-manager, ... }:
+  outputs = attrs@{ self, nixpkgs, home-manager, fenix, ... }:
   let
     overlays = [
       #({ pkgs, ... }: {
-      #  nixpkgs.overlays = [ rust-overlay.overlays.default ];
-      #  environment.systemPackages = [ (pkgs.rust-bin.selectLatestNightlyWith (toolchain: toolchain.default)) ];
+      #  nixpkgs.overlays = [ fenix.overlays.default ];
+      #  environment.systemPackages = [
+      #    (fenix.packages.x86_64-linux.default.withComponents [
+      #        "cargo"
+      #        "clippy"
+      #        "rustc"
+      #        "rustfmt"
+      #    ])
+      #    pkgs.rust-analyzer-nightly
+      #  ];
       #})
     ];
   in
