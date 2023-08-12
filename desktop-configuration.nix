@@ -29,7 +29,9 @@
     timidity    # MIDI CLI player
     freepats    # MIDI soundfont
     btrfs-progs
+    noto-fonts
     noto-fonts-cjk-sans
+    noto-fonts-emoji
     steamtinkerlaunch
 
     # HTML / CSS / JSON / ESLint language server
@@ -56,6 +58,7 @@
     prismlauncher
     gamescope
 
+    audacity
     libreoffice
     onlyoffice-bin
     hunspell                 # Libreoffice spelling
