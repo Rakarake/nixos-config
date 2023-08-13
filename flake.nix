@@ -19,7 +19,7 @@
     #};
   };
 
-  outputs = attrs@{ self, nixpkgs, home-manager, fenix, ... }:
+  outputs = attrs@{ self, nixpkgs, home-manager, ... }:
   let
     overlays = [
       #({ pkgs, ... }: {
