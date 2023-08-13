@@ -33,6 +33,7 @@
     noto-fonts-cjk-sans
     noto-fonts-emoji
     steamtinkerlaunch
+    distrobox
 
     # HTML / CSS / JSON / ESLint language server
     vscode-langservers-extracted
