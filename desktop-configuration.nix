@@ -59,6 +59,7 @@
     prismlauncher
     gamescope
 
+    vlc
     audacity
     libreoffice
     onlyoffice-bin
