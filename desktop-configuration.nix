@@ -79,6 +79,7 @@
     fragments
     gnome.gnome-mines
     mission-center
+    celluloid
   ];
 
   # GPG / GnuPG
