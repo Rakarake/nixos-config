@@ -94,7 +94,7 @@ in
         ];
     };
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
-      binding = "<Super>t";
+      binding = "<Super>i";
       command = "kgx";
       name = "Terminal";
     };
@@ -107,6 +107,7 @@ in
       move-to-workspace-right =   ["<Shift><Control><Super>l"];
       toggle-maximized =          ["<Super>m"];
       toggle-fullscreen =         ["<Super>F11"];
+      minimize =                  ["<Super>u"];
     };
     "org/gnome/settings-daemon/plugins/media-keys" = {
       home = ["<Super>f"];
