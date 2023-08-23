@@ -94,14 +94,9 @@ in
         ];
     };
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
-      binding = "<Super>Return";
+      binding = "<Super>t";
       command = "kgx";
       name = "Terminal";
-    };
-    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
-      binding = "<Super>t";
-      command = "gnome-text-editor";
-      name = "Text Editor";
     };
     # Keybinds
     "org/gnome/desktop/wm/keybindings" = {
@@ -141,7 +136,10 @@ in
     # Extentions
     "org/gnome/shell" = {
       disable-user-extensions = false;
-      enabled-extensions = ["appindicatorsupport@rgcjonas.gmail.com"];
+      enabled-extensions = [
+        "appindicatorsupport@rgcjonas.gmail.com"
+        "pop-shell@system76.com"
+      ];
     };
   };
 }

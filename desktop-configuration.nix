@@ -34,6 +34,10 @@
     noto-fonts-emoji
     steamtinkerlaunch
     distrobox
+    fceux
+
+    # Wine
+    wineWowPackages.staging
 
     # HTML / CSS / JSON / ESLint language server
     vscode-langservers-extracted
@@ -73,6 +77,7 @@
     blender
     qpwgraph
     gnomeExtensions.appindicator
+    gnomeExtensions.pop-shell
     tauon
     easyeffects
     mullvad-vpn
