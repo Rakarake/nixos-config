@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }@attrs: {
+{ config, lib, pkgs, ... }@attrs: {
   # System Packages/Programs
   # To search, run:
   # $ nix search wget
@@ -29,12 +29,12 @@
     timidity    # MIDI CLI player
     freepats    # MIDI soundfont
     btrfs-progs
-    noto-fonts
-    noto-fonts-cjk-sans
-    noto-fonts-emoji
+    steam
+    steam-run
     steamtinkerlaunch
     distrobox
     fceux
+    mangohud
 
     # Wine
     wineWowPackages.staging
@@ -60,6 +60,7 @@
 
     # Other
     openttd
+    superTuxKart
     prismlauncher
     gamescope
 
@@ -76,8 +77,6 @@
     thunderbird
     blender
     qpwgraph
-    gnomeExtensions.appindicator
-    gnomeExtensions.pop-shell
     tauon
     easyeffects
     mullvad-vpn
@@ -87,10 +86,23 @@
     celluloid
   ];
 
+  # This makes these fonts available for applications
+  fonts.packages = with pkgs; [
+    noto-fonts
+    noto-fonts-cjk-sans
+    noto-fonts-emoji
+    liberation_ttf
+    fira-code
+    fira-code-symbols
+    mplus-outline-fonts.githubRelease
+    dina-font
+    proggyfonts
+  ];
+
   # GPG / GnuPG
   programs.gnupg.agent = {
     enable = true;
-    pinentryFlavor = "gnome3";
+    # Enable the 'pinentryFlavor' in the DE specific config
     #enableSSHSupport = true;
   };
 
@@ -114,6 +126,21 @@
     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
   };
   hardware.steam-hardware.enable = true;  # To enable steam controller etc.
+  # HUD AND YES
+  nixpkgs.config.packageOverrides = pkgs: {
+    steam = pkgs.steam.override {
+      extraPkgs = pkgs: with pkgs; [
+        gamescope
+        mangohud
+        superTuxKart
+      ];
+    };
+  };
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "steam"
+    "steam-original"
+    "steam-run"
+  ];
 
   # Enable Flakes
   nix.settings.experimental-features = [ "flakes" "nix-command" ];
@@ -159,10 +186,6 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
 
   # Configure keymap in X11
   services.xserver = {

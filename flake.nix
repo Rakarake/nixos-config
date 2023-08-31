@@ -43,11 +43,12 @@
       specialArgs = attrs;
       modules = [
         ./desktop-configuration.nix
+        ./gnome.nix
         ./hosts/rakarake-thinkpad/configuration.nix 
         home-manager.nixosModules.home-manager {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.rakarake = import ./home.nix;
+            home-manager.users.rakarake = import ./hosts/rakarake-thinkpad/home.nix;
 
             # Optionally, use home-manager.extraSpecialArgs to pass
             # arguments to home.nix
@@ -60,6 +61,7 @@
       specialArgs = attrs;
       modules = [
         ./desktop-configuration.nix
+        ./kde.nix
         ./hosts/rakarake-pc/configuration.nix 
         home-manager.nixosModules.home-manager {
             home-manager.useGlobalPkgs = true;
