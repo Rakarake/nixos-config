@@ -35,6 +35,7 @@
     distrobox
     fceux
     mangohud
+    obs-studio
 
     # Wine
     wineWowPackages.staging
@@ -57,6 +58,8 @@
     cargo
     rustfmt
     rust-analyzer # Rust language server
+    # Python
+    python3
 
     # Other
     openttd

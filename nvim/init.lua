@@ -12,6 +12,9 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 
+-- Universal run
+vim.keymap.set('n', '<leader>rr', '<cmd>belowright split term://bash ./run.sh<cr>')
+
 -- Vimwiki
 vim.cmd('filetype plugin on')
 vim.g.vimwiki_list = {{path = '~/vimwiki/', syntax = 'markdown', ext = '.md'}}
