@@ -36,6 +36,7 @@
     fceux
     mangohud
     obs-studio
+    pandoc
 
     # Wine
     wineWowPackages.staging
