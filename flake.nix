@@ -48,13 +48,18 @@
         home-manager.nixosModules.home-manager {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.rakarake = import ./hosts/rakarake-thinkpad/home.nix;
+            home-manager.users.rakarake.imports = [
+                ./home.nix
+                ./home-gnome.nix
+                ./hosts/rakarake-thinkpad/home.nix
+            ];
 
             # Optionally, use home-manager.extraSpecialArgs to pass
             # arguments to home.nix
           }
       ] ++ overlays;
     };
+
     # PC
     nixosConfigurations.rakarake-pc = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
@@ -66,7 +71,10 @@
         home-manager.nixosModules.home-manager {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.rakarake = import ./hosts/rakarake-pc/home.nix;
+            home-manager.users.rakarake.imports = [
+                ./home.nix
+                ./hosts/rakarake-pc/home.nix
+            ];
           }
       ] ++ overlays;
     };
