@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }@attrs: {
+{ pkgs, ... }: {
   environment.systemPackages = with pkgs; [
     gnomeExtensions.appindicator
   ];
