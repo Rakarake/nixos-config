@@ -63,6 +63,7 @@
 
     # Other
     openttd
+    osu-lazer
     superTuxKart
     prismlauncher
     gamescope
@@ -77,6 +78,7 @@
     hunspellDicts.en_GB-ise  # English
     krita
     firefox
+    ungoogled-chromium
     thunderbird
     blender
     qpwgraph

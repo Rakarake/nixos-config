@@ -4,6 +4,10 @@
   # Hostname
   networking.hostName = "rakarake-pc";  # Define your hostname.
 
+  environment.systemPackages = with pkgs; [
+    corectrl
+  ];
+
   # Guest User
   users.users.guest = {
     isNormalUser = true;
