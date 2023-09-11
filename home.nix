@@ -67,4 +67,5 @@ in
   home.file.".config/nvim/init.lua".source = ./nvim/init.lua;
   # Neovim filetype specific configs
   home.file.".config/nvim/ftplugin/gdscript.lua".source = ./nvim/ftplugin/gdscript.lua;
+  home.file.".config/nvim/ftplugin/html.lua".source = ./nvim/ftplugin/html.lua;
 }
