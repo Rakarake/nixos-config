@@ -61,6 +61,8 @@
     rust-analyzer # Rust language server
     # Python
     python3
+    # Java
+    jdk17
 
     # Other
     openttd
