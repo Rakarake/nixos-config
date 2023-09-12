@@ -37,6 +37,8 @@
     mangohud
     obs-studio
     pandoc
+    protonup-qt
+    baobab
 
     # Wine
     wineWowPackages.staging
