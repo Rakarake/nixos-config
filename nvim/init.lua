@@ -20,7 +20,10 @@ vim.cmd('filetype plugin on')
 vim.g.vimwiki_list = {{path = '~/vimwiki/', syntax = 'markdown', ext = '.md'}}
 
 -- Telescope
-vim.keymap.set('n', '<leader>ff', '<cmd>Telescope find_files<cr>')
+-- Only files visible to git
+vim.keymap.set('n', '<leader>ff', '<cmd>Telescope git_files<cr>')
+-- All files
+vim.keymap.set('n', '<leader>fv', '<cmd>Telescope find_files<cr>')
 vim.keymap.set('n', '<leader>fg', '<cmd>Telescope live_grep<cr>')
 vim.keymap.set('n', '<leader>fb', '<cmd>Telescope buffers<cr>')
 vim.keymap.set('n', '<leader>fh', '<cmd>Telescope help_tags<cr>')
