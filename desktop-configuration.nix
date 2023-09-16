@@ -48,7 +48,7 @@
     vscode-langservers-extracted
     # C
     clang
-    pkgconfig
+    pkg-config
     ccls          # A C/C++ language server
     # Haskell
     ghc
