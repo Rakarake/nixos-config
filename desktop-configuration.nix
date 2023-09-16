@@ -40,6 +40,7 @@
     pandoc
     protonup-qt
     baobab
+    pavucontrol
 
     # Wine
     wineWowPackages.staging
