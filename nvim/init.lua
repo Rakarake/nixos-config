@@ -74,7 +74,7 @@ local toggleterm = require("toggleterm").setup {
     shading_factor = 0,
     autochdir = false, -- when neovim changes it current directory the terminal will change it's own when next it's opened
     start_in_insert = true,
-    insert_mappings = true,
+    insert_mappings = true, -- whether or not the open mapping applies in insert mode
     terminal_mappings = true, -- whether or not the open mapping applies in the opened terminals
     persist_size = true,
     persist_mode = true, -- if set to true (default) the previous terminal mode will be remembered
@@ -88,6 +88,8 @@ local toggleterm = require("toggleterm").setup {
         end
     },
 }
+-- Go to left window in terminal mode
+vim.keymap.set('t', '<C-w>h', "<C-\\><C-n><C-w>h",{silent = true})
 
 -- LSP Configuration
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
