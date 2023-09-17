@@ -41,6 +41,9 @@
     protonup-qt
     baobab
     pavucontrol
+    gparted
+    popsicle
+    discord
 
     # Wine
     wineWowPackages.staging
