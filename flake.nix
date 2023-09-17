@@ -46,17 +46,17 @@
         ./gnome.nix
         ./hosts/rakarake-thinkpad/configuration.nix 
         home-manager.nixosModules.home-manager {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.rakarake.imports = [
-                ./home.nix
-                ./home-gnome.nix
-                ./hosts/rakarake-thinkpad/home.nix
-            ];
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users.rakarake.imports = [
+              ./home.nix
+              ./home-gnome.nix
+              ./hosts/rakarake-thinkpad/home.nix
+          ];
 
-            # Optionally, use home-manager.extraSpecialArgs to pass
-            # arguments to home.nix
-          }
+          # Optionally, use home-manager.extraSpecialArgs to pass
+          # arguments to home.nix
+        }
       ] ++ overlays;
     };
 
@@ -69,15 +69,25 @@
         ./kde.nix
         ./hosts/rakarake-pc/configuration.nix 
         home-manager.nixosModules.home-manager {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.rakarake.imports = [
-                ./home.nix
-                ./hosts/rakarake-pc/home.nix
-            ];
-          }
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users.rakarake.imports = [
+              ./home.nix
+              ./hosts/rakarake-pc/home.nix
+          ];
+        }
       ] ++ overlays;
     };
+
+    # Home server
+    nixosConfigurations.creeper-spawner = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      specialArgs = attrs;
+      modules = [
+        ./hosts/creeper-spawner/configuration.nix 
+      ] ++ overlays;
+    };
+
   };
 }
 
