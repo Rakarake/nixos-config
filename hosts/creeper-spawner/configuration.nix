@@ -3,11 +3,12 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, lib, pkgs, ... }@attrs: {
+  # Hostname
+  networking.hostName = "creeper-spawner";
+
   # System Packages/Programs
-  # To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    vim
     wget
     curl
     gnumake
@@ -67,9 +68,6 @@
     LC_TIME = "sv_SE.UTF-8";
   };
 
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
-
   # TODO lookie here
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.rakarake = {
@@ -92,5 +90,8 @@
   # networking.firewall.enable = false;
 
   system.stateVersion = "23.05";
+
+  # Include the results of the hardware scan.
+  imports = [ ./hardware-configuration.nix ];
 }
 
