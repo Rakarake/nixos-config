@@ -44,6 +44,9 @@
     gparted
     popsicle
     discord
+    linuxPackages_latest.perf
+    remmina
+    texlive.combined.scheme-medium
 
     # Wine
     wineWowPackages.staging

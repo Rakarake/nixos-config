@@ -20,6 +20,7 @@
     powertop  # Power usage inspector
     tree
     btrfs-progs
+    tmux
 
     # Rust
     rustc
@@ -42,6 +43,19 @@
   users.users."rakarake".openssh.authorizedKeys.keys = [
     "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDswNWTldzMxDmGVMmftP1veTWsWqYehiSglmUktQa4JRkWbzHh20nF90l69T7gYgq551KYsgB83Kdexe+j5GARzeaJB3700mUKHHoBW80RwVQKZuj5HEqy2cvaEGywx84WS9uJDs09wmFABM0FBRjeEHfvHQsE6elB0zVDsCogSBl4T+bW9sxzrMZpXsjmdJ//9QE1mLaZlYLBLwc79iAZFL4ZeWqGFl/gHyA+lLOvgmrtJMBeIMw3CZI8LNLtbTK0PILzSzTOnfFtx3L72wgqUm49P1taFC9WncPy0TN9fJoXV9WjRlrwvJNWycRnMJNmVg4f4gSCYEI1lcspN04ahZH+nOTFhl2dQrw5x2QWCMfATNQPzBYvuFr/UyaaNFpUFp4QD9lccokB8rq99ls97EtZ1w4RitGvc8GGcZ8qy8iIcijT4JRZxxYAH8ebSwykXZCdTSD21uMebyRnScZf/xHaGV6MH7NIeRH7YlaWI+kpWbd7SqHtDbtecPHqAeE= Williams GPG Key"
   ];
+
+  # Nextcloud
+  services.nextcloud = {
+    enable = true;
+    hostName = "rakarake.xyz";
+    database.createLocally = true;
+    autoUpdateApps.enable = true;
+    config = {
+      dbtype = "pgsql";
+      adminpassFile = "/var/lib/nextcloud/adminpassword";
+    };
+  };
+  networking.firewall.allowedTCPPorts = [ 80 443 ];
 
   # Enable Flakes
   nix.settings.experimental-features = [ "flakes" "nix-command" ];
