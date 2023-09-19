@@ -49,16 +49,16 @@
   ];
 
   # Nextcloud
-  services.nextcloud = {
-    enable = true;
-    hostName = "rakarake.xyz";
-    database.createLocally = true;
-    autoUpdateApps.enable = true;
-    config = {
-      dbtype = "pgsql";
-      adminpassFile = "/var/lib/nextcloud/adminpassword";
-    };
-  };
+  #services.nextcloud = {
+  #  enable = true;
+  #  hostName = "rakarake.xyz";
+  #  database.createLocally = true;
+  #  autoUpdateApps.enable = true;
+  #  config = {
+  #    dbtype = "pgsql";
+  #    adminpassFile = "/var/lib/nextcloud/adminpassword";
+  #  };
+  #};
 
   # Enable Flakes
   nix.settings.experimental-features = [ "flakes" "nix-command" ];
