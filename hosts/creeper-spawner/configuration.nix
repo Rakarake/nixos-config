@@ -6,6 +6,10 @@
   # Hostname
   networking.hostName = "creeper-spawner";
 
+  # Open ports
+  networking.firewall.allowedTCPPorts = [ 25565 80 443 ];
+  #networking.firewall.allowedUDPPorts = [ 80 443 ];
+
   # System Packages/Programs
   environment.systemPackages = with pkgs; [
     vim
@@ -55,7 +59,6 @@
       adminpassFile = "/var/lib/nextcloud/adminpassword";
     };
   };
-  networking.firewall.allowedTCPPorts = [ 80 443 ];
 
   # Enable Flakes
   nix.settings.experimental-features = [ "flakes" "nix-command" ];
@@ -100,12 +103,6 @@
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
 
   system.stateVersion = "23.05";
 
