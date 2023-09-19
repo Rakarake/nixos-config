@@ -8,7 +8,7 @@
 
   # Open ports
   networking.firewall.allowedTCPPorts = [ 25565 80 443 ];
-  #networking.firewall.allowedUDPPorts = [ 80 443 ];
+  networking.firewall.allowedUDPPorts = [ 25565 80 443 ];
 
   # System Packages/Programs
   environment.systemPackages = with pkgs; [
