@@ -8,6 +8,10 @@ in
   home.homeDirectory = "/home/rakarake";
   home.stateVersion = "23.05";
   programs.home-manager.enable = true;
+
+  # Comfy shell
+  imports = [ ./home-shell.nix ];
+
   #home.packages = with pkgs; [
 
   #];
@@ -27,12 +31,6 @@ in
 
   # Git config
   home.file.".gitconfig".source = ./.gitconfig;
-  # Generic shell options
-  home.file.".alias".source = ./.alias;
-  # Bash config
-  home.file.".bashrc".source = ./.bashrc;
-  # ZSH config
-  home.file.".zshrc".source = ./.zshrc;
   # Kitty config
   home.file.".config/kitty/kitty.conf".source = ./kitty/kitty.conf;
   home.file.".config/kitty/Catppuccin-Macchiato.conf".source = ./kitty/Catppuccin-Macchiato.conf;

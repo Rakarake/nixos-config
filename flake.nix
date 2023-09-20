@@ -85,6 +85,13 @@
       specialArgs = attrs;
       modules = [
         ./hosts/creeper-spawner/configuration.nix 
+        home-manager.nixosModules.home-manager {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users.rakarake.imports = [
+              ./home-shell.nix
+          ];
+        }
       ] ++ overlays;
     };
 
