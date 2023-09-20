@@ -5,5 +5,5 @@
   programs.home-manager.enable = true;
 
   # Comfy shell
-  imports = [ ./home-shell.nix ];
+  imports = [ ../../home-shell.nix ];
 }
