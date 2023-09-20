@@ -89,7 +89,7 @@
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.users.rakarake.imports = [
-              ./home-shell.nix
+              ./hosts/creeper-spawner/home.nix
           ];
         }
       ] ++ overlays;
