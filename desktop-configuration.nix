@@ -45,7 +45,6 @@
     popsicle
     discord
     linuxPackages_latest.perf
-    remmina
     texlive.combined.scheme-medium
     gamemode
     tmux
