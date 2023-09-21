@@ -60,6 +60,22 @@
   #  };
   #};
 
+  systemd.services.minecraft-server1 = {
+    enable = true;
+    path = [ pkgs.coreutils pkgs.jdk17 ];
+    serviceConfig = {
+      ExecStart = "${pkgs.tmux}/bin/tmux
+        -S /var/minecraft-server1/tmux.socket
+        new-session -s minecraft-server1-session
+        -d /var/minecraft-server1/startserver.sh";
+      ExecStop = "${pkgs.tmux}/bin/tmux
+        -S /var/minecraft-server1/tmux.socket
+        kill-session -t minecraft-server1-session";
+      Type = "forking";
+      WorkingDirectory=/var/minecraft-server1;
+    };
+  };
+
   # Enable Flakes
   nix.settings.experimental-features = [ "flakes" "nix-command" ];
 
