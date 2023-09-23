@@ -10,10 +10,10 @@ This cool nixos system config uses flakes.
 
 `nix-collect-garbage --delete-older-than 30d` to clean the nix store.
 
-`sudo nix-env --delete-generations --profile /nix/var/nix/profiles/system 10d`
+`sudo nix-env --delete-generations --profile /nix/var/nix/profiles/system 30d`
 to remove bootloader entries.
 
-`sudo nix-channel --add https://nixos.org/channels/nixos-unstable nixos` to
+`nix-channel --add https://nixos.org/channels/nixos-unstable nixos` to
 set the 'package channel' to nixos-unstable (not system config).
 
 `nix-channel --update` to update the channel.
