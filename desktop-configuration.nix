@@ -48,6 +48,7 @@
     texlive.combined.scheme-medium
     gamemode
     tmux
+    nextcloud-client
 
     # Wine
     wineWowPackages.staging

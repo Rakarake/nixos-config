@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, lib, pkgs, ... }@attrs: {
+{ config, lib, pkgs, ... }@attrs: rec {
   # Hostname
   networking.hostName = "creeper-spawner";
 
@@ -49,6 +49,16 @@
   ];
 
   # Nextcloud
+  # Configure nginx to use Let's encrypt TLS
+  services.nginx.virtualHosts.${services.nextcloud.hostName} = {
+    forceSSL = true;
+    enableACME = true;
+  };
+  # Let's Encrypt
+  security.acme = {
+    acceptTerms = true;
+    defaults.email = "rak@rakarake.xyz";
+  };
   services.nextcloud = {
     enable = true;
     package = pkgs.nextcloud27;
@@ -69,13 +79,6 @@
       mail_sendmailmode = "pipe";
     };
   };
-  # Configure nginx to use Let's encrypt TLS
-  services.nginx.virtualHosts.${config.services.nextcloud.hostName} = {
-    forceSSL = true;
-    enableACME = true;
-  };
-  # Agree to Let's ecrypt's TOS
-  security.acme.acceptTerms = true;
 
   # Minecraft server 1
   systemd.services.minecraft-server1 = {
