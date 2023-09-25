@@ -9,8 +9,12 @@ in
   home.stateVersion = "23.05";
   programs.home-manager.enable = true;
 
-  # Comfy shell
-  imports = [ ./home-shell.nix ];
+  # Generic shell options
+  home.file.".alias".source = ./.alias;
+  # Bash config
+  home.file.".bashrc".source = ./.bashrc;
+  # ZSH config
+  home.file.".zshrc".source = ./.zshrc;
 
   #home.packages = with pkgs; [
 
