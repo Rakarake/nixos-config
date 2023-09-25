@@ -69,11 +69,13 @@
       mail_sendmailmode = "pipe";
     };
   };
-  # Configure nginx to use Lets encrypt TLS
+  # Configure nginx to use Let's encrypt TLS
   services.nginx.virtualHosts.${config.services.nextcloud.hostName} = {
     forceSSL = true;
     enableACME = true;
   };
+  # Agree to Let's ecrypt's TOS
+  security.acme.acceptTerms = true;
 
   # Minecraft server 1
   systemd.services.minecraft-server1 = {
