@@ -60,7 +60,7 @@
       adminpassFile = "/etc/nextcloud-admin-pass";
     };
     # HTTPS only
-    nextcloud.https = true;
+    https = true;
     # Extra caching
     configureRedis = true;
     # Mail server for atuomatic "registration emails"
