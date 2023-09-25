@@ -57,7 +57,7 @@
     autoUpdateApps.enable = true;
     config = {
       dbtype = "pgsql";
-      adminpassFile = "/var/lib/nextcloud/adminpassword";
+      adminpassFile = "/etc/nextcloud-admin-pass";
     };
     # HTTPS only
     nextcloud.https = true;
