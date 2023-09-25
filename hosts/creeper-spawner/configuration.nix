@@ -49,16 +49,31 @@
   ];
 
   # Nextcloud
-  #services.nextcloud = {
-  #  enable = true;
-  #  hostName = "rakarake.xyz";
-  #  database.createLocally = true;
-  #  autoUpdateApps.enable = true;
-  #  config = {
-  #    dbtype = "pgsql";
-  #    adminpassFile = "/var/lib/nextcloud/adminpassword";
-  #  };
-  #};
+  services.nextcloud = {
+    enable = true;
+    package = pkgs.nextcloud27;
+    hostName = "rakarake.xyz";
+    database.createLocally = true;
+    autoUpdateApps.enable = true;
+    config = {
+      dbtype = "pgsql";
+      adminpassFile = "/var/lib/nextcloud/adminpassword";
+    };
+    # HTTPS only
+    nextcloud.https = true;
+    # Extra caching
+    configureRedis = true;
+    # Mail server for atuomatic "registration emails"
+    extraOptions = {
+      mail_smtpmode = "sendmail";
+      mail_sendmailmode = "pipe";
+    };
+  };
+  # Configure nginx to use Lets encrypt TLS
+  services.nginx.virtualHosts.${config.services.nextcloud.hostName} = {
+    forceSSL = true;
+    enableACME = true;
+  };
 
   # Minecraft server 1
   systemd.services.minecraft-server1 = {
