@@ -48,6 +48,7 @@
     texlive.combined.scheme-medium
     gamemode
     tmux
+    mpi # C message passing
     nextcloud-client
 
     # Wine
