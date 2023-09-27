@@ -52,6 +52,7 @@
     nextcloud-client
     iotas
     newsflash
+    gnome.gnome-software
 
     # Wine
     wineWowPackages.staging
