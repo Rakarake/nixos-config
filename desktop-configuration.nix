@@ -50,6 +50,7 @@
     tmux
     mpi # C message passing
     nextcloud-client
+    newsflash
 
     # Wine
     wineWowPackages.staging
