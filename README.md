@@ -18,3 +18,6 @@ set the 'package channel' to nixos-unstable (not system config).
 
 `nix-channel --update` to update the channel.
 
+A file containing the names of the system's "packages" can be found after
+rebuild at `/etc/current-system-packages`.
+

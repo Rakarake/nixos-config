@@ -21,7 +21,15 @@
 
   outputs = attrs@{ self, nixpkgs, home-manager, ... }:
   let
-    overlays = [
+    overlayModule = { pkgs, ... }: {
+      nixpkgs.overlays = [
+        # Replace openssl with libressl
+        (final: super: { 
+            nginxStable = super.nginxStable.override { openssl = super.pkgs.libressl; }; 
+        })
+      ];
+    };
+    # Module for replacing rust tools with overlay
       #({ pkgs, ... }: {
       #  nixpkgs.overlays = [ fenix.overlays.default ];
       #  environment.systemPackages = [
@@ -34,7 +42,6 @@
       #    pkgs.rust-analyzer-nightly
       #  ];
       #})
-    ];
   in
   {
     # Thonkpad configuration go wrrom
@@ -45,6 +52,7 @@
         ./desktop-configuration.nix
         ./gnome.nix
         ./hosts/rakarake-thinkpad/configuration.nix 
+        overlayModule
         home-manager.nixosModules.home-manager {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
@@ -57,7 +65,7 @@
           # Optionally, use home-manager.extraSpecialArgs to pass
           # arguments to home.nix
         }
-      ] ++ overlays;
+      ];
     };
 
     # PC
@@ -68,6 +76,7 @@
         ./desktop-configuration.nix
         ./kde.nix
         ./hosts/rakarake-pc/configuration.nix 
+        overlayModule
         home-manager.nixosModules.home-manager {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
@@ -76,7 +85,7 @@
               ./hosts/rakarake-pc/home.nix
           ];
         }
-      ] ++ overlays;
+      ];
     };
 
     # Home server
@@ -85,6 +94,7 @@
       specialArgs = attrs;
       modules = [
         ./hosts/creeper-spawner/configuration.nix 
+        overlayModule
         home-manager.nixosModules.home-manager {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
@@ -92,7 +102,7 @@
               ./hosts/creeper-spawner/home.nix
           ];
         }
-      ] ++ overlays;
+      ];
     };
 
   };

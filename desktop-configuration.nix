@@ -20,7 +20,6 @@
     neo-cowsay
     attrs.nix-software-center.packages.${system}.nix-software-center
     attrs.nixos-conf-editor.packages.${system}.nixos-conf-editor
-    flatpak
     powertop  # Power usage inspector
     kitty
     sl
@@ -254,6 +253,14 @@
 
   # Enable the flatpak service
   services.flatpak.enable = true;
+
+  # Creates a file which lists all system packages
+  environment.etc."current-system-packages".text =
+  let
+     packages = builtins.map (p: "${p.name}") config.environment.systemPackages;
+     sortedUnique = builtins.sort builtins.lessThan (lib.unique packages);
+     formatted = builtins.concatStringsSep "\n" sortedUnique;
+  in formatted; 
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
