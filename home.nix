@@ -33,6 +33,13 @@ in
     exec = "godot4 --single-window";
   };
 
+  # Logseq Wayland
+  xdg.desktopEntries.logseqWayland = {
+    name = "Logseq Wayland";
+    genericName = "Logseq Wayland";
+    exec = "logseq --ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-webrtc-pipewire-capturer";
+  };
+
   # Git config
   home.file.".gitconfig".source = ./.gitconfig;
   # Kitty config

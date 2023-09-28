@@ -52,6 +52,8 @@
     iotas
     newsflash
     gnome.gnome-software
+    logseq
+    soundux
 
     # Wine
     wineWowPackages.staging
