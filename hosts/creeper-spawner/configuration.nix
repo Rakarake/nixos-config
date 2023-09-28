@@ -48,17 +48,27 @@
     "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDswNWTldzMxDmGVMmftP1veTWsWqYehiSglmUktQa4JRkWbzHh20nF90l69T7gYgq551KYsgB83Kdexe+j5GARzeaJB3700mUKHHoBW80RwVQKZuj5HEqy2cvaEGywx84WS9uJDs09wmFABM0FBRjeEHfvHQsE6elB0zVDsCogSBl4T+bW9sxzrMZpXsjmdJ//9QE1mLaZlYLBLwc79iAZFL4ZeWqGFl/gHyA+lLOvgmrtJMBeIMw3CZI8LNLtbTK0PILzSzTOnfFtx3L72wgqUm49P1taFC9WncPy0TN9fJoXV9WjRlrwvJNWycRnMJNmVg4f4gSCYEI1lcspN04ahZH+nOTFhl2dQrw5x2QWCMfATNQPzBYvuFr/UyaaNFpUFp4QD9lccokB8rq99ls97EtZ1w4RitGvc8GGcZ8qy8iIcijT4JRZxxYAH8ebSwykXZCdTSD21uMebyRnScZf/xHaGV6MH7NIeRH7YlaWI+kpWbd7SqHtDbtecPHqAeE= Williams GPG Key"
   ];
 
-  # Nextcloud
-  # Configure nginx to use Let's encrypt TLS
-  services.nginx.virtualHosts.${services.nextcloud.hostName} = {
-    forceSSL = true;
-    enableACME = true;
+  # Nginx Config
+  services.nginx = {
+    # Nextcloud
+    virtualHosts.${services.nextcloud.hostName} = {
+      forceSSL = true;
+      # Let's encrypt TLS automated, not certbot
+      enableACME = true;
+    };
+    viritualHosts."bodinw.xyz" = {
+      forceSSL = true;
+      enableACME = true;
+      root = "/var/www/bodinw.xyz";
+    };
   };
   # Let's Encrypt
   security.acme = {
     acceptTerms = true;
     defaults.email = "rak@rakarake.xyz";
   };
+
+  # Nextcloud
   services.nextcloud = {
     enable = true;
     package = pkgs.nextcloud27;
