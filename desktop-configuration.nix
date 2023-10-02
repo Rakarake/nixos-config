@@ -54,6 +54,7 @@
     gnome.gnome-software
     logseq
     soundux
+    helvum
 
     # Wine
     wineWowPackages.staging
@@ -110,6 +111,14 @@
     mission-center
     celluloid
   ];
+
+  # System76 scheduler
+  services.system76-scheduler = {
+    enable = true;
+    useStockConfig = true;
+    #settings.processScheduler.pipewireBoost.enable = true;
+    #settings.processScheduler.foregroundBoost.enable = true;
+  };
 
   # This makes these fonts available for applications
   fonts.packages = with pkgs; [

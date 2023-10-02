@@ -80,6 +80,7 @@ in
       disable-user-extensions = false;
       enabled-extensions = [
         "appindicatorsupport@rgcjonas.gmail.com"
+        "s76-scheduler@mattjakeman.com"
       ];
     };
   };

@@ -40,6 +40,13 @@ in
     exec = "logseq --ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-webrtc-pipewire-capturer";
   };
 
+  # Logseq Wayland
+  xdg.desktopEntries.discordWayland = {
+    name = "Discord Wayland";
+    genericName = "Discord Wayland";
+    exec = "discord --ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-webrtc-pipewire-capturer";
+  };
+
   # Git config
   home.file.".gitconfig".source = ./.gitconfig;
   # Kitty config
