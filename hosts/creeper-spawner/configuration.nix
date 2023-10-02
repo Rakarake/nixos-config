@@ -59,7 +59,7 @@
     viritualHosts."bodinw.xyz" = {
       forceSSL = true;
       enableACME = true;
-      root = "/var/www/bodinw.xyz";
+      root = "/var/www/bodinw.xyz/public";
     };
   };
   # Let's Encrypt
