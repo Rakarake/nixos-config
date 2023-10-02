@@ -56,7 +56,7 @@
       # Let's encrypt TLS automated, not certbot
       enableACME = true;
     };
-    viritualHosts."bodinw.xyz" = {
+    virtualHosts."bodinw.xyz" = {
       forceSSL = true;
       enableACME = true;
       root = "/var/www/bodinw.xyz/public";
