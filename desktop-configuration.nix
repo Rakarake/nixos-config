@@ -25,6 +25,8 @@
     sl
     wl-clipboard
     tree
+    unzip
+    zip
     clapper
     timidity    # MIDI CLI player
     freepats    # MIDI soundfont
