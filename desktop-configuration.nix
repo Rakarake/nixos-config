@@ -16,6 +16,7 @@
     git
     openssh
     neofetch
+    onefetch
     bat
     neo-cowsay
     attrs.nix-software-center.packages.${system}.nix-software-center
