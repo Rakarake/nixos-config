@@ -12,6 +12,9 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 
+-- Add WGSL filetype
+vim.filetype.add({extension = {wgsl = "wgsl"}})
+
 -- Universal run
 vim.keymap.set('n', '<leader>rr', '<cmd>belowright split term://bash ./run.sh<cr>')
 
