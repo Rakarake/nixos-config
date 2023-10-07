@@ -1,6 +1,9 @@
 # NixOS Config
 This cool nixos system config uses flakes.
 
+`nix build .#nixosConfigurations.live.config.system.build.isoImage` to
+build a live ISO image.
+
 `nix-shell` to bootstrap.
 
 `sudo nix flake update` to update.

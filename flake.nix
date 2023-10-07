@@ -44,6 +44,15 @@
       #})
   in
   {
+    # Live configurations for when installing NixOS
+    nixosConfigurations.live = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      modules = [
+        (nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix")
+        ./live-configuration.nix
+      ];
+    };
+
     # Thonkpad configuration go wrrom
     nixosConfigurations.rakarake-thinkpad = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
