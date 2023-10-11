@@ -59,7 +59,7 @@
     soundux
     helvum
     mesa-demos  # Has programs such as glxgears
-    gnome.adwaita-icon-theme
+    gnome.adwaita-icon-theme  # Just to be safe
 
     # Wine
     wineWowPackages.staging
