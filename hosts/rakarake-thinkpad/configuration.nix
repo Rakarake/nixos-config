@@ -4,10 +4,6 @@
   # Hostname
   networking.hostName = "rakarake-thinkpad";  # Define your hostname.
 
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-
   # Plymouth has problems covering the initial part of the boot, this makes
   # things black. Kinda stupid, but I like it.
   boot.kernelParams = ["quiet"];

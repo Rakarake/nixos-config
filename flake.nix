@@ -83,7 +83,7 @@
       specialArgs = attrs;
       modules = [
         ./desktop-configuration.nix
-        ./kde.nix
+        ./gnome.nix
         ./hosts/rakarake-pc/configuration.nix 
         overlayModule
         home-manager.nixosModules.home-manager {
@@ -91,6 +91,7 @@
           home-manager.useUserPackages = true;
           home-manager.users.rakarake.imports = [
               ./home.nix
+              ./home-gnome.nix
               ./hosts/rakarake-pc/home.nix
           ];
         }

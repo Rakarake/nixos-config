@@ -1,7 +1,4 @@
 { lib, config, pkgs, ... }: 
-let
-  mkTuple = lib.hm.gvariant.mkTuple;
-in
 {
   # Gnome settings
   # Use: `dconf watch /` to find the names of gnome settings

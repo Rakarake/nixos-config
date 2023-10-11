@@ -24,3 +24,10 @@ set the 'package channel' to nixos-unstable (not system config).
 A file containing the names of the system's "packages" can be found after
 rebuild at `/etc/current-system-packages`.
 
+
+## Troubleshooting
+### When switching from Plasma to Gnome
+Remove stuff left by KDE with `rm -r .config/gtk-3.0/ ~/.gtkrc-2.0 ~/.config/dconf/ ~/.gtkrc-2.0`.
+Load the dconf settings after removing the files by doing a rebuild.
+These paths could be wrong, please fix if the case.
+
