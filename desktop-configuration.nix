@@ -18,6 +18,7 @@
     neofetch
     onefetch
     bat
+    htop
     neo-cowsay
     attrs.nix-software-center.packages.${system}.nix-software-center
     attrs.nixos-conf-editor.packages.${system}.nixos-conf-editor
@@ -32,7 +33,6 @@
     timidity    # MIDI CLI player
     freepats    # MIDI soundfont
     btrfs-progs
-    steam
     steam-run
     steamtinkerlaunch
     distrobox
@@ -58,6 +58,7 @@
     logseq
     soundux
     helvum
+    mesa-demos  # Has programs such as glxgears
 
     # Wine
     wineWowPackages.staging
@@ -163,21 +164,26 @@
     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
   };
   hardware.steam-hardware.enable = true;  # To enable steam controller etc.
-  # HUD AND YES
   nixpkgs.config.packageOverrides = pkgs: {
     steam = pkgs.steam.override {
       extraPkgs = pkgs: with pkgs; [
-        gamescope
-        mangohud
-        superTuxKart
+        xorg.libXcursor
+        xorg.libXi
+        xorg.libXinerama
+        xorg.libXScrnSaver
+        libpng
+        libpulseaudio
+        libvorbis
+        stdenv.cc.cc.lib
+        libkrb5
+        keyutils
       ];
     };
   };
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-    "steam"
-    "steam-original"
-    "steam-run"
-  ];
+  environment.sessionVariables = {
+    # Needed for gamescope to run in steam
+    ENABLE_VKBASALT = "1";
+  };
 
   # Enable Flakes
   nix.settings.experimental-features = [ "flakes" "nix-command" ];
