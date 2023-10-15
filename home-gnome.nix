@@ -15,10 +15,10 @@
       region = "sv_SE.UTF-8";
     };
     # Wallpaper
-    "org/gnome/desktop/background" = {
-      picture-uri      = "/run/current-system/sw/share/backgrounds/gnome/design-is-rounded-rectangles-l.webp";
-      picture-uri-dark = "/run/current-system/sw/share/backgrounds/gnome/design-is-rounded-rectangles-d.webp";
-    };
+    #"org/gnome/desktop/background" = {
+    #  picture-uri      = "/run/current-system/sw/share/backgrounds/gnome/design-is-rounded-rectangles-l.webp";
+    #  picture-uri-dark = "/run/current-system/sw/share/backgrounds/gnome/design-is-rounded-rectangles-d.webp";
+    #};
     # Custom Shortcuts
     "org/gnome/settings-daemon/plugins/media-keys" = {
       custom-keybindings = [

@@ -19,6 +19,12 @@
   services.power-profiles-daemon.enable = false;
   services.tlp.enable = true;
 
+  # Enable SSD trimming
+  services.fstrim = {
+    enable = true;
+    interval = "weekly"; # the default
+  };
+
   # Setup keyfile
   boot.initrd.secrets = {
     "/crypto_keyfile.bin" = null;

@@ -196,6 +196,9 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  # Use zen kernel
+  boot.kernelPackages = pkgs.linuxPackages_zen;
+
   # Enable Plymouth
   boot.plymouth.enable = true;
   boot.initrd.systemd.enable = true;
