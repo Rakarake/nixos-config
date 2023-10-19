@@ -29,7 +29,6 @@
     tree
     unzip
     zip
-    clapper
     timidity    # MIDI CLI player
     freepats    # MIDI soundfont
     btrfs-progs
@@ -50,10 +49,8 @@
     texlive.combined.scheme-medium
     gamemode
     tmux
-    mpi # C message passing
     nextcloud-client
     iotas
-    newsflash
     gnome.gnome-software
     logseq
     soundux
@@ -66,10 +63,11 @@
 
     # HTML / CSS / JSON / ESLint language server
     vscode-langservers-extracted
-    # C
+    # C / C++
     clang
     pkg-config
     ccls          # A C/C++ language server
+    mpi           # C message passing
     # Haskell
     ghc
     haskell-language-server
