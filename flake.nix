@@ -17,9 +17,12 @@
     #  url = "github:nix-community/fenix/monthly";
     #  inputs.nixpkgs.follows = "nixpkgs";
     #};
+
+    # Hyprland flake
+    hyprland.url = "github:hyprwm/Hyprland";
   };
 
-  outputs = attrs@{ self, nixpkgs, home-manager, ... }:
+  outputs = attrs@{ self, nixpkgs, home-manager, hyprland, ... }:
   let
     overlayModule = { pkgs, ... }: {
       nixpkgs.overlays = [
@@ -83,7 +86,7 @@
       specialArgs = attrs;
       modules = [
         ./desktop-configuration.nix
-        ./gnome.nix
+        ./hyprland.nix
         ./hosts/rakarake-pc/configuration.nix 
         overlayModule
         home-manager.nixosModules.home-manager {
@@ -91,7 +94,9 @@
           home-manager.useUserPackages = true;
           home-manager.users.rakarake.imports = [
               ./home.nix
-              ./home-gnome.nix
+              hyprland.homeManagerModules.default
+              {wayland.windowManager.hyprland.enable = true;}
+              ./hyprland-home.nix
               ./hosts/rakarake-pc/home.nix
           ];
         }
@@ -114,7 +119,6 @@
         }
       ];
     };
-
   };
 }
 

@@ -57,6 +57,7 @@
     helvum
     mesa-demos  # Has programs such as glxgears
     gnome.adwaita-icon-theme  # Just to be safe
+    xfce.thunar
 
     # Wine
     wineWowPackages.staging
