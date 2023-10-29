@@ -1,41 +1,12 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
+{ pkgs, ... }: rec {
+  imports = [ ./hardware-configuration.nix ];
 
-{ config, lib, pkgs, ... }@attrs: rec {
   # Hostname
   networking.hostName = "creeper-spawner";
 
   # Open ports
   networking.firewall.allowedTCPPorts = [ 25565 80 443 ];
   networking.firewall.allowedUDPPorts = [ 25565 80 443 ];
-
-  # System Packages/Programs
-  environment.systemPackages = with pkgs; [
-    vim
-    wget
-    curl
-    gnumake
-    zsh
-    git
-    openssh
-    neofetch
-    bat
-    powertop  # Power usage inspector
-    tree
-    btrfs-progs
-    tmux
-
-    # Rust
-    rustc
-    cargo
-    rustfmt
-    rust-analyzer # Rust language server
-    # Python
-    python3
-    # Java
-    jdk17
-  ];
 
   # SSH daemon
   services.openssh = {
@@ -105,9 +76,6 @@
     };
   };
 
-  # Enable Flakes
-  nix.settings.experimental-features = [ "flakes" "nix-command" ];
-
   # Bootloader
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -139,19 +107,10 @@
   users.users.rakarake = {
     isNormalUser = true;
     description = "Rakarake";
-    extraGroups = [ "networkmanager" "wheel" "adbusers" ];
+    extraGroups = [ "networkmanager" "wheel" ];
   };
 
-  # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-
   system.stateVersion = "23.05";
-
-  # Include the results of the hardware scan.
-  imports = [ ./hardware-configuration.nix ];
 }
 

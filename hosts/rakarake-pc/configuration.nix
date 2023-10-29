@@ -1,9 +1,10 @@
 # Desktop PC
 { pkgs, ... }: {
   imports = [ ../../modules ./hardware-configuration.nix ];
+
   # Cool simple gnome config
   cfg-desktop.enable = true;
-  cfg-gnome.enable = true;
+  cfg-hyprland.enable = true;
 
   # Hostname
   networking.hostName = "rakarake-pc";  # Define your hostname.

@@ -1,6 +1,12 @@
 # Thinkpad X1 Carbon Gen 4 Specific settings
 # I wish the fingerprint reader worked
 { config, pkgs, ... }@attrs: {
+  imports = [ ../../modules ./hardware-configuration.nix ];
+
+  # Simple gnome config
+  cfg-desktop.enable = true;
+  cfg-gnome.enable = true;
+
   # Hostname
   networking.hostName = "rakarake-thinkpad";  # Define your hostname.
 
@@ -33,8 +39,5 @@
   # Enable swap on luks
   boot.initrd.luks.devices."luks-28308eb8-f78c-4235-982e-a0df1555eb1c".device = "/dev/disk/by-uuid/28308eb8-f78c-4235-982e-a0df1555eb1c";
   boot.initrd.luks.devices."luks-28308eb8-f78c-4235-982e-a0df1555eb1c".keyFile = "/crypto_keyfile.bin";
-
-  # Include the results of the hardware scan.
-  imports = [ ./hardware-configuration.nix ];
 }
 
