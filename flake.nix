@@ -52,73 +52,65 @@
       system = "x86_64-linux";
       modules = [
         (nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix")
-        ./live-configuration.nix
+        ./live.nix
       ];
     };
 
-    # Thonkpad configuration go wrrom
-    nixosConfigurations.rakarake-thinkpad = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      specialArgs = attrs;
-      modules = [
-        ./desktop-configuration.nix
-        ./gnome.nix
-        ./hosts/rakarake-thinkpad/configuration.nix 
-        overlayModule
-        home-manager.nixosModules.home-manager {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.rakarake.imports = [
-              ./home.nix
-              ./home-gnome.nix
-              ./hosts/rakarake-thinkpad/home.nix
-          ];
+    ## Thonkpad configuration go wrrom
+    #nixosConfigurations.rakarake-thinkpad = nixpkgs.lib.nixosSystem {
+    #  system = "x86_64-linux";
+    #  specialArgs = attrs;
+    #  modules = [
+    #    ./desktop-configuration.nix
+    #    ./gnome.nix
+    #    ./hosts/rakarake-thinkpad/configuration.nix 
+    #    overlayModule
+    #    home-manager.nixosModules.home-manager {
+    #      home-manager.useGlobalPkgs = true;
+    #      home-manager.useUserPackages = true;
+    #      home-manager.users.rakarake.imports = [
+    #          ./home-gnome.nix
+    #      ];
 
-          # Optionally, use home-manager.extraSpecialArgs to pass
-          # arguments to home.nix
-        }
-      ];
-    };
+    #      # Optionally, use home-manager.extraSpecialArgs to pass
+    #      # arguments to home.nix
+    #    }
+    #  ];
+    #};
 
     # PC
     nixosConfigurations.rakarake-pc = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = attrs;
       modules = [
-        ./desktop-configuration.nix
-        ./hyprland.nix
         ./hosts/rakarake-pc/configuration.nix 
         overlayModule
         home-manager.nixosModules.home-manager {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.users.rakarake.imports = [
-              ./home.nix
-              hyprland.homeManagerModules.default
-              {wayland.windowManager.hyprland.enable = true;}
-              ./hyprland-home.nix
               ./hosts/rakarake-pc/home.nix
           ];
         }
       ];
     };
 
-    # Home server
-    nixosConfigurations.creeper-spawner = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      specialArgs = attrs;
-      modules = [
-        ./hosts/creeper-spawner/configuration.nix 
-        overlayModule
-        home-manager.nixosModules.home-manager {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.rakarake.imports = [
-              ./hosts/creeper-spawner/home.nix
-          ];
-        }
-      ];
-    };
+    ## Home server
+    #nixosConfigurations.creeper-spawner = nixpkgs.lib.nixosSystem {
+    #  system = "x86_64-linux";
+    #  specialArgs = attrs;
+    #  modules = [
+    #    ./hosts/creeper-spawner/configuration.nix 
+    #    overlayModule
+    #    home-manager.nixosModules.home-manager {
+    #      home-manager.useGlobalPkgs = true;
+    #      home-manager.useUserPackages = true;
+    #      home-manager.users.rakarake.imports = [
+    #          ./hosts/creeper-spawner/home.nix
+    #      ];
+    #    }
+    #  ];
+    #};
   };
 }
 

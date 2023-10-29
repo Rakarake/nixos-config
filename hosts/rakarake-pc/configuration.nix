@@ -1,11 +1,15 @@
 # Desktop PC
+{ pkgs, ... }: {
+  imports = [ ../../modules ./hardware-configuration.nix ];
+  # Cool simple gnome config
+  cfg-desktop.enable = true;
+  cfg-gnome.enable = true;
 
-{ config, pkgs, ... }@attrs: {
   # Hostname
   networking.hostName = "rakarake-pc";  # Define your hostname.
 
   environment.systemPackages = with pkgs; [
-    corectrl
+    corectrl  # We like big graphics
   ];
 
   # Guest User
@@ -27,8 +31,5 @@
       options = [ "subvol=Music" ];
     };
   };
-
-  # Include the results of the hardware scan.
-  imports = [ ./hardware-configuration.nix ];
 }
 

@@ -1,5 +1,33 @@
-{config, pkgs, ...}: {
-  imports = [ ./home-gnome.nix ];
+# Hyprland home-manager module
+{ hyprland, pkgs, ...}: {
+  imports = [
+    hyprland.homeManagerModules.default
+  ];
+
+  # We use gdm cuz lazy
+  services.xserver.displayManager.gdm.enable = true;
+  # Cuz we lazy
+  services.xserver.desktopManager.gnome.enable = true;
+
+  # Enable Hyprland
+  wayland.windowManager.hyprland.enable = true;
+
+  # Packages needed by the Hyprland configuration
+  home.packages = (with pkgs; [
+    grim         # Screenshot utility
+    slurp        # Screen "area" picker utility
+    eww-wayland  # Wacky widgets
+    swaybg       # Anime wallpapers
+    rofi-wayland # Application launcher + other stuff
+    rofimoji     # Emoji picker for rofi
+    pamixer      # Used by the eww script to control sound
+  ]);
+  home.sessionVariables = {
+    # NixOS specific option for enabling wayland in Electron apps
+    NIXOS_OZONE_WL = "1";
+    # Make QT use wayland
+    QT_QPA_PLATFORM = "wayland";
+  };
 
   # Eww config
   home.file.".config/eww/eww.yuck".source = ./eww/eww.yuck;
