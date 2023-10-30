@@ -5,7 +5,7 @@
 
   # Simple gnome config
   cfg-desktop.enable = true;
-  cfg-gnome.enable = true;
+  cfg-hyprland.enable = true;
 
   # Hostname
   networking.hostName = "rakarake-thinkpad";  # Define your hostname.
@@ -15,11 +15,11 @@
   boot.kernelParams = ["quiet"];
 
   # Enable automatic login for the user.
-  services.xserver.displayManager.autoLogin.enable = true;
-  services.xserver.displayManager.autoLogin.user = "rakarake";
-  # Workaround for GNOME autologin: https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
-  systemd.services."getty@tty1".enable = false;
-  systemd.services."autovt@tty1".enable = false;
+  #services.xserver.displayManager.autoLogin.enable = true;
+  #services.xserver.displayManager.autoLogin.user = "rakarake";
+  ## Workaround for GNOME autologin: https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
+  #systemd.services."getty@tty1".enable = false;
+  #systemd.services."autovt@tty1".enable = false;
 
   # Enable tlp
   services.power-profiles-daemon.enable = false;

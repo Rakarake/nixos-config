@@ -35,6 +35,13 @@
       # Enable Flakes
       nix.settings.experimental-features = [ "flakes" "nix-command" ];
     };
+    commonHome =  {
+      imports = [
+        # For some reason, this cannot be imported in the hyprland module,
+        # I get infinate recursion.
+        hyprland.homeManagerModules.default
+      ];
+    };
     # Module for replacing rust tools with overlay
       #({ pkgs, ... }: {
       #  nixpkgs.overlays = [ fenix.overlays.default ];
@@ -70,7 +77,8 @@
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.users.rakarake.imports = [
-            ./hosts/rakarake-thinkpad/home.nix 
+            commonHome
+            ./hosts/rakarake-thinkpad/home.nix
           ];
         }
       ];
@@ -87,6 +95,7 @@
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.users.rakarake.imports = [
+            commonHome
             ./hosts/rakarake-pc/home.nix
           ];
         }

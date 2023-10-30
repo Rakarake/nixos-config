@@ -92,6 +92,10 @@ in {
       # Java
       jdk17
 
+      # Go
+      go
+      gopls
+
       # Other
       openttd
       osu-lazer

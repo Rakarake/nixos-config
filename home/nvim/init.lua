@@ -254,6 +254,13 @@ require'lspconfig'.nil_ls.setup{
      flags = lsp_flags,
 }
 
+-- Go
+require'lspconfig'.gopls.setup{
+     capabilities = capabilities,
+     on_attach = on_attach,
+     flags = lsp_flags,
+}
+
 
 -- Catppuccin theme integrations
 require("catppuccin").setup({

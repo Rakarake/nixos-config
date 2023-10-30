@@ -6,19 +6,18 @@ let
 in {
 
   imports = [
-    hyprland.homeManagerModules.default
-    #./waybar.nix
-    #./rofi.nix
+    ./waybar.nix
+    ./rofi.nix
   ];
 
   options.home-hyprland = {
-    enable = mkEnableOption "Custom gnome system configuration";
+    enable = mkEnableOption "Custom Hyprland system configuration";
   };
   config = mkIf cfg.enable {
     # Enable Hyprland
     wayland.windowManager.hyprland.enable = true;
-    #home-waybar.enable = true;
-    #home-rofi.enable = true;
+    home-waybar.enable = true;
+    home-rofi.enable = true;
 
     # Packages needed by the Hyprland configuration
     home.packages = (with pkgs; [

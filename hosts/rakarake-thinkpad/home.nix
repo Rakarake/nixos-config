@@ -1,5 +1,5 @@
 {
   imports = [ ../../home ];
   home-desktop.enable = true;
-  home-gnome.enable = true;
+  home-hyprland.enable = true;
 }
