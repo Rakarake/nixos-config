@@ -76,7 +76,6 @@ in {
       workspace=DP-1,7
       workspace=DP-1,8
       workspace=DP-1,9
-      workspace=DP-1,0
 
       input {
           kb_layout=us,se
