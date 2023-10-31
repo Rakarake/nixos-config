@@ -93,7 +93,7 @@ in {
     xdg.desktopEntries.steamGamescope = {
       name = "Steam Gamescope";
       genericName = "Steam";
-      exec = "gamescope -W 1920 -H 1080 -r 144 -e -- steam";
+      exec = "gamescope -W 1920 -H 1080 -r 600 -e -- steam";
     };
   };
 }
