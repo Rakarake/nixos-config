@@ -76,6 +76,7 @@
         home-manager.nixosModules.home-manager {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
+          home-manager.extraSpecialArgs = attrs;
           home-manager.users.rakarake.imports = [
             commonHome
             ./hosts/rakarake-thinkpad/home.nix
@@ -94,6 +95,7 @@
         home-manager.nixosModules.home-manager {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
+          home-manager.extraSpecialArgs = attrs;
           home-manager.users.rakarake.imports = [
             commonHome
             ./hosts/rakarake-pc/home.nix

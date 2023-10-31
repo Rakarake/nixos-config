@@ -63,7 +63,6 @@ in {
       helvum
       mesa-demos  # Has programs such as glxgears
       gnome.adwaita-icon-theme  # Just to be safe
-      xfce.thunar
 
       # Wine
       wineWowPackages.staging
@@ -145,6 +144,7 @@ in {
       mplus-outline-fonts.githubRelease
       dina-font
       proggyfonts
+      nerdfonts
     ];
 
     # GPG / GnuPG

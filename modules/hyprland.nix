@@ -13,6 +13,8 @@ in {
       enable = true;
       package = hyprland.packages.${pkgs.system}.hyprland;
     };
+    # Enable "pam thingy" for swaylock so that it can unlock with password
+    security.pam.services.swaylock = {};
     # We use gdm cuz lazy
     services.xserver.displayManager.gdm.enable = true;
     # Cuz we lazy
