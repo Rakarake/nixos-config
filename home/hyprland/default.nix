@@ -56,9 +56,9 @@ in {
       # Autostart
       exec-once = ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1
       exec-once = nextcloud
-      exec = waybar
-      exec = swaybg -i ~/Pictures/Wallpapers/wallpaper
-      exec = dunst
+      exec-once = waybar
+      exec-once = swaybg -i ~/Pictures/Wallpapers/wallpaper
+      exec-once = dunst
 
       # Monitors
       # Default for non specified monitors
