@@ -13,7 +13,7 @@ in {
       enable = true;
       package = hyprland.packages.${pkgs.system}.hyprland;
     };
-    system.packages = [
+    environment.systemPackages = [
       pkgs.polkit_gnome
     ];
     # Enable "pam thingy" for swaylock so that it can unlock with password
