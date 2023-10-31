@@ -66,16 +66,17 @@ in {
       # Desktop
       monitor=HDMI-A-1,highrr,-1920x0,1
       monitor=DP-1,highrr,0x0,1
-      workspace = 1, monitor:HDMI-A-1
-      workspace = 2, monitor:DP-1
-      workspace = 3, monitor:DP-1
-      workspace = 4, monitor:DP-1
-      workspace = 5, monitor:DP-1
-      workspace = 6, monitor:DP-1
-      workspace = 7, monitor:DP-1
-      workspace = 8, monitor:DP-1
-      workspace = 9, monitor:DP-1
-      #workspace = 0, monitor:DP-1
+
+      workspace=HDMI-A-1,1
+      workspace=DP-1,2
+      workspace=DP-1,3
+      workspace=DP-1,4
+      workspace=DP-1,5
+      workspace=DP-1,6
+      workspace=DP-1,7
+      workspace=DP-1,8
+      workspace=DP-1,9
+      workspace=DP-1,0
 
       input {
           kb_layout=us,se
@@ -203,6 +204,8 @@ in {
       bind=SUPERALT,l,exec,playerctl next
       bind=SUPERALT,h,exec,playerctl previous
       bind=SUPERALT,p,exec,playerctl play-pause
+      bind=SUPERALT,k,exec,amixer set Master 5%+
+      bind=SUPERALT,j,exec,amixer set Master 5%-
       
       # Workspaces
       # binds $mod + [shift +] {1..10} to [move to] workspace {1..10}
