@@ -125,6 +125,10 @@ in {
       celluloid
     ];
 
+    nixpkgs.config.permittedInsecurePackages = [
+      "electron-24.8.6"
+    ];
+
     # System76 scheduler
     services.system76-scheduler = {
       enable = true;
