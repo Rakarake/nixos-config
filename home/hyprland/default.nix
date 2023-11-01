@@ -32,6 +32,7 @@ in {
       alsa-utils # keyboard volume control
       playerctl  # MPRIS global player controller
       swaylock
+      brightnessctl # Laptop brighness controls
     ]);
     home.sessionVariables = {
       # NixOS specific option for enabling wayland in Electron apps
@@ -189,12 +190,12 @@ in {
       bindm=SUPER,mouse:273,resizewindow
 
       # FN-buttons (such as volume up)
-      bind=,XF86MonBrightnessUp,exec,brightnessctl set 30+
-      bind=,XF86MonBrightnessDown,exec,brightnessctl set 30-
-      bind=,XF86AudioRaiseVolume,exec,amixer set Master 5%+
-      bind=,XF86AudioLowerVolume,exec,amixer set Master 5%-
-      bind=,XF86AudioMute,exec,amixer set Master toggle
-      bind=,XF86AudioMicMute, exec, amixer set Capture toggle
+      bind=,XF86MonBrightnessUp,exec,brightnessctl set 30+ ; swayosd --brightness=raise
+      bind=,XF86MonBrightnessDown,exec,brightnessctl set 30- ; swayosd --brightness=lower
+      bind=,XF86AudioRaiseVolume,exec,amixer set Master 5%+ ; swayosd --output-volume=raise
+      bind=,XF86AudioLowerVolume,exec,amixer set Master 5%- ; swayosd --output-volume=lower
+      bind=,XF86AudioMute,exec,amixer set Master toggle ; swayosd --output-volume=mute-toggle
+      bind=,XF86AudioMicMute, exec, amixer set Capture toggle ; swayosd --input-volume=mute-toggle
       bind=,XF86AudioPlay,exec,playerctl play-pause
       bind=,XF86AudioPrev,exec,playerctl previous
       bind=,XF86AudioNext,exec,playerctl next
@@ -203,8 +204,8 @@ in {
       bind=SUPERALT,l,exec,playerctl next
       bind=SUPERALT,h,exec,playerctl previous
       bind=SUPERALT,p,exec,playerctl play-pause
-      bind=SUPERALT,k,exec,amixer set Master 5%+
-      bind=SUPERALT,j,exec,amixer set Master 5%-
+      bind=SUPERALT,k,exec,amixer set Master 5%+ ; swayosd --output-volume=raise
+      bind=SUPERALT,j,exec,amixer set Master 5%- ; swayosd --output-volume=lower
       
       # Workspaces
       # binds $mod + [shift +] {1..10} to [move to] workspace {1..10}
