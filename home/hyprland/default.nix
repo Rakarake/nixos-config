@@ -207,6 +207,11 @@ in {
       bind=SUPERALT,k,exec,amixer set Master 5%+ ; swayosd --output-volume=raise
       bind=SUPERALT,j,exec,amixer set Master 5%- ; swayosd --output-volume=lower
       
+      # MISC
+      bind=SUPERALTSHIFT,S,exec,systemctl poweroff
+      bind=SUPERALTSHIFT,R,exec,systemctl reboot
+      bind=SUPERSHIFT,S,exec,systemclt suspend
+
       # Workspaces
       # binds $mod + [shift +] {1..10} to [move to] workspace {1..10}
       ${builtins.concatStringsSep "\n" (builtins.genList (
