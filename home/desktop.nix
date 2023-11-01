@@ -93,7 +93,8 @@ in {
     xdg.desktopEntries.steamGamescope = {
       name = "Steam Gamescope";
       genericName = "Steam";
-      exec = "gamescope -W 1920 -H 1080 -r 600 -e -- steam";
+      # -e enables steam integration, -f fullscreens the window by default
+      exec = "gamescope -W 1920 -H 1080 --adaptive-sync -f -r 600 -e -- steam";
     };
   };
 }
