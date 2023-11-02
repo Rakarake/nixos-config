@@ -89,6 +89,9 @@ in {
                /* 	background-color: rgb(248, 189, 150); */
                /*     color: rgb(26, 24, 38); */
                /* } */
+         #battery {
+                 color: rgb(181, 232, 224);
+                }
          #memory {
                  color: rgb(181, 232, 224);
                }
@@ -160,6 +163,7 @@ in {
           "memory"
           "cpu"
           "network"
+          "battery"
           "custom/powermenu"
           "tray"
         ];
@@ -200,6 +204,20 @@ in {
         "cpu" = {
           "interval" = 1;
           "format" = "󰍛 {usage}%";
+        };
+        "battery" = {
+          "format" = "{icon}  {capacity}%";
+          "interval" = 60;
+          "states" = {
+            "warning" = 30;
+            "critical" = 15;
+          };
+          "format-icons" = [ "" "" "" "" "" ];
+          "max-length" = 25;
+        };
+        "backlight" = {
+          "format" = "{percent}% {icon}";
+          "format-icons" = [ "" "" ];
         };
         "mpd" = {
           "max-length" = 25;

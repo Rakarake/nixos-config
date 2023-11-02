@@ -33,6 +33,7 @@ in {
       playerctl  # MPRIS global player controller
       swaylock
       brightnessctl # Laptop brighness controls
+      cava       # Used to visualize audio in the bar
     ]);
     home.sessionVariables = {
       # NixOS specific option for enabling wayland in Electron apps
@@ -60,6 +61,7 @@ in {
       exec-once = waybar
       exec-once = swaybg -i ~/Pictures/Wallpapers/wallpaper
       exec-once = dunst
+      exec-once = blueman-applet
 
       # Monitors
       # Default for non specified monitors
