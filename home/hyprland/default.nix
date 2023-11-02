@@ -33,8 +33,9 @@ in {
       playerctl  # MPRIS global player controller
       swaylock
       brightnessctl # Laptop brighness controls
-      blueman    # Bluetooth applet
       cava       # Used to visualize audio in the bar
+      networkmanagerapplet  # Log in to your wifi with this cool utility
+      papirus-icon-theme    # Used to make nm-applet and blueman-applet not look ass
     ]);
     home.sessionVariables = {
       # NixOS specific option for enabling wayland in Electron apps
@@ -45,6 +46,12 @@ in {
 
     # Nice popups when changing volume etc
     services.swayosd.enable = true;
+
+    # Icon theme
+    gtk.iconTheme = {
+      package = pkgs.papirus-icon-theme;
+      name = "Papirus-Dark";
+    };
 
     home.pointerCursor = {
       gtk.enable = true;
@@ -63,6 +70,7 @@ in {
       exec-once = swaybg -i ~/Pictures/Wallpapers/wallpaper
       exec-once = dunst
       exec-once = blueman-applet
+      exec-once = nm-applet
 
       # Monitors
       # Default for non specified monitors

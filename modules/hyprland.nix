@@ -23,5 +23,7 @@ in {
     services.xserver.displayManager.gdm.enable = true;
     # Cuz we lazy
     services.xserver.desktopManager.gnome.enable = true;
+    # Blueman service
+    services.blueman.enable = true;
   };
 }
