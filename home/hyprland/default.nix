@@ -33,6 +33,7 @@ in {
       playerctl  # MPRIS global player controller
       swaylock
       brightnessctl # Laptop brighness controls
+      blueman    # Bluetooth applet
       cava       # Used to visualize audio in the bar
     ]);
     home.sessionVariables = {
