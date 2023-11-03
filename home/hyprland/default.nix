@@ -3,7 +3,8 @@
 with lib;                      
 let
   cfg = config.home-hyprland;
-  swaylockCommand = "swaylock -k -i ~/Pictures/Wallpapers/wallpaper";
+  # pidof swaylock makes sure that we do not start multiple instances of swaylock
+  swaylockCommand = "pidof swaylock || swaylock -k -i ~/Pictures/Wallpapers/wallpaper";
 in {
 
   imports = [

@@ -151,7 +151,9 @@ in {
         modules-left = [
           "custom/launcher"
           "temperature"
-          "custom/cava-internal"
+          "memory"
+          "cpu"
+          #"custom/cava-internal"
         ];
         modules-center = [
           "clock"
@@ -159,8 +161,6 @@ in {
         modules-right = [
           "pulseaudio"
           "backlight"
-          "memory"
-          "cpu"
           "network"
           "battery"
           "tray"
@@ -190,7 +190,7 @@ in {
         "clock" = {
           "interval" = 60;
           "tooltip" = true;
-          "format" = "{:%H.%M}";
+          "format" = "{:%H:%M}";
           "tooltip-format" = "{:%Y-%m-%d}";
         };
         "memory" = {
@@ -241,7 +241,7 @@ in {
           "tooltip" = false;
         };
         "custom/powermenu" = {
-          "format" = "";
+          "format" = " ";
           "on-click" = "systemctl suspend";
           "tooltip" = false;
         };
