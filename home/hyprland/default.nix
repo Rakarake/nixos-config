@@ -3,6 +3,7 @@
 with lib;                      
 let
   cfg = config.home-hyprland;
+  swaylockCommand = "swaylock -k -i ~/Pictures/Wallpapers/wallpaper";
 in {
 
   imports = [
@@ -31,7 +32,8 @@ in {
       pamixer    # Used for panel / 
       alsa-utils # keyboard volume control
       playerctl  # MPRIS global player controller
-      swaylock
+      swaylock   # Screenlocker
+      swayidle   # Idle inhibitor, knows when computer is ueseless
       brightnessctl # Laptop brighness controls
       cava       # Used to visualize audio in the bar
       networkmanagerapplet  # Log in to your wifi with this cool utility
@@ -71,6 +73,9 @@ in {
       exec-once = dunst
       exec-once = blueman-applet
       exec-once = nm-applet
+      gsettings set org.gnome.nm-applet disable-disconnected-notifications "true"
+      gsettings set org.gnome.nm-applet disable-connected-notifications "true"
+      exec-once= swayidle timeout 800 '${swaylockCommand}' timeout 900 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on' timeout 1700 'systemctl suspend'
 
       # Monitors
       # Default for non specified monitors
@@ -159,7 +164,6 @@ in {
       $mod = SUPER
 
       bind=SUPER,Return,exec,kitty
-      bind=SUPER,Escape,exec,swaylock -k -i ~/Pictures/Wallpapers/wallpaper
       bind=SUPER,Q,killactive,
       bind=SUPERSHIFT,E,exit,
       bind=SUPER,F,exec,thunar
@@ -212,12 +216,19 @@ in {
       bind=,XF86AudioPrev,exec,playerctl previous
       bind=,XF86AudioNext,exec,playerctl next
 
+      # Screen locking
+      bind=SUPER,Escape,exec,${swaylockCommand}
+      bindl=,switch:Lid Close,exec,${swaylockCommand}
+
       # Custom media keys
       bind=SUPERALT,l,exec,playerctl next
       bind=SUPERALT,h,exec,playerctl previous
       bind=SUPERALT,p,exec,playerctl play-pause
       bind=SUPERALT,k,exec,amixer set Master 5%+ ; swayosd --output-volume=raise
       bind=SUPERALT,j,exec,amixer set Master 5%- ; swayosd --output-volume=lower
+
+      # Screenshots
+      bind=SUPER,S,exec,grim -g "$(slurp -d)" - | wl-copy
       
       # MISC
       bind=SUPERALTSHIFT,S,exec,systemctl poweroff

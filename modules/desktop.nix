@@ -25,6 +25,7 @@ in {
       onefetch
       bat
       htop
+      btop
       neo-cowsay
       attrs.nix-software-center.packages.${system}.nix-software-center
       attrs.nixos-conf-editor.packages.${system}.nixos-conf-editor
