@@ -218,7 +218,7 @@ in {
 
       # Screen locking
       bind=SUPER,Escape,exec,${swaylockCommand}
-      bindl=,switch:Lid Close,exec,${swaylockCommand}
+      bindl=,switch:Lid Switch,exec,${swaylockCommand}
 
       # Custom media keys
       bind=SUPERALT,l,exec,playerctl next
