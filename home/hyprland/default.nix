@@ -39,12 +39,6 @@ in {
       networkmanagerapplet  # Log in to your wifi with this cool utility
       papirus-icon-theme    # Used to make nm-applet and blueman-applet not look ass
     ]);
-    home.sessionVariables = {
-      # NixOS specific option for enabling wayland in Electron apps
-      NIXOS_OZONE_WL = "1";
-      # Make QT use wayland
-      QT_QPA_PLATFORM = "wayland";
-    };
 
     # Nice popups when changing volume etc
     services.swayosd.enable = true;
