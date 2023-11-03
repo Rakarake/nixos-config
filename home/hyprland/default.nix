@@ -85,7 +85,7 @@ in {
       monitor=DP-1,highrr,0x0,1
 
       workspace=HDMI-A-1,1
-      workspace=DP-1,2
+      workspace=DP-1,2,default:true
       workspace=DP-1,3
       workspace=DP-1,4
       workspace=DP-1,5
