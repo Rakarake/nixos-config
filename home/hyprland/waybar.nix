@@ -4,7 +4,7 @@ let
   cfg = config.home-waybar;
 in {
   options.home-waybar = {
-    enable = mkEnableOption "Custom gnome system configuration";
+    enable = mkEnableOption "Waybar configuration";
   };
   config = mkIf cfg.enable {
     programs.waybar = {
@@ -151,7 +151,6 @@ in {
         modules-left = [
           "custom/launcher"
           "temperature"
-          "mpd"
           "custom/cava-internal"
         ];
         modules-center = [
@@ -164,18 +163,18 @@ in {
           "cpu"
           "network"
           "battery"
-          "custom/powermenu"
           "tray"
+          "custom/powermenu"
         ];
         "custom/launcher" = {
           "format" = " ";
-          "on-click" = "pkill rofi || rofi2";
+          "on-click" = "pkill rofi || rofi -show combi -modes combi -combi-modes \"window,drun,run\" -icon-theme \"Papirus\" -show-icons";
           "on-click-middle" = "exec default_wall";
           "on-click-right" = "exec wallpaper_random";
           "tooltip" = false;
         };
         "custom/cava-internal" = {
-          "exec" = "sleep 1s && cava-internal";
+          "exec" = "#sleep 1s && cava-internal";
           "tooltip" = false;
         };
         "pulseaudio" = {
@@ -189,10 +188,10 @@ in {
           "tooltip" = false;
         };
         "clock" = {
-          "interval" = 1;
-          "format" = "{:%I:%M %p  %A %b %d}";
+          "interval" = 60;
           "tooltip" = true;
-          "tooltip-format"= "{=%A; %d %B %Y}\n<tt>{calendar}</tt>";
+          "format" = "{:%H.%M}";
+          "tooltip-format" = "{:%Y-%m-%d}";
         };
         "memory" = {
           "interval" = 1;
@@ -216,7 +215,7 @@ in {
           "max-length" = 25;
         };
         "backlight" = {
-          "format" = "{percent}% {icon}";
+          "format" = "{icon} {percent}%";
           "format-icons" = [ "" "" ];
         };
         "mpd" = {
@@ -243,7 +242,7 @@ in {
         };
         "custom/powermenu" = {
           "format" = "";
-          "on-click" = "pkill rofi || ~/.config/rofi/powermenu/type-3/powermenu.sh";
+          "on-click" = "systemctl suspend";
           "tooltip" = false;
         };
         "tray" = {

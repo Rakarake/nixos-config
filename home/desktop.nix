@@ -88,6 +88,13 @@ in {
       genericName = "Discord Wayland";
       exec = "discord --ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-webrtc-pipewire-capturer";
     };
+
+    # Webcord Wayland
+    xdg.desktopEntries.webcordWayland = {
+      name = "Webcord Wayland";
+      genericName = "Webcord Wayland";
+      exec = "webcord --ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-webrtc-pipewire-capturer";
+    };
     
     # Steam Gamescope
     xdg.desktopEntries.steamGamescope = {
