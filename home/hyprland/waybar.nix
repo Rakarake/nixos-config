@@ -48,7 +48,7 @@ in {
                  border: 2px none #33ccff;
                }
          #workspaces {
-                 padding-left: 0px;
+                 padding-left: 4px;
                  padding-right: 4px;
                }
          #workspaces button {
@@ -82,7 +82,7 @@ in {
                  padding-right: 6px;
                  color: #7ebae4;
                }
-         #mode, #clock, #memory, #temperature,#cpu,#mpd, #custom-wall, #temperature, #backlight, #pulseaudio, #network, #battery, #custom-powermenu, #custom-cava-internal {
+         #mode, #clock, #memory, #temperature,#cpu,#mpd, #custom-wall, #temperature, #backlight, #pulseaudio, #network, #battery, #custom-powermenu, #custom-cava-internal, #custom-workspace-left, #custom-workspace-right {
                  padding-left: 10px;
                  padding-right: 10px;
                }
@@ -128,6 +128,12 @@ in {
                  color: rgb(242, 143, 173);
                  padding-right: 8px;
                }
+         #custom-workspace-left {
+                 color: rgb(181, 232, 224);
+               }
+         #custom-workspace-right {
+                 color: rgb(181, 232, 224);
+               }
          #tray {
                  padding-right: 8px;
                  padding-left: 10px;
@@ -152,7 +158,9 @@ in {
         "position" = "top";
         modules-left = [
           "custom/launcher"
+          "custom/workspace-left"
           "hyprland/workspaces"
+          "custom/workspace-right"
           "temperature"
           "memory"
           "cpu"
@@ -247,6 +255,14 @@ in {
           "format" = " ";
           "on-click" = "systemctl suspend";
           "tooltip" = false;
+        };
+        "custom/workspace-left" = {
+          "format" = "";
+          "on-click" = "hyprctl dispatch workspace -1";
+        };
+        "custom/workspace-right" = {
+          "format" = "";
+          "on-click" = "hyprctl dispatch workspace +1";
         };
         "tray" = {
           "icon-size" = 15;
