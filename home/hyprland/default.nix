@@ -20,6 +20,11 @@ in {
       type = types.str;
       default = "";
     };
+    # Whether to use swayidle or not
+    useSwayidle = mkOption {
+      type = types.bool;
+      default = true;
+    };
   };
   config = mkIf cfg.enable {
     # Enable Hyprland
@@ -76,7 +81,7 @@ in {
       exec-once = nm-applet
       gsettings set org.gnome.nm-applet disable-disconnected-notifications "true"
       gsettings set org.gnome.nm-applet disable-connected-notifications "true"
-      exec-once= swayidle timeout 800 '${swaylockCommand}' timeout 900 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on' timeout 1700 'systemctl suspend'
+      ${if cfg.useSwayidle then "exec-once= swayidle timeout 800 '${swaylockCommand}' timeout 900 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on' timeout 1700 'systemctl suspend'A" else ""}
 
       # Default for non specified monitors
       monitor=,highrr,auto,1

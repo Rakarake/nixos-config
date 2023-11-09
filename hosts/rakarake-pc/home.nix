@@ -4,6 +4,7 @@
   home-desktop.enable = true;
   home-hyprland = {
     enable = true;
+    useSwayidle = false;
     monitorAndWorkspaceConfig = ''
       # Monitors
       monitor=HDMI-A-1,highrr,-1920x0,1
