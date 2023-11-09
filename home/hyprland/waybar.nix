@@ -52,10 +52,12 @@ in {
                  padding-right: 4px;
                }
          #workspaces button {
-                 padding-top: 5px;
-                 padding-bottom: 5px;
-                 padding-left: 6px;
-                 padding-right: 6px;
+                 padding-top:    0px;
+                 padding-bottom: 0px;
+                 padding-left:   2px;
+                 padding-right:  2px;
+                 margin-left:    2px;
+                 margin-right:   2px;
                }
          #workspaces button.active {
                  background-color: rgb(181, 232, 224);
@@ -150,6 +152,7 @@ in {
         "position" = "top";
         modules-left = [
           "custom/launcher"
+          "hyprland/workspaces"
           "temperature"
           "memory"
           "cpu"
