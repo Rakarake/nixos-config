@@ -13,7 +13,13 @@ in {
   ];
 
   options.home-hyprland = {
+    # Option to enable Hyprland config
     enable = mkEnableOption "Custom Hyprland system configuration";
+    # Monitor and their workspaces, if relevant
+    monitorAndWorkspaceConfig = mkOption {
+      type = types.str;
+      default = "";
+    };
   };
   config = mkIf cfg.enable {
     # Enable Hyprland
@@ -72,22 +78,10 @@ in {
       gsettings set org.gnome.nm-applet disable-connected-notifications "true"
       exec-once= swayidle timeout 800 '${swaylockCommand}' timeout 900 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on' timeout 1700 'systemctl suspend'
 
-      # Monitors
       # Default for non specified monitors
       monitor=,highrr,auto,1
-      # Desktop
-      monitor=HDMI-A-1,highrr,-1920x0,1
-      monitor=DP-1,highrr,0x0,1
 
-      workspace=HDMI-A-1,1
-      workspace=DP-1,2,default:true
-      workspace=DP-1,3
-      workspace=DP-1,4
-      workspace=DP-1,5
-      workspace=DP-1,6
-      workspace=DP-1,7
-      workspace=DP-1,8
-      workspace=DP-1,9
+      ${cfg.monitorAndWorkspaceConfig}
 
       input {
         kb_layout=us,se
@@ -181,10 +175,10 @@ in {
       bind=SUPERSHIFT,j,movewindow,d
       
       # Resize window
-      bind=SUPERALT,h,resizeactive,-30 0
-      bind=SUPERALT,l,resizeactive,30 0
-      bind=SUPERALT,k,resizeactive,0 -30
-      bind=SUPERALT,j,resizeactive,0 30
+      bind=SUPERCONTROLALT,h,resizeactive,-30 0
+      bind=SUPERCONTROLALT,l,resizeactive,30 0
+      bind=SUPERCONTROLALT,k,resizeactive,0 -30
+      bind=SUPERCONTROLALT,j,resizeactive,0 30
       
       bind=SUPER,M,fullscreen
       

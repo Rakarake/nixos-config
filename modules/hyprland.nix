@@ -18,7 +18,7 @@ in {
     ];
     environment.sessionVariables = {
       # NixOS specific option for enabling wayland in Electron apps
-      NIXOS_OZONE_WL = "1";
+      #NIXOS_OZONE_WL = "1";
       # Make QT use wayland
       QT_QPA_PLATFORM = "wayland";
     };

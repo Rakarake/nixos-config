@@ -65,6 +65,7 @@ in {
       mesa-demos  # Has programs such as glxgears
       gnome.adwaita-icon-theme  # Just to be safe
       webcord
+      pulseaudioFull  # Nice libraries, used by pulseshitter
 
       # Wine
       wineWowPackages.staging
