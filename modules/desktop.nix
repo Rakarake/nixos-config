@@ -98,6 +98,9 @@ in {
       go
       gopls
 
+      # Agda
+      (agda.withPackages [ agdaPackages.standard-library ])
+
       # Other
       openttd
       osu-lazer
