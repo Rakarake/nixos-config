@@ -162,8 +162,8 @@ in {
           "hyprland/workspaces"
           "custom/workspace-right"
           "temperature"
-          "memory"
           "cpu"
+          "memory"
           #"custom/cava-internal"
         ];
         modules-center = [

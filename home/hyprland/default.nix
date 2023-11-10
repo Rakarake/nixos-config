@@ -4,7 +4,7 @@ with lib;
 let
   cfg = config.home-hyprland;
   # pidof swaylock makes sure that we do not start multiple instances of swaylock
-  swaylockCommand = "pidof swaylock || swaylock -k -i ~/Pictures/Wallpapers/wallpaper";
+  swaylockCommand = "pidof swaylock || swaylock -k -C ~/.config/hypr/swaylock.conf -i ~/Pictures/Wallpapers/wallpaper";
 in {
 
   imports = [
@@ -51,6 +51,9 @@ in {
       networkmanagerapplet  # Log in to your wifi with this cool utility
       papirus-icon-theme    # Used to make nm-applet and blueman-applet not look ass
     ]);
+
+    # Swaylock config file
+    home.file.".config/hypr/swaylock.conf".source = ./swaylock.conf;
 
     # Nice popups when changing volume etc
     services.swayosd.enable = true;
