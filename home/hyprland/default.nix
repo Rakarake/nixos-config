@@ -5,6 +5,10 @@ let
   cfg = config.home-hyprland;
   # pidof swaylock makes sure that we do not start multiple instances of swaylock
   swaylockCommand = "pidof swaylock || swaylock -k -C ~/.config/hypr/swaylock.conf -i ~/Pictures/Wallpapers/wallpaper";
+  raiseVolumeCommand = "swayosd --output-volume=raise";
+  lowerVolumeCommand = "swayosd --output-volume=lower";
+  muteVolumeCommand = "swayosd --output-volume=mute-toggle";
+  muteMicCommand = "swayosd --input-volume=mute-toggle";
 in {
 
   imports = [
@@ -203,12 +207,12 @@ in {
       bindm=SUPER,mouse:273,resizewindow
 
       # FN-buttons (such as volume up)
-      bind=,XF86MonBrightnessUp,exec,brightnessctl set 30+ ; swayosd --brightness=raise
-      bind=,XF86MonBrightnessDown,exec,brightnessctl set 30- ; swayosd --brightness=lower
-      bind=,XF86AudioRaiseVolume,exec,amixer set Master 5%+ ; swayosd --output-volume=raise
-      bind=,XF86AudioLowerVolume,exec,amixer set Master 5%- ; swayosd --output-volume=lower
-      bind=,XF86AudioMute,exec,amixer set Master toggle ; swayosd --output-volume=mute-toggle
-      bind=,XF86AudioMicMute, exec, amixer set Capture toggle ; swayosd --input-volume=mute-toggle
+      bind=,XF86MonBrightnessUp,exec,swayosd --brightness=raise
+      bind=,XF86MonBrightnessDown,exec,swayosd --brightness=lower
+      bind=,XF86AudioRaiseVolume,exec,${raiseVolumeCommand}
+      bind=,XF86AudioLowerVolume,exec,${lowerVolumeCommand}
+      bind=,XF86AudioMute,exec,${muteVolumeCommand}
+      bind=,XF86AudioMicMute,exec,${muteMicCommand}
       bind=,XF86AudioPlay,exec,playerctl play-pause
       bind=,XF86AudioPrev,exec,playerctl previous
       bind=,XF86AudioNext,exec,playerctl next
@@ -221,8 +225,8 @@ in {
       bind=SUPERALT,l,exec,playerctl next
       bind=SUPERALT,h,exec,playerctl previous
       bind=SUPERALT,p,exec,playerctl play-pause
-      bind=SUPERALT,k,exec,amixer set Master 5%+ ; swayosd --output-volume=raise
-      bind=SUPERALT,j,exec,amixer set Master 5%- ; swayosd --output-volume=lower
+      bind=SUPERALT,k,exec,swayosd --output-volume=raise
+      bind=SUPERALT,j,exec,swayosd --output-volume=lower
 
       # Screenshots
       bind=SUPER,S,exec,grim -g "$(slurp -d)" - | wl-copy
@@ -230,7 +234,7 @@ in {
       # MISC
       bind=SUPERALTSHIFT,S,exec,systemctl poweroff
       bind=SUPERALTSHIFT,R,exec,systemctl reboot
-      bind=SUPERSHIFT,S,exec,systemclt suspend
+      bind=SUPERALTSHIFT,N,exec,systemclt suspend
 
       # Workspaces
       # binds $mod + [shift +] {1..10} to [move to] workspace {1..10}
