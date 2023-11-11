@@ -221,6 +221,9 @@ in {
       bind=SUPER,Escape,exec,${swaylockCommand}
       bindl=,switch:Lid Switch,exec,${swaylockCommand}
 
+      # Emoji picker
+      bind=SUPER,e,exec,rofi -modi emoji -show emoji
+
       # Custom media keys
       bind=SUPERALT,l,exec,playerctl next
       bind=SUPERALT,h,exec,playerctl previous
