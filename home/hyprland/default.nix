@@ -242,7 +242,7 @@ in {
       # MISC
       bind=SUPERALTSHIFT,S,exec,systemctl poweroff
       bind=SUPERALTSHIFT,R,exec,systemctl reboot
-      bind=SUPERALTSHIFT,N,exec,systemclt suspend
+      bind=SUPERALTSHIFT,N,exec,systemctl suspend
 
       # Workspaces
       # binds $mod + [shift +] {1..10} to [move to] workspace {1..10}
