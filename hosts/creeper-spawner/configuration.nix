@@ -39,10 +39,10 @@
       # Let's encrypt TLS automated, not certbot
       enableACME = true;
     };
-    virtualHosts."bodinw.xyz" = {
+    virtualHosts."rakarake.xyz" = {
       forceSSL = true;
       enableACME = true;
-      root = "/var/www/bodinw.xyz/public";
+      root = "/var/www/rakarake.xyz/public";
     };
   };
   # Let's Encrypt
@@ -55,7 +55,7 @@
   services.nextcloud = {
     enable = true;
     package = pkgs.nextcloud27;
-    hostName = "rakarake.xyz";
+    hostName = "nextcloud.rakarake.xyz";
     database.createLocally = true;
     autoUpdateApps.enable = true;
     config = {
