@@ -44,16 +44,17 @@ in {
       pipewire                     # Screensharing
       xdg-desktop-portal-hyprland  # Screensharing
       polkit_gnome                 # Polkit / gparted popup prompt provider
-      xfce.thunar
-      pamixer    # Used for panel / 
-      alsa-utils # keyboard volume control
-      playerctl  # MPRIS global player controller
-      swaylock   # Screenlocker
-      swayidle   # Idle inhibitor, knows when computer is ueseless
-      brightnessctl # Laptop brighness controls
-      cava       # Used to visualize audio in the bar
-      networkmanagerapplet  # Log in to your wifi with this cool utility
-      papirus-icon-theme    # Used to make nm-applet and blueman-applet not look ass
+      pcmanfm                      # File manager
+      pamixer                      # Used for panel sound control
+      alsa-utils                   # keyboard volume control
+      playerctl                    # MPRIS global player controller
+      swaylock                     # Screenlocker
+      swayidle                     # Idle inhibitor, knows when computer is ueseless
+      brightnessctl                # Laptop brighness controls
+      cava                         # Used to visualize audio in the bar
+      networkmanagerapplet         # Log in to your wifi with this cool utility
+      papirus-icon-theme           # Used to make nm-applet and blueman-applet not look ass
+      adw-gtk3
     ]);
 
     # Swaylock config file
@@ -62,12 +63,15 @@ in {
     # Nice popups when changing volume etc
     services.swayosd.enable = true;
 
-    # Icon theme
+    # Theming
     gtk.iconTheme = {
       package = pkgs.papirus-icon-theme;
       name = "Papirus-Dark";
     };
-
+    gtk.theme = {
+      package = pkgs.adw-gtk3;
+      name = "Adw-gtk3-dark";
+    };
     home.pointerCursor = {
       gtk.enable = true;
       x11.enable = true;
@@ -76,6 +80,7 @@ in {
       #size = 32;
     };
 
+    # Hyprland config
     wayland.windowManager.hyprland.extraConfig = ''
 
       # Autostart
@@ -167,7 +172,7 @@ in {
       bind=SUPER,Return,exec,kitty
       bind=SUPER,Q,killactive,
       bind=SUPERSHIFT,E,exit,
-      bind=SUPER,F,exec,thunar
+      bind=SUPER,F,exec,pcmanfm
       bind=SUPER,V,togglefloating,
       # NOTE: use '-theme gruvbox' to specify theme
       bind=SUPER,D,exec,rofi -show combi -modes combi -combi-modes "window,drun,run" -icon-theme "Papirus" -show-icons

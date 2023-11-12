@@ -66,6 +66,8 @@ in {
       gnome.adwaita-icon-theme  # Just to be safe
       webcord
       pulseaudioFull  # Nice libraries, used by pulseshitter
+      mpv
+      imv
 
       # Wine
       wineWowPackages.staging
@@ -204,6 +206,8 @@ in {
     environment.sessionVariables = {
       # Needed for gamescope to run in steam
       ENABLE_VKBASALT = "1";
+      # Default browser
+      BROWSER = "firefox";
     };
 
     # Enable Android stuff
@@ -301,11 +305,11 @@ in {
     hardware.opengl.driSupport32Bit = true;
 
     # Collect all the garbage automatically!
-    nix.gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 7d";
-    };
+    #nix.gc = {
+    #  automatic = true;
+    #  dates = "weekly";
+    #  options = "--delete-older-than 7d";
+    #};
 
     # Creates a file which lists all system packages
     environment.etc."current-system-packages".text =

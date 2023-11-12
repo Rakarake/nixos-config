@@ -8,6 +8,7 @@ let
 in {
   imports = [
     ./bash.nix
+    ./xdg.nix
   ];
 
   options.home-desktop = {
@@ -19,6 +20,9 @@ in {
     home.homeDirectory = "/home/rakarake";
     home.stateVersion = "23.05";
     programs.home-manager.enable = true;
+
+    # Enable default applications
+    home-xdg.enable = true;
 
     # Direnv
     programs.direnv = {
