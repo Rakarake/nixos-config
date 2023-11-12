@@ -34,7 +34,7 @@ let
     "image/png"  = imageViewer;
     "image/jpg"  = imageViewer;
     "application/json" = browser;
-    "application/pdf" = ["org.gnome.Evince.desktop.desktop"];
+    "application/pdf" = ["org.gnome.Evince.desktop"];
     # File manager
     "inode/directory" = ["pcmanfm.desktop"];
   };

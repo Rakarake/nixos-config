@@ -68,6 +68,8 @@ in {
       pulseaudioFull  # Nice libraries, used by pulseshitter
       mpv
       imv
+      typst
+      typst-lsp
 
       # Wine
       wineWowPackages.staging

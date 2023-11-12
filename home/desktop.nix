@@ -57,6 +57,7 @@ in {
         catppuccin-nvim  # Theme
         toggleterm-nvim
         vimwiki
+        typst-vim
         # LSP
         nvim-lspconfig
         nvim-cmp

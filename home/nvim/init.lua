@@ -261,6 +261,13 @@ require'lspconfig'.gopls.setup{
      flags = lsp_flags,
 }
 
+-- Typst
+require'lspconfig'.typst_lsp.setup{
+     capabilities = capabilities,
+     on_attach = on_attach,
+     flags = lsp_flags,
+}
+
 
 -- Catppuccin theme integrations
 require("catppuccin").setup({
