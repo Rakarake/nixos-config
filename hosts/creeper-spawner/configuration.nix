@@ -8,6 +8,18 @@
   networking.firewall.allowedTCPPorts = [ 25565 80 443 ];
   networking.firewall.allowedUDPPorts = [ 25565 80 443 ];
 
+  # Utility programs
+  environment.systemPackages = with pkgs; [
+    vim
+    git
+    wget
+    unzip
+    zip
+    tree
+    htop
+    btop
+  ];
+
   # SSH daemon
   services.openssh = {
     enable = true;
