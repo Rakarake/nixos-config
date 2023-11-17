@@ -105,7 +105,7 @@ in {
       ${if cfg.useSwayidle then "exec-once= swayidle timeout 800 '${swaylockCommand}' timeout 900 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on' timeout 1700 'systemctl suspend'A" else ""}
 
       # Default for non specified monitors
-      monitor=,highrr,auto,1
+      monitor=,preferred,auto,1
 
       ${cfg.monitorAndWorkspaceConfig}
 
