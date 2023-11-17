@@ -142,7 +142,11 @@ in {
       misc {
         # VRR (Variable Refresh Rate)
         vrr = 2  # 2: only fullscreen, 1: always, 0: off
+        disable_splash_rendering = true  # Disables splash screen
+        disable_hyprland_logo = true
+        force_default_wallpaper = true  # Disables anime girls bihind your wallpaper
       }
+
       
       decoration {
         #blur_ignore_opacity = 1
