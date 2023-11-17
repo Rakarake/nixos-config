@@ -36,7 +36,7 @@ let
     "application/json" = browser;
     "application/pdf" = ["org.gnome.Evince.desktop"];
     # File manager
-    "inode/directory" = ["pcmanfm.desktop"];
+    "inode/directory" = ["dolphin.desktop"];
   };
 in {
   options.home-xdg = {

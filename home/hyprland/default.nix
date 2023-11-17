@@ -1,4 +1,4 @@
-# Hyprland home-manager module
+# Hyprland home-manager modulehyprldefa
 { lib, config, pkgs, ... }:
 with lib;                      
 let
@@ -44,7 +44,7 @@ in {
       pipewire                     # Screensharing
       xdg-desktop-portal-hyprland  # Screensharing
       polkit_gnome                 # Polkit / gparted popup prompt provider
-      pcmanfm                      # File manager
+      dolphin                      # File manager
       pamixer                      # Used for panel sound control
       alsa-utils                   # keyboard volume control
       playerctl                    # MPRIS global player controller
@@ -59,6 +59,9 @@ in {
 
     # Swaylock config file
     home.file.".config/hypr/swaylock.conf".source = ./swaylock.conf;
+    
+    # KDE / Dolphin config file
+    home.file.".config/kdeglobals".source = ./kdeglobals;
 
     # Nice popups when changing volume etc
     services.swayosd.enable = true;
@@ -78,6 +81,12 @@ in {
       package = pkgs.gnome.adwaita-icon-theme;
       name = "Adwaita";
       #size = 32;
+    };
+    qt = {
+      enable = true;
+      platformTheme = "gnome";
+      style.package = pkgs.adwaita-qt;
+      style.name = "adwaita-dark";
     };
 
     # Hyprland config
@@ -172,7 +181,7 @@ in {
       bind=SUPER,Return,exec,kitty
       bind=SUPER,Q,killactive,
       bind=SUPERSHIFT,E,exit,
-      bind=SUPER,F,exec,pcmanfm
+      bind=SUPER,F,exec,dolphin
       bind=SUPER,V,togglefloating,
       # NOTE: use '-theme gruvbox' to specify theme
       bind=SUPER,D,exec,rofi -show combi -modes combi -combi-modes "window,drun,run" -icon-theme "Papirus" -show-icons
