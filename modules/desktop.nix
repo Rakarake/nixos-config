@@ -228,7 +228,7 @@ in {
     boot.loader.efi.canTouchEfiVariables = true;
 
     # Use zen kernel
-    boot.kernelPackages = pkgs.linuxPackages_zen;
+    #boot.kernelPackages = pkgs.linuxPackages_zen;
 
     # Enable Plymouth
     boot.plymouth.enable = true;
