@@ -1,27 +1,32 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
+
 let 
-  ports = [
-    # ssh
-    222
-    # Minecraft
-    25565
-    # HTTP
-    80
-    # HTTPS
-    443
-    # Onlyoffice default port
-    8000
-  ];
+  # Open TCP/UDP ports
+  ports = {
+    ssh        = 222;
+    minecraft  = 25565;
+    http       = 80;
+    https      = 443;
+    onlyoffice = 8000;
+  };
+
+  # Hostnames
+  hostnames = {
+    website = "rakarake.xyz";
+    nextcloud = "nextcloud.rakarake.xyz";
+    onlyoffice = "onlyoffice.rakarake.xyz";
+  };
 in
-rec {
+
+{
   imports = [ ./hardware-configuration.nix ];
 
   # Hostname
   networking.hostName = "creeper-spawner";
 
   # Open ports
-  networking.firewall.allowedTCPPorts = ports;
-  networking.firewall.allowedUDPPorts = ports;
+  networking.firewall.allowedTCPPorts = lib.attrsets.attrValues ports;
+  networking.firewall.allowedUDPPorts = lib.attrsets.attrValues ports;
 
   # Utility programs
   environment.systemPackages = with pkgs; [
@@ -47,19 +52,27 @@ rec {
   ];
 
   # Nginx Config
-  services.nginx = {
+  services.nginx.virtualHosts = {
     # Nextcloud
-    virtualHosts.${services.nextcloud.hostName} = {
+    ${hostnames.nextcloud} = {
       forceSSL = true;
-      # Let's encrypt TLS automated, not certbot
+      enableACME = true;  # Let's encrypt TLS automated, not certbot
+    };
+
+    # Onlyoffice
+    ${hostnames.onlyoffice} = {
+      forceSSL = true;
       enableACME = true;
     };
-    virtualHosts."rakarake.xyz" = {
+
+    # Homepage
+    ${hostnames.website} = {
       forceSSL = true;
       enableACME = true;
-      root = "/var/www/rakarake.xyz/public";
+      root = "/var/www/${hostnames.website}/public";
     };
   };
+
   # Let's Encrypt
   security.acme = {
     acceptTerms = true;
@@ -70,7 +83,7 @@ rec {
   services.nextcloud = {
     enable = true;
     package = pkgs.nextcloud27;
-    hostName = "nextcloud.rakarake.xyz";
+    hostName = hostnames.nextcloud;
     database.createLocally = true;
     autoUpdateApps.enable = true;
     config = {
@@ -91,7 +104,7 @@ rec {
   # Onlyoffice
   services.onlyoffice = {
     enable = true;
-    hostname = "onlyoffice.rakarake.xyz";
+    hostname = hostnames.onlyoffice;
     port = 8000;
   };
 
