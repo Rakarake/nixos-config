@@ -159,6 +159,7 @@ in {
       dina-font
       proggyfonts
       nerdfonts
+      corefonts  # Microsoft fonts
     ];
 
     # GPG / GnuPG
