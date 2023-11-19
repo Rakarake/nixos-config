@@ -1,12 +1,27 @@
-{ pkgs, ... }: rec {
+{ pkgs, ... }:
+let 
+  ports = [
+    # ssh
+    222
+    # Minecraft
+    25565
+    # HTTP
+    80
+    # HTTPS
+    443
+    # Onlyoffice document server
+    8008
+  ];
+in
+rec {
   imports = [ ./hardware-configuration.nix ];
 
   # Hostname
   networking.hostName = "creeper-spawner";
 
   # Open ports
-  networking.firewall.allowedTCPPorts = [ 25565 80 443 ];
-  networking.firewall.allowedUDPPorts = [ 25565 80 443 ];
+  networking.firewall.allowedTCPPorts = ports;
+  networking.firewall.allowedUDPPorts = ports;
 
   # Utility programs
   environment.systemPackages = with pkgs; [
@@ -71,6 +86,13 @@
       mail_smtpmode = "sendmail";
       mail_sendmailmode = "pipe";
     };
+  };
+
+  # Onlyoffice
+  services.onlyoffice = {
+    enable = true;
+    hostname = "onlyoffice.rakarake.xyz";
+    port = 8008;
   };
 
   # Minecraft server 1
