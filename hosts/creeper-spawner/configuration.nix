@@ -9,8 +9,6 @@ let
     80
     # HTTPS
     443
-    # Onlyoffice document server
-    8008
   ];
 in
 rec {
@@ -92,7 +90,6 @@ rec {
   services.onlyoffice = {
     enable = true;
     hostname = "onlyoffice.rakarake.xyz";
-    port = 8008;
   };
 
   # Minecraft server 1
