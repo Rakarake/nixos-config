@@ -225,8 +225,8 @@ in {
       bindm=SUPER,mouse:273,resizewindow
 
       # FN-buttons (such as volume up)
-      bind=,XF86MonBrightnessUp,exec,brightnessctl set +5%
-      bind=,XF86MonBrightnessDown,exec,brightnessctl set -5%
+      bind=,XF86MonBrightnessUp,exec,brightnessctl set 5%+
+      bind=,XF86MonBrightnessDown,exec,brightnessctl set 5%-
       bind=,XF86AudioRaiseVolume,exec,${raiseVolumeCommand}
       bind=,XF86AudioLowerVolume,exec,${lowerVolumeCommand}
       bind=,XF86AudioMute,exec,${muteVolumeCommand}

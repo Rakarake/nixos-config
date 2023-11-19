@@ -309,11 +309,6 @@ in {
     # Enable the flatpak service
     services.flatpak.enable = true;
 
-    # Enable OpenGL, probably not needed
-    hardware.opengl.enable = true;
-    # Enable OpenGL 32Bit support, prolly not needed, maybe
-    hardware.opengl.driSupport32Bit = true;
-
     # Collect all the garbage automatically!
     #nix.gc = {
     #  automatic = true;

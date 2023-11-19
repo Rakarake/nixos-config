@@ -3,7 +3,7 @@
 { config, pkgs, ... }@attrs: {
   imports = [ ../../modules ./hardware-configuration.nix ];
 
-  # Simple gnome config
+  # Desktop config
   cfg-desktop.enable = true;
   cfg-hyprland.enable = true;
 
@@ -29,6 +29,16 @@
   services.fstrim = {
     enable = true;
     interval = "weekly"; # the default
+  };
+
+  # Hardware video encoding / decoding
+  hardware.opengl = {
+    enable = true;
+    # Enable OpenGL 32Bit support, prolly not needed, maybe
+    driSupport32Bit = true;
+    extraPackages = with pkgs; [
+      intel-media-driver intel-ocl intel-vaapi-driver
+    ];
   };
 
   # Setup keyfile

@@ -82,7 +82,7 @@ in {
                  padding-right: 6px;
                  color: #7ebae4;
                }
-         #mode, #clock, #memory, #temperature,#cpu,#mpd, #custom-wall, #temperature, #backlight, #pulseaudio, #network, #battery, #custom-powermenu, #custom-cava-internal, #custom-workspace-left, #custom-workspace-right {
+         #mode, #clock, #memory, #temperature,#cpu,#mpd, #custom-wall, #temperature, #backlight, #wireplumber, #network, #battery, #custom-powermenu, #custom-cava-internal, #custom-workspace-left, #custom-workspace-right {
                  padding-left: 10px;
                  padding-right: 10px;
                }
@@ -115,7 +115,7 @@ in {
          #backlight {
                  color: rgb(248, 189, 150);
                }
-         #pulseaudio {
+         #wireplumber {
                  color: rgb(245, 224, 220);
                }
          #network {
@@ -170,7 +170,7 @@ in {
           "clock"
         ];
         modules-right = [
-          "pulseaudio"
+          "wireplumber"
           "backlight"
           "network"
           "battery"
@@ -188,7 +188,7 @@ in {
           "exec" = "#sleep 1s && cava-internal";
           "tooltip" = false;
         };
-        "pulseaudio" = {
+        "wireplumber" = {
           "scroll-step" = 1;
           "format" = "{icon} {volume}%";
           "format-muted" = "󰖁 Muted";
