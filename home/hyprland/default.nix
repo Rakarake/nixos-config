@@ -94,12 +94,12 @@ in {
 
       # Autostart
       exec-once = ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1
-      exec-once = nextcloud
+      exec-once = sleep 4 ; nextcloud
       exec-once = waybar
       exec-once = swaybg -i ~/Pictures/Wallpapers/wallpaper
       exec-once = dunst
-      exec-once = blueman-applet
-      exec-once = nm-applet
+      exec-once = sleep 4 ; blueman-applet
+      exec-once = sleep 4 ; nm-applet
       gsettings set org.gnome.nm-applet disable-disconnected-notifications "true"
       gsettings set org.gnome.nm-applet disable-connected-notifications "true"
       ${if cfg.useSwayidle then "exec-once= swayidle timeout 800 '${swaylockCommand}' timeout 900 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on' timeout 1700 'systemctl suspend'A" else ""}

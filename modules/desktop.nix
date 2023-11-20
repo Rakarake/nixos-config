@@ -70,6 +70,7 @@ in {
       imv
       typst
       typst-lsp
+      libfprint # Fingie printer
 
       # Wine
       wineWowPackages.staging
@@ -138,6 +139,9 @@ in {
     nixpkgs.config.permittedInsecurePackages = [
       "electron-24.8.6"
     ];
+
+    # Fingie printer
+    services.fprintd.enable = true;
 
     # System76 scheduler
     services.system76-scheduler = {
