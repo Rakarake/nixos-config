@@ -50,7 +50,6 @@ in {
       baobab
       pavucontrol
       gparted
-      popsicle
       discord
       linuxPackages_latest.perf
       texlive.combined.scheme-medium
