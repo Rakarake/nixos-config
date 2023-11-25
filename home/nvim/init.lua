@@ -41,7 +41,7 @@ vim.keymap.set('i', '<S-Tab>', '<C-V><Tab>')
 
 -- Settings
 vim.opt.tabstop = 4                   -- Tab length
-vim.opt.softtabstop = 4 
+vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true              -- Use spaces instead of tabs
 vim.o.colorcolumn = '78'              -- Line-has-gone-too-far indicator to the right
@@ -68,9 +68,9 @@ vim.opt.undofile = true
 vim.keymap.set('n', '<leader>p', '<cmd>nohlsearch<Bar>:echo<cr>')
 
 -- Toggleterm
-local toggleterm = require("toggleterm").setup {
+require("toggleterm").setup {
     size = vim.o.columns * 0.45,
-    direction = 'vertical', 
+    direction = 'vertical',
     open_mapping = [[<C-P>]],
     hide_numbers = true, -- hide the number column in toggleterm buffers
     shade_filetypes = {},
@@ -104,7 +104,7 @@ vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
-local on_attach = function(client, bufnr)
+local on_attach = function(bufnr)
   -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
@@ -268,6 +268,37 @@ require'lspconfig'.typst_lsp.setup{
      flags = lsp_flags,
 }
 
+-- Lua, primarily for neovim
+require'lspconfig'.lua_ls.setup {
+  on_init = function(client)
+    local path = client.workspace_folders[1].name
+    if not vim.loop.fs_stat(path..'/.luarc.json') and not vim.loop.fs_stat(path..'/.luarc.jsonc') then
+      client.config.settings = vim.tbl_deep_extend('force', client.config.settings, {
+        Lua = {
+          runtime = {
+            -- Tell the language server which version of Lua you're using
+            -- (most likely LuaJIT in the case of Neovim)
+            version = 'LuaJIT'
+          },
+          -- Make the server aware of Neovim runtime files
+          workspace = {
+            checkThirdParty = false,
+            library = {
+              vim.env.VIMRUNTIME
+              -- "${3rd}/luv/library"
+              -- "${3rd}/busted/library",
+            }
+            -- or pull in all of 'runtimepath'. NOTE: this is a lot slower
+            -- library = vim.api.nvim_get_runtime_file("", true)
+          }
+        }
+      })
+
+      client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
+    end
+    return true
+  end
+}
 
 -- Catppuccin theme integrations
 require("catppuccin").setup({

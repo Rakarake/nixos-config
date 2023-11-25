@@ -97,7 +97,9 @@ in {
       python3
       # Java
       jdk17
-
+      # Lua
+      lua
+      lua-language-server
       # Go
       go
       gopls
