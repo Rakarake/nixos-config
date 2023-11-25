@@ -70,6 +70,7 @@ in {
       typst
       typst-lsp
       libfprint # Fingie printer
+      vscode
 
       # Wine
       wineWowPackages.staging
