@@ -1,4 +1,4 @@
-# Hyprland home-manager modulehyprldefa
+# Hyprland home-manager module
 { lib, config, pkgs, ... }:
 with lib;                      
 let
@@ -54,7 +54,8 @@ in {
       cava                         # Used to visualize audio in the bar
       networkmanagerapplet         # Log in to your wifi with this cool utility
       papirus-icon-theme           # Used to make nm-applet and blueman-applet not look ass
-      adw-gtk3
+      adw-gtk3                     # Nice libadwaita gtk3 theme
+      hyprpicker                   # Color picker
     ]);
 
     # Swaylock config file
@@ -210,7 +211,9 @@ in {
       bind=SUPERCONTROLALT,k,resizeactive,0 -30
       bind=SUPERCONTROLALT,j,resizeactive,0 30
       
-      bind=SUPER,M,fullscreen
+      # Fullscreen and maximization
+      bind=SUPER,M,fullscreen,1
+      bind=SUPER,B,fullscreen,0
       
       # Move to workspace left or right
       bind=SUPERCONTROL,l,workspace,+1
@@ -241,6 +244,10 @@ in {
 
       # Emoji picker
       bind=SUPER,e,exec,rofi -modi emoji -show emoji
+
+      # Color picker
+      bind=SUPER,Z,exec,hyprpicker --format=rgb | wl-copy
+      bind=SUPER,X,exec,hyprpicker --format=hex | wl-copy
 
       # Custom media keys
       bind=SUPERALT,l,exec,playerctl next
