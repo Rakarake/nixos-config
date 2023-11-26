@@ -185,7 +185,7 @@ in {
 
       bind=SUPER,Return,exec,kitty
       bind=SUPER,Q,killactive,
-      bind=SUPERSHIFT,E,exit,
+      bind=SUPERSHIFTALT,E,exit,
       bind=SUPER,F,exec,dolphin
       bind=SUPER,V,togglefloating,
       # NOTE: use '-theme gruvbox' to specify theme
