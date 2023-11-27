@@ -68,9 +68,9 @@ vim.opt.undofile = true
 vim.keymap.set('n', '<leader>p', '<cmd>nohlsearch<Bar>:echo<cr>')
 
 -- Toggleterm
-require("toggleterm").setup {
+local toggleterm = require("toggleterm").setup {
     size = vim.o.columns * 0.45,
-    direction = 'vertical',
+    direction = 'vertical', 
     open_mapping = [[<C-P>]],
     hide_numbers = true, -- hide the number column in toggleterm buffers
     shade_filetypes = {},
@@ -104,7 +104,7 @@ vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
-local on_attach = function(bufnr)
+local on_attach = function(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
