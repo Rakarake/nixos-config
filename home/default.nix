@@ -5,7 +5,6 @@
   imports = [
     ./desktop.nix
     ./gnome.nix
-    ./bash.nix
     ./hyprland
   ];
 }
