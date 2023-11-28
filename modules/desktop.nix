@@ -70,43 +70,9 @@ in {
       typst
       typst-lsp
       libfprint # Fingie printer
-      vscode
 
       # Wine
       wineWowPackages.staging
-
-      # HTML / CSS / JSON / ESLint language server
-      vscode-langservers-extracted
-      # C / C++
-      clang
-      pkg-config
-      ccls          # A C/C++ language server
-      mpi           # C message passing
-      # Haskell
-      ghc
-      haskell-language-server
-      # Nix??? 😲
-      nil  # Nix language server
-      # Godot
-      godot_4
-      # Rust
-      rustc
-      cargo
-      rustfmt
-      rust-analyzer # Rust language server
-      # Python
-      python3
-      # Java
-      jdk17
-      # Lua
-      lua
-      lua-language-server
-      # Go
-      go
-      gopls
-
-      # Agda
-      (agda.withPackages [ agdaPackages.standard-library ])
 
       # Other
       openttd

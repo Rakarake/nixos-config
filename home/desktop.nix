@@ -30,6 +30,9 @@ in {
       nix-direnv.enable = true;
     };
 
+    # Programming environment
+    dev-stuff.enable = true;
+
     # Generic shell options
     home.file.".alias".source = ./.alias;
     # Bash config

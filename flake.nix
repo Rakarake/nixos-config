@@ -20,9 +20,12 @@
 
     # Hyprland flake
     hyprland.url = "github:hyprwm/Hyprland";
+
+    # Programming environment
+    dev-stuff.url = "./home/dev-stuff";
   };
 
-  outputs = { self, nixpkgs, home-manager, hyprland, ... }@attrs:
+  outputs = { self, nixpkgs, home-manager, hyprland, dev-stuff, ... }@attrs:
   let
     # Must havs for all systems
     commonModule = { pkgs, ... }: {
@@ -35,11 +38,14 @@
       # Enable Flakes
       nix.settings.experimental-features = [ "flakes" "nix-command" ];
     };
+    # Common among home-manager systems
     commonHome =  {
       imports = [
         # For some reason, this cannot be imported in the hyprland module,
         # I get infinate recursion.
         hyprland.homeManagerModules.default
+        # Enable to use development environment
+        dev-stuff.homeManagerModules.default
       ];
     };
     # Module for replacing rust tools with overlay
