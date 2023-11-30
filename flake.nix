@@ -22,7 +22,7 @@
     hyprland.url = "github:hyprwm/Hyprland";
 
     # Programming environment
-    dev-stuff.url = "./home/dev-stuff";
+    dev-stuff.url = "github:Rakarake/nix-dev-environment";
   };
 
   outputs = { self, nixpkgs, home-manager, hyprland, dev-stuff, ... }@attrs:
