@@ -52,7 +52,6 @@ in {
       gparted
       discord
       linuxPackages_latest.perf
-      texlive.combined.scheme-medium
       gamemode
       tmux
       nextcloud-client
