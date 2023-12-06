@@ -13,6 +13,18 @@
     corectrl  # We like big graphics
   ];
 
+  # Enable hardware acceleration, VA-API
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+  
+    extraPackages = with pkgs; [
+      vaapiVdpau
+      libvdpau-va-gl
+    ];
+  };
+
   # Guest User
   users.users.guest = {
     isNormalUser = true;

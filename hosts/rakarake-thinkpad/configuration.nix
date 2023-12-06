@@ -36,6 +36,7 @@
     enable = true;
     # Enable OpenGL 32Bit support, prolly not needed, maybe
     driSupport32Bit = true;
+    driSupport = true;
     extraPackages = with pkgs; [
       intel-media-driver intel-ocl intel-vaapi-driver
     ];
