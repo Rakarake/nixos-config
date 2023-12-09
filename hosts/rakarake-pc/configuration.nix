@@ -2,13 +2,14 @@
 { pkgs, ... }: {
   imports = [ ../../modules ./hardware-configuration.nix ];
 
-  # Cool simple gnome config
+  # Cool simple Hyprland config
   cfg-desktop.enable = true;
   cfg-hyprland.enable = true;
 
   # Hostname
   networking.hostName = "rakarake-pc";  # Define your hostname.
 
+  # Desktop specific packages
   environment.systemPackages = with pkgs; [
     corectrl  # We like big graphics
   ];
@@ -20,6 +21,7 @@
     driSupport32Bit = true;
   
     extraPackages = with pkgs; [
+      libva  # Main package for VA-API
       vaapiVdpau
       libvdpau-va-gl
     ];
@@ -37,11 +39,6 @@
     "/home/rakarake/MORB" = {
       label = "MORB";
       fsType = "btrfs";
-    };
-    "/home/rakarake/Music" = {
-      label = "MORB";
-      fsType = "btrfs";
-      options = [ "subvol=Music" ];
     };
   };
 }

@@ -1,22 +1,17 @@
 {
   description = "A super system conf";
   inputs = {
-    # Use nixos-unstable as nixpkgs source
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    # Use latest nixpkgs for system, and nixpkgs-unstable for programs
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     # Home Manager flake dependency
-    home-manager.url = "github:nix-community/home-manager";
+    home-manager.url = "github:nix-community/home-manager/release-23.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     # Nix Software Center and NixOS-conf-editor dependency
     nix-software-center.url = "github:vlinkz/nix-software-center";
     nixos-conf-editor.url = "github:vlinkz/nixos-conf-editor";
-
-    # Rust Overlay Flake (to use the nightly channel)
-    #fenix = {
-    #  url = "github:nix-community/fenix/monthly";
-    #  inputs.nixpkgs.follows = "nixpkgs";
-    #};
 
     # Hyprland flake
     hyprland.url = "github:hyprwm/Hyprland";
@@ -25,18 +20,21 @@
     dev-stuff.url = "github:Rakarake/nix-dev-environment";
   };
 
-  outputs = { self, nixpkgs, home-manager, hyprland, dev-stuff, ... }@attrs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, hyprland, dev-stuff, ... }@attrs:
   let
+    overlays = [
+      # Replace openssl with libressl
+      (final: super: { 
+          nginxStable = super.nginxStable.override { openssl = super.pkgs.libressl; }; 
+      })
+    ];
     # Must havs for all systems
     commonModule = { pkgs, ... }: {
-      # Replace openssl with libressl
-      nixpkgs.overlays = [
-        (final: super: { 
-            nginxStable = super.nginxStable.override { openssl = super.pkgs.libressl; }; 
-        })
-      ];
+      nixpkgs.overlays = overlays;
       # Enable Flakes
       nix.settings.experimental-features = [ "flakes" "nix-command" ];
+      # Allow unfree packages
+      nixpkgs.config.allowUnfree = true;
     };
     # Common among home-manager systems
     commonHome =  {
@@ -48,22 +46,9 @@
         dev-stuff.homeManagerModules.default
       ];
     };
-    # Module for replacing rust tools with overlay
-      #({ pkgs, ... }: {
-      #  nixpkgs.overlays = [ fenix.overlays.default ];
-      #  environment.systemPackages = [
-      #    (fenix.packages.x86_64-linux.default.withComponents [
-      #        "cargo"
-      #        "clippy"
-      #        "rustc"
-      #        "rustfmt"
-      #    ])
-      #    pkgs.rust-analyzer-nightly
-      #  ];
-      #})
   in
   {
-    # Live configurations for when installing NixOS
+    # Live configurations for when you wanna put NixOS on a USB-stick
     nixosConfigurations.live = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
@@ -72,17 +57,17 @@
       ];
     };
 
-    # Thonkpad configuration go wrrom
-    nixosConfigurations.rakarake-thinkpad = nixpkgs.lib.nixosSystem {
+    # Thonkpad configuration go wrroom
+    nixosConfigurations.rakarake-thinkpad = nixpkgs.lib.nixosSystem rec {
       system = "x86_64-linux";
-      specialArgs = attrs;
+      specialArgs = attrs // { pkgs-unstable = import nixpkgs-unstable { inherit overlays system; }; };
       modules = [
         commonModule
         ./hosts/rakarake-thinkpad/configuration.nix 
         home-manager.nixosModules.home-manager {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.extraSpecialArgs = attrs;
+          home-manager.extraSpecialArgs = specialArgs;
           home-manager.users.rakarake.imports = [
             commonHome
             ./hosts/rakarake-thinkpad/home.nix
@@ -92,16 +77,17 @@
     };
 
     # PC
-    nixosConfigurations.rakarake-pc = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.rakarake-pc = nixpkgs.lib.nixosSystem rec {
       system = "x86_64-linux";
-      specialArgs = attrs;
+
+      specialArgs = attrs // { pkgs-unstable = import nixpkgs-unstable { inherit overlays system; }; };
       modules = [
         commonModule
         ./hosts/rakarake-pc/configuration.nix 
         home-manager.nixosModules.home-manager {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.extraSpecialArgs = attrs;
+          home-manager.extraSpecialArgs = specialArgs;
           home-manager.users.rakarake.imports = [
             commonHome
             ./hosts/rakarake-pc/home.nix
@@ -117,13 +103,6 @@
       modules = [
         commonModule
         ./hosts/creeper-spawner/configuration.nix 
-        #home-manager.nixosModules.home-manager {
-        #  home-manager.useGlobalPkgs = true;
-        #  home-manager.useUserPackages = true;
-        #  home-manager.users.rakarake.imports = [
-        #      #./hosts/creeper-spawner/home.nix
-        #  ];
-        #}
       ];
     };
   };

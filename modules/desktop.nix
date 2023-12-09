@@ -1,5 +1,5 @@
 # Main "system config", common desktop settings go here
-{ lib, config, pkgs, ... }@attrs:
+{ lib, config, pkgs-unstable, pkgs, ... }@attrs:
 with lib;                      
 let
   cfg = config.cfg-desktop;
@@ -12,9 +12,8 @@ in {
     # System Packages/Programs
     # To search, run:
     # $ nix search wget
-    environment.systemPackages = with pkgs; [
-      vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-      neovim
+    environment.systemPackages = with pkgs-unstable; [
+      vim
       ripgrep
       wget
       gnumake
@@ -39,8 +38,8 @@ in {
       timidity    # MIDI CLI player
       freepats    # MIDI soundfont
       btrfs-progs
-      steam-run
-      steamtinkerlaunch
+      pkgs.steam-run
+      pkgs.steamtinkerlaunch
       distrobox
       fceux
       mangohud
@@ -50,7 +49,7 @@ in {
       baobab
       pavucontrol
       gparted
-      discord
+      pkgs.discord
       linuxPackages_latest.perf
       gamemode
       tmux
@@ -66,8 +65,6 @@ in {
       pulseaudioFull  # Nice libraries, used by pulseshitter
       mpv
       imv
-      typst
-      typst-lsp
       libfprint # Fingie printer
 
       # Wine
@@ -75,7 +72,7 @@ in {
 
       # Other
       openttd
-      osu-lazer
+      pkgs.osu-lazer
       superTuxKart
       prismlauncher
       gamescope
@@ -157,26 +154,29 @@ in {
       #enableSSHSupport = true;
     };
 
+    # Docker or podman is needed for distrobox, it seems that podman works better
+
     # Docker
-    virtualisation.docker = {
-      enable = true;
-      rootless = {
+    #virtualisation.docker = {
+    #  enable = true;
+    #  rootless = {
+    #    enable = true;
+    #    setSocketVariable = true;
+    #  };
+    #};
+
+    # Podman
+    virtualisation = {
+      podman = {
         enable = true;
-        setSocketVariable = true;
+
+        # Create a `docker` alias for podman, to use it as a drop-in replacement
+        dockerCompat = true;
+
+        # Required for containers under podman-compose to be able to talk to each other.
+        defaultNetwork.settings.dns_enabled = true;
       };
     };
-    # Podman
-    #irtualisation = {
-    # podman = {
-    #   enable = true;
-
-    #   # Create a `docker` alias for podman, to use it as a drop-in replacement
-    #   dockerCompat = true;
-
-    #   # Required for containers under podman-compose to be able to talk to each other.
-    #   defaultNetwork.settings.dns_enabled = true;
-    # };
-    #;
 
     # Steam
     programs.steam = {
@@ -291,9 +291,6 @@ in {
 
     # Mullvad Service
     services.mullvad-vpn.enable = true;
-
-    # Allow unfree packages
-    nixpkgs.config.allowUnfree = true;
 
     # Enable the flatpak service
     services.flatpak.enable = true;
