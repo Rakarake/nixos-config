@@ -3,6 +3,8 @@
 with lib;                      
 let
   cfg = config.cfg-desktop;
+  # For fun ports to play with
+  openPorts = [ 1337 1338 1339 ];
 in {
   options.cfg-desktop = {
     enable = mkEnableOption "Common desktop configuration";
@@ -100,6 +102,10 @@ in {
       celluloid
       gnome.gnome-sound-recorder
     ];
+
+    # Open ports, for fun purposes
+    networking.firewall.allowedTCPPorts = openPorts;
+    networking.firewall.allowedUDPPorts = openPorts;
 
     # Fix Logseq bad old electron problem
     nixpkgs.config.permittedInsecurePackages = [
