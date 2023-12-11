@@ -7,8 +7,8 @@
     useSwayidle = false;
     monitorAndWorkspaceConfig = ''
       # Monitors
-      monitor=HDMI-A-1,highrr,-1920x0,1
-      monitor=DP-3,highrr,0x0,1
+      monitor=HDMI-A-1,highrr,0x0,1
+      monitor=DP-3,highrr,-1920x0,1
 
       # Workspaces
       workspace=DP-1,1
