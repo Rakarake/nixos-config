@@ -98,6 +98,7 @@ in {
       gnome.gnome-mines
       mission-center
       celluloid
+      gnome.gnome-sound-recorder
     ];
 
     # Fix Logseq bad old electron problem
