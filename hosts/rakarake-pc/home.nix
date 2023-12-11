@@ -11,15 +11,15 @@
       monitor=DP-3,highrr,0x0,1
 
       # Workspaces
-      workspace=HDMI-A-1,1
-      workspace=DP-1,2,default:true
-      workspace=DP-1,3
-      workspace=DP-1,4
-      workspace=DP-1,5
-      workspace=DP-1,6
-      workspace=DP-1,7
-      workspace=DP-1,8
-      workspace=DP-1,9
+      workspace=DP-1,1
+      workspace=HDMI-A-1,2,default:true
+      workspace=HDMI-A-1,3
+      workspace=HDMI-A-1,4
+      workspace=HDMI-A-1,5
+      workspace=HDMI-A-1,6
+      workspace=HDMI-A-1,7
+      workspace=HDMI-A-1,8
+      workspace=HDMI-A-1,9
     '';
   };
 }
