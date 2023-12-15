@@ -109,8 +109,9 @@ in {
 
     # Fix Logseq bad old electron problem
     nixpkgs.config.permittedInsecurePackages = [
-      "electron-24.8.6"
       "electron-20.3.12"
+      "electron-24.8.6"
+      "electron-25.9.0"
     ];
     #nixpkgs.overlays = [
     #  (
