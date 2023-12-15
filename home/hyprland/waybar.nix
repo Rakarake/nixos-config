@@ -18,9 +18,11 @@ in {
                  font-family: "JetBrainsMono Nerd Font";
                  font-size: 12pt;
                  font-weight: bold;
-                 border-radius: 8px;
                  transition-property: background-color;
                  transition-duration: 0.5s;
+               }
+               button {
+                 border-radius: 8px;
                }
                @keyframes blink_red {
                  to {
@@ -39,13 +41,10 @@ in {
                  background-color: transparent;
                }
                window > box {
-                 margin-left: 5px;
-                 margin-right: 5px;
-                 margin-top: 5px;
                  background-color: #1e1e2a;
                  padding: 3px;
                  padding-left:8px;
-                 border: 2px none #33ccff;
+                 border: 0px none #33ccff;
                }
          #workspaces {
                  padding-left: 4px;
