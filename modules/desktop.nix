@@ -58,7 +58,7 @@ in {
       nextcloud-client
       iotas
       gnome.gnome-software
-      logseq
+      pkgs.logseq
       soundux
       helvum
       mesa-demos  # Has programs such as glxgears
