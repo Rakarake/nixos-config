@@ -6,7 +6,7 @@ build a live ISO image.
 
 `nix-shell` to bootstrap.
 
-`sudo nix flake update` to update.
+`nix flake update` to update.
 
 `sudo nixos-rebuild switch --flakes .` to apply configuration.
 `rebuild` to apply configuration when using configuration.
