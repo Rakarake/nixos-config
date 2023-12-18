@@ -13,9 +13,23 @@ in {
       enable = true;
       package = hyprland.packages.${pkgs.system}.hyprland;
     };
-    environment.systemPackages = [
-      pkgs.polkit_gnome
+
+    environment.systemPackages = with pkgs; [
+      polkit_gnome
+      nautilus-open-any-terminal
+      gnome.nautilus-python
     ];
+
+    # Witchcraft to get nautilus to open other terminals
+    services.xserver.desktopManager.gnome.extraGSettingsOverridePackages = [
+      pkgs.nautilus-open-any-terminal
+    ];
+    # Let nautilus find extensions
+    environment.sessionVariables.NAUTILUS_EXTENSION_DIR = "${config.system.path}/lib/nautilus/extensions-4";
+    environment.pathsToLink = [
+      "/share/nautilus-python/extensions"
+    ];
+
     environment.sessionVariables = {
       # NixOS specific option for enabling wayland in Electron apps
       #NIXOS_OZONE_WL = "1";

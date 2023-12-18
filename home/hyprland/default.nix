@@ -9,6 +9,8 @@ let
   lowerVolumeCommand = "swayosd --output-volume=lower";
   muteVolumeCommand = "swayosd --output-volume=mute-toggle";
   muteMicCommand = "swayosd --input-volume=mute-toggle";
+  fileManagerCommand = "nautilus";
+  terminalCommand = "kitty";
 in {
 
   imports = [
@@ -44,7 +46,7 @@ in {
       pipewire                     # Screensharing
       xdg-desktop-portal-hyprland  # Screensharing
       polkit_gnome                 # Polkit / gparted popup prompt provider
-      dolphin                      # File manager
+      gnome.nautilus               # File manager
       pamixer                      # Used for panel sound control
       alsa-utils                   # keyboard volume control
       playerctl                    # MPRIS global player controller
@@ -61,8 +63,22 @@ in {
     # Swaylock config file
     home.file.".config/hypr/swaylock.conf".source = ./swaylock.conf;
     
-    # KDE / Dolphin config file
-    home.file.".config/kdeglobals".source = ./kdeglobals;
+    ## KDE / Dolphin config file
+    #home.file.".config/kdeglobals".source = ./kdeglobals;
+    
+    # Dconf settings
+    dconf.settings = {
+      # Locale
+      "system/locale" = {
+        region = "sv_SE.UTF-8";
+      };
+      # Nautilus terminal
+      "com/github/stunkymonkey/nautilus-open-any-terminal" = {
+        terminal = "kitty";
+        keybindings = "<Ctrl><Alt>t";
+        new-tab = false;
+      };
+    };
 
     # Nice popups when changing volume etc
     services.swayosd.enable = true;
@@ -183,10 +199,10 @@ in {
       # Keybindings
       $mod = SUPER
 
-      bind=SUPER,Return,exec,kitty
+      bind=SUPER,Return,exec,${terminalCommand}
       bind=SUPER,Q,killactive,
       bind=SUPERSHIFTALT,E,exit,
-      bind=SUPER,F,exec,dolphin
+      bind=SUPER,F,exec,${fileManagerCommand}
       bind=SUPER,V,togglefloating,
       # NOTE: use '-theme gruvbox' to specify theme
       bind=SUPER,D,exec,rofi -show combi -modes combi -combi-modes "window,drun,run" -icon-theme "Papirus" -show-icons
