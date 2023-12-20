@@ -7,8 +7,8 @@
     useSwayidle = false;
     monitorAndWorkspaceConfig =
     let
-      mainMonitor = "HDMI-A-1";
-      leftMonitor = "DP-3";
+      mainMonitor = "DP-1";
+      leftMonitor = "DP-2";
     in
     ''
       # Monitors
