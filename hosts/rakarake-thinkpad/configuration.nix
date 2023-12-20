@@ -25,6 +25,13 @@
   services.power-profiles-daemon.enable = false;
   services.tlp.enable = true;
 
+  # Enable Plymouth
+  boot.plymouth = {
+    enable = true;
+    logo = ./fraud.png;
+  };
+  boot.initrd.systemd.enable = true;
+
   # Enable SSD trimming
   services.fstrim = {
     enable = true;

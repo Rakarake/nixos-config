@@ -14,6 +14,10 @@
     corectrl  # We like big graphics
   ];
 
+  # Enable Plymouth
+  boot.plymouth.enable = true;
+  boot.initrd.systemd.enable = true;
+
   # Enable hardware acceleration, VA-API
   hardware.opengl = {
     enable = true;

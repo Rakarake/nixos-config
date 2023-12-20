@@ -227,10 +227,6 @@ in {
     # Use zen kernel
     #boot.kernelPackages = pkgs.linuxPackages_zen;
 
-    # Enable Plymouth
-    boot.plymouth.enable = true;
-    boot.initrd.systemd.enable = true;
-
     # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
     # Configure network proxy if necessary
