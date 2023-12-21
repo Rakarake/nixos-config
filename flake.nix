@@ -13,6 +13,9 @@
     nix-software-center.url = "github:vlinkz/nix-software-center";
     nixos-conf-editor.url = "github:vlinkz/nixos-conf-editor";
 
+    # UwU
+    queercat.url = "github:Elsa002/queercat";
+
     # Hyprland flake
     hyprland.url = "github:hyprwm/Hyprland";
 
