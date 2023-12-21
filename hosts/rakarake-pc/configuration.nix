@@ -15,7 +15,10 @@
   ];
 
   # Enable Plymouth
-  boot.plymouth.enable = true;
+  boot.plymouth = {
+    enable = true;
+    logo = ./kirb.png;
+  };
   boot.initrd.systemd.enable = true;
 
   # Enable hardware acceleration, VA-API
