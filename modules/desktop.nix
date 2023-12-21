@@ -104,6 +104,11 @@ in {
       gnome.gnome-sound-recorder
     ];
 
+    # Input engines
+    i18n.inputMethod.ibus.engines = [
+      pkgs.ibus-engines.mozc
+    ];
+
     # Open ports, for fun purposes
     networking.firewall.allowedTCPPorts = openPorts;
     networking.firewall.allowedUDPPorts = openPorts;
