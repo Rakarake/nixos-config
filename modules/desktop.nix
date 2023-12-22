@@ -69,6 +69,7 @@ in {
       mpv
       imv
       libfprint # Fingie printer
+      impression
 
       # Wine
       wineWowPackages.staging
