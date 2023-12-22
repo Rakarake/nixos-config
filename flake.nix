@@ -104,7 +104,7 @@
     };
 
     # Home server
-    nixosConfigurations.creeper-spawner = nixpkgs-unstable.lib.nixosSystem {
+    nixosConfigurations.creeper-spawner = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = attrs;
       modules = [
