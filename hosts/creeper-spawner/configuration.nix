@@ -138,6 +138,10 @@ in
   #  };
   #};
 
+  # Enable bcachefs support
+  boot.supportedFilesystems = [ "bcachefs" ];
+  boot.kernelPackages = lib.mkOverride 0 pkgs.linuxPackages_testing_bcachefs;
+
   # Bootloader
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;

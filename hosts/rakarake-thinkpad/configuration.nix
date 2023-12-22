@@ -1,6 +1,6 @@
 # Thinkpad X1 Carbon Gen 4 Specific settings
 # I wish the fingerprint reader worked
-{ config, pkgs, ... }@attrs: {
+{ pkgs, ... }: {
   imports = [ ../../modules ./hardware-configuration.nix ];
 
   # Desktop config

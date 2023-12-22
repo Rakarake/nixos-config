@@ -57,6 +57,11 @@
       modules = [
         (nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix")
         ./live.nix
+        # Module to enable bcachefs support in the live-environment
+        ({ lib, pkgs, ... }: {
+          boot.supportedFilesystems = [ "bcachefs" ];
+          boot.kernelPackages = lib.mkOverride 0 pkgs.linuxPackages_testing_bcachefs;
+        })
       ];
     };
 
@@ -82,7 +87,6 @@
     # PC
     nixosConfigurations.rakarake-pc = nixpkgs.lib.nixosSystem rec {
       system = "x86_64-linux";
-
       specialArgs = attrs // { pkgs-unstable = import nixpkgs-unstable { inherit overlays system; }; };
       modules = [
         commonModule
