@@ -2,11 +2,13 @@
   description = "A super system conf";
   inputs = {
     # Use latest nixpkgs for system, and nixpkgs-unstable for programs
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    #nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
+    #nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     # Home Manager flake dependency
-    home-manager.url = "github:nix-community/home-manager/release-23.11";
+    #home-manager.url = "github:nix-community/home-manager/release-23.11";
+    home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     # Nix Software Center and NixOS-conf-editor dependency
@@ -23,7 +25,7 @@
     dev-stuff.url = "github:Rakarake/nix-dev-environment";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, hyprland, dev-stuff, ... }@attrs:
+  outputs = { self, nixpkgs, home-manager, hyprland, dev-stuff, ... }@attrs:
   let
     overlays = [
       # Replace openssl with libressl
@@ -68,7 +70,7 @@
     # Thonkpad configuration go wrroom
     nixosConfigurations.rakarake-thinkpad = nixpkgs.lib.nixosSystem rec {
       system = "x86_64-linux";
-      specialArgs = attrs // { pkgs-unstable = import nixpkgs-unstable { inherit overlays system; }; };
+      specialArgs = attrs; # // { pkgs-unstable = import nixpkgs-unstable { inherit overlays system; }; };
       modules = [
         commonModule
         ./hosts/rakarake-thinkpad/configuration.nix 
@@ -87,7 +89,7 @@
     # PC
     nixosConfigurations.rakarake-pc = nixpkgs.lib.nixosSystem rec {
       system = "x86_64-linux";
-      specialArgs = attrs // { pkgs-unstable = import nixpkgs-unstable { inherit overlays system; }; };
+      specialArgs = attrs; # // { pkgs-unstable = import nixpkgs-unstable { inherit overlays system; }; };
       modules = [
         commonModule
         ./hosts/rakarake-pc/configuration.nix 

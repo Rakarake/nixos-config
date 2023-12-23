@@ -1,5 +1,5 @@
 # Main "system config", common desktop settings go here
-{ lib, config, pkgs-unstable, pkgs, ... }@attrs:
+{ lib, config, pkgs, ... }@attrs:
 with lib;                      
 let
   cfg = config.cfg-desktop;
@@ -12,7 +12,7 @@ in {
 
   config = mkIf cfg.enable { # System Packages/Programs To search, run:
     # $ nix search wget
-    environment.systemPackages = with pkgs-unstable; [
+    environment.systemPackages = with pkgs; [
       vim
       ripgrep
       wget
@@ -105,7 +105,7 @@ in {
     ];
 
     # Enable support for bcachefs
-    boot.supportedFilesystems = [ "bcachefs" ];
+    #boot.supportedFilesystems = [ "bcachefs" ];
 
     # Input engines
     i18n.inputMethod.ibus.engines = [

@@ -1,7 +1,7 @@
 # My cozy home UwU
 # Some config must be anbled manually, such as the gnome-config.
 # This is done so that e.g. gnome and kde settings don't clash.
-{ pkgs, lib, config, ... }:
+{ lib, config, ... }:
 with lib;
 let
   cfg = config.home-desktop;
