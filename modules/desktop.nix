@@ -68,8 +68,9 @@ in {
       pulseaudioFull  # Nice libraries, used by pulseshitter
       mpv
       imv
-      libfprint # Fingie printer
-      impression
+      libfprint     # Fingie printer
+      impression    # Boot drive creator
+      nicotine-plus
 
       # Wine
       wineWowPackages.staging
