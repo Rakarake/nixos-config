@@ -10,9 +10,7 @@ in {
     enable = mkEnableOption "Common desktop configuration";
   };
 
-  config = mkIf cfg.enable {
-    # System Packages/Programs
-    # To search, run:
+  config = mkIf cfg.enable { # System Packages/Programs To search, run:
     # $ nix search wget
     environment.systemPackages = with pkgs-unstable; [
       vim
@@ -105,6 +103,9 @@ in {
       celluloid
       gnome.gnome-sound-recorder
     ];
+
+    # Enable support for bcachefs
+    boot.supportedFilesystems = [ "bcachefs" ];
 
     # Input engines
     i18n.inputMethod.ibus.engines = [
