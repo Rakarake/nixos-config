@@ -106,6 +106,7 @@ in {
 
     # Enable support for bcachefs
     #boot.supportedFilesystems = [ "bcachefs" ];
+    boot.kernelPackages = pkgs.linuxPackages_latest;
 
     # Input engines
     i18n.inputMethod.ibus.engines = [

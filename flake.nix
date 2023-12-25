@@ -61,8 +61,7 @@
         ./live.nix
         # Module to enable bcachefs support in the live-environment
         ({ lib, pkgs, ... }: {
-          boot.supportedFilesystems = [ "bcachefs" ];
-          boot.kernelPackages = lib.mkOverride 0 pkgs.linuxPackages_testing_bcachefs;
+          boot.kernelPackages = lib.mkOverride 0 pkgs.linuxPackages_testing;
         })
       ];
     };
