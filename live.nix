@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }@attrs: {
+{ pkgs, ... }: {
   # System Packages/Programs
   # To search, run:
   # $ nix search wget

@@ -57,11 +57,14 @@
     nixosConfigurations.live = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
-        (nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix")
+        # no-zfs makes it possible to use testing kernels, change to normal install-image if zfs is needed
+        (nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal-new-kernel-no-zfs.nix")
         ./live.nix
         # Module to enable bcachefs support in the live-environment
         ({ lib, pkgs, ... }: {
           boot.kernelPackages = lib.mkOverride 0 pkgs.linuxPackages_testing;
+          boot.supportedFilesystems = [ "bcachefs" ];
+          environment.systemPackages = [ pkgs.bcachefs-tools ];
         })
       ];
     };
