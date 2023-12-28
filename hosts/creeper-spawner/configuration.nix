@@ -169,7 +169,7 @@ in
   users.users.rakarake = {
     isNormalUser = true;
     description = "Rakarake";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "nextcloud" ];
   };
 
   nixpkgs.config.allowUnfree = true;
