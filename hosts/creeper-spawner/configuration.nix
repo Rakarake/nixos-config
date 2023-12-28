@@ -97,7 +97,7 @@ in
   # Nextcloud
   services.nextcloud = {
     enable = true;
-    package = pkgs.nextcloud27;
+    package = pkgs.nextcloud28;
     hostName = hostnames.nextcloud;
     database.createLocally = true;
     autoUpdateApps.enable = true;
