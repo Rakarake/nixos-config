@@ -69,6 +69,7 @@ in {
       libfprint     # Fingie printer
       impression    # Boot drive creator
       nicotine-plus
+      nix-index     # For working with /nix/store
 
       # Wine
       wineWowPackages.staging

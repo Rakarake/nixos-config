@@ -7,7 +7,6 @@
     wget
     curl
     gnumake
-    zsh
     git
     openssh
     neofetch
@@ -16,13 +15,6 @@
     tree
     btrfs-progs
   ];
-
-  # SSH daemon
-  services.openssh = {
-    enable = true;
-    settings.PasswordAuthentication = false;
-    settings.KbdInteractiveAuthentication = false;
-  };
 
   # Enable Flakes
   nix.settings.experimental-features = [ "flakes" "nix-command" ];
@@ -48,13 +40,6 @@
     LC_PAPER = "sv_SE.UTF-8";
     LC_TELEPHONE = "sv_SE.UTF-8";
     LC_TIME = "sv_SE.UTF-8";
-  };
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.rakarake = {
-    isNormalUser = true;
-    description = "Rakarake";
-    extraGroups = [ "networkmanager" "wheel" "adbusers" ];
   };
 
   # Allow unfree packages
