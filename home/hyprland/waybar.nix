@@ -102,9 +102,9 @@ in {
          #clock {
                  color: rgb(217, 224, 238);
                }
-        /* #idle_inhibitor {
+         #idle_inhibitor {
                  color: rgb(221, 182, 242);
-               }*/
+               }
          #custom-wall {
                  color: #33ccff;
             }
@@ -173,6 +173,7 @@ in {
           "backlight"
           "network"
           "battery"
+          "idle_inhibitor"
           "tray"
           "custom/powermenu"
         ];
@@ -266,6 +267,13 @@ in {
         "tray" = {
           "icon-size" = 15;
           "spacing" = 5;
+        };
+        "idle_inhibitor" = {
+          "format" = "{icon}";
+          "format-icons" = {
+            "activated" = "󰅶 ";
+            "deactivated" = "󰾪 ";
+          };
         };
       }];
     };
