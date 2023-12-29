@@ -4,7 +4,9 @@ This cool nixos system config uses flakes.
 `nix build .#nixosConfigurations.live.config.system.build.isoImage` to
 build a live ISO image.
 
-`nix-shell` to bootstrap.
+`nix-shell` to bootstrap, enable flakes etc.
+
+`sudo nixos-rebuild switch --flake '.#hostname'` to rebuild system with the right hostname.
 
 `nix flake update` to update.
 
