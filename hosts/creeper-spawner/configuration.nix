@@ -23,7 +23,6 @@ in
 
   # Linux kernel version
   boot.kernelPackages = pkgs.linuxPackages_testing;
-  boot.supportedFilesystems = [ "bcachefs" ];
 
   # Hostname
   networking.hostName = "creeper-spawner";
