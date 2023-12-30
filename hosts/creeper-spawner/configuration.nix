@@ -27,6 +27,17 @@ in
   # Hostname
   networking.hostName = "creeper-spawner";
 
+  # The data cluster
+  fileSystems."/data" = {
+    device = "/dev/disk/by-label/data";
+    fsType = "bcachefs";
+  };
+  # Nextcloud mount point
+  fileSystems."/var/lib/nextcloud" = {
+    device = "/data/nextcloud";
+    options = [ "bind" ];
+  };
+
   # Open ports
   networking.firewall.allowedTCPPorts = lib.attrsets.attrValues ports;
   networking.firewall.allowedUDPPorts = lib.attrsets.attrValues ports;
