@@ -154,7 +154,7 @@ in
     settings.server.DOMAIN = "gitea.rakarake.xyz";
     settings.server.ROOT_URL = "https://gitea.rakarake.xyz";
     settings.session.COOKIE_SECURE = true;
-    services.gitea.settings.server.SSH_PORT = 22;
+    settings.server.SSH_PORT = 22;
     lfs.enable = true;
     database.type = "postgres";
 
