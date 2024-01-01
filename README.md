@@ -18,6 +18,9 @@ build a live ISO image.
 `sudo nix-env --delete-generations --profile /nix/var/nix/profiles/system 10d`
 to remove bootloader entries.
 
+`sudo nix-env --list-generations --profile /nix/var/nix/profiles/system` to
+list your generations.
+
 `nix-channel --add https://nixos.org/channels/nixos-unstable nixos` to
 set the 'package channel' to nixos-unstable (not system config).
 
