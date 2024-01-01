@@ -37,6 +37,11 @@ in
     device = "/data/nextcloud";
     options = [ "bind" ];
   };
+  # Gitea mount point
+  fileSystems."/var/lib/gitea" = {
+    device = "/data/gitea";
+    options = [ "bind" ];
+  };
 
   # Open ports
   networking.firewall.allowedTCPPorts = lib.attrsets.attrValues ports;
@@ -111,7 +116,7 @@ in
     defaults.email = "rak@rakarake.xyz";
   };
 
-  # Nextcloud
+  # Nextcloud at "/var/lib/nextcloud"
   services.nextcloud = {
     enable = true;
     package = pkgs.nextcloud28;
@@ -140,6 +145,22 @@ in
     enable = true;
     hostname = hostnames.onlyoffice;
     port = 8000;
+  };
+
+  # Gitea at "/var/lib/gitea"
+  services.gitea = {
+    enable = true;
+    settings.server.PROTOCOL = "https";
+    settings.server.DOMAIN = "gitea.rakarake.xyz";
+    settings.server.ROOT_URL = "https://gitea.rakarake.xyz";
+    settings.session.COOKIE_SECURE = true;
+    services.gitea.settings.server.SSH_PORT = 22;
+    lfs.enable = true;
+    database.type = "postgres";
+
+    # Options for setup and registration
+    settings.service.DISABLE_REGISTRATION = true;
+    useWizard = true;
   };
 
   ## Minecraft server 1
