@@ -59,6 +59,7 @@ in
     tree
     htop
     btop
+    tmux
     bcachefs-tools
   ];
 
