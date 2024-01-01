@@ -129,6 +129,8 @@ in
       mail_smtpmode = "sendmail";
       mail_sendmailmode = "pipe";
     };
+    # Bigger cache, nextcloud admin page complains without this
+    phpOptions."opcache.interned_strings_buffer" = "23";
   };
 
   # Onlyoffice
