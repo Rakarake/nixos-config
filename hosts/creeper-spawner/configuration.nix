@@ -15,6 +15,7 @@ let
     website = "rakarake.xyz";
     nextcloud = "nextcloud.rakarake.xyz";
     onlyoffice = "onlyoffice.rakarake.xyz";
+    gitea = "gitea.rakarake.xyz";
   };
 in
 
@@ -101,6 +102,12 @@ in
       forceSSL = true;
       enableACME = true;
     };
+    
+    # Gitea
+    ${hostnames.gitea} = {
+      forceSSL = true;
+      enableACME = true;
+    };
 
     # Homepage
     ${hostnames.website} = {
@@ -154,8 +161,8 @@ in
     database.type = "postgres";
     settings = {
       server.PROTOCOL = "https";
-      server.DOMAIN = "gitea.rakarake.xyz";
-      server.ROOT_URL = "https://gitea.rakarake.xyz";
+      server.DOMAIN = hostnames.gitea;
+      server.ROOT_URL = "https://${hostnames.gitea}";
       session.COOKIE_SECURE = true;
       server.SSH_PORT = 22;
       service.DISABLE_REGISTRATION = true;
