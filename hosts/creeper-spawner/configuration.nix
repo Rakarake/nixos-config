@@ -150,16 +150,19 @@ in
   # Gitea at "/var/lib/gitea"
   services.gitea = {
     enable = true;
-    settings.server.PROTOCOL = "https";
-    settings.server.DOMAIN = "gitea.rakarake.xyz";
-    settings.server.ROOT_URL = "https://gitea.rakarake.xyz";
-    settings.session.COOKIE_SECURE = true;
-    settings.server.SSH_PORT = 22;
     lfs.enable = true;
     database.type = "postgres";
+    settings = {
+      server.PROTOCOL = "https";
+      server.DOMAIN = "gitea.rakarake.xyz";
+      server.ROOT_URL = "https://gitea.rakarake.xyz";
+      session.COOKIE_SECURE = true;
+      server.SSH_PORT = 22;
+      service.DISABLE_REGISTRATION = true;
+      security.DISABLE_QUERY_AUTH_TOKEN = true;
+    };
 
-    # Options for setup and registration
-    settings.service.DISABLE_REGISTRATION = true;
+    # Options for setup
     useWizard = true;
   };
 
