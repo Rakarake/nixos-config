@@ -4,6 +4,7 @@ let
   # Open TCP/UDP ports
   ports = {
     ssh        = 222;
+    gitea      = 22;
     minecraft  = 25565;
     http       = 80;
     https      = 443;
