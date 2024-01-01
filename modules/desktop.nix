@@ -105,9 +105,8 @@ in {
       gnome.gnome-sound-recorder
     ];
 
-    # Enable support for bcachefs
-    #boot.supportedFilesystems = [ "bcachefs" ];
-    boot.kernelPackages = pkgs.linuxPackages_testing;
+    # Linux kernel package
+    boot.kernelPackages = pkgs.linuxPackages_latest;
 
     # Input engines
     i18n.inputMethod.ibus.engines = [
