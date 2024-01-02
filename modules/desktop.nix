@@ -196,6 +196,9 @@ in {
       };
     };
 
+    # Wireshark
+    programs.wireshark.enable = true;
+
     # Steam
     programs.steam = {
       enable = true;
@@ -300,7 +303,7 @@ in {
     users.users.rakarake = {
       isNormalUser = true;
       description = "Rakarake";
-      extraGroups = [ "networkmanager" "wheel" "adbusers" "docker" ];
+      extraGroups = [ "networkmanager" "wheel" "adbusers" "docker" "wireshark" ];
     };
 
     # Mullvad Service
