@@ -70,6 +70,8 @@ in {
       impression    # Boot drive creator
       nicotine-plus
       nix-index     # For working with /nix/store
+      ardour
+      r2modman
 
       # Wine
       wineWowPackages.staging
