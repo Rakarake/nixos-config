@@ -166,7 +166,8 @@ in
   services.gitlab = {
     enable = true;
     https = true;
-    port = 22;
+    # Https port when copying link for repo
+    port = 443;
     host = hostnames.git;
     initialRootPasswordFile = /data/secrets/rootPassword;
     secrets = {
