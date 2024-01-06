@@ -110,10 +110,6 @@ in
       };
       
       # Gitlab
-      #${hostnames.git} = {
-      #  forceSSL = true;
-      #  enableACME = true;
-      #};
       ${hostnames.git} = {
         forceSSL = true;
         enableACME = true;
@@ -170,8 +166,8 @@ in
   services.gitlab = {
     enable = true;
     https = true;
-    port = 443;
-    #databasePasswordFile = /data/secrets/dbPassword;
+    port = 22;
+    host = hostnames.git;
     initialRootPasswordFile = /data/secrets/rootPassword;
     secrets = {
       secretFile = /data/secrets/secret;
