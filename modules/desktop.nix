@@ -72,6 +72,7 @@ in {
       nix-index     # For working with /nix/store
       ardour
       r2modman
+      appimage-run
 
       # Wine
       wineWowPackages.staging
