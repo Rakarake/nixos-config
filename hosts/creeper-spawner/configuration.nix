@@ -4,7 +4,7 @@ let
   # Open TCP/UDP ports
   ports = {
     ssh        = 222;
-    gitea      = 22;
+    git        = 22;
     minecraft  = 25565;
     http       = 80;
     https      = 443;
@@ -16,7 +16,7 @@ let
     website = "rakarake.xyz";
     nextcloud = "nextcloud.rakarake.xyz";
     onlyoffice = "onlyoffice.rakarake.xyz";
-    gitea = "gitea.rakarake.xyz";
+    git = "git.rakarake.xyz";
   };
 in
 
@@ -93,30 +93,39 @@ in
   ];
 
   # Nginx Config
-  services.nginx.virtualHosts = {
-    # Nextcloud
-    ${hostnames.nextcloud} = {
-      forceSSL = true;
-      enableACME = true;  # Let's encrypt TLS automated, not certbot
-    };
+  services.nginx = {
+    enable = true;
+    recommendedProxySettings = true;
+    virtualHosts = {
+      # Nextcloud
+      ${hostnames.nextcloud} = {
+        forceSSL = true;
+        enableACME = true;  # Let's encrypt TLS automated, not certbot
+      };
 
-    # Onlyoffice
-    ${hostnames.onlyoffice} = {
-      forceSSL = true;
-      enableACME = true;
-    };
-    
-    # Gitea
-    ${hostnames.gitea} = {
-      forceSSL = true;
-      enableACME = true;
-    };
+      # Onlyoffice
+      ${hostnames.onlyoffice} = {
+        forceSSL = true;
+        enableACME = true;
+      };
+      
+      # Gitlab
+      #${hostnames.git} = {
+      #  forceSSL = true;
+      #  enableACME = true;
+      #};
+      ${hostnames.git} = {
+        forceSSL = true;
+        enableACME = true;
+        locations."/".proxyPass = "http://unix:/run/gitlab/gitlab-workhorse.socket";
+      };
 
-    # Homepage
-    ${hostnames.website} = {
-      forceSSL = true;
-      enableACME = true;
-      root = "/var/www/${hostnames.website}/public";
+      # Homepage
+      ${hostnames.website} = {
+        forceSSL = true;
+        enableACME = true;
+        root = "/var/www/${hostnames.website}/public";
+      };
     };
   };
 
@@ -157,24 +166,21 @@ in
     port = 8000;
   };
 
-  # Gitea at "/var/lib/gitea"
-  services.gitea = {
+  # Gitlab
+  services.gitlab = {
     enable = true;
-    lfs.enable = true;
-    database.type = "postgres";
-    settings = {
-      server.PROTOCOL = "https";
-      server.DOMAIN = hostnames.gitea;
-      server.ROOT_URL = "https://${hostnames.gitea}";
-      session.COOKIE_SECURE = true;
-      server.SSH_PORT = 22;
-      service.DISABLE_REGISTRATION = true;
-      security.DISABLE_QUERY_AUTH_TOKEN = true;
+    https = true;
+    port = 443;
+    #databasePasswordFile = /data/secrets/dbPassword;
+    initialRootPasswordFile = /data/secrets/rootPassword;
+    secrets = {
+      secretFile = /data/secrets/secret;
+      otpFile = /data/secrets/optsecret;
+      dbFile = /data/secrets/dbsecret;
+      jwsFile = pkgs.runCommand "oidcKeyBase" {} "${pkgs.openssl}/bin/openssl genrsa 2048 > $out";
     };
-
-    # Options for setup
-    useWizard = true;
   };
+  systemd.services.gitlab-backup.environment.BACKUP = "dump";
 
   # Minecraft server 1
   systemd.services.minecraft-server1 = {
