@@ -2,14 +2,13 @@
   description = "A super system conf";
   inputs = {
     # Use latest nixpkgs for system, and nixpkgs-unstable for programs
-    #nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
-    #nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.11";
 
     # Home Manager flake dependency
     #home-manager.url = "github:nix-community/home-manager/release-23.11";
     home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
     # Nix Software Center and NixOS-conf-editor dependency
     nix-software-center.url = "github:vlinkz/nix-software-center";
@@ -25,7 +24,7 @@
     dev-stuff.url = "github:Rakarake/nix-dev-environment";
   };
 
-  outputs = { self, nixpkgs, home-manager, hyprland, dev-stuff, ... }@attrs:
+  outputs = { self, nixpkgs-stable, nixpkgs-unstable, home-manager, hyprland, dev-stuff, ... }@attrs:
   let
     overlays = [
       # Replace openssl with libressl
@@ -54,11 +53,11 @@
   in
   {
     # Live configurations for when you wanna put NixOS on a USB-stick
-    nixosConfigurations.live = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.live = nixpkgs-unstable.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
         # no-zfs makes it possible to use testing kernels, change to normal install-image if zfs is needed
-        (nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal-new-kernel-no-zfs.nix")
+        (nixpkgs-unstable + "/nixos/modules/installer/cd-dvd/installation-cd-minimal-new-kernel-no-zfs.nix")
         ./live.nix
         # Module to enable bcachefs support in the live-environment
         ({ lib, pkgs, ... }: {
@@ -70,7 +69,7 @@
     };
 
     # Thonkpad configuration go wrroom
-    nixosConfigurations.rakarake-thinkpad = nixpkgs.lib.nixosSystem rec {
+    nixosConfigurations.rakarake-thinkpad = nixpkgs-unstable.lib.nixosSystem rec {
       system = "x86_64-linux";
       specialArgs = attrs; # // { pkgs-unstable = import nixpkgs-unstable { inherit overlays system; }; };
       modules = [
@@ -89,7 +88,7 @@
     };
 
     # PC
-    nixosConfigurations.rakarake-pc = nixpkgs.lib.nixosSystem rec {
+    nixosConfigurations.rakarake-pc = nixpkgs-unstable.lib.nixosSystem rec {
       system = "x86_64-linux";
       specialArgs = attrs; # // { pkgs-unstable = import nixpkgs-unstable { inherit overlays system; }; };
       modules = [
@@ -108,7 +107,7 @@
     };
 
     # Home server
-    nixosConfigurations.creeper-spawner = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.creeper-spawner = nixpkgs-stable.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = attrs;
       modules = [
