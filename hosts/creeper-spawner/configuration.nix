@@ -39,9 +39,9 @@ in
     device = "/data/nextcloud";
     options = [ "bind" ];
   };
-  # Gitea mount point
-  fileSystems."/var/lib/gitea" = {
-    device = "/data/gitea";
+  # Gitlab mount point
+  fileSystems."/var/gitlab" = {
+    device = "/data/gitlab";
     options = [ "bind" ];
   };
 
