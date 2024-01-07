@@ -3,12 +3,13 @@
 let 
   # Open TCP/UDP ports
   ports = {
-    ssh        = 222;
-    git        = 22;
-    minecraft  = 25565;
-    http       = 80;
-    https      = 443;
-    onlyoffice = 8000;
+    ssh              = 222;
+    git              = 22;
+    minecraft        = 25565;
+    minecraft-spruce = 1337;
+    http             = 80;
+    https            = 443;
+    onlyoffice       = 8000;
   };
 
   # Hostnames
