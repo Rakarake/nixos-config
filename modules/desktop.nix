@@ -19,6 +19,7 @@ in {
       gnumake
       zsh
       git
+      git-lfs
       openssh
       neofetch
       onefetch
