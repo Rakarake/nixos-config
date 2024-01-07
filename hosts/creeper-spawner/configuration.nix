@@ -194,6 +194,21 @@ in
     };
   };
 
+  # Minecraft server spruce
+  systemd.services.minecraft-server-spruce = {
+    enable = true;
+    path = [ pkgs.coreutils pkgs.jdk17 ];
+    wantedBy = [ "multi-user.target" ]; 
+    after = [ "network.target" ];
+    description = "Cool minecraft server with trees";
+    serviceConfig = {
+      ExecStart = "${pkgs.tmux}/bin/tmux -S /var/minecraft-server-spruce/tmux.socket new-session -s minecraft-server-spruce-session -d /var/minecraft-server-spruce/startserver.sh";
+      ExecStop = "${pkgs.tmux}/bin/tmux -S /var/minecraft-server-spruce/tmux.socket kill-session -t minecraft-server-spruce-session";
+      Type = "forking";
+      WorkingDirectory=/var/minecraft-server-spruce;
+    };
+  };
+
   # Bootloader
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
