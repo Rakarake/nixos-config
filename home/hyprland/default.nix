@@ -5,10 +5,10 @@ let
   cfg = config.home-hyprland;
   # pidof swaylock makes sure that we do not start multiple instances of swaylock
   swaylockCommand = "pidof swaylock || swaylock -k -C ~/.config/hypr/swaylock.conf -i ~/Pictures/Wallpapers/wallpaper";
-  raiseVolumeCommand = "swayosd --output-volume=raise";
-  lowerVolumeCommand = "swayosd --output-volume=lower";
-  muteVolumeCommand = "swayosd --output-volume=mute-toggle";
-  muteMicCommand = "swayosd --input-volume=mute-toggle";
+  raiseVolumeCommand = "amixer set Master 5%+";
+  lowerVolumeCommand = "amixer set Master 5%-";
+  muteVolumeCommand = "amixer set Master toggle";
+  muteMicCommand = "amixer set Capture toggle";
   fileManagerCommand = "nautilus";
   terminalCommand = "kitty";
 in {
@@ -80,9 +80,6 @@ in {
       };
     };
 
-    # Nice popups when changing volume etc
-    services.swayosd.enable = true;
-
     # Theming
     gtk.iconTheme = {
       package = pkgs.papirus-icon-theme;
@@ -111,12 +108,12 @@ in {
 
       # Autostart
       exec-once = ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1
-      exec-once = sleep 6 ; nextcloud
-      exec-once = sleep 2 ; waybar
+      exec-once = sleep 8 ; nextcloud
+      exec-once = sleep 5 ; waybar
       exec-once = swaybg -i ~/Pictures/Wallpapers/wallpaper
       exec-once = dunst
-      exec-once = sleep 6 ; blueman-applet
-      exec-once = sleep 6 ; nm-applet
+      exec-once = sleep 8 ; blueman-applet
+      exec-once = sleep 8 ; nm-applet
       gsettings set org.gnome.nm-applet disable-disconnected-notifications "true"
       gsettings set org.gnome.nm-applet disable-connected-notifications "true"
       ${if cfg.useSwayidle then "exec-once= swayidle timeout 800 '${swaylockCommand}' timeout 900 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on' timeout 1700 'systemctl suspend'A" else ""}
@@ -269,8 +266,8 @@ in {
       bind=SUPERALT,l,exec,playerctl next
       bind=SUPERALT,h,exec,playerctl previous
       bind=SUPERALT,p,exec,playerctl play-pause
-      bind=SUPERALT,k,exec,swayosd --output-volume=raise
-      bind=SUPERALT,j,exec,swayosd --output-volume=lower
+      bind=SUPERALT,k,exec,${raiseVolumeCommand}
+      bind=SUPERALT,j,exec,${lowerVolumeCommand}
 
       # Screenshots
       bind=SUPER,S,exec,grim -g "$(slurp -d)" - | wl-copy
