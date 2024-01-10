@@ -54,5 +54,12 @@ in {
       # -e enables steam integration, -f fullscreens the window by default
       exec = "gamescope -W 1920 -H 1080 --adaptive-sync -f -r 600 -e -- steam";
     };
+
+    # VSCode Wayland
+    xdg.desktopEntries.vscode = {
+      name = "VSCode Wayland";
+      genericName = "VSCode Wayland";
+      exec = "code --ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-webrtc-pipewire-capturer";
+    };
   };
 }
