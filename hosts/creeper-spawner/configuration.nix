@@ -47,11 +47,12 @@ let
     };
   };
 in
-
-(minecraftServerTemplate "minecraftserver1" "A stylish minecraft server") //
-(minecraftServerTemplate "minecraftserverspruce" "A wooden minecraft server") //
 {
-  imports = [ ./hardware-configuration.nix ];
+  imports = [
+    ./hardware-configuration.nix
+    (minecraftServerTemplate "minecraftserver1" "A stylish minecraft server")
+    (minecraftServerTemplate "minecraftserverspruce" "A wooden minecraft server")
+  ];
 
   # Linux kernel version
   boot.kernelPackages = pkgs.linuxPackages_testing;
