@@ -236,6 +236,10 @@ in
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users = {
     motd = "Welcome! love you! 💖";
+    groups = {
+      minecraftserver1 = {};
+      minecraftserver-spruce = {};
+    };
     users = {
       rakarake = {
         isNormalUser = true;
@@ -250,10 +254,12 @@ in
       minecraftserver1 = {
         isSystemUser = true;
         description = "Minecraft server 1";
+        group = "minecraftserver1";
       };
       minecraftserverspruce = {
         isSystemUser = true;
         description = "Minecraft server spruce";
+        group = "minecraftserver-spruce";
       };
     };
   };
