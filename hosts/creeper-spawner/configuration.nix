@@ -248,14 +248,12 @@ in
         ];
       };
       minecraftserver1 = {
-        isNormalUser = false;
+        isSystemUser = true;
         description = "Minecraft server 1";
-        group = "minecraftserver1";
       };
       minecraftserverspruce = {
-        isNormalUser = false;
+        isSystemuser = true;
         description = "Minecraft server spruce";
-        group = "minecraftserverspruce";
       };
     };
   };
