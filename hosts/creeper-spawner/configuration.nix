@@ -239,10 +239,23 @@ in
 
   # TODO lookie here
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.rakarake = {
-    isNormalUser = true;
-    description = "Rakarake";
-    extraGroups = [ "networkmanager" "wheel" "nextcloud" ];
+  users = {
+    motd = "Welcome! love you! 💖";
+    users = {
+      rakarake = {
+        isNormalUser = true;
+        description = "Rakarake";
+        extraGroups = [ "networkmanager" "wheel" "nextcloud" ];
+      };
+      minecraftserver1 = {
+        isNormalUser = false;
+        description = "Minecraft server 1";
+      };
+      minecraftserverspruce = {
+        isNormalUser = false;
+        description = "Minecraft server spruce";
+      };
+    };
   };
 
   nixpkgs.config.allowUnfree = true;
