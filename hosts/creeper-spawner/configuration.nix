@@ -47,6 +47,9 @@ let
     };
   };
 in
+
+(minecraftServerTemplate "minecraftserver1" "A stylish minecraft server") //
+(minecraftServerTemplate "minecraftserverspruce" "A wooden minecraft server") //
 {
   imports = [ ./hardware-configuration.nix ];
 
@@ -279,6 +282,4 @@ in
   nixpkgs.config.allowUnfree = true;
   system.stateVersion = "23.05";
 }
-// (minecraftServerTemplate "minecraftserver1" "A stylish minecraft server") 
-// (minecraftServerTemplate "minecraftserverspruce" "A wooden minecraft server")
 
