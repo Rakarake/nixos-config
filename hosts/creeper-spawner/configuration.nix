@@ -252,7 +252,7 @@ in
         description = "Minecraft server 1";
       };
       minecraftserverspruce = {
-        isSystemuser = true;
+        isSystemUser = true;
         description = "Minecraft server spruce";
       };
     };
