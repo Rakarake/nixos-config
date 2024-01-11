@@ -74,6 +74,8 @@ in {
       ardour
       r2modman
       appimage-run
+      libnotify
+      wireshark
 
       # Wine
       wineWowPackages.staging
