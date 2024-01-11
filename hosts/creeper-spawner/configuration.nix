@@ -19,8 +19,31 @@ let
     onlyoffice = "onlyoffice.rakarake.xyz";
     git = "git.rakarake.xyz";
   };
-in
 
+  # Minecraft server template
+  # Takes name, figures everything out itself, users, location (/var/<name>)
+  minecraftServerTemplate = name : description : {
+    systemd.services.${name} = {
+      enable = true;
+      path = [ pkgs.coreutils pkgs.jdk17 ];
+      wantedBy = [ "multi-user.target" ]; 
+      after = [ "network.target" ];
+      description = description;
+      serviceConfig = {
+        User = name;
+        ExecStart = "${pkgs.coreutils}/bin/touch /var/${name}/tmux.socket; ${pkgs.coreutils}/bin/chown /var/${name}/tmux.socket ${name}:${name}; ${pkgs.tmux}/bin/tmux -S /var/${name}/tmux.socket new-session -d -s ${name} '/bin/sh /var/${name}/startserver.sh'";
+        ExecStop = "${pkgs.tmux}/bin/tmux -S /var/${name}/tmux.socket kill-session -t ${name}";
+        Type = "forking";
+        WorkingDirectory=/var/${name};
+      };
+    };
+    users.users.${name} = {
+      isSystemUser = true;
+      description = "Minecraft server ${name}";
+      group = name;
+    };
+  };
+in
 {
   imports = [ ./hardware-configuration.nix ];
 
@@ -176,37 +199,37 @@ in
   };
   systemd.services.gitlab-backup.environment.BACKUP = "dump";
 
-  # Minecraft server 1
-  systemd.services.minecraft-server1 = {
-    enable = true;
-    path = [ pkgs.coreutils pkgs.jdk17 ];
-    wantedBy = [ "multi-user.target" ]; 
-    after = [ "network.target" ];
-    description = "Cool minecraft server";
-    serviceConfig = {
-      User = "minecraftserver1";
-      ExecStart = "touch /var/minecraft-server1/tmux.socket; chown /var/minecraft-server1/tmux.socket minecraftserver1:minecraftserver1; ${pkgs.tmux}/bin/tmux -S /var/minecraft-server1/tmux.socket new-session -d -s minecraft-server1-session '/bin/sh /var/minecraft-server1/startserver.sh'";
-      ExecStop = "${pkgs.tmux}/bin/tmux -S /var/minecraft-server1/tmux.socket kill-session -t minecraft-server1-session";
-      Type = "forking";
-      WorkingDirectory=/var/minecraft-server1;
-    };
-  };
+  ## Minecraft server 1
+  #systemd.services.minecraft-server1 = {
+  #  enable = true;
+  #  path = [ pkgs.coreutils pkgs.jdk17 ];
+  #  wantedBy = [ "multi-user.target" ]; 
+  #  after = [ "network.target" ];
+  #  description = "Cool minecraft server";
+  #  serviceConfig = {
+  #    User = "minecraftserver1";
+  #    ExecStart = "touch /var/minecraft-server1/tmux.socket; chown /var/minecraft-server1/tmux.socket minecraftserver1:minecraftserver1; ${pkgs.tmux}/bin/tmux -S /var/minecraft-server1/tmux.socket new-session -d -s minecraft-server1-session '/bin/sh /var/minecraft-server1/startserver.sh'";
+  #    ExecStop = "${pkgs.tmux}/bin/tmux -S /var/minecraft-server1/tmux.socket kill-session -t minecraft-server1-session";
+  #    Type = "forking";
+  #    WorkingDirectory=/var/minecraft-server1;
+  #  };
+  #};
 
-  # Minecraft server spruce
-  systemd.services.minecraft-server-spruce = {
-    enable = true;
-    path = [ pkgs.coreutils pkgs.jdk17 ];
-    wantedBy = [ "multi-user.target" ]; 
-    after = [ "network.target" ];
-    description = "Cool minecraft server with trees";
-    serviceConfig = {
-      User = "minecraftserverspruce";
-      ExecStart = "touch /var/minecraft-server-spruce/tmux.socket; chown /var/minecraft-server-spruce/tmux.socket minecraftserverspruce:minecraftserverspruce; ${pkgs.tmux}/bin/tmux -S /var/minecraft-server-spruce/tmux.socket new-session -d -s minecraft-server-spruce-session '/bin/sh /var/minecraft-server-spruce/startserver.sh'";
-      ExecStop = "${pkgs.tmux}/bin/tmux -S /var/minecraft-server-spruce/tmux.socket kill-session -t minecraft-server-spruce-session";
-      Type = "forking";
-      WorkingDirectory=/var/minecraft-server-spruce;
-    };
-  };
+  ## Minecraft server spruce
+  #systemd.services.minecraft-server-spruce = {
+  #  enable = true;
+  #  path = [ pkgs.coreutils pkgs.jdk17 ];
+  #  wantedBy = [ "multi-user.target" ]; 
+  #  after = [ "network.target" ];
+  #  description = "Cool minecraft server with trees";
+  #  serviceConfig = {
+  #    User = "minecraftserverspruce";
+  #    ExecStart = "touch /var/minecraft-server-spruce/tmux.socket; chown /var/minecraft-server-spruce/tmux.socket minecraftserverspruce:minecraftserverspruce; ${pkgs.tmux}/bin/tmux -S /var/minecraft-server-spruce/tmux.socket new-session -d -s minecraft-server-spruce-session '/bin/sh /var/minecraft-server-spruce/startserver.sh'";
+  #    ExecStop = "${pkgs.tmux}/bin/tmux -S /var/minecraft-server-spruce/tmux.socket kill-session -t minecraft-server-spruce-session";
+  #    Type = "forking";
+  #    WorkingDirectory=/var/minecraft-server-spruce;
+  #  };
+  #};
 
   # Bootloader
   boot.loader.systemd-boot.enable = true;
@@ -269,4 +292,6 @@ in
   nixpkgs.config.allowUnfree = true;
   system.stateVersion = "23.05";
 }
+// (minecraftServerTemplate "minecraftserver1" "A stylish minecraft server") 
+// (minecraftServerTemplate "minecraftserverspruce" "A wooden minecraft server")
 
