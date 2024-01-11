@@ -63,6 +63,7 @@ in
     tmux
     jdk17
     bcachefs-tools
+    neofetch
   ];
 
   # Fonts
