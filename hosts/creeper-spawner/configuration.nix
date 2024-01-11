@@ -185,7 +185,7 @@ in
     description = "Cool minecraft server";
     serviceConfig = {
       User = "minecraftserver1";
-      ExecStart = "${pkgs.tmux}/bin/tmux -S /var/minecraft-server1/tmux.socket new-session -s minecraft-server1-session -d /var/minecraft-server1/startserver.sh";
+      ExecStart = "touch /var/minecraft-server1/tmux.socket; chown /var/minecraft-server1/tmux.socket minecraftserver1:minecraftserver1; ${pkgs.tmux}/bin/tmux -S /var/minecraft-server1/tmux.socket new-session -d -s minecraft-server1-session '/bin/sh /var/minecraft-server1/startserver.sh'";
       ExecStop = "${pkgs.tmux}/bin/tmux -S /var/minecraft-server1/tmux.socket kill-session -t minecraft-server1-session";
       Type = "forking";
       WorkingDirectory=/var/minecraft-server1;
@@ -201,7 +201,7 @@ in
     description = "Cool minecraft server with trees";
     serviceConfig = {
       User = "minecraftserverspruce";
-      ExecStart = "${pkgs.tmux}/bin/tmux -S /var/minecraft-server-spruce/tmux.socket new-session -s minecraft-server-spruce-session -d /var/minecraft-server-spruce/startserver.sh";
+      ExecStart = "touch /var/minecraft-server-spruce/tmux.socket; chown /var/minecraft-server-spruce/tmux.socket minecraftserverspruce:minecraftserverspruce; ${pkgs.tmux}/bin/tmux -S /var/minecraft-server-spruce/tmux.socket new-session -d -s minecraft-server-spruce-session '/bin/sh /var/minecraft-server-spruce/startserver.sh'";
       ExecStop = "${pkgs.tmux}/bin/tmux -S /var/minecraft-server-spruce/tmux.socket kill-session -t minecraft-server-spruce-session";
       Type = "forking";
       WorkingDirectory=/var/minecraft-server-spruce;
