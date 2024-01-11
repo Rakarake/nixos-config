@@ -184,6 +184,7 @@ in
     after = [ "network.target" ];
     description = "Cool minecraft server";
     serviceConfig = {
+      User = "minecraftserver1";
       ExecStart = "${pkgs.tmux}/bin/tmux -S /var/minecraft-server1/tmux.socket new-session -s minecraft-server1-session -d /var/minecraft-server1/startserver.sh";
       ExecStop = "${pkgs.tmux}/bin/tmux -S /var/minecraft-server1/tmux.socket kill-session -t minecraft-server1-session";
       Type = "forking";
@@ -199,6 +200,7 @@ in
     after = [ "network.target" ];
     description = "Cool minecraft server with trees";
     serviceConfig = {
+      User = "minecraftserverspruce";
       ExecStart = "${pkgs.tmux}/bin/tmux -S /var/minecraft-server-spruce/tmux.socket new-session -s minecraft-server-spruce-session -d /var/minecraft-server-spruce/startserver.sh";
       ExecStop = "${pkgs.tmux}/bin/tmux -S /var/minecraft-server-spruce/tmux.socket kill-session -t minecraft-server-spruce-session";
       Type = "forking";
