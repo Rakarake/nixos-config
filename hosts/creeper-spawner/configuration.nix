@@ -238,7 +238,7 @@ in
     motd = "Welcome! love you! 💖";
     groups = {
       minecraftserver1 = {};
-      minecraftserver-spruce = {};
+      minecraftserverspruce = {};
     };
     users = {
       rakarake = {
@@ -259,7 +259,7 @@ in
       minecraftserverspruce = {
         isSystemUser = true;
         description = "Minecraft server spruce";
-        group = "minecraftserver-spruce";
+        group = "minecraftserverspruce";
       };
     };
   };
