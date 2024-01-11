@@ -250,10 +250,12 @@ in
       minecraftserver1 = {
         isNormalUser = false;
         description = "Minecraft server 1";
+        group = "minecraftserver1";
       };
       minecraftserverspruce = {
         isNormalUser = false;
         description = "Minecraft server spruce";
+        group = "minecraftserverspruce";
       };
     };
   };
