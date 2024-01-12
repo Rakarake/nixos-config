@@ -3,8 +3,7 @@
 let 
   # Open TCP/UDP ports
   ports = {
-    ssh              = 222;
-    git              = 22;
+    ssh              = 22;
     minecraft        = 25565;
     minecraft-spruce = 1337;
     http             = 80;
@@ -20,7 +19,7 @@ let
     git = "git.rakarake.xyz";
   };
 
-  # Minecraft server template
+  # Minecraft server module template
   # Takes name, figures everything out itself, users, location (/var/<name>)
   minecraftServerTemplate = name : description : {
     systemd.services.${name} = {
@@ -116,7 +115,7 @@ in
     enable = true;
     settings.PasswordAuthentication = false;
     settings.KbdInteractiveAuthentication = false;
-    ports = [ ports.ssh ports.git ];
+    ports = [ ports.ssh ];
   };
 
   # Nginx Config
@@ -206,38 +205,6 @@ in
   };
   systemd.services.gitlab-backup.environment.BACKUP = "dump";
 
-  ## Minecraft server 1
-  #systemd.services.minecraft-server1 = {
-  #  enable = true;
-  #  path = [ pkgs.coreutils pkgs.jdk17 ];
-  #  wantedBy = [ "multi-user.target" ]; 
-  #  after = [ "network.target" ];
-  #  description = "Cool minecraft server";
-  #  serviceConfig = {
-  #    User = "minecraftserver1";
-  #    ExecStart = "touch /var/minecraft-server1/tmux.socket; chown /var/minecraft-server1/tmux.socket minecraftserver1:minecraftserver1; ${pkgs.tmux}/bin/tmux -S /var/minecraft-server1/tmux.socket new-session -d -s minecraft-server1-session '/bin/sh /var/minecraft-server1/startserver.sh'";
-  #    ExecStop = "${pkgs.tmux}/bin/tmux -S /var/minecraft-server1/tmux.socket kill-session -t minecraft-server1-session";
-  #    Type = "forking";
-  #    WorkingDirectory=/var/minecraft-server1;
-  #  };
-  #};
-
-  ## Minecraft server spruce
-  #systemd.services.minecraft-server-spruce = {
-  #  enable = true;
-  #  path = [ pkgs.coreutils pkgs.jdk17 ];
-  #  wantedBy = [ "multi-user.target" ]; 
-  #  after = [ "network.target" ];
-  #  description = "Cool minecraft server with trees";
-  #  serviceConfig = {
-  #    User = "minecraftserverspruce";
-  #    ExecStart = "touch /var/minecraft-server-spruce/tmux.socket; chown /var/minecraft-server-spruce/tmux.socket minecraftserverspruce:minecraftserverspruce; ${pkgs.tmux}/bin/tmux -S /var/minecraft-server-spruce/tmux.socket new-session -d -s minecraft-server-spruce-session '/bin/sh /var/minecraft-server-spruce/startserver.sh'";
-  #    ExecStop = "${pkgs.tmux}/bin/tmux -S /var/minecraft-server-spruce/tmux.socket kill-session -t minecraft-server-spruce-session";
-  #    Type = "forking";
-  #    WorkingDirectory=/var/minecraft-server-spruce;
-  #  };
-  #};
-
   # Bootloader
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -264,10 +231,9 @@ in
     LC_TIME = "sv_SE.UTF-8";
   };
 
-  # TODO lookie here
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users = {
-    motd = "Welcome! love you! 💖";
+    motd = "Welcome, beware of hungry hippos 🦛";
     users.rakarake = {
       isNormalUser = true;
       description = "Rakarake";
