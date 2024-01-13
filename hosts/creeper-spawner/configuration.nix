@@ -30,8 +30,8 @@ let
       description = description;
       serviceConfig = {
         User = name;
-        ExecStart = "/var/${name}/startserver.sh";
-        ExecStop = "/var/${name}/stopserver.sh";
+        ExecStart = "/bin/sh /var/${name}/startserver.sh";
+        ExecStop = "/bin/sh /var/${name}/stopserver.sh";
         Type = "forking";
         WorkingDirectory=/var/${name};
       };
