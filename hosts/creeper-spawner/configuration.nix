@@ -24,14 +24,15 @@ let
   minecraftServerTemplate = name : description : {
     systemd.services.${name} = {
       enable = true;
-      path = [ pkgs.coreutils pkgs.jdk17 ];
+      path = [ pkgs.coreutils pkgs.tmux pkgs.jdk17 ];
       wantedBy = [ "multi-user.target" ]; 
       after = [ "network.target" ];
       description = description;
       serviceConfig = {
         User = name;
-        ExecStart = "/bin/sh /var/${name}/startserver.sh";
-        ExecStop = "/bin/sh /var/${name}/stopserver.sh";
+        ExecStartPre = "/bin/sh ${pkgs.coreutils}/bin/touch tmux.socket; ${pkgs.coreutils}/bin/chown ${name}";
+        ExecStart = "/bin/sh ${pkgs.tmux}/bin/tmux -S tmux.socket new-session -d -s ${name} '/bin/sh start.sh'";
+        ExecStop = "/bin/sh ${pkgs.tmux}/bin/tmux -S tmux.socket kill-session -t ${name}";
         Type = "forking";
         WorkingDirectory=/var/${name};
       };
