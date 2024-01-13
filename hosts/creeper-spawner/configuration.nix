@@ -30,9 +30,8 @@ let
       description = description;
       serviceConfig = {
         User = name;
-        ExecStartPre = "${pkgs.coreutils}/bin/touch /var/${name}/tmux.socket && ${pkgs.coreutils}/bin/chown ${name}:${name} /var/${name}/tmux.socket";
-        ExecStart = "${pkgs.tmux}/bin/tmux -S /var/${name}/tmux.socket new-session -d -s ${name} '/bin/sh /var/${name}/startserver.sh'";
-        ExecStop = "${pkgs.tmux}/bin/tmux -S /var/${name}/tmux.socket kill-session -t ${name}";
+        ExecStart = "/var/${name}/startserver.sh";
+        ExecStop = "/var/${name}/stopserver.sh";
         Type = "forking";
         WorkingDirectory=/var/${name};
       };
