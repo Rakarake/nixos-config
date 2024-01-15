@@ -19,6 +19,7 @@
 
     # Hyprland flake
     hyprland.url = "github:hyprwm/Hyprland";
+    xdg-desktop-portal-hyprland.url = "github:hyprwm/xdg-desktop-portal-hyprland";
 
     # Programming environment
     dev-stuff.url = "github:Rakarake/nix-dev-environment";

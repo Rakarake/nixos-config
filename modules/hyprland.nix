@@ -1,5 +1,5 @@
 # Hyprland system configuration
-{ lib, config, hyprland, pkgs, ... }:
+{ lib, config, hyprland, xdg-desktop-portal-hyprland, pkgs, ... }:
 with lib;                      
 let
   cfg = config.cfg-hyprland;
@@ -14,10 +14,29 @@ in {
       package = hyprland.packages.${pkgs.system}.hyprland;
     };
 
+    # Packages needed by the Hyprland configuration
     environment.systemPackages = with pkgs; [
-      polkit_gnome
+      pipewire                     # Screensharing
+      polkit_gnome                 # Polkit / gparted popup prompt provider
+      gnome.nautilus               # File manager
+      swaylock                     # Screenlocker
+      grim                         # Screenshot utility
+      slurp                        # Screen "area" picker utility
+      swaybg                       # Anime wallpapers
+      swaynotificationcenter       # Notification daemon
+      pamixer                      # Used for panel sound control
+      alsa-utils                   # keyboard volume control
+      playerctl                    # MPRIS global player controller
+      swayidle                     # Idle inhibitor, knows when computer is ueseless
+      brightnessctl                # Laptop brighness controls
+      cava                         # Used to visualize audio in the bar
+      networkmanagerapplet         # Log in to your wifi with this cool utility
+      papirus-icon-theme           # Used to make nm-applet and blueman-applet not look ass
+      adw-gtk3                     # Nice libadwaita gtk3 theme
+      hyprpicker                   # Color picker
       nautilus-open-any-terminal
       gnome.nautilus-python
+      xdg-desktop-portal-hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland
     ];
 
     # Witchcraft to get nautilus to open other terminals

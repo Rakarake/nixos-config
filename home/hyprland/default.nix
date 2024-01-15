@@ -38,29 +38,6 @@ in {
     home-waybar.enable = true;
     home-rofi.enable = true;
 
-    # Packages needed by the Hyprland configuration
-    home.packages = (with pkgs; [
-      grim                         # Screenshot utility
-      slurp                        # Screen "area" picker utility
-      swaybg                       # Anime wallpapers
-      swaynotificationcenter       # Notification daemon
-      pipewire                     # Screensharing
-      xdg-desktop-portal-hyprland  # Screensharing
-      polkit_gnome                 # Polkit / gparted popup prompt provider
-      gnome.nautilus               # File manager
-      pamixer                      # Used for panel sound control
-      alsa-utils                   # keyboard volume control
-      playerctl                    # MPRIS global player controller
-      swaylock                     # Screenlocker
-      swayidle                     # Idle inhibitor, knows when computer is ueseless
-      brightnessctl                # Laptop brighness controls
-      cava                         # Used to visualize audio in the bar
-      networkmanagerapplet         # Log in to your wifi with this cool utility
-      papirus-icon-theme           # Used to make nm-applet and blueman-applet not look ass
-      adw-gtk3                     # Nice libadwaita gtk3 theme
-      hyprpicker                   # Color picker
-    ]);
-
     # Swaylock config file
     home.file.".config/hypr/swaylock.conf".source = ./swaylock.conf;
     
