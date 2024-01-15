@@ -110,7 +110,7 @@ in {
     ];
 
     # Linux kernel package
-    boot.kernelPackages = pkgs.linuxPackages_latest;
+    #boot.kernelPackages = pkgs.linuxPackages_latest;
 
     # Input engines
     i18n.inputMethod.ibus.engines = [
