@@ -40,6 +40,9 @@ in {
 
     # Swaylock config file
     home.file.".config/hypr/swaylock.conf".source = ./swaylock.conf;
+
+    # Swaync theme file
+    home.file.".config/swaync/style.css".source = ./swaync.css;
     
     ## KDE / Dolphin config file
     #home.file.".config/kdeglobals".source = ./kdeglobals;
@@ -86,12 +89,12 @@ in {
 
       # Autostart
       exec-once = ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1
-      exec-once = sleep 8 ; nextcloud
-      exec-once = sleep 5 ; waybar
+      exec-once = sleep 2 ; waybar
+      exec-once = sleep 5 ; nextcloud
+      exec-once = sleep 5 ; blueman-applet
+      exec-once = sleep 5 ; nm-applet
       exec-once = swaybg -i ~/Pictures/Wallpapers/wallpaper
       exec-once = swaync
-      exec-once = sleep 8 ; blueman-applet
-      exec-once = sleep 8 ; nm-applet
       gsettings set org.gnome.nm-applet disable-disconnected-notifications "true"
       gsettings set org.gnome.nm-applet disable-connected-notifications "true"
       ${if cfg.useSwayidle then "exec-once= swayidle timeout 800 '${swaylockCommand}' timeout 900 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on' timeout 1700 'systemctl suspend'A" else ""}
