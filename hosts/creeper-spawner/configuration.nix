@@ -54,7 +54,7 @@ in
   ];
 
   # Linux kernel version
-  boot.kernelPackages = pkgs.linuxPackages_testing;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Hostname
   networking.hostName = "creeper-spawner";
