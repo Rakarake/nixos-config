@@ -53,6 +53,11 @@ in
     (minecraftServerTemplate "minecraftserverspruce" "A wooden minecraft server")
   ];
 
+  # We love IPV4
+  services.openvpn.servers = {
+    mainVPN  = { config = '' config /root/mainVPN.conf ''; };
+  };
+
   # Linux kernel version
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
