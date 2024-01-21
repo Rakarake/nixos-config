@@ -54,9 +54,17 @@ in
   ];
 
   # We love IPV4
-  services.openvpn.servers = {
-    mainVPN  = { config = '' config /root/mainVPN.conf ''; };
+  services.cloudflared = {
+    enable = true;
+    tunnels = {
+      "creeper-spawner" = {
+        credentialsFile = "/root/cloudflare.secret";
+      };
+    };
   };
+  #services.openvpn.servers = {
+  #  mainVPN  = { config = '' config /root/mainVPN.conf ''; };
+  #};
 
   # Linux kernel version
   boot.kernelPackages = pkgs.linuxPackages_latest;
