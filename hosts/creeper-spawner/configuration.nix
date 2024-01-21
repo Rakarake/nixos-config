@@ -58,6 +58,7 @@ in
     enable = true;
     tunnels = {
       "creeper-spawner" = {
+        default = "http_status:404";
         credentialsFile = "/root/cloudflare.secret";
       };
     };
