@@ -10,6 +10,8 @@ build a live ISO image.
 
 `nix flake update` to update.
 
+`nix flake lock --update-input dev-stuff` to update flake input 'dev-stuff'.
+
 `sudo nixos-rebuild switch --flakes .` to apply configuration.
 `rebuild` to apply configuration when using configuration.
 
