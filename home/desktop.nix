@@ -1,7 +1,7 @@
 # My cozy home UwU
 # Some config must be anbled manually, such as the gnome-config.
 # This is done so that e.g. gnome and kde settings don't clash.
-{ lib, config, ... }:
+{ lib, config, pkgs, ... }:
 with lib;
 let
   cfg = config.home-desktop;
@@ -25,6 +25,12 @@ in {
 
     # Programming environment
     dev-stuff.enable = true;
+
+    # SSH
+    programs.ssh = {
+      enable = true;
+      matchBlocks."ssh.rakarake.xyz".proxyCommand = "${pkgs.cloudflared}/bin/cloudflared access ssh --hostname ssh.rakarake.xyz";
+    };
 
     # Logseq Wayland
     xdg.desktopEntries.logseqWayland = {
