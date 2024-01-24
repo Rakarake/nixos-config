@@ -182,10 +182,14 @@ in {
       bind=SUPERSHIFTALT,E,exit,
       bind=SUPER,F,exec,${fileManagerCommand}
       bind=SUPER,V,togglefloating,
+      bind=SUPER,P,pseudo
       # NOTE: use '-theme gruvbox' to specify theme
       bind=SUPER,D,exec,rofi -show combi -modes combi -combi-modes "window,drun,run" -icon-theme "Papirus" -show-icons
       bind=SUPERSHIFT,D,exec,rofi -show run
-      bind=SUPER,P,pseudo
+      # Run a program without installing it
+      bind=SUPERSHIFT,N,exec,rofi -dmenu | xargs -I % nix-shell -p % --run %
+      # Emoji picker
+      bind=SUPER,e,exec,rofi -modi emoji -show emoji
       
       # Focus on window
       bind=SUPER,h,movefocus,l
@@ -238,9 +242,6 @@ in {
 
       # Notifictations
       bind=SUPER,n,exec,swaync-client -t -sw
-
-      # Emoji picker
-      bind=SUPER,e,exec,rofi -modi emoji -show emoji
 
       # Color picker
       bind=SUPER,Z,exec,hyprpicker --format=rgb | wl-copy
