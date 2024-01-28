@@ -23,6 +23,9 @@
 
     # Programming environment
     dev-stuff.url = "github:Rakarake/nix-dev-environment";
+
+    # Wgsl language server
+    wgsl_analyzer.url = "github:wgsl-analyzer/wgsl-analyzer";
   };
 
   outputs = { self, nixpkgs-stable, nixpkgs-unstable, home-manager, hyprland, dev-stuff, ... }@attrs:

@@ -1,0 +1,99 @@
+# Universal aliases for different UNIX shells
+
+# Exports
+export EDITOR=nvim
+export VISUAL=nvim
+export HISTCONTROL=ignoreboth
+export COLORTERM=truecolor
+
+# Manpager
+export MANPAGER='nvim +Man!'
+
+# Standard Aliases
+alias e='nvim'
+alias open='xdg-open'
+alias :q='exit'
+alias ..='cd ..'
+alias cp='cp -v'
+alias mv='mv -v'
+alias rm='rm -v'
+alias ncmpcpp='echo "trying mpd: " ; mpd ; ncmpcpp'
+alias bat='bat --theme=base16'
+alias die='sudo shutdown now'
+
+# Projects
+alias p='cd ~/Projects'
+
+# Open new terminal in directory
+alias gg='gnome-terminal . &'
+alias xx='kgx & disown'
+alias aa='alacritty & disown'
+alias kk='kitty & disown'
+
+# FZF
+alias fzf='fzf --preview "bat --style=numbers --color=always --line-range :500 {}"'
+alias vf='fzf | xargs -r $EDITOR'
+alias vw='ls | fzf | xargs -r $EDITOR'
+
+# Git
+alias add='git add'
+alias status='git status'
+alias addup='git add -u' #Add all updated files
+alias branch='git branch'
+alias checkout='git checkout'
+alias commit='git commit -m'
+alias fetch='git fetch'
+alias pull='git pull origin'
+alias push='git push origin'
+alias stash='git stash'
+alias clone='git clone'
+alias log='git log'
+
+# Vimwiki
+alias vimwiki='nvim ~/vimwiki/index.md'
+
+# Networking
+alias ip-list='nmap -sP 192.168.1.1/24'
+
+# Haskell
+alias cabi='cabal repl'
+
+# Nix Fast
+alias n='cd ~/Projects/nixos-config'
+alias nde='cd ~/Projects/nix-dev-environment'
+alias flake='nix flake'
+alias rebuild='sudo nixos-rebuild switch --flake .'
+alias rebuild-boot='sudo nixos-rebuild boot --flake .'
+alias direnv-init='echo "use flake" > .envrc'
+alias flake-update='nix flake update; git add .; git commit -m "Flake update"; rebuild'
+
+# Kitty ssh
+if [ "$TERM" = "xterm-kitty" ]
+then
+	alias ssh="kitty +kitten ssh"
+fi
+
+# Extract function
+ex ()
+{
+  if [ -f $1 ] ; then
+    case $1 in
+      *.tar.bz2)   tar xjf $1   ;;
+      *.tar.gz)    tar xzf $1   ;;
+      *.tar.xz)    tar xJf $1   ;;
+      *.bz2)       bunzip2 $1   ;;
+      *.rar)       unrar x $1   ;;
+      *.gz)        gunzip $1    ;;
+      *.tar)       tar xf $1    ;;
+      *.tbz2)      tar xjf $1   ;;
+      *.tgz)       tar xzf $1   ;;
+      *.zip)       unzip $1     ;;
+      *.Z)         uncompress $1;;
+      *.7z)        7z x $1      ;;
+      *)           echo "'$1' cannot be extracted via ex()" ;;
+    esac
+  else
+    echo "'$1' is not a valid file"
+  fi
+}
+

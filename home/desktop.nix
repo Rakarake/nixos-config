@@ -1,13 +1,14 @@
 # My cozy home UwU
 # Some config must be anbled manually, such as the gnome-config.
 # This is done so that e.g. gnome and kde settings don't clash.
-{ lib, config, pkgs, ... }:
+{ lib, config, pkgs, wgsl_analyzer, ... }:
 with lib;
 let
   cfg = config.home-desktop;
 in {
   imports = [
     ./xdg.nix
+    ./bash.nix
   ];
 
   options.home-desktop = {
@@ -23,13 +24,113 @@ in {
     # Enable default applications
     home-xdg.enable = true;
 
-    # Programming environment
+    # Neovim config
     dev-stuff.enable = true;
+
+    # Bash config
+    home-bash.enable = true;
+
+    # Generic shell options
+    home.file.".alias".source = ./.alias;
+
+    # Direnv
+    programs.direnv = {
+      enable = true;
+      nix-direnv.enable = true;
+    };
+
+    # Kitty config
+    home.file.".config/kitty/kitty.conf".source = ./kitty/kitty.conf;
+    home.file.".config/kitty/Catppuccin-Macchiato.conf".source = ./kitty/Catppuccin-Macchiato.conf;
+    # Ghci prompt
+    home.file.".ghci".source = ./.ghci;
+
+    # Git config
+    programs.git = {
+      enable = true;
+      lfs.enable = true;
+      userName  = "Rakarake";
+      userEmail = "rak@rakarake.xyz";
+      extraConfig = {
+        core = {
+          editor = "nvim";
+        };
+        color = {
+          ui = "auto";
+        };
+        user = {
+          signingKey = "98CF6C24F40B3531!";
+        };
+      };
+    };
 
     # SSH
     programs.ssh = {
       enable = true;
       matchBlocks."ssh.rakarake.xyz".proxyCommand = "${pkgs.cloudflared}/bin/cloudflared access ssh --hostname ssh.rakarake.xyz";
+    };
+
+    # Programming packages
+    home.packages = (with pkgs; [
+      # HTML / CSS / JSON / ESLint language server
+      vscode-langservers-extracted
+
+      # C / C++
+      clang
+      #gcc
+      pkg-config
+      ccls          # A C/C++ language server
+      mpi           # C message passing
+
+      # Haskell
+      ghc
+      haskell-language-server
+
+      # Nix??? 😲
+      nil  # Nix language server
+
+      # Godot
+      godot_4
+
+      # Rust
+      rustc
+      cargo
+      rustfmt
+      rust-analyzer # Rust language server
+
+      # Python
+      python3
+
+      # Java
+      jdk17
+
+      # Lua
+      lua
+      lua-language-server
+
+      # Go
+      go
+      gopls
+
+      # Agda
+      (agda.withPackages [ agdaPackages.standard-library ])
+
+      # Typst
+      typst
+      typst-lsp
+
+      # WGSL
+      wgsl_analyzer.packages.${system}.default
+
+      # Vscode
+      vscode
+    ]);
+
+    # Godot single single window
+    xdg.desktopEntries.godotOneWindow = {
+      name = "Godot 4 Single Window";
+      genericName = "Godot 4 Single Window";
+      exec = "godot4 --single-window";
     };
 
     # Logseq Wayland
