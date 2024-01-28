@@ -74,6 +74,7 @@ in {
       appimage-run
       libnotify
       wireshark
+      yuzuPackages.early-access
 
       # Wine
       wineWowPackages.staging

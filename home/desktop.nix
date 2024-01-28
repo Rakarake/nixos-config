@@ -9,6 +9,7 @@ in {
   imports = [
     ./xdg.nix
     ./bash.nix
+    ./vscodium.nix
   ];
 
   options.home-desktop = {
@@ -88,6 +89,7 @@ in {
 
       # Nix??? 😲
       nil  # Nix language server
+      rnix-lsp
 
       # Godot
       godot_4
