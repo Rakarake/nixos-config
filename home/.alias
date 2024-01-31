@@ -66,6 +66,7 @@ alias rebuild='sudo nixos-rebuild switch --flake .'
 alias rebuild-boot='sudo nixos-rebuild boot --flake .'
 alias direnv-init='echo "use flake" > .envrc'
 alias flake-update='nix flake update; git add .; git commit -m "Flake update"; rebuild'
+alias nd='nix develop'
 
 # Kitty ssh
 if [ "$TERM" = "xterm-kitty" ]
