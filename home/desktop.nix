@@ -123,9 +123,6 @@ in {
 
       # WGSL
       wgsl_analyzer.packages.${system}.default
-
-      # Vscode
-      vscode
     ]);
 
     # Godot single single window

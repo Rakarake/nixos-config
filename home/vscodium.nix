@@ -1,7 +1,7 @@
 { pkgs ,... }: {
   programs.vscode = {
     enable = true;
-    package = pkgs.vscodium-fhs;
+    package = pkgs.vscodium;
     enableUpdateCheck = false;
     extensions = with pkgs.vscode-extensions; [
       catppuccin.catppuccin-vsc
@@ -41,6 +41,8 @@
       "[nix]"."editor.tabSize" = 2;
       "window.zoomLevel" = 1;
       "window.menuBarVisibility" = "toggle";
+      "workbench.startupEditor" = "none";
+      "zenMode.centerLayout" = false;
     };
   };
 }
