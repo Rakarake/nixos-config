@@ -72,7 +72,7 @@ in {
     };
 
     # Programming packages
-    home.packages = (with pkgs; [
+    home.packages = with pkgs; [
       # HTML / CSS / JSON / ESLint language server
       vscode-langservers-extracted
 
@@ -123,7 +123,10 @@ in {
 
       # WGSL
       wgsl_analyzer.packages.${system}.default
-    ]);
+
+      # C#
+      omnisharp-roslyn
+    ];
 
     # Godot single single window
     xdg.desktopEntries.godotOneWindow = {

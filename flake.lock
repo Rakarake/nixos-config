@@ -26,11 +26,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1706965439,
-        "narHash": "sha256-Jtpq9PaDlA8AW2Y5gtouXBxAumjROTRfaJ0l9kTBI2g=",
+        "lastModified": 1707074876,
+        "narHash": "sha256-QZjpaegyQriVcbi1rK9OKx6uRB30O2kxaV/DLiB3fAE=",
         "owner": "Rakarake",
         "repo": "nix-dev-environment",
-        "rev": "3841f03fe37342eee81d0a39f517134b2b3a3566",
+        "rev": "ee7794ceb8cc75afe344dd9ae06bbc913dae2801",
         "type": "github"
       },
       "original": {
