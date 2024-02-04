@@ -16,15 +16,15 @@
       monitor=${leftMonitor},highrr,-1920x0,1
 
       # Workspaces
-      workspace = 1, monitor:${leftMonitor}, default:true
-      workspace = 2, monitor:${mainMonitor}, default:true
-      workspace = 3, monitor:${mainMonitor}
-      workspace = 4, monitor:${mainMonitor}
-      workspace = 5, monitor:${mainMonitor}
-      workspace = 6, monitor:${mainMonitor}
-      workspace = 7, monitor:${mainMonitor}
-      workspace = 8, monitor:${mainMonitor}
-      workspace = 9, monitor:${mainMonitor}
+      workspace = 1,  monitor:${leftMonitor}, default:true
+      workspace = 2,  monitor:${leftMonitor}, default:true
+      workspace = 3,  monitor:${leftMonitor}
+      workspace = 4,  monitor:${leftMonitor}
+      workspace = 5,  monitor:${leftMonitor}
+      workspace = 6,  monitor:${mainMonitor}
+      workspace = 7,  monitor:${mainMonitor}
+      workspace = 8,  monitor:${mainMonitor}
+      workspace = 9,  monitor:${mainMonitor}
       workspace = 10, monitor:${mainMonitor}
     '';
   };
