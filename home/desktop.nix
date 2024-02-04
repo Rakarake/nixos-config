@@ -162,10 +162,17 @@ in {
     };
 
     # VSCode Wayland
-    xdg.desktopEntries.vscode = {
+    xdg.desktopEntries.vscodeWayland = {
       name = "VSCode Wayland";
       genericName = "VSCode Wayland";
       exec = "code --ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-webrtc-pipewire-capturer";
+    };
+
+    # VSCode Wayland
+    xdg.desktopEntries.vscodiumWayland = {
+      name = "VSCode Wayland";
+      genericName = "VSCode Wayland";
+      exec = "codium --ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-webrtc-pipewire-capturer";
     };
   };
 }
