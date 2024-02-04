@@ -252,6 +252,8 @@ in {
       ENABLE_VKBASALT = "1";
       # Default browser
       BROWSER = "firefox";
+      # Always allow unfree nix packages 😛
+      NIXPKGS_ALLOW_UNFREE = 1;
     };
 
     # Enable Android stuff
