@@ -253,7 +253,7 @@ in {
       # Default browser
       BROWSER = "firefox";
       # Always allow unfree nix packages 😛
-      NIXPKGS_ALLOW_UNFREE = 1;
+      NIXPKGS_ALLOW_UNFREE = "1";
     };
 
     # Enable Android stuff
