@@ -75,6 +75,8 @@ in {
       libnotify
       wireshark
       yuzuPackages.early-access
+      unityhub
+      libresprite
 
       # Wine
       wineWowPackages.staging
