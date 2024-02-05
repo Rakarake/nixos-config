@@ -77,14 +77,10 @@ in {
       vscode-langservers-extracted
 
       # C / C++
-      clang
-      #gcc
-      pkg-config
       ccls          # A C/C++ language server
       mpi           # C message passing
 
       # Haskell
-      ghc
       haskell-language-server
 
       # Nix??? 😲
@@ -103,15 +99,11 @@ in {
       # Python
       python3
 
-      # Java
-      jdk17
-
       # Lua
       lua
       lua-language-server
 
       # Go
-      go
       gopls
 
       # Agda
