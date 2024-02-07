@@ -81,7 +81,7 @@ in {
                  padding-right: 6px;
                  color: #7ebae4;
                }
-         #mode, #clock, #memory, #temperature,#cpu,#mpd, #custom-wall, #temperature, #backlight, #pulseaudio, #network, #battery, #custom-powermenu, #custom-cava-internal, #custom-workspace-left, #custom-workspace-right {
+         #mode, #clock, #memory, #temperature,#cpu,#mpd, #custom-wall, #temperature, #backlight, #pulseaudio, #network, #battery, #idle_inhibitor, #custom-powermenu, #custom-cava-internal, #custom-workspace-left, #custom-workspace-right {
                  padding-left: 10px;
                  padding-right: 10px;
                }
