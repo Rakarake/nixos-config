@@ -4,7 +4,8 @@ with lib;
 let
   cfg = config.cfg-desktop;
   # For fun ports to play with
-  openPorts = [ 1337 1338 1339 ];
+  # React uses 3000 by default
+  openPorts = [ 1337 1338 1339 3000 ];
 in {
   options.cfg-desktop = {
     enable = mkEnableOption "Common desktop configuration";
@@ -77,6 +78,7 @@ in {
       yuzuPackages.early-access
       unityhub
       libresprite
+      qemu_full
 
       # Wine
       wineWowPackages.staging
@@ -119,6 +121,10 @@ in {
     i18n.inputMethod.ibus.engines = [
       pkgs.ibus-engines.mozc
     ];
+
+    # Emulation 😈
+    virtualisation.libvirtd.enable = true;
+    programs.virt-manager.enable = true;
 
     # Open ports, for fun purposes
     networking.firewall.allowedTCPPorts = openPorts;
