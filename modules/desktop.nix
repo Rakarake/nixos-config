@@ -78,7 +78,7 @@ in {
       yuzuPackages.early-access
       unityhub
       libresprite
-      qemu_full
+      qemu
 
       # Wine
       wineWowPackages.staging
