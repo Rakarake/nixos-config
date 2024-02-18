@@ -79,6 +79,7 @@ in {
       unityhub
       libresprite
       qemu
+      smile # Emoji picker
 
       # Wine
       wineWowPackages.staging
