@@ -336,7 +336,7 @@ in {
     users.users.rakarake = {
       isNormalUser = true;
       description = "Rakarake";
-      extraGroups = [ "networkmanager" "wheel" "adbusers" "docker" "wireshark" "davfs2" ];
+      extraGroups = [ "networkmanager" "wheel" "adbusers" "docker" "wireshark" "davfs2" "libvirtd" ];
     };
 
     # Mullvad Service

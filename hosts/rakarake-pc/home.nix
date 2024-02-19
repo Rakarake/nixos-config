@@ -26,6 +26,12 @@
       workspace = 8,  monitor:${mainMonitor}
       workspace = 9,  monitor:${mainMonitor}
       workspace = 10, monitor:${mainMonitor}
+
+      # Monitor screenshots
+      bind=SUPER,R,exec,grim -o ${leftMonitor} - | wl-copy
+      bind=SUPERSHIFT,R,exec,grim -o ${leftMonitor}
+      bind=SUPER,T,exec,grim -o ${mainMonitor} - | wl-copt
+      bind=SUPERSHIFT,T,exec,grim -o ${mainMonitor}
     '';
   };
 }
