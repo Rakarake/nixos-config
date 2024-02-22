@@ -9,7 +9,7 @@ in {
   imports = [
     ./xdg.nix
     ./bash.nix
-    ./vscodium.nix
+    ./vscode.nix
   ];
 
   options.home-desktop = {

@@ -17,6 +17,9 @@
     # UwU
     queercat.url = "github:Elsa002/queercat";
 
+    # Flimpy: Vscode Extensions
+    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
+
     # Hyprland flake
     hyprland.url = "github:hyprwm/Hyprland";
     xdg-desktop-portal-hyprland.url = "github:hyprwm/xdg-desktop-portal-hyprland";

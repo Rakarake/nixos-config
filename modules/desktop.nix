@@ -136,6 +136,7 @@ in {
       "electron-20.3.12"
       "electron-24.8.6"
       "electron-25.9.0"
+      "freeimage-unstable-2021-11-01"
     ];
     #nixpkgs.overlays = [
     #  (
