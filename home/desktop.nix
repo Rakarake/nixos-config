@@ -173,7 +173,7 @@ in {
 
     # VSCode Wayland
     xdg.desktopEntries.vscodiumWayland = {
-      name = "VSCode Wayland";
+      name = "VSCodium Wayland";
       genericName = "VSCode Wayland";
       exec = "codium --ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-webrtc-pipewire-capturer";
     };
