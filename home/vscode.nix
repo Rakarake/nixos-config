@@ -37,7 +37,6 @@ let
         twxs.cmake
 
         # Rust parser generator
-        pest.pest-ide-tools
         tamasfe.even-better-toml
 
         # Catppuccin
@@ -46,43 +45,44 @@ let
     });
 in
 {
-  home.packages = [ vscodePackage ];
-  #home.file."".text
-  #programs.vscode = {
-  #  enable = true;
-  #  package = vscodePackage;
-  #  enableUpdateCheck = false;
-  #  userSettings = {
-  #    # Theme
-  #    "workbench.colorTheme" = "Catppuccin Macchiato";
-  #    "workbench.iconTheme" = "catppuccin-macchiato";
+  #home.packages = [ vscodePackage ];
+  #home.file.".config/Code/User/settings.json".text = ''
+  #'';
+  programs.vscode = {
+    enable = true;
+    package = vscodePackage // { pname = "vscode"; };
+    enableUpdateCheck = false;
+    userSettings = {
+      # Theme
+      "workbench.colorTheme" = "Catppuccin Macchiato";
+      "workbench.iconTheme" = "catppuccin-macchiato";
 
-  #    # Caps-Lock is escape fix
-  #    "keyboard.dispatch" = "keyCode";
+      # Caps-Lock is escape fix
+      "keyboard.dispatch" = "keyCode";
 
-  #    # Vim
-  #    "vim.useSystemClipboard" = true;
+      # Vim
+      "vim.useSystemClipboard" = true;
 
-  #    # Nix
-  #    "nix.enableLanguageServer" = true;
-  #    "nix.serverPath" = "${pkgs.nil}/bin/nil";
-  #    "nix.serverSettings" = {
-  #      "nil" = {
-  #        #"diagnostics" = {
-  #        #  "ignored" = ["unused_binding" "unused_with"];
-  #        #};
-  #        "formatting" = {
-  #          "command" = ["${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt"];
-  #        };
-  #      };
-  #    };
-  #    
-  #    "files.autoSave" = "off";
-  #    "[nix]"."editor.tabSize" = 2;
-  #    "window.zoomLevel" = 1;
-  #    "window.menuBarVisibility" = "toggle";
-  #    "workbench.startupEditor" = "none";
-  #    "zenMode.centerLayout" = false;
-  #  };
-  #};
+      # Nix
+      "nix.enableLanguageServer" = true;
+      "nix.serverPath" = "${pkgs.nil}/bin/nil";
+      "nix.serverSettings" = {
+        "nil" = {
+          #"diagnostics" = {
+          #  "ignored" = ["unused_binding" "unused_with"];
+          #};
+          "formatting" = {
+            "command" = ["${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt"];
+          };
+        };
+      };
+      
+      "files.autoSave" = "off";
+      "[nix]"."editor.tabSize" = 2;
+      "window.zoomLevel" = 1;
+      "window.menuBarVisibility" = "toggle";
+      "workbench.startupEditor" = "none";
+      "zenMode.centerLayout" = false;
+    };
+  };
 }
