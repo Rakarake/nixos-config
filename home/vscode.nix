@@ -41,6 +41,9 @@ let
 
         # Catppuccin
         catppuccin.catppuccin-vsc
+
+        # Unity
+        Unity.unity-debug
       ];
     });
 in

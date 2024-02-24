@@ -9,6 +9,12 @@ let
     http             = 80;
     https            = 443;
     onlyoffice       = 8000;
+
+    prt1             = 8001;
+    prt2             = 8002;
+    prt3             = 8003;
+    prt4             = 8004;
+    prt5             = 8005;
   };
 
   # Hostnames
@@ -52,20 +58,6 @@ in
     (minecraftServerTemplate "minecraftserver1" "A stylish minecraft server")
     (minecraftServerTemplate "minecraftserverspruce" "A wooden minecraft server")
   ];
-
-  # We love IPV4
-  services.cloudflared = {
-    enable = true;
-    tunnels = {
-      "creeper-spawner" = {
-        default = "http_status:404";
-        credentialsFile = "/root/cloudflare.secret";
-      };
-    };
-  };
-  #services.openvpn.servers = {
-  #  mainVPN  = { config = '' config /root/mainVPN.conf ''; };
-  #};
 
   # Linux kernel version
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -263,4 +255,3 @@ in
   nixpkgs.config.allowUnfree = true;
   system.stateVersion = "23.05";
 }
-
