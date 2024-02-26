@@ -1,60 +1,56 @@
 { pkgs, nix-vscode-extensions, ... }:
-let
-  vscodePackage = 
-    (pkgs.vscode-with-extensions.override {
-      vscodeExtensions = with nix-vscode-extensions.extensions.${pkgs.system}.vscode-marketplace; [
-        # Go
-        golang.go
-
-        # Rust
-        rust-lang.rust-analyzer
-        serayuzgur.crates
-
-        # Nix language server
-        jnoortheen.nix-ide
-
-        # Latex
-        james-yu.latex-workshop
-
-        # Typst
-        nvarner.typst-lsp
-        haskell.haskell
-
-        # Haskell
-        justusadam.language-haskell
-        ndmitchell.haskell-ghcid
-
-        # Spell checking
-        streetsidesoftware.code-spell-checker
-
-        # Live Share
-        ms-vsliveshare.vsliveshare
-
-        # C++
-        ms-vscode.cpptools
-
-        # CMAKE
-        twxs.cmake
-
-        # Rust parser generator
-        tamasfe.even-better-toml
-
-        # Catppuccin
-        catppuccin.catppuccin-vsc
-
-        # Unity
-        Unity.unity-debug
-      ];
-    });
-in
 {
   #home.packages = [ vscodePackage ];
   #home.file.".config/Code/User/settings.json".text = ''
   #'';
   programs.vscode = {
     enable = true;
-    package = vscodePackage // { pname = "vscode"; };
+    package = pkgs.vscode-fhs // { pname = "vscode"; };
     enableUpdateCheck = false;
+    extensions = with nix-vscode-extensions.extensions.${pkgs.system}.vscode-marketplace; [
+      # Go
+      golang.go
+
+      # Rust
+      rust-lang.rust-analyzer
+      serayuzgur.crates
+
+      # Nix language server
+      jnoortheen.nix-ide
+
+      # Latex
+      james-yu.latex-workshop
+
+      # Typst
+      nvarner.typst-lsp
+      haskell.haskell
+
+      # Haskell
+      justusadam.language-haskell
+      ndmitchell.haskell-ghcid
+
+      # Spell checking
+      streetsidesoftware.code-spell-checker
+
+      # Live Share
+      ms-vsliveshare.vsliveshare
+
+      # C++
+      ms-vscode.cpptools
+
+      # CMAKE
+      twxs.cmake
+
+      # Rust parser generator
+      tamasfe.even-better-toml
+
+      # Catppuccin
+      catppuccin.catppuccin-vsc
+
+      # C#
+      ms-dotnettools.csharp
+      ms-dotnettools.vscode-dotnet-runtime
+    ];
     userSettings = {
       # Theme
       "workbench.colorTheme" = "Catppuccin Macchiato";
