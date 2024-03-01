@@ -29,6 +29,9 @@
 
     # Wgsl language server
     wgsl_analyzer.url = "github:wgsl-analyzer/wgsl-analyzer";
+
+    # Flex
+    display3d = { url = "./flakes/display3d"; inputs.nixpkgs.follows = "nixpkgs-unstable"; };
   };
 
   outputs = { self, nixpkgs-stable, nixpkgs-unstable, home-manager, hyprland, dev-stuff, ... }@attrs:
