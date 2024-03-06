@@ -81,6 +81,7 @@ in {
       libresprite
       qemu
       smile # Emoji picker
+      comma
 
       # Wine
       wineWowPackages.staging
