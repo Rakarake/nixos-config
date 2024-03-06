@@ -9,7 +9,6 @@ let
     http             = 80;
     https            = 443;
     onlyoffice       = 8000;
-    wireguard        = 51820;
 
     prt1             = 8001;
     prt2             = 8002;
@@ -59,6 +58,9 @@ in
     (minecraftServerTemplate "minecraftserver1" "A stylish minecraft server")
     (minecraftServerTemplate "minecraftserverspruce" "A wooden minecraft server")
   ];
+
+  # Tailscale
+  services.tailscale.enable = true;
 
   # Linux kernel version
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -218,29 +220,6 @@ in
 
   # Enable networking
   networking.networkmanager.enable = true;
-
-  # Wireguard
-  networking.wireguard.interfaces = {
-    # "wg0" is the network interface name. You can name the interface arbitrarily.
-    wg0 = {
-      # Determines the IP address and subnet of the client's end of the tunnel interface.
-      ips = [ "10.100.0.2/24" ];
-      listenPort = ports.wireguard;
-      privateKeyFile = "/var/wireguard/private";
-      peers = [
-        {
-          # Public key of the server (not a file path).
-          publicKey = "4i1LTgdqB1pfQYrpfs8vqJzesMNY8xCEryC1IElwvBc=";
-          # Forward all the traffic via VPN.
-          allowedIPs = [ "0.0.0.0/0" ];
-          # Set this to the server IP and port.
-          endpoint = "172.232.128.121:51820";
-          # Send keepalives every 25 seconds. Important to keep NAT tables alive.
-          persistentKeepalive = 25;
-        }
-      ];
-    };
-  };
 
   ## Set your time zone
   #time.timeZone = "Europe/Stockholm";
