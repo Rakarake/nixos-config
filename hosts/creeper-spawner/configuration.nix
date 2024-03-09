@@ -65,7 +65,7 @@ in
     tunnels = {
       "creeper-spawner" = {
         default = "http_status:404";
-        credentialsFile = "/root/cloudlfared-tunnel-credentials.json";
+        credentialsFile = "/root/cloudflared-tunnel-credentials.json";
       };
     };
   };
