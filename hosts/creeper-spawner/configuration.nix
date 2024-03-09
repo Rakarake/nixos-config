@@ -65,7 +65,7 @@ in
     tunnels = {
       "creeper-spawner" = {
         default = "http_status:404";
-        credentialsFile = "/root/cloudflared-tunnel-credentials.json";
+        credentialsFile = "/var/cloudflare-tunnel.json";
       };
     };
   };
@@ -142,37 +142,37 @@ in
     virtualHosts = {
       # Nextcloud
       ${hostnames.nextcloud} = {
-        forceSSL = true;
-        enableACME = true;  # Let's encrypt TLS automated, not certbot
+        #forceSSL = true;
+        #enableACME = true;  # Let's encrypt TLS automated, not certbot
       };
 
       # Onlyoffice
       ${hostnames.onlyoffice} = {
-        forceSSL = true;
-        enableACME = true;
+        #forceSSL = true;
+        #enableACME = true;
       };
       
       # Gitlab
       ${hostnames.git} = {
-        forceSSL = true;
-        enableACME = true;
+        #forceSSL = true;
+        #enableACME = true;
         locations."/".proxyPass = "http://unix:/run/gitlab/gitlab-workhorse.socket";
       };
 
       # Homepage
       ${hostnames.website} = {
-        forceSSL = true;
-        enableACME = true;
+        #forceSSL = true;
+        #enableACME = true;
         root = "/var/www/${hostnames.website}/public";
       };
     };
   };
 
-  # Let's Encrypt
-  security.acme = {
-    acceptTerms = true;
-    defaults.email = "rak@rakarake.xyz";
-  };
+  ## Let's Encrypt
+  #security.acme = {
+  #  acceptTerms = true;
+  #  defaults.email = "rak@rakarake.xyz";
+  #};
 
   # Nextcloud at "/var/lib/nextcloud"
   services.nextcloud = {
