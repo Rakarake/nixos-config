@@ -76,7 +76,6 @@ in {
       appimage-run
       libnotify
       wireshark
-      yuzuPackages.early-access
       unityhub
       libresprite
       qemu
