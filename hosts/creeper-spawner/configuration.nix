@@ -59,6 +59,17 @@ in
     (minecraftServerTemplate "minecraftserverspruce" "A wooden minecraft server")
   ];
 
+  # We love IPV4
+  services.cloudflared = {
+    enable = true;
+    tunnels = {
+      "creeper-spawner" = {
+        default = "http_status:404";
+        credentialsFile = "/root/cloudlfared-tunnel-credentials.json";
+      };
+    };
+  };
+
   # Linux kernel version
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
