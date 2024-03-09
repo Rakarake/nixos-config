@@ -110,6 +110,7 @@ in
     jdk17
     bcachefs-tools
     neofetch
+    cloudflared
   ];
 
   # Fonts
