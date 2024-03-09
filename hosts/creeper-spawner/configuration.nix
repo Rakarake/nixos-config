@@ -66,6 +66,10 @@ in
       "creeper-spawner" = {
         default = "http_status:404";
         credentialsFile = "/var/cloudflare-tunnel.json";
+        ingress = {
+          "rakarake.xyz".service = "http://localhost:80";
+          "ssh.rakarake.xyz".service = "ssh://localhost:22";
+        };
       };
     };
   };
