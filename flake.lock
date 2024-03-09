@@ -49,11 +49,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-vQ6lbispVaV1tQ6zwGQzHVp6CAOMP0ASwN1fBPRYjBY=",
-        "path": "/nix/store/h5b5a4230x99z48vgs10029k26sz4bip-source/flakes/display3d",
+        "path": "/nix/store/13wv6ihskmb4g9rnglqnn02yw2nhs5zb-source/flakes/display3d",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/h5b5a4230x99z48vgs10029k26sz4bip-source/flakes/display3d",
+        "path": "/nix/store/13wv6ihskmb4g9rnglqnn02yw2nhs5zb-source/flakes/display3d",
         "type": "path"
       }
     },

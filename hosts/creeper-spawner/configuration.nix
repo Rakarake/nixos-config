@@ -59,9 +59,6 @@ in
     (minecraftServerTemplate "minecraftserverspruce" "A wooden minecraft server")
   ];
 
-  # Tailscale
-  services.tailscale.enable = true;
-
   # Linux kernel version
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
