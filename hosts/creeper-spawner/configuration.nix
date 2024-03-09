@@ -68,6 +68,8 @@ in
         credentialsFile = "/var/cloudflare-tunnel.json";
         ingress = {
           "rakarake.xyz".service = "http://localhost:80";
+          "nextcloud.rakarake.xyz".service = "http://localhost:80";
+          "git.rakarake.xyz".service = "http://localhost:80";
           "ssh.rakarake.xyz".service = "ssh://localhost:22";
         };
       };
