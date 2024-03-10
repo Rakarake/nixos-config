@@ -94,7 +94,7 @@ in {
 
       vlc
       audacity
-      libreoffice
+      libreoffice-qt
       onlyoffice-bin
       hunspell                 # Libreoffice spelling
       hunspellDicts.sv_SE      # Swedish
