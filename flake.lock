@@ -49,11 +49,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-vQ6lbispVaV1tQ6zwGQzHVp6CAOMP0ASwN1fBPRYjBY=",
-        "path": "/nix/store/jqvxpfdy98gdn64kf12ywz0xb6iqlcvb-source/flakes/display3d",
+        "path": "/nix/store/k5l0060lvcmlx0d6k5dp5gqrcd1szbx0-source/flakes/display3d",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/jqvxpfdy98gdn64kf12ywz0xb6iqlcvb-source/flakes/display3d",
+        "path": "/nix/store/k5l0060lvcmlx0d6k5dp5gqrcd1szbx0-source/flakes/display3d",
         "type": "path"
       }
     },
@@ -401,6 +401,26 @@
         "type": "github"
       }
     },
+    "nix-index-database": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs-unstable"
+        ]
+      },
+      "locked": {
+        "lastModified": 1710120787,
+        "narHash": "sha256-tlLuB73OCOKtU2j83bQzSYFyzjJo3rjpITZE5MoofG8=",
+        "owner": "nix-community",
+        "repo": "nix-index-database",
+        "rev": "e76ff2df6bfd2abe06abd8e7b9f217df941c1b07",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "nix-index-database",
+        "type": "github"
+      }
+    },
     "nix-software-center": {
       "inputs": {
         "nixpkgs": "nixpkgs_3",
@@ -645,6 +665,7 @@
         "display3d": "display3d",
         "home-manager": "home-manager",
         "hyprland": "hyprland",
+        "nix-index-database": "nix-index-database",
         "nix-software-center": "nix-software-center",
         "nix-vscode-extensions": "nix-vscode-extensions",
         "nixos-conf-editor": "nixos-conf-editor",

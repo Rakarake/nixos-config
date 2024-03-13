@@ -32,6 +32,9 @@
 
     # Flex
     display3d = { url = "./flakes/display3d"; inputs.nixpkgs.follows = "nixpkgs-unstable"; };
+
+    # Nix pre-baked index
+    nix-index-database = { url = "github:nix-community/nix-index-database"; inputs.nixpkgs.follows = "nixpkgs-unstable"; };
   };
 
   outputs = { self, nixpkgs-stable, nixpkgs-unstable, home-manager, hyprland, dev-stuff, ... }@attrs:
@@ -53,6 +56,7 @@
     # Common among home-manager systems
     commonHome =  {
       imports = [
+        attrs.nix-index-database.hmModules.nix-index
         # For some reason, this cannot be imported in the hyprland module,
         # I get infinate recursion.
         hyprland.homeManagerModules.default
