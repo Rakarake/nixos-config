@@ -93,7 +93,6 @@ in {
 
       # Nix??? 😲
       nil  # Nix language server
-      rnix-lsp
 
       # Godot
       godot_4
