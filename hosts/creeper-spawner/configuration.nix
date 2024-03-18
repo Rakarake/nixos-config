@@ -9,6 +9,7 @@ let
     http             = 80;
     https            = 443;
     onlyoffice       = 8000;
+    wireguard        = 51820;
 
     prt1             = 8001;
     prt2             = 8002;
@@ -58,6 +59,23 @@ in
     (minecraftServerTemplate "minecraftserver1" "A stylish minecraft server")
     (minecraftServerTemplate "minecraftserverspruce" "A wooden minecraft server")
   ];
+
+  # Wireguard
+  networking.wg-quick.interfaces = {
+    wg0 = {
+      address = [ "10.0.1.2" ];
+      listenPort = ports.wireguard;
+      privateKeyFile = "/var/wireguard/private";
+      peers = [
+        {
+          publicKey = "51IbR93F5mYmGz+GKG1GNgXtOsbMqkDbUkTArDTxOQo=";
+          allowedIPs = [ "10.0.1.1" ];
+          endpoint = "172.232.146.169:51820";
+          persistentKeepalive = 25;
+        }
+      ];
+    };
+  };
 
   # We love IPV4
   services.cloudflared = {
@@ -273,3 +291,4 @@ in
   nixpkgs.config.allowUnfree = true;
   system.stateVersion = "23.05";
 }
+
