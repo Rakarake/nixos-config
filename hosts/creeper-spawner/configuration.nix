@@ -5,13 +5,13 @@ let
   ports = {
     ssh              = 22;
     minecraft        = 25565;
-    minecraft-spruce = 1337;
     http             = 80;
     https            = 443;
     onlyoffice       = 8000;
     wireguard        = 51820;
+    misc             = 1337;
 
-    prt1             = 8001;
+    minecraft-spruce = 8001;
     prt2             = 8002;
     prt3             = 8003;
     prt4             = 8004;
