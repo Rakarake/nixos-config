@@ -67,7 +67,6 @@ in {
       pulseaudioFull  # Nice libraries, used by pulseshitter
       mpv
       imv
-      libfprint     # Fingie printer
       impression    # Boot drive creator
       nicotine-plus
       nix-index     # For working with /nix/store
@@ -154,9 +153,6 @@ in {
     #    }
     #  )
     #];
-
-    # Fingie printer
-    services.fprintd.enable = true;
 
     # Davfs, mount WebDAV storage as file system
     # Secrets file at /home/rakarake/.config/davfs2/secrets should contain:
@@ -308,8 +304,8 @@ in {
 
     # Configure keymap in X11
     services.xserver = {
-      layout = "us,se";
-      xkbVariant = "";
+      xkb.layout = "us,se";
+      xkb.variant = "";
     };
 
     # Enable CUPS to print documents.
