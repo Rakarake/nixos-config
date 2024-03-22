@@ -98,8 +98,6 @@ in {
       godot_4
 
       # Rust
-      rustc
-      cargo
       rustfmt
       rust-analyzer # Rust language server
 
