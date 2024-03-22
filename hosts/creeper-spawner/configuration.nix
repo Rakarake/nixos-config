@@ -7,7 +7,7 @@ let
     minecraft        = 25565;
     http             = 80;
     https            = 443;
-    onlyoffice       = 8000;
+    #onlyoffice       = 8000;
     wireguard        = 51820;
     misc             = 1337;
 
@@ -22,7 +22,7 @@ let
   hostnames = {
     website = "rakarake.xyz";
     nextcloud = "nextcloud.rakarake.xyz";
-    onlyoffice = "onlyoffice.rakarake.xyz";
+    #onlyoffice = "onlyoffice.rakarake.xyz";
     git = "git.rakarake.xyz";
   };
 
@@ -197,11 +197,11 @@ in
         #enableACME = true;  # Let's encrypt TLS automated, not certbot
       };
 
-      # Onlyoffice
-      ${hostnames.onlyoffice} = {
-        #forceSSL = true;
-        #enableACME = true;
-      };
+      ## Onlyoffice
+      #${hostnames.onlyoffice} = {
+      #  #forceSSL = true;
+      #  #enableACME = true;
+      #};
       
       # Gitlab
       ${hostnames.git} = {
@@ -249,12 +249,12 @@ in
     phpOptions."opcache.interned_strings_buffer" = "23";
   };
 
-  # Onlyoffice
-  services.onlyoffice = {
-    enable = true;
-    hostname = hostnames.onlyoffice;
-    port = 8000;
-  };
+  ## Onlyoffice
+  #services.onlyoffice = {
+  #  enable = true;
+  #  hostname = hostnames.onlyoffice;
+  #  port = 8000;
+  #};
 
   ## Gitlab
   #services.gitlab = {
