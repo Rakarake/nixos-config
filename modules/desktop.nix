@@ -153,23 +153,6 @@ in {
     #  )
     #];
 
-    # Davfs, mount WebDAV storage as file system
-    # Secrets file at /home/rakarake/.config/davfs2/secrets should contain:
-    # 'https://nextcloud.domain/remote.php/webdav/ username password'
-    # File shoud be owned by root:root with permissions 600
-    services.davfs2.enable = true;
-    services.autofs = {
-      enable = true;
-      autoMaster = let
-        mapConf = pkgs.writeText "auto" ''
-          nextcloud -fstype=davfs,conf=/etc/davfs2-rakarake.conf,uid=rakarake :https\:nextcloud.rakarake.xyz/remote.php/webdav/
-        '';
-      in ''
-        /home/rakarake/Remu file:${mapConf}
-      '';
-    };
-    environment.etc."davfs2-rakarake.conf".text = "secrets /home/rakarake/.config/davfs2/secrets";
-
     # System76 scheduler
     services.system76-scheduler = {
       enable = true;
