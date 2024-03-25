@@ -39,42 +39,6 @@
         "type": "github"
       }
     },
-    "display3d": {
-      "inputs": {
-        "display3d": "display3d_2",
-        "nixpkgs": [
-          "nixpkgs-unstable"
-        ]
-      },
-      "locked": {
-        "lastModified": 1,
-        "narHash": "sha256-vQ6lbispVaV1tQ6zwGQzHVp6CAOMP0ASwN1fBPRYjBY=",
-        "path": "/nix/store/656bspskiy4rgbg2jkmpb8ica4adff8b-source/flakes/display3d",
-        "type": "path"
-      },
-      "original": {
-        "path": "/nix/store/656bspskiy4rgbg2jkmpb8ica4adff8b-source/flakes/display3d",
-        "type": "path"
-      }
-    },
-    "display3d_2": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1704671692,
-        "narHash": "sha256-TjfDg8uIdrLY+wo7iZMYJQVumTR3y2LJjIWdNAXpI4w=",
-        "ref": "refs/heads/master",
-        "rev": "dfb2438522acad495d9909b35caf526c74c1a1af",
-        "revCount": 45,
-        "submodules": true,
-        "type": "git",
-        "url": "https://github.com/redpenguinyt/display3d"
-      },
-      "original": {
-        "submodules": true,
-        "type": "git",
-        "url": "https://github.com/redpenguinyt/display3d"
-      }
-    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -662,7 +626,6 @@
     "root": {
       "inputs": {
         "dev-stuff": "dev-stuff",
-        "display3d": "display3d",
         "home-manager": "home-manager",
         "hyprland": "hyprland",
         "nix-index-database": "nix-index-database",

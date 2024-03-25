@@ -31,7 +31,6 @@ in {
       attrs.nix-software-center.packages.${system}.nix-software-center
       attrs.nixos-conf-editor.packages.${system}.nixos-conf-editor
       attrs.queercat.defaultPackage.${system}
-      attrs.display3d.defaultPackage.${system}
       powertop  # Power usage inspector
       kitty
       sl

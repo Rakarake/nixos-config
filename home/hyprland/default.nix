@@ -126,7 +126,7 @@ in {
       general {
         gaps_in=3
         gaps_out=5
-        border_size=0
+        border_size=2
         col.active_border=0xfff5c2e7
         col.inactive_border=0xff45475a
         # Whether to apply the sensitivity to raw input

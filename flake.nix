@@ -30,9 +30,6 @@
     # Wgsl language server
     wgsl_analyzer.url = "github:wgsl-analyzer/wgsl-analyzer";
 
-    # Flex
-    display3d = { url = "./flakes/display3d"; inputs.nixpkgs.follows = "nixpkgs-unstable"; };
-
     # Nix pre-baked index
     nix-index-database = { url = "github:nix-community/nix-index-database"; inputs.nixpkgs.follows = "nixpkgs-unstable"; };
   };
