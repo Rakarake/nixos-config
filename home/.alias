@@ -58,6 +58,10 @@ alias ip-list='nmap -sP 192.168.1.1/24'
 # Haskell
 alias cabi='cabal repl'
 
+# VSCode/Codium
+alias codew='code --ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-webrtc-pipewire-capturer'
+alias codiw='codium --ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-webrtc-pipewire-capturer'
+
 # Nix Fast
 alias n='cd ~/Projects/nixos-config'
 alias nde='cd ~/Projects/nix-dev-environment'

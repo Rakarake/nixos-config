@@ -5,7 +5,7 @@
   #'';
   programs.vscode = {
     enable = true;
-    package = pkgs.vscode-fhs // { pname = "vscode"; };
+    package = pkgs.vscodium; #// { pname = "vscode"; };
     enableUpdateCheck = false;
     extensions = with nix-vscode-extensions.extensions.${pkgs.system}.vscode-marketplace; [
       # Go
