@@ -8,6 +8,9 @@
     package = pkgs.vscodium; #// { pname = "vscode"; };
     enableUpdateCheck = false;
     extensions = with nix-vscode-extensions.extensions.${pkgs.system}.vscode-marketplace; [
+      # Vim
+      vscodevim.vim
+
       # Go
       golang.go
 
