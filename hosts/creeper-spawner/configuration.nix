@@ -86,7 +86,7 @@ in
         credentialsFile = "/var/cloudflare-tunnel.json";
         ingress = {
           "rakarake.xyz".service = "http://localhost:80";
-          "nextcloud.rakarake.xyz".service = "http://localhost:80";
+          #"nextcloud.rakarake.xyz".service = "http://localhost:80";
           "git.rakarake.xyz".service = "http://localhost:80";
           "ssh.rakarake.xyz".service = "ssh://localhost:22";
         };
@@ -193,8 +193,8 @@ in
     virtualHosts = {
       # Nextcloud
       ${hostnames.nextcloud} = {
-        #forceSSL = true;
-        #enableACME = true;  # Let's encrypt TLS automated, not certbot
+        forceSSL = true;
+        enableACME = true;  # Let's encrypt TLS automated, not certbot
       };
 
       ## Onlyoffice
@@ -203,12 +203,12 @@ in
       #  #enableACME = true;
       #};
       
-      # Gitlab
-      ${hostnames.git} = {
-        #forceSSL = true;
-        #enableACME = true;
-        locations."/".proxyPass = "http://unix:/run/gitlab/gitlab-workhorse.socket";
-      };
+      ## Gitlab
+      #${hostnames.git} = {
+      #  #forceSSL = true;
+      #  #enableACME = true;
+      #  locations."/".proxyPass = "http://unix:/run/gitlab/gitlab-workhorse.socket";
+      #};
 
       # Homepage
       ${hostnames.website} = {
@@ -219,11 +219,11 @@ in
     };
   };
 
-  ## Let's Encrypt
-  #security.acme = {
-  #  acceptTerms = true;
-  #  defaults.email = "rak@rakarake.xyz";
-  #};
+  # Let's Encrypt
+  security.acme = {
+    acceptTerms = true;
+    defaults.email = "rak@rakarake.xyz";
+  };
 
   # Nextcloud at "/var/lib/nextcloud"
   services.nextcloud = {
