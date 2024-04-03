@@ -105,7 +105,7 @@ in {
       thunderbird
       blender
       qpwgraph
-      tauon
+      strawberry
       easyeffects
       mullvad-vpn
       fragments
