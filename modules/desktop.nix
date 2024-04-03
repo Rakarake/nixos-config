@@ -79,6 +79,7 @@ in {
       qemu
       smile # Emoji picker
       comma
+      nix-tree
 
       # Wine
       wineWowPackages.staging
