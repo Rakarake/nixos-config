@@ -1,4 +1,4 @@
-{ pkgs, nix-vscode-extensions, ... }:
+{ pkgs, inputs, ... }:
 {
   #home.packages = [ vscodePackage ];
   #home.file.".config/Code/User/settings.json".text = ''
@@ -7,7 +7,7 @@
     enable = true;
     package = pkgs.vscodium; #// { pname = "vscode"; };
     enableUpdateCheck = false;
-    extensions = with nix-vscode-extensions.extensions.${pkgs.system}.vscode-marketplace; [
+    extensions = with inputs.nix-vscode-extensions.extensions.${pkgs.system}.vscode-marketplace; [
       # Vim
       vscodevim.vim
 

@@ -1,7 +1,7 @@
 # My cozy home UwU
 # Some config must be anbled manually, such as the gnome-config.
 # This is done so that e.g. gnome and kde settings don't clash.
-{ lib, config, pkgs, wgsl_analyzer, ... }:
+{ lib, config, pkgs, inputs, ... }:
 with lib;
 let
   cfg = config.home-desktop;
@@ -119,7 +119,7 @@ in {
       typst-lsp
 
       # WGSL
-      wgsl_analyzer.packages.${system}.default
+      inputs.wgsl_analyzer.packages.${system}.default
 
       # C#
       omnisharp-roslyn

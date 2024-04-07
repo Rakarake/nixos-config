@@ -1,5 +1,5 @@
 # Hyprland system configuration
-{ lib, config, hyprland, xdg-desktop-portal-hyprland, pkgs, ... }:
+{ lib, inputs, config, pkgs, ... }:
 with lib;                      
 let
   cfg = config.cfg-hyprland;
@@ -11,7 +11,7 @@ in {
     # Enable hyprland
     programs.hyprland = {
       enable = true;
-      package = hyprland.packages.${pkgs.system}.hyprland;
+      package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     };
 
     # Packages needed by the Hyprland configuration
@@ -36,7 +36,7 @@ in {
       hyprpicker                   # Color picker
       nautilus-open-any-terminal
       gnome.nautilus-python
-      xdg-desktop-portal-hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland
+      inputs.xdg-desktop-portal-hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland
     ];
 
     # Cachix flake caching
