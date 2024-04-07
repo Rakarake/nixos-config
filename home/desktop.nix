@@ -1,10 +1,11 @@
 # My cozy home UwU
 # Some config must be anbled manually, such as the gnome-config.
 # This is done so that e.g. gnome and kde settings don't clash.
-{ lib, config, pkgs, inputs, ... }:
+{ lib, config, pkgs, inputs, outputs , ... }:
 with lib;
 let
   cfg = config.home-desktop;
+  cpkgs = outputs.packages.${pkgs.system};
 in {
   imports = [
     ./xdg.nix
@@ -117,6 +118,8 @@ in {
 
       # C#
       omnisharp-roslyn
+
+      cpkgs.yuzu
     ];
 
     # Godot single single window
