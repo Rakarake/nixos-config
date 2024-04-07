@@ -1,5 +1,5 @@
 {
-  imports = [ ../../home ];
+  imports = [ ../../home/global.nix ../../home ];
   
   home-desktop.enable = true;
   home-hyprland = {

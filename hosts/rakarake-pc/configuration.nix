@@ -1,6 +1,6 @@
 # Desktop PC
 { pkgs, ... }: {
-  imports = [ ../../modules ./hardware-configuration.nix ];
+  imports = [ ../../modules/global.nix ../../modules ./hardware-configuration.nix ];
 
   # Cool simple Hyprland config
   cfg-desktop.enable = true;

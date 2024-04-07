@@ -55,6 +55,7 @@ let
 in
 {
   imports = [
+    ../../modules/global.nix
     ./hardware-configuration.nix
     (minecraftServerTemplate "minecraftserver1" "A stylish minecraft server")
     (minecraftServerTemplate "minecraftserverspruce" "A wooden minecraft server")
