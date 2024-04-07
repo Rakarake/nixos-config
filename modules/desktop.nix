@@ -1,5 +1,5 @@
 # Main "system config", common desktop settings go here
-{ lib, config, pkgs, ... }@attrs:
+{ lib, config, pkgs, outputs, ... }@attrs:
 with lib;                      
 let
   cfg = config.cfg-desktop;
@@ -78,6 +78,7 @@ in {
       smile # Emoji picker
       comma
       nix-tree
+      outputs.packages.${system}.amogus
 
       # Wine
       wineWowPackages.staging
