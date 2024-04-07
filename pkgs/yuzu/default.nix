@@ -28,7 +28,7 @@
 , callPackage
 , qt6Packages
 }:
-with qt6Packages; stdenv.mkDerivation(finalAttrs: {
+stdenv.mkDerivation(finalAttrs: {
   pname = "yuzu";
   version = "1727";
 
@@ -44,8 +44,8 @@ with qt6Packages; stdenv.mkDerivation(finalAttrs: {
     cmake
     glslang
     pkg-config
-    qttools
-    wrapQtAppsHook
+    qt6Packages.qttools
+    qt6Packages.wrapQtAppsHook
   ];
 
   buildInputs = [
@@ -76,9 +76,9 @@ with qt6Packages; stdenv.mkDerivation(finalAttrs: {
     # intentionally omitted: LLVM - heavy, only used for stack traces in the debugger
     lz4
     nlohmann_json
-    qtmultimedia
-    qtwayland
-    qtwebengine
+    qt6Packages.qtmultimedia
+    qt6Packages.qtwayland
+    qt6Packages.qtwebengine
     # intentionally omitted: renderdoc - heavy, developer only
     SDL2
     # not packaged in nixpkgs: simpleini
@@ -141,7 +141,7 @@ with qt6Packages; stdenv.mkDerivation(finalAttrs: {
 
     # provide pre-downloaded tz data
     mkdir -p build/externals/nx_tzdb
-    ln -s ${callPackage ./nx_tzdb} build/externals/nx_tzdb/nx_tzdb
+    ln -s ${callPackage ./nx_tzdb.nix { }} build/externals/nx_tzdb/nx_tzdb
   '';
 
   # This must be done after cmake finishes as it overwrites the file

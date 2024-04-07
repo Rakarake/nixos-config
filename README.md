@@ -8,12 +8,15 @@ build a live ISO image.
 
 `sudo nixos-rebuild switch --flake '.#hostname'` to rebuild system with the right hostname.
 
-`nix flake update` to update.
-
-`nix flake lock --update-input dev-stuff` to update flake input 'dev-stuff'.
+`home-manager switch --flake .` to initiate home-manager, in order to get aliases etc
+(after that `hmrebuild` can be used).
 
 `sudo nixos-rebuild switch --flake .` to apply configuration.
 `rebuild` to apply configuration when using configuration.
+
+`nix flake update` to update, requires rebuild to apply.
+
+`nix flake lock --update-input dev-stuff` to update flake input 'dev-stuff'.
 
 `nix-collect-garbage --delete-older-than 10d` to clean the nix store.
 
