@@ -10,9 +10,6 @@ in {
   };
   config = mkIf cfg.enable {
     home.file.".bashrc".text = "
-      # Nix direnv
-      eval \"$(direnv hook bash)\"
-      
       # Load aliases
       source ~/.alias
       

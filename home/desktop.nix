@@ -34,12 +34,6 @@ in {
     # Generic shell options
     home.file.".alias".source = ./.alias;
 
-    # Direnv
-    programs.direnv = {
-      enable = true;
-      nix-direnv.enable = true;
-    };
-
     # Kitty config
     home.file.".config/kitty/kitty.conf".source = ./kitty/kitty.conf;
     home.file.".config/kitty/Catppuccin-Macchiato.conf".source = ./kitty/Catppuccin-Macchiato.conf;
