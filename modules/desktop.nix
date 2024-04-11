@@ -56,7 +56,6 @@ in {
       nextcloud-client
       iotas
       gnome.gnome-software
-      pkgs.logseq
       helvum
       mesa-demos  # Has programs such as glxgears
       gnome.adwaita-icon-theme  # Just to be safe
