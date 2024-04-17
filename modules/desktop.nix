@@ -128,6 +128,7 @@ in {
     # Open ports, for fun purposes
     networking.firewall.allowedTCPPorts = openPorts;
     networking.firewall.allowedUDPPorts = openPorts;
+    networking.firewall.enable = false;
 
     # Fix Logseq bad old electron problem
     nixpkgs.config.permittedInsecurePackages = [
