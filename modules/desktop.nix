@@ -5,7 +5,7 @@ let
   cfg = config.cfg-desktop;
   # For fun ports to play with
   # React uses 3000 by default
-  openPorts = [ 1337 1338 1339 3000 ];
+  #openPorts = [ 1337 1338 1339 3000 ];
 in {
   options.cfg-desktop = {
     enable = mkEnableOption "Common desktop configuration";
@@ -126,8 +126,6 @@ in {
     programs.virt-manager.enable = true;
 
     # Open ports, for fun purposes
-    networking.firewall.allowedTCPPorts = openPorts;
-    networking.firewall.allowedUDPPorts = openPorts;
     networking.firewall.enable = false;
 
     # Fix Logseq bad old electron problem
@@ -213,8 +211,8 @@ in {
     # Steam
     programs.steam = {
       enable = true;
-      remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-      dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+      #remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+      #dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
     };
     hardware.steam-hardware.enable = true;  # To enable steam controller etc.
     nixpkgs.config.packageOverrides = pkgs: {
