@@ -78,6 +78,8 @@ in {
       comma
       nix-tree
       outputs.packages.${system}.amogus
+      man-pages
+      man-pages-posix
 
       # Wine
       wineWowPackages.staging
@@ -112,6 +114,9 @@ in {
       celluloid
       gnome.gnome-sound-recorder
     ];
+
+    # Development man-pages for packages
+    documentation.dev.enable = true;
 
     # Linux kernel package
     #boot.kernelPackages = pkgs.linuxPackages_latest;
