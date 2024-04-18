@@ -94,7 +94,7 @@ in {
       exec-once = sleep 5 ; nextcloud
       exec-once = sleep 5 ; blueman-applet
       exec-once = sleep 5 ; nm-applet
-      exec-once = swaybg -i ~/Pictures/Wallpapers/wallpaper
+      exec-once = swaybg -i ~/Pictures/wallpaper
       exec-once = swaync
       exec-once = gsettings set org.gnome.nm-applet disable-disconnected-notifications "true"
       exec-once = gsettings set org.gnome.nm-applet disable-connected-notifications "true"
