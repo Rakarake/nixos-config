@@ -32,8 +32,52 @@ in {
     # Bash config
     home-bash.enable = true;
 
-    # Generic shell options
-    home.file.".alias".source = ./.alias;
+    # Shell aliases
+    home.shellAliases = {
+      g = "git";
+      e = "nvim";
+      open = "xdg-open";
+      "\":q\"" = "exit";
+      "\"..\"" = "cd ..";
+      cp = "cp -v";
+      mv = "mv -v";
+      rm = "rm -v";
+      ncmpcpp = "echo 'trying mpd: ' ; mpd ; ncmpcpp";
+      bat = "bat --theme=base16";
+      die = "sudo shutdown now";
+      
+      # Projects
+      p = "cd ~/Projects";
+      
+      # Open new terminal in directory
+      gg = "gnome-terminal . &";
+      xx = "kgx & disown";
+      aa = "alacritty & disown";
+      kk = "kitty & disown";
+      
+      # Networking
+      iplist = "nmap -sP 192.168.1.1/24";
+      
+      # VSCode/Codium
+      codew = "NIXOS_OZONE_WL=1 code";
+      codiw = "NIXOS_OZONE_WL=1 codium";
+      
+      # Nix Fast
+      n = "cd ~/Projects/nixos-config";
+      flake = "nix flake";
+      nd = "nix develop";
+      rebuild = "sudo nixos-rebuild switch --flake .";
+      hmrebuild = "home-manager switch --flake .";
+      rebuildboot = "sudo nixos-rebuild boot --flake .";
+    };
+
+    # Session variables
+    systemd.user.sessionVariables = {
+      EDITOR = "nvim";
+      VISUAL = "nvim";
+      BROWSER = "firefox";
+      MANPAGER= "nvim +Man!";
+    };
 
     # Kitty config
     home.file.".config/kitty/kitty.conf".source = ./kitty/kitty.conf;
@@ -57,6 +101,18 @@ in {
         user = {
           signingKey = "98CF6C24F40B3531!";
         };
+      };
+      aliases = {
+        co = "checkout";
+        b = "branch";
+        c = "commit";
+        s = "status";
+        r = "remote";
+        l = "log";
+        cl = "clone";
+        p = "pull";
+        f = "fetch";
+        sh = "show";
       };
     };
 
