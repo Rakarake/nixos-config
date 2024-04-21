@@ -22,7 +22,7 @@ in {
     # Option to enable Hyprland config
     enable = mkEnableOption "Custom Hyprland system configuration";
     # Monitor and their workspaces, if relevant
-    monitorAndWorkspaceConfig = mkOption {
+    additionalConfig = mkOption {
       type = types.str;
       default = "";
     };
@@ -103,7 +103,7 @@ in {
       # Default for non specified monitors
       monitor=,preferred,auto,1
 
-      ${cfg.monitorAndWorkspaceConfig}
+      ${cfg.additionalConfig}
 
       input {
         kb_layout=us,se

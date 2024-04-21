@@ -66,9 +66,9 @@ in {
       n = "cd ~/Projects/nixos-config";
       flake = "nix flake";
       nd = "nix develop";
-      rebuild = "sudo nixos-rebuild switch --flake .";
-      hmrebuild = "home-manager switch --flake .";
-      rebuildboot = "sudo nixos-rebuild boot --flake .";
+      rebuild = "nh os switch .";
+      hmrebuild = "nh home switch .";
+      rebuildboot = "nh os boot .";
     };
 
     # Session variables
@@ -103,6 +103,7 @@ in {
         };
       };
       aliases = {
+        a = "add";
         co = "checkout";
         b = "branch";
         c = "commit";

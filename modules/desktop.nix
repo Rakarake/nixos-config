@@ -1,5 +1,5 @@
 # Main "system config", common desktop settings go here
-{ lib, config, pkgs, outputs, ... }@attrs:
+{ lib, config, pkgs, outputs, inputs, ... }:
 with lib;                      
 let
   cfg = config.cfg-desktop;
@@ -28,7 +28,7 @@ in {
       htop
       btop
       neo-cowsay
-      attrs.inputs.queercat.defaultPackage.${system}
+      inputs.queercat.defaultPackage.${system}
       powertop  # Power usage inspector
       kitty
       sl
@@ -115,8 +115,20 @@ in {
       gnome.gnome-sound-recorder
     ];
 
+    # Nh
+    programs.nh = {
+      enable = true;
+    };
+
     # Development man-pages for packages
     documentation.dev.enable = true;
+
+    # Fwupd, firmware updater
+    # fwupdmgr get-devices - to get devices
+    # fwupdmgr refresh - to download metadata
+    # fwupdmgr get-updates - to see which devices can be updated
+    # fwupdmgr update - to update devices (now or at boot)
+    services.fwupd.enable = true;
 
     # Linux kernel package
     #boot.kernelPackages = pkgs.linuxPackages_latest;

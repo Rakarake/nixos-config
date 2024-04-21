@@ -5,7 +5,7 @@
   home-hyprland = {
     enable = true;
     useSwayidle = false;
-    monitorAndWorkspaceConfig =
+    additionalConfig =
     let
       mainMonitor = "DP-1";
       leftMonitor = "DP-2";
