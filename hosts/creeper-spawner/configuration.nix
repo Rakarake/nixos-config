@@ -162,6 +162,7 @@ in
     bcachefs-tools
     neofetch
     cloudflared
+    ffmpeg
   ];
 
   # Fonts

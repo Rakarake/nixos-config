@@ -5,6 +5,7 @@
 with lib;
 let
   cfg = config.home-desktop;
+  # Custom packages defined in the toplevel flake
   cpkgs = outputs.packages.${pkgs.system};
 in {
   imports = [
@@ -133,12 +134,36 @@ in {
 
     # Programming packages
     home.packages = with pkgs; [
+      # General applications
+      steam-run
+      steamtinkerlaunch
+      mangohud
+      obs-studio
+      protonup-qt
+      baobab
+      discord
+      webcord
+      helvum
+      nicotine-plus
+      ardour
+      r2modman
+      unityhub
+      openttd
+      pkgs.osu-lazer
+      superTuxKart
+      prismlauncher
+      gamescope
+      audacity
+      mullvad-vpn
+      fragments
+      blender
+      logseq
+
       # HTML / CSS / JSON / ESLint language server
       vscode-langservers-extracted
 
       # C / C++
       ccls          # A C/C++ language server
-      mpi           # C message passing
 
       # Haskell
       haskell-language-server
@@ -153,11 +178,7 @@ in {
       rustfmt
       rust-analyzer # Rust language server
 
-      # Python
-      python3
-
       # Lua
-      lua
       lua-language-server
 
       # Go
@@ -167,7 +188,6 @@ in {
       (agda.withPackages [ agdaPackages.standard-library ])
 
       # Typst
-      typst
       typst-lsp
 
       # WGSL

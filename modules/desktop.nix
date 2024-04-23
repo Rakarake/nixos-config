@@ -18,7 +18,6 @@ in {
       ripgrep
       wget
       gnumake
-      zsh
       git
       git-lfs
       openssh
@@ -39,60 +38,34 @@ in {
       timidity    # MIDI CLI player
       freepats    # MIDI soundfont
       btrfs-progs
-      pkgs.steam-run
-      pkgs.steamtinkerlaunch
       distrobox
-      mangohud
-      obs-studio
       pandoc
-      protonup-qt
-      baobab
       pavucontrol
       gparted
-      pkgs.discord
-      linuxPackages_latest.perf
       gamemode
       tmux
       nextcloud-client
-      iotas
       gnome.gnome-software
-      helvum
       mesa-demos  # Has programs such as glxgears
       gnome.adwaita-icon-theme  # Just to be safe
-      webcord
-      pulseaudioFull  # Nice libraries, used by pulseshitter
       mpv
+      vlc
       imv
+      linuxPackages_latest.perf # Performance metrics
       impression    # Boot drive creator
-      nicotine-plus
       nix-index     # For working with /nix/store
-      ardour
-      r2modman
       appimage-run
       libnotify
       wireshark
-      unityhub
       libresprite
       qemu
-      smile # Emoji picker
       comma
+      smile # Emoji picker
       nix-tree
       outputs.packages.${system}.amogus
       man-pages
       man-pages-posix
-
-      # Wine
       wineWowPackages.staging
-
-      # Other
-      openttd
-      pkgs.osu-lazer
-      superTuxKart
-      prismlauncher
-      gamescope
-
-      vlc
-      audacity
       libreoffice-qt
       onlyoffice-bin
       hunspell                 # Libreoffice spelling
@@ -103,16 +76,12 @@ in {
       firefox
       ungoogled-chromium
       thunderbird
-      blender
       qpwgraph
       strawberry
       easyeffects
-      mullvad-vpn
-      fragments
       gnome.gnome-mines
-      mission-center
-      celluloid
       gnome.gnome-sound-recorder
+      ffmpeg
     ];
 
     # Nh
