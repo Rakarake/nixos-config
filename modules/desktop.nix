@@ -189,6 +189,8 @@ in {
         # Required for containers under podman-compose to be able to talk to each other.
         defaultNetwork.settings.dns_enabled = true;
       };
+      # Virtualbox
+      virtualbox.host.enable = true;
     };
 
     # Wireshark
@@ -300,7 +302,7 @@ in {
     users.users.rakarake = {
       isNormalUser = true;
       description = "Rakarake";
-      extraGroups = [ "networkmanager" "wheel" "adbusers" "docker" "wireshark" "davfs2" "libvirtd" ];
+      extraGroups = [ "networkmanager" "wheel" "adbusers" "docker" "wireshark" "davfs2" "libvirtd" "vboxusers" ];
     };
 
     # Mullvad Service
