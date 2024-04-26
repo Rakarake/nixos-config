@@ -113,6 +113,7 @@ in {
         l = "log";
         cl = "clone";
         p = "pull";
+        pu = "push";
         f = "fetch";
         sh = "show";
       };
