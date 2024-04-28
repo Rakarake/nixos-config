@@ -18,6 +18,7 @@ let
     prt4             = 8004;
     prt5             = 8005;
   };
+  grafanaLocalPort = 2344;
 
   # Hostnames
   hostnames = {
@@ -25,6 +26,7 @@ let
     nextcloud = "nextcloud.rakarake.xyz";
     #onlyoffice = "onlyoffice.rakarake.xyz";
     git = "git.rakarake.xyz";
+    grafana = "grafana.rakarake.xyz";
   };
 
   # Minecraft server module template
@@ -211,12 +213,13 @@ in
         enableACME = true;  # Let's encrypt TLS automated, not certbot
       };
 
-      #${hostnames.graphana} = {
-      #  locations."/" = {
-      #    proxyPass = "http://127.0.0.1:${toString ports.graphana}";
-      #    proxyWebsockets = true;
-      #  };
-      #};
+      # Grafana
+      ${hostnames.grafana} = {
+        locations."/" = {
+          proxyPass = "http://127.0.0.1:${toString ports.graphana}";
+          proxyWebsockets = true;
+        };
+      };
 
       ## Onlyoffice
       #${hostnames.onlyoffice} = {
