@@ -200,6 +200,7 @@ in
       http_port = ports.graphana;
       http_addr = "127.0.0.1";
       root_url = "https://rakarake.xyz/grafana";
+      serve_from_sub_path = true;
     };
   };
 
@@ -212,16 +213,6 @@ in
       ${hostnames.nextcloud} = {
         forceSSL = true;
         enableACME = true;  # Let's encrypt TLS automated, not certbot
-      };
-
-      # Grafana
-      ${hostnames.grafana} = {
-        forceSSL = true;
-        enableACME = true;
-        locations."/" = {
-          proxyPass = "http://127.0.0.1:${toString ports.graphana}";
-          proxyWebsockets = true;
-        };
       };
 
       ## Onlyoffice
@@ -248,6 +239,7 @@ in
         locations."/grafana" = {
           proxyPass = "http://127.0.0.1:${toString ports.graphana}";
           proxyWebsockets = true;
+          recommendedProxySettings = true;
         };
       };
     };
