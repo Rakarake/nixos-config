@@ -193,8 +193,10 @@ in
   services.grafana = {
     enable = true;
     #domain = "grafana.rakarake.xyz";
-    settings.server.http_port = 2344;
-    addr = "127.0.0.1";
+    settings.server = {
+      http_port = 2344;
+      http_addr = "127.0.0.1";
+    };
   };
 
   # Nginx Config
