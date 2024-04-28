@@ -199,6 +199,7 @@ in
     settings.server = {
       http_port = ports.graphana;
       http_addr = "127.0.0.1";
+      root_url = "https://rakarake.xyz/grafana";
     };
   };
 
