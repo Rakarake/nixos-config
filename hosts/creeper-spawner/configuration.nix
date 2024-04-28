@@ -164,6 +164,7 @@ in
     neofetch
     cloudflared
     ffmpeg
+    waypipe
   ];
 
   # Fonts
@@ -194,7 +195,7 @@ in
     enable = true;
     #domain = "grafana.rakarake.xyz";
     settings.server = {
-      http_port = 2344;
+      http_port = ports.graphana;
       http_addr = "127.0.0.1";
     };
   };
