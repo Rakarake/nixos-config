@@ -10,6 +10,7 @@ let
     #onlyoffice       = 8000;
     wireguard        = 51820;
     misc             = 1337;
+    graphana         = 2344;
 
     minecraft-spruce = 8001;
     prt2             = 8002;
@@ -188,6 +189,14 @@ in
     ports = [ ports.ssh ];
   };
 
+  # Graphana
+  services.grafana = {
+    enable = true;
+    #domain = "grafana.rakarake.xyz";
+    port = 2342;
+    addr = "127.0.0.1";
+  };
+
   # Nginx Config
   services.nginx = {
     enable = true;
@@ -198,6 +207,13 @@ in
         forceSSL = true;
         enableACME = true;  # Let's encrypt TLS automated, not certbot
       };
+
+      #${hostnames.graphana} = {
+      #  locations."/" = {
+      #    proxyPass = "http://127.0.0.1:${toString ports.graphana}";
+      #    proxyWebsockets = true;
+      #  };
+      #};
 
       ## Onlyoffice
       #${hostnames.onlyoffice} = {
