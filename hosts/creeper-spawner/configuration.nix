@@ -236,11 +236,18 @@ in
       #  locations."/".proxyPass = "http://unix:/run/gitlab/gitlab-workhorse.socket";
       #};
 
-      # Homepage
       ${hostnames.website} = {
+        # When not using cloudflare tunnel
         #forceSSL = true;
         #enableACME = true;
-        root = "/var/www/${hostnames.website}/public";
+
+        # Homepage
+        locations."/".root = "/var/www/${hostnames.website}/public";
+        # Grafana stats visualizer
+        locations."/grafana" = {
+          proxyPass = "http://127.0.0.1:${toString ports.graphana}";
+          proxyWebsockets = true;
+        };
       };
     };
   };
