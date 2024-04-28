@@ -193,7 +193,7 @@ in
   services.grafana = {
     enable = true;
     #domain = "grafana.rakarake.xyz";
-    port = 2342;
+    settings.server.http_port = 2344;
     addr = "127.0.0.1";
   };
 
