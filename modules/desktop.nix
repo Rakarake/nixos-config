@@ -82,6 +82,7 @@ in {
       gnome.gnome-mines
       gnome.gnome-sound-recorder
       ffmpeg
+      waypipe
     ];
 
     # Nh
