@@ -13,148 +13,9 @@ in {
         enable = false;
         target = "graphical-session.target";
       };
-      style = ''
-               * {
-                 font-family: "JetBrainsMono Nerd Font";
-                 font-size: 12pt;
-                 font-weight: bold;
-                 transition-property: background-color;
-                 transition-duration: 0.5s;
-               }
-               button {
-                 border-radius: 8px;
-               }
-               @keyframes blink_red {
-                 to {
-                   background-color: rgb(242, 143, 173);
-                   color: rgb(26, 24, 38);
-                 }
-               }
-               .warning, .critical, .urgent {
-                 animation-name: blink_red;
-                 animation-duration: 1s;
-                 animation-timing-function: linear;
-                 animation-iteration-count: infinite;
-                 animation-direction: alternate;
-               }
-               window#waybar {
-                 background-color: transparent;
-               }
-               window > box {
-                 background-color: #1e1e2a;
-                 padding: 3px;
-                 padding-left:8px;
-                 border: 0px none #33ccff;
-               }
-         #workspaces {
-                 padding-left: 4px;
-                 padding-right: 4px;
-               }
-         #workspaces button {
-                 padding-top:    0px;
-                 padding-bottom: 0px;
-                 padding-left:   2px;
-                 padding-right:  2px;
-                 margin-left:    2px;
-                 margin-right:   2px;
-               }
-         #workspaces button.active {
-                 background-color: rgb(181, 232, 224);
-                 color: rgb(26, 24, 38);
-               }
-         #workspaces button.urgent {
-                 color: rgb(26, 24, 38);
-               }
-         #workspaces button:hover {
-                 background-color: rgb(248, 189, 150);
-                 color: rgb(26, 24, 38);
-               }
-               tooltip {
-                 background: rgb(48, 45, 65);
-               }
-               tooltip label {
-                 color: rgb(217, 224, 238);
-               }
-         #custom-launcher {
-                 font-size: 20px;
-                 padding-left: 8px;
-                 padding-right: 6px;
-                 color: #7ebae4;
-               }
-         #mode, #clock, #memory, #temperature,#cpu,#mpd, #custom-wall, #temperature, #backlight, #pulseaudio, #network, #battery, #idle_inhibitor, #custom-powermenu, #custom-cava-internal, #custom-workspace-left, #custom-workspace-right {
-                 padding-left: 10px;
-                 padding-right: 10px;
-               }
-               /* #mode { */
-               /* 	margin-left: 10px; */
-               /* 	background-color: rgb(248, 189, 150); */
-               /*     color: rgb(26, 24, 38); */
-               /* } */
-         #battery {
-                 color: rgb(181, 232, 224);
-                }
-         #memory {
-                 color: rgb(181, 232, 224);
-               }
-         #cpu {
-                 color: rgb(245, 194, 231);
-               }
-         #clock {
-                 color: rgb(217, 224, 238);
-               }
-         #idle_inhibitor {
-                 color: rgb(221, 182, 242);
-               }
-         #custom-wall {
-                 color: #33ccff;
-            }
-         #temperature {
-                 color: rgb(150, 205, 251);
-               }
-         #backlight {
-                 color: rgb(248, 189, 150);
-               }
-         #pulseaudio {
-                 color: rgb(245, 224, 220);
-               }
-         #network {
-                 color: #ABE9B3;
-               }
-         #network.disconnected {
-                 color: rgb(255, 255, 255);
-               }
-         #custom-powermenu {
-                 color: rgb(242, 143, 173);
-                 padding-right: 8px;
-               }
-         #custom-workspace-left {
-                 color: rgb(181, 232, 224);
-               }
-         #custom-workspace-right {
-                 color: rgb(181, 232, 224);
-               }
-         #tray {
-                 padding-right: 8px;
-                 padding-left: 10px;
-               }
-         #mpd.paused {
-                 color: #414868;
-                 font-style: italic;
-               }
-         #mpd.stopped {
-                 background: transparent;
-               }
-         #mpd {
-                 color: #c0caf5;
-               }
-         #custom-cava-internal{
-                 font-family: "Hack Nerd Font" ;
-                 color: #33ccff;
-               }
-      '';
-      settings = [{
-        "layer" = "top";
-        "position" = "top";
+      settings.mainBar = {
+        layer = "top";
+        position = "top";
         modules-left = [
           "custom/launcher"
           "custom/workspace-left"
@@ -163,7 +24,6 @@ in {
           "temperature"
           "cpu"
           "memory"
-          #"custom/cava-internal"
         ];
         modules-center = [
           "clock"
@@ -177,15 +37,12 @@ in {
           "tray"
           "custom/powermenu"
         ];
+
         "custom/launcher" = {
           "format" = " ";
           "on-click" = "pkill rofi || rofi -show combi -modes combi -combi-modes \"window,drun,run\" -icon-theme \"Papirus\" -show-icons";
           "on-click-middle" = "exec default_wall";
           "on-click-right" = "exec wallpaper_random";
-          "tooltip" = false;
-        };
-        "custom/cava-internal" = {
-          "exec" = "#sleep 1s && cava-internal";
           "tooltip" = false;
         };
         "pulseaudio" = {
@@ -275,7 +132,148 @@ in {
             "deactivated" = "󰾪 ";
           };
         };
-      }];
+      };
+
+      style = ''
+        * {
+          font-family: "JetBrainsMono Nerd Font";
+          font-size: 12pt;
+          font-weight: bold;
+          transition-property: background-color;
+          transition-duration: 0.5s;
+        }
+        button {
+          border-radius: 8px;
+        }
+        @keyframes blink_red {
+          to {
+            background-color: rgb(242, 143, 173);
+            color: rgb(26, 24, 38);
+          }
+        }
+        .warning, .critical, .urgent {
+          animation-name: blink_red;
+          animation-duration: 1s;
+          animation-timing-function: linear;
+          animation-iteration-count: infinite;
+          animation-direction: alternate;
+        }
+        window#waybar {
+          background-color: transparent;
+        }
+        window > box {
+          background-color: #1e1e2a;
+          padding: 3px;
+          padding-left:8px;
+          border: 0px none #33ccff;
+        }
+
+        #workspaces {
+                padding-left: 4px;
+                padding-right: 4px;
+              }
+        #workspaces button {
+                padding-top:    0px;
+                padding-bottom: 0px;
+                padding-left:   2px;
+                padding-right:  2px;
+                margin-left:    2px;
+                margin-right:   2px;
+              }
+        #workspaces button.active {
+                background-color: rgb(181, 232, 224);
+                color: rgb(26, 24, 38);
+              }
+        #workspaces button.urgent {
+                color: rgb(26, 24, 38);
+              }
+        #workspaces button:hover {
+                background-color: rgb(248, 189, 150);
+                color: rgb(26, 24, 38);
+              }
+              tooltip {
+                background: rgb(48, 45, 65);
+              }
+              tooltip label {
+                color: rgb(217, 224, 238);
+              }
+        #custom-launcher {
+                font-size: 20px;
+                padding-left: 8px;
+                padding-right: 6px;
+                color: #7ebae4;
+              }
+        #mode, #clock, #memory, #temperature,#cpu,#mpd, #custom-wall, #temperature, #backlight, #pulseaudio, #network, #battery, #idle_inhibitor, #custom-powermenu, #custom-cava-internal, #custom-workspace-left, #custom-workspace-right {
+                padding-left: 10px;
+                padding-right: 10px;
+              }
+              /* #mode { */
+              /* 	margin-left: 10px; */
+              /* 	background-color: rgb(248, 189, 150); */
+              /*     color: rgb(26, 24, 38); */
+              /* } */
+        #battery {
+                color: rgb(181, 232, 224);
+               }
+        #memory {
+                color: rgb(181, 232, 224);
+              }
+        #cpu {
+                color: rgb(245, 194, 231);
+              }
+        #clock {
+                color: rgb(217, 224, 238);
+              }
+        #idle_inhibitor {
+                color: rgb(221, 182, 242);
+              }
+        #custom-wall {
+                color: #33ccff;
+           }
+        #temperature {
+                color: rgb(150, 205, 251);
+              }
+        #backlight {
+                color: rgb(248, 189, 150);
+              }
+        #pulseaudio {
+                color: rgb(245, 224, 220);
+              }
+        #network {
+                color: #ABE9B3;
+              }
+        #network.disconnected {
+                color: rgb(255, 255, 255);
+              }
+        #custom-powermenu {
+                color: rgb(242, 143, 173);
+                padding-right: 8px;
+              }
+        #custom-workspace-left {
+                color: rgb(181, 232, 224);
+              }
+        #custom-workspace-right {
+                color: rgb(181, 232, 224);
+              }
+        #tray {
+                padding-right: 8px;
+                padding-left: 10px;
+              }
+        #mpd.paused {
+                color: #414868;
+                font-style: italic;
+              }
+        #mpd.stopped {
+                background: transparent;
+              }
+        #mpd {
+                color: #c0caf5;
+              }
+        #custom-cava-internal{
+                font-family: "Hack Nerd Font" ;
+                color: #33ccff;
+              }
+      '';
     };
   };
 }

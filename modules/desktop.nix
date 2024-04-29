@@ -307,7 +307,7 @@ in {
     };
 
     # Mullvad Service
-    services.mullvad-vpn.enable = true;
+    #services.mullvad-vpn.enable = true;
 
     # Enable the flatpak service
     services.flatpak.enable = true;
