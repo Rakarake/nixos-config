@@ -32,6 +32,9 @@
   };
   boot.initrd.systemd.enable = true;
 
+  # Fans???
+  programs.coolercontrol.enable = true;
+
   # Enable SSD trimming
   services.fstrim = {
     enable = true;

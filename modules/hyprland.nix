@@ -59,7 +59,7 @@ in {
       # NixOS specific option for enabling wayland in Electron apps
       #NIXOS_OZONE_WL = "1";
       # Make QT use wayland
-      QT_QPA_PLATFORM = "wayland";
+      #QT_QPA_PLATFORM = "wayland";
     };
     # Enable "pam thingy" for swaylock so that it can unlock with password
     security.pam.services.swaylock = {};

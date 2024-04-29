@@ -17,7 +17,7 @@ in {
     };
 
     environment.variables = {
-      QT_QPA_PLATFORM = "wayland";
+      #QT_QPA_PLATFORM = "wayland";
     };
   };
 }
