@@ -11,6 +11,7 @@ let
     wireguard        = 51820;
     misc             = 1337;
     graphana         = 2344;
+    prometheus       = 9001;
 
     minecraft-spruce = 8001;
     prt2             = 8002;
@@ -18,7 +19,7 @@ let
     prt4             = 8004;
     prt5             = 8005;
   };
-  grafanaLocalPort = 2344;
+  prometheusNodePort = 9002;
 
   # Hostnames
   hostnames = {
@@ -202,6 +203,27 @@ in
       root_url = "https://rakarake.xyz/grafana";
       serve_from_sub_path = true;
     };
+  };
+
+  # Prometheus
+  services.prometheus = {
+    enable = true;
+    port = ports.prometheus;
+    exporters = {
+      node = {
+        enable = true;
+        enabledCollectors = [ "systemd" ];
+        port = prometheusNodePort;
+      };
+    };
+    scrapeConfigs = [
+      {
+        job_name = "creeper-gaming";
+        static_configs = [{
+          targets = [ "127.0.0.1:${toString prometheusNodePort}" ];
+        }];
+      }
+    ];
   };
 
   # Nginx Config
