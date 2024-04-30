@@ -12,6 +12,7 @@ let
     misc             = 1337;
     graphana         = 2344;
     prometheus       = 9001;
+    jellyfin         = 8096;
 
     minecraft-spruce = 8001;
     prt2             = 8002;
@@ -225,6 +226,22 @@ in
       }
     ];
   };
+
+  # Jellyfin
+  nixpkgs.config.packageOverrides = pkgs: {
+    vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
+  };
+  hardware.opengl = {
+    enable = true;
+    extraPackages = with pkgs; [
+      intel-media-driver
+      vaapiIntel
+      vaapiVdpau
+      libvdpau-va-gl
+      intel-compute-runtime # OpenCL filter support (hardware tonemapping and subtitle burn-in)
+    ];
+  };
+  services.jellyfin.enable = true;
 
   # Nginx Config
   services.nginx = {
