@@ -90,6 +90,11 @@
           modules = [ ./live.nix ];
           specialArgs = { inherit inputs outputs; };
         };
+        # MASS DESTRUCTION, oh yeah, baby baby
+        mass-destruction = nixpkgs-stable.lib.nixosSystem {
+          modules = [ ./hosts/mass-destruction/configuration.nix ];
+          specialArgs = { inherit inputs outputs; };
+        };
       };
 
       homeConfigurations = {
