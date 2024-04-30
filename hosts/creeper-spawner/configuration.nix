@@ -282,11 +282,11 @@ in
           proxyWebsockets = true;
           recommendedProxySettings = true;
         };
-        locations."/jellyfin" = {
-          proxyPass = "http://localhost:${toString ports.jellyfin}";
-          proxyWebsockets = true;
-          recommendedProxySettings = true;
-        };
+        #locations."/jellyfin" = {
+        #  proxyPass = "http://localhost:${toString ports.jellyfin}";
+        #  proxyWebsockets = true;
+        #  recommendedProxySettings = true;
+        #};
       };
     };
   };
