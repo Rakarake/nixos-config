@@ -241,7 +241,10 @@ in
       intel-compute-runtime # OpenCL filter support (hardware tonemapping and subtitle burn-in)
     ];
   };
-  services.jellyfin.enable = true;
+  services.jellyfin = {
+    enable = true;
+    dataDir = "/data/jellyfin";
+  };
 
   # Nginx Config
   services.nginx = {
