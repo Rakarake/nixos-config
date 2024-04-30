@@ -243,7 +243,6 @@ in
   };
   services.jellyfin = {
     enable = true;
-    dataDir = "/data/jellyfin";
   };
 
   # Nginx Config
@@ -279,7 +278,12 @@ in
         locations."/".root = "/var/www/${hostnames.website}/public";
         # Grafana stats visualizer
         locations."/grafana" = {
-          proxyPass = "http://127.0.0.1:${toString ports.graphana}";
+          proxyPass = "http://localhost:${toString ports.graphana}";
+          proxyWebsockets = true;
+          recommendedProxySettings = true;
+        };
+        locations."/jellyfin" = {
+          proxyPass = "http://localhost:${toString ports.jellyfin}";
           proxyWebsockets = true;
           recommendedProxySettings = true;
         };
