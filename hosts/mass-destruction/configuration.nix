@@ -31,7 +31,6 @@ in
     unzip
     zip
     tree
-    htop
     btop
     tmux
     jdk17
