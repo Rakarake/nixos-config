@@ -33,10 +33,10 @@ let
 
   # Minecraft server module template
   # Takes name, figures everything out itself, users, location (/var/<name>)
-  minecraftServerTemplate = name : description : {
+  minecraftServerTemplate = name : description : java-package : {
     systemd.services.${name} = {
       enable = true;
-      path = [ pkgs.coreutils pkgs.tmux pkgs.jdk17 ];
+      path = [ pkgs.coreutils pkgs.tmux java-package ];
       wantedBy = [ "multi-user.target" ]; 
       after = [ "network.target" ];
       description = description;
@@ -62,8 +62,8 @@ in
   imports = [
     ../../modules/global.nix
     ./hardware-configuration.nix
-    (minecraftServerTemplate "minecraftserver1" "A stylish minecraft server")
-    (minecraftServerTemplate "minecraftserverspruce" "A wooden minecraft server")
+    (minecraftServerTemplate "minecraftserver1" "A stylish minecraft server" pkgs.jdk22)
+    (minecraftServerTemplate "minecraftserverspruce" "A wooden minecraft server" pkgs.jdk17)
   ];
 
   # Wireguard
