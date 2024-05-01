@@ -79,12 +79,12 @@ in
   # Wireguard
   networking.wg-quick.interfaces = {
     wg0 = {
-      address = [ "10.0.1.2" ];
+      address = [ "10.0.1.69" ];
       listenPort = ports.wireguard;
       privateKeyFile = "/var/wireguard/privatekey";
       peers = [
         {
-          publicKey = "xKZgJ3UiCVnMwiQzbUce00Zn8Dvza31RNce5WngYrF8=";
+          publicKey = "51IbR93F5mYmGz+GKG1GNgXtOsbMqkDbUkTArDTxOQo=";
           allowedIPs = [ "10.0.1.1" ];
           endpoint = "172.232.146.169:51820";
           persistentKeepalive = 25;
