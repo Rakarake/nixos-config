@@ -76,6 +76,23 @@ in
     LC_TIME = "sv_SE.UTF-8";
   };
 
+  # Wireguard
+  networking.wg-quick.interfaces = {
+    wg0 = {
+      address = [ "10.0.1.2" ];
+      listenPort = ports.wireguard;
+      privateKeyFile = "/var/wireguard/privatekey";
+      peers = [
+        {
+          publicKey = "xKZgJ3UiCVnMwiQzbUce00Zn8Dvza31RNce5WngYrF8=";
+          allowedIPs = [ "10.0.1.1" ];
+          endpoint = "172.232.146.169:51820";
+          persistentKeepalive = 25;
+        }
+      ];
+    };
+  };
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users = {
     motd = "The battleground is right here.";
