@@ -4,6 +4,7 @@ let
   # Open TCP/UDP ports
   ports = {
     ssh              = 22;
+    wireguard        = 51820;
   };
 in
 {
