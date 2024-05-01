@@ -34,6 +34,9 @@ set the 'package channel' to nixos-unstable (not system config).
 A file containing the names of the system's "packages" can be found after
 rebuild at `/etc/current-system-packages`.
 
+## Server stuff
+`tmux -S /var/<name-of-server>/tmux.socket attach` to to enter the server console
+
 ## New configurations
 Remember to include `modules/default.nix` (makes options available) and `modules/global.nix`
 (important global options).
