@@ -152,13 +152,17 @@ in {
       openttd
       pkgs.osu-lazer
       superTuxKart
-      prismlauncher
       gamescope
       audacity
       mullvad-vpn
       fragments
       blender
       logseq
+      inkscape
+
+      # Minecraft time
+      prismlauncher
+      jdk21
 
       # HTML / CSS / JSON / ESLint language server
       vscode-langservers-extracted
