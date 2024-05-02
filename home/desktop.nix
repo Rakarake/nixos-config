@@ -1,7 +1,7 @@
 # My cozy home UwU
 # Some config must be anbled manually, such as the gnome-config.
 # This is done so that e.g. gnome and kde settings don't clash.
-{ lib, config, pkgs, inputs, outputs , ... }:
+{ lib, config, pkgs, inputs, outputs, self, ... }:
 with lib;
 let
   cfg = config.home-desktop;
@@ -46,6 +46,9 @@ in {
       ncmpcpp = "echo 'trying mpd: ' ; mpd ; ncmpcpp";
       bat = "bat --theme=base16";
       die = "sudo shutdown now";
+
+      # Swag
+      uwu = "fastfetch --logo-width 40 --logo-height 20 --kitty-direct ${self}/logo.png";
       
       # Projects
       p = "cd ~/Projects";

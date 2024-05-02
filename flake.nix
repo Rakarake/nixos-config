@@ -107,7 +107,7 @@
         "rakarake@rakarake-pc" = home-manager.lib.homeManagerConfiguration {
           modules = [ ./hosts/rakarake-pc/home.nix ];
           pkgs = (pkgsFor nixpkgs-unstable).x86_64-linux;
-          extraSpecialArgs = { inherit inputs outputs; };
+          extraSpecialArgs = { inherit inputs outputs self; };
         };
       };
     };
