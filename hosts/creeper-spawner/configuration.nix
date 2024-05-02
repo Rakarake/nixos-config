@@ -66,6 +66,7 @@ in
     ./hardware-configuration.nix
     (minecraftServerTemplate "minecraftserver1" "A stylish minecraft server" pkgs.jdk21)
     (minecraftServerTemplate "minecraftserverspruce" "A wooden minecraft server" pkgs.jdk17)
+    (minecraftServerTemplate "minecraftserver-create" "A creative minecraft server" pkgs.jdk17)
   ];
 
   # Wireguard

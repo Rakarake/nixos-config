@@ -48,7 +48,7 @@ in {
       die = "sudo shutdown now";
 
       # Swag
-      uwu = "fastfetch --logo-width 40 --logo-height 20 --kitty-direct ${self}/logo.png";
+      uwu = "${pkgs.fastfetch}/bin/fastfetch --logo-width 40 --logo-height 20 --kitty-direct ${self}/logo.png";
       
       # Projects
       p = "cd ~/Projects";
