@@ -63,6 +63,7 @@
           config.allowUnfree = true;
         }
       );
+      args = { inherit inputs outputs self; };
     in
     {
       nixosModules = import ./modules;
@@ -73,27 +74,27 @@
         # Lappy
         rakarake-thinkpad = nixpkgs-unstable.lib.nixosSystem {
           modules = [ ./hosts/rakarake-thinkpad/configuration.nix ];
-          specialArgs = { inherit inputs outputs; };
+          specialArgs = args;
         };
         # Desky
         rakarake-pc = nixpkgs-unstable.lib.nixosSystem {
           modules = [ ./hosts/rakarake-pc/configuration.nix ];
-          specialArgs = { inherit inputs outputs; };
+          specialArgs = args;
         };
         # Server
         creeper-spawner = nixpkgs-stable.lib.nixosSystem {
           modules = [ ./hosts/creeper-spawner/configuration.nix ];
-          specialArgs = { inherit inputs outputs; };
+          specialArgs = args;
         };
         # Live configurations for when you wanna put NixOS on a USB-stick
         live = nixpkgs-unstable.lib.nixosSystem {
           modules = [ ./live.nix ];
-          specialArgs = { inherit inputs outputs; };
+          specialArgs = args;
         };
         # MASS DESTRUCTION, oh yeah, baby baby
         mass-destruction = nixpkgs-stable.lib.nixosSystem {
           modules = [ ./hosts/mass-destruction/configuration.nix ];
-          specialArgs = { inherit inputs outputs; };
+          specialArgs = args;
         };
       };
 
@@ -102,12 +103,12 @@
         "rakarake@rakarake-thinkpad" = home-manager.lib.homeManagerConfiguration {
           modules = [ ./hosts/rakarake-thinkpad/home.nix ];
           pkgs = (pkgsFor nixpkgs-unstable).x86_64-linux;
-          extraSpecialArgs = { inherit inputs outputs; };
+          extraSpecialArgs = args;
         };
         "rakarake@rakarake-pc" = home-manager.lib.homeManagerConfiguration {
           modules = [ ./hosts/rakarake-pc/home.nix ];
           pkgs = (pkgsFor nixpkgs-unstable).x86_64-linux;
-          extraSpecialArgs = { inherit inputs outputs self; };
+          extraSpecialArgs = args;
         };
       };
     };
