@@ -4,7 +4,6 @@ let
   # Open TCP/UDP ports
   ports = {
     ssh              = 22;
-    minecraft        = 25565;
     http             = 80;
     https            = 443;
     #onlyoffice       = 8000;
@@ -14,7 +13,10 @@ let
     prometheus       = 9001;
     jellyfin         = 8096;
 
+    minecraft        = 25565;
     minecraft-spruce = 8001;
+    minecraft-create = 8069;
+
     prt2             = 8002;
     prt3             = 8003;
     prt4             = 8004;
