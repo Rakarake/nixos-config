@@ -31,7 +31,6 @@ in
     unzip
     zip
     tree
-    htop
     btop
     tmux
     jdk17
@@ -74,6 +73,23 @@ in
     LC_PAPER = "sv_SE.UTF-8";
     LC_TELEPHONE = "sv_SE.UTF-8";
     LC_TIME = "sv_SE.UTF-8";
+  };
+
+  # Wireguard
+  networking.wg-quick.interfaces = {
+    wg0 = {
+      address = [ "10.0.1.69" ];
+      listenPort = ports.wireguard;
+      privateKeyFile = "/var/wireguard/privatekey";
+      peers = [
+        {
+          publicKey = "51IbR93F5mYmGz+GKG1GNgXtOsbMqkDbUkTArDTxOQo=";
+          allowedIPs = [ "10.0.1.1" ];
+          endpoint = "172.232.146.169:51820";
+          persistentKeepalive = 25;
+        }
+      ];
+    };
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
