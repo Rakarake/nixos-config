@@ -1,3 +1,5 @@
+![logo](logo.png)
+
 # NixOS Config
 This cool nixos system config uses flakes.
 
