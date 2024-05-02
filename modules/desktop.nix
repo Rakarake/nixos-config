@@ -21,7 +21,7 @@ in {
       git
       git-lfs
       openssh
-      neofetch
+      fastfetch
       onefetch
       bat
       htop
