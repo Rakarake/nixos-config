@@ -38,7 +38,7 @@ let
   minecraftServerTemplate = name : description : java-package : {
     systemd.services.${name} = {
       enable = true;
-      path = [ pkgs.coreutils pkgs.tmux java-package ];
+      path = [ pkgs.coreutils pkgs.tmux pkgs.bash java-package ];
       wantedBy = [ "multi-user.target" ]; 
       after = [ "network.target" ];
       description = description;
