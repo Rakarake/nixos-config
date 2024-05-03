@@ -2,7 +2,6 @@
 # Some config must be anbled manually, such as the gnome-config.
 # This is done so that e.g. gnome and kde settings don't clash.
 { lib, config, pkgs, inputs, outputs, self, ... }:
-with lib;
 let
   cfg = config.home-desktop;
   # Custom packages defined in the toplevel flake
@@ -15,10 +14,10 @@ in {
   ];
 
   options.home-desktop = {
-    enable = mkEnableOption "Cozy home desktop (or laptop (or anything else)) config";
+    enable = lib.mkEnableOption "Cozy home desktop (or laptop (or anything else)) config";
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     home.username = "rakarake";
     home.homeDirectory = "/home/rakarake";
     home.stateVersion = "23.05";
@@ -145,8 +144,7 @@ in {
       obs-studio
       protonup-qt
       baobab
-      discord
-      webcord
+      vesktop
       helvum
       nicotine-plus
       ardour
@@ -207,54 +205,32 @@ in {
       cpkgs.yuzu
     ];
 
-    # Godot single single window
-    xdg.desktopEntries.godotOneWindow = {
-      name = "Godot 4 Single Window";
-      genericName = "Godot 4 Single Window";
-      exec = "godot4 --single-window";
-    };
-
-    # Logseq Wayland
-    xdg.desktopEntries.logseqWayland = {
-      name = "Logseq Wayland";
-      genericName = "Logseq Wayland";
-      exec = "logseq --ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-webrtc-pipewire-capturer";
-    };
-
-    # Discord Wayland
-    xdg.desktopEntries.discordWayland = {
-      name = "Discord Wayland";
-      genericName = "Discord Wayland";
-      exec = "discord --ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-webrtc-pipewire-capturer";
-    };
-
-    # Webcord Wayland
-    xdg.desktopEntries.webcordWayland = {
-      name = "Webcord Wayland";
-      genericName = "Webcord Wayland";
-      exec = "webcord --ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-webrtc-pipewire-capturer";
-    };
-    
-    # Steam Gamescope
-    xdg.desktopEntries.steamGamescope = {
-      name = "Steam Gamescope";
-      genericName = "Steam";
-      # -e enables steam integration, -f fullscreens the window by default
-      exec = "gamescope -W 1920 -H 1080 --adaptive-sync -f -r 600 -e -- steam";
-    };
-
-    # VSCode Wayland
-    xdg.desktopEntries.vscodeWayland = {
-      name = "VSCode Wayland";
-      genericName = "VSCode Wayland";
-      exec = "code --ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-webrtc-pipewire-capturer";
-    };
-
-    # VSCode Wayland
-    xdg.desktopEntries.vscodiumWayland = {
-      name = "VSCodium Wayland";
-      genericName = "VSCode Wayland";
-      exec = "codium --ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-webrtc-pipewire-capturer";
-    };
+    xdg.desktopEntries =
+    let
+      # A desktop entry that launches an electron app with ozone turned on
+      electronWaylandApp = name : {
+        name = "${name} wayland";
+        exec = "${name} --ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-webrtc-pipewire-capturer";
+      };
+      # Takes a list of executable names and makes wayland desktop entries for them
+      makeElectronWaylandApps = appNames : (lib.listToAttrs (map (name : { name = "${name}Wayland"; value = electronWaylandApp name; }) appNames));
+    in {
+      godotSingleWindow = {
+        name = "Godot 4 Single Window";
+        genericName = "Godot 4 Single Window";
+        exec = "godot4 --single-window";
+      };
+      steamGamescope = {
+        name = "Steam Gamescope";
+        genericName = "Steam";
+        # -e enables steam integration, -f fullscreens the window by default
+        exec = "gamescope -W 1920 -H 1080 --adaptive-sync -f -r 600 -e -- steam";
+      };
+    } // (makeElectronWaylandApps [
+      "logseq"
+      "code"
+      "codium"
+      "vesktop"
+    ]);
   };
 }

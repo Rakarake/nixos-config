@@ -21,6 +21,9 @@ build a live ISO image.
 `nix flake lock --update-input dev-stuff` to update flake input 'dev-stuff'.
 
 `nix-collect-garbage --delete-older-than 10d` to clean the nix store.
+NOTE: run as root to remove old system packages and boot entries.
+
+`nix-store --optimize` to link derivations with the same content, saving space.
 
 `sudo nix-env --delete-generations --profile /nix/var/nix/profiles/system 10d`
 to remove bootloader entries.
