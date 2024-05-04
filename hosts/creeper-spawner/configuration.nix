@@ -8,13 +8,12 @@ let
     https            = 443;
     #onlyoffice       = 8000;
     wireguard        = 51820;
-    misc             = 1337;
     graphana         = 2344;
     prometheus       = 9001;
     jellyfin         = 8096;
 
     minecraft        = 25565;
-    minecraft-spruce = 8001;
+    minecraft-spruce = 1337;
     minecraft-create = 8069;
 
     prt2             = 8002;

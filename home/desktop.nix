@@ -203,6 +203,7 @@ in {
       omnisharp-roslyn
 
       cpkgs.yuzu
+      cpkgs.simple-shell-utils
     ];
 
     xdg.desktopEntries =
@@ -211,6 +212,7 @@ in {
       electronWaylandApp = name : {
         name = "${name} wayland";
         exec = "${name} --ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-webrtc-pipewire-capturer";
+        icon = name;
       };
       # Takes a list of executable names and makes wayland desktop entries for them
       makeElectronWaylandApps = appNames : (lib.listToAttrs (map (name : { name = "${name}Wayland"; value = electronWaylandApp name; }) appNames));
