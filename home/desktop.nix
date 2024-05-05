@@ -46,6 +46,7 @@ in {
       ncmpcpp = "echo 'trying mpd: ' ; mpd ; ncmpcpp";
       bat = "bat --theme=base16";
       die = "sudo shutdown now";
+      ks = "kitten ssh";
 
       # Swag
       uwu = "${pkgs.fastfetch}/bin/fastfetch --logo-width 40 --logo-height 20 --kitty-direct ${self}/logo.png";
