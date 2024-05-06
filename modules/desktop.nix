@@ -83,6 +83,7 @@ in {
       gnome.gnome-sound-recorder
       ffmpeg
       waypipe
+      okular
     ];
 
     # Nh
