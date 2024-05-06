@@ -84,6 +84,7 @@ in {
       ffmpeg
       waypipe
       okular
+      android-studio
     ];
 
     # Nh
