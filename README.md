@@ -9,12 +9,11 @@ build a live ISO image.
 `nix-shell` to bootstrap, enable flakes etc.
 
 `sudo nixos-rebuild switch --flake '.#hostname'` to rebuild system with the right hostname.
+After this, `sudo nixos-rebuild switch --flake .` can be used instead.
 
 `home-manager switch --flake .` to initiate home-manager, in order to get aliases etc
-(after that `hmrebuild` can be used).
-
-`sudo nixos-rebuild switch --flake .` to apply configuration.
-`rebuild` to apply configuration when using configuration.
+(after that, the aliases `rebuild` `hmrebuild` can be used for rebuilding the system and
+the home-manager config respectively).
 
 `nix flake update` to update, requires rebuild to apply.
 
