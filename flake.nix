@@ -8,14 +8,6 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
-    # Hyprland
-    hyprland = {
-      url = "github:hyprwm/hyprland";
-    };
-    xdg-desktop-portal-hyprland = {
-      url = "github:hyprwm/xdg-desktop-portal-hyprland";
-    };
-
     # UwU
     queercat= {
       url = "github:Elsa002/queercat";

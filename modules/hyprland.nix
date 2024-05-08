@@ -11,7 +11,6 @@ in {
     # Enable hyprland
     programs.hyprland = {
       enable = true;
-      package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     };
 
     # Packages needed by the Hyprland configuration
@@ -36,14 +35,7 @@ in {
       hyprpicker                   # Color picker
       nautilus-open-any-terminal
       gnome.nautilus-python
-      inputs.xdg-desktop-portal-hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland
     ];
-
-    # Cachix flake caching
-    nix.settings = {
-      substituters = ["https://hyprland.cachix.org"];
-      trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
-    };
 
     # Witchcraft to get nautilus to open other terminals
     services.xserver.desktopManager.gnome.extraGSettingsOverridePackages = [
