@@ -5,7 +5,7 @@ let
   ports = {
     ssh              = 22;
     wireguard        = 51820;
-    Minecraft        =  8069;
+    minecraft        =  8069;
   };
 in
 {
