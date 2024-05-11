@@ -105,6 +105,9 @@ in {
         user = {
           signingKey = "98CF6C24F40B3531!";
         };
+        pull = {
+          rebase = false;
+        };
       };
       aliases = {
         a = "add";
@@ -116,6 +119,7 @@ in {
         l = "log";
         cl = "clone";
         p = "pull";
+        pr = "pull --rebase";
         pu = "push";
         f = "fetch";
         sh = "show";
