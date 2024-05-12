@@ -161,50 +161,15 @@ in {
       blender
       logseq
       inkscape
+      cpkgs.yuzu
+      cpkgs.simple-shell-utils
 
       # Minecraft time
       prismlauncher
       jdk21
 
-      # HTML / CSS / JSON / ESLint language server
-      vscode-langservers-extracted
-
-      # C / C++
-      ccls          # A C/C++ language server
-
-      # Haskell
-      haskell-language-server
-
-      # Nix??? 😲
-      nil  # Nix language server
-
       # Godot
       godot_4
-
-      # Rust
-      rustfmt
-      rust-analyzer # Rust language server
-
-      # Lua
-      lua-language-server
-
-      # Go
-      gopls
-
-      # Agda
-      (agda.withPackages [ agdaPackages.standard-library ])
-
-      # Typst
-      typst-lsp
-
-      # WGSL
-      inputs.wgsl_analyzer.packages.${system}.default
-
-      # C#
-      omnisharp-roslyn
-
-      cpkgs.yuzu
-      cpkgs.simple-shell-utils
     ];
 
     xdg.desktopEntries =
