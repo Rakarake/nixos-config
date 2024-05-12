@@ -3,14 +3,45 @@
 let 
   # Open TCP/UDP ports
   ports = {
-    ssh              = 22;
+    ssh              = 8022;
     wireguard        = 51820;
+    minecraft        =  8069;
   };
+
+  # Minecraft server module template
+  # Takes name, figures everything out itself, users, location (/var/<name>)
+  minecraftServerTemplate = name : description : java-package : {
+    systemd.services.${name} = {
+      enable = true;
+      path = [ pkgs.coreutils pkgs.tmux pkgs.bash pkgs.ncurses java-package ];
+      wantedBy = [ "multi-user.target" ]; 
+      after = [ "network.target" ];
+      description = description;
+      serviceConfig = {
+        User = name;
+        ExecStart = "${pkgs.tmux}/bin/tmux -S tmux.socket new-session -d -s ${name} /bin/sh start.sh";
+        ExecStop = "${pkgs.tmux}/bin/tmux -S tmux.socket kill-session -t ${name}";
+        Type = "forking";
+        RestartOnFailure = "on-failure";
+        WorkingDirectory=/data/MCservers/${name};
+      };
+    };
+    users = {
+      groups.${name} = {};
+      users.${name} = {
+        isSystemUser = true;
+        description = "Minekraft server ${name}";
+        group = name;
+      };
+    };
+  };
+
 in
 {
   imports = [
     ../../modules/global.nix
     ./hardware-configuration.nix
+    (minecraftServerTemplate "minecraftserver-kreate" "A not so kreative minekraft server" pkgs.jdk17)
   ];
 
   # Linux kernel version
@@ -18,6 +49,12 @@ in
 
   # Hostname
   networking.hostName = "mass-destruction";
+
+  # Disk mounting wow
+  fileSystems."/data" =
+    { device = "/dev/sda";
+      fsType = "bcachefs";
+    };
 
   # Open ports
   networking.firewall.allowedTCPPorts = lib.attrsets.attrValues ports;
@@ -74,6 +111,8 @@ in
     LC_TELEPHONE = "sv_SE.UTF-8";
     LC_TIME = "sv_SE.UTF-8";
   };
+
+
 
   # Wireguard
   networking.wg-quick.interfaces = {
