@@ -25,12 +25,6 @@
       url = "github:Rakarake/nix-dev-environment";
     };
 
-    # Wgsl language server
-    wgsl_analyzer = {
-      url = "github:wgsl-analyzer/wgsl-analyzer";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
-
     # Nix pre-baked index
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
