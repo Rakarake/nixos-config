@@ -234,6 +234,10 @@ in {
 
     # Enable Android stuff
     programs.adb.enable = true;
+    # Required by CalyxOS installer?
+    services.udev.packages = [
+      pkgs.android-udev-rules
+    ];
 
     # Bootloader
     boot.loader.systemd-boot.enable = true;
