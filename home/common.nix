@@ -56,7 +56,7 @@ in
       kk = "kitty & disown";
       
       # Networking
-      iplist = "nmap -sP 192.168.1.1/24";
+      iplist = "${pkgs.nmap}/bin/nmap -sP 192.168.1.1/24";
       
       # VSCode/Codium
       codew = "NIXOS_OZONE_WL=1 code";
@@ -66,9 +66,9 @@ in
       n = "cd ~/Projects/nixos-config";
       flake = "nix flake";
       nd = "nix develop";
-      rebuild = "nh os switch .";
-      hmrebuild = "nh home switch .";
-      rebuildboot = "nh os boot .";
+      rebuild = "${pkgs.nh}/bin/nh os switch .";
+      hmrebuild = "${pkgs.nh}/bin/nh home switch .";
+      rebuildboot = "${pkgs.nh}/bin/nh os boot .";
     };
 
     # Git config
