@@ -98,7 +98,7 @@
         };
         "rakarake@creeper-spawner" = home-manager.lib.homeManagerConfiguration {
           modules = [ ./hosts/creeper-spawner/home.nix ];
-          pkgs = (pkgsFor nixpkgs-unstable).x86_64-linux;
+          pkgs = (pkgsFor nixpkgs-stable).x86_64-linux;
           extraSpecialArgs = args;
         };
       };
