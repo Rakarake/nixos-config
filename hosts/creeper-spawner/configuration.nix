@@ -14,7 +14,6 @@ let
 
     minecraft        = 25565;
     minecraft-spruce = 1337;
-    minecraft-create = 8069;
 
     prt2             = 8002;
     prt3             = 8003;
@@ -66,7 +65,6 @@ in
     ./hardware-configuration.nix
     (minecraftServerTemplate "minecraftserver1" "A stylish minecraft server" pkgs.jdk21)
     (minecraftServerTemplate "minecraftserverspruce" "A wooden minecraft server" pkgs.jdk17)
-    (minecraftServerTemplate "minecraftserver-create" "A creative minecraft server" pkgs.jdk17)
   ];
 
   # Wireguard
