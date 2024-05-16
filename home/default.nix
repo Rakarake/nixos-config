@@ -3,7 +3,9 @@
 # Choose a desktop such as gnome or kde.
 {
   imports = [
+    ./common.nix
     ./desktop.nix
+    ./server.nix
     ./gnome.nix
     ./hyprland
   ];
