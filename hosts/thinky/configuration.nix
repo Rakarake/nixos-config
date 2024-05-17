@@ -8,7 +8,7 @@
   cfg-hyprland.enable = true;
 
   # Hostname
-  networking.hostName = "rakarake-thinkpad";  # Define your hostname.
+  networking.hostName = "thinky";  # Define your hostname.
 
   # Plymouth has problems covering the initial part of the boot, this makes
   # things black. Kinda stupid, but I like it.

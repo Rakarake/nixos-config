@@ -7,7 +7,7 @@
   cfg-hyprland.enable = true;
 
   # Hostname
-  networking.hostName = "rakarake-pc";  # Define your hostname.
+  networking.hostName = "cobblestone-generator";  # Define your hostname.
 
   # Desktop specific packages
   environment.systemPackages = with pkgs; [

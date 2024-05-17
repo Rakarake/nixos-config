@@ -52,19 +52,20 @@
       args = { inherit inputs outputs self; };
     in
     {
+      # Expose NixOS and HomeManager modules, just to be nice
       nixosModules = import ./modules;
       homeManagerModules = import ./home;
       packages = forEachSystem nixpkgs-unstable (pkgs: import ./pkgs { inherit pkgs; });
 
       nixosConfigurations = {
         # Lappy
-        rakarake-thinkpad = nixpkgs-unstable.lib.nixosSystem {
-          modules = [ ./hosts/rakarake-thinkpad/configuration.nix ];
+        thinky = nixpkgs-unstable.lib.nixosSystem {
+          modules = [ ./hosts/thinky/configuration.nix ];
           specialArgs = args;
         };
         # Desky
-        rakarake-pc = nixpkgs-unstable.lib.nixosSystem {
-          modules = [ ./hosts/rakarake-pc/configuration.nix ];
+        cobblestone-generator = nixpkgs-unstable.lib.nixosSystem {
+          modules = [ ./hosts/cobblestone-generator/configuration.nix ];
           specialArgs = args;
         };
         # Server
@@ -74,7 +75,7 @@
         };
         # Live configurations for when you wanna put NixOS on a USB-stick
         live = nixpkgs-unstable.lib.nixosSystem {
-          modules = [ ./live.nix ];
+          modules = [ ./hosts/live/configuration.nix ];
           specialArgs = args;
         };
         # MASS DESTRUCTION, oh yeah, baby baby
@@ -86,13 +87,13 @@
 
       homeConfigurations = {
         # Lappy
-        "rakarake@rakarake-thinkpad" = home-manager.lib.homeManagerConfiguration {
-          modules = [ ./hosts/rakarake-thinkpad/home.nix ];
+        "rakarake@thinky" = home-manager.lib.homeManagerConfiguration {
+          modules = [ ./hosts/thinky/home.nix ];
           pkgs = (pkgsFor nixpkgs-unstable).x86_64-linux;
           extraSpecialArgs = args;
         };
-        "rakarake@rakarake-pc" = home-manager.lib.homeManagerConfiguration {
-          modules = [ ./hosts/rakarake-pc/home.nix ];
+        "rakarake@cobblestone-generator" = home-manager.lib.homeManagerConfiguration {
+          modules = [ ./hosts/cobblestone-generator/home.nix ];
           pkgs = (pkgsFor nixpkgs-unstable).x86_64-linux;
           extraSpecialArgs = args;
         };
