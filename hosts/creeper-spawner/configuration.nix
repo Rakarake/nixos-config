@@ -80,6 +80,11 @@ in
           endpoint = "172.232.146.169:51820";
           persistentKeepalive = 25;
         }
+        {
+          publicKey = "xKZgJ3UiCVnMwiQzbUce00Zn8Dvza31RNce5WngYrF8=";
+          allowedIPs = [ "10.0.1.69" ];
+          persistentKeepalive = 25;
+        }
       ];
     };
   };

@@ -127,6 +127,11 @@ in
           endpoint = "172.232.146.169:51820";
           persistentKeepalive = 25;
         }
+        {
+          publicKey = "ziMRmRNAmounHYy+EcO5iy6+CidEJMEW8dswJM1V5g0=";
+          allowedIPs = [ "10.0.1.2" ];
+          persistentKeepalive = 25;
+        }
       ];
     };
   };
