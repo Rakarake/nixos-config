@@ -166,7 +166,7 @@ in
     tmux
     jdk17
     bcachefs-tools
-    neofetch
+    fastfetch
     cloudflared
     ffmpeg
     waypipe

@@ -12,7 +12,7 @@
     gnumake
     git
     openssh
-    neofetch
+    fastfetch
     bat
     powertop  # Power usage inspector
     tree
