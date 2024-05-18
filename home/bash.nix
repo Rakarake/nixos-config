@@ -7,13 +7,18 @@ let
 in {
   options.home-bash = {
     enable = mkEnableOption "User bash config";
+    prompt = mkOption {
+      type = types.str;
+      # Minimal prompt without hostname
+      default = ''\[\033[1;32m\]\W $ \[\033[m\]'';
+    };
   };
   config = mkIf cfg.enable {
     programs.bash = {
       enable = true;
       bashrcExtra = ''
-        # Minimal prompt
-        PS1='\[\033[1;32m\]\W $ \[\033[m\]'
+        # Prompt
+        PS1='${cfg.prompt}'
         
         # vi-mode
         set -o vi
