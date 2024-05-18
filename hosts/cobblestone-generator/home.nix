@@ -1,3 +1,7 @@
+{ pkgs, outputs, ... }:
+let
+  cpkgs = outputs.packages.${pkgs.system};
+in
 {
   imports = [ ../../home/global.nix ../../home ];
   
@@ -34,4 +38,7 @@
       bind=SUPERSHIFT,T,exec,grim -o ${mainMonitor}
     '';
   };
+  home.packages = [
+    cpkgs.yuzu
+  ];
 }

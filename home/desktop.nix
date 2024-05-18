@@ -70,7 +70,6 @@ in {
       blender
       logseq
       inkscape
-      cpkgs.yuzu
       cpkgs.simple-shell-utils
 
       # Minecraft time
