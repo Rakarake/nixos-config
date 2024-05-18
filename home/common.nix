@@ -76,7 +76,7 @@ in
       enable = true;
       lfs.enable = true;
       userName  = "Rakarake";
-      userEmail = "rak@rakarake.xyz";
+      userEmail = "raka@rakarake.xyz";
       extraConfig = {
         core = {
           editor = "nvim";
