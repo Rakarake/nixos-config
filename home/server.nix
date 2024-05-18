@@ -11,7 +11,7 @@ in
     home-common.enable = true;
     home-bash = {
       enable = true;
-      prompt = ''\[\033[1;92m\]\u@\h: \W $ \[\033[m\]'';
+      prompt = ''\[\033[1;33m\]\h - \W 🪷 \[\033[m\]'';
     };
   };
 }
