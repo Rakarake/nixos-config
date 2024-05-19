@@ -3,7 +3,7 @@ let
   cpkgs = outputs.packages.${pkgs.system};
 in
 {
-  imports = [ ../../home/global.nix ../../home ];
+  imports = [ ../../home/rakarake ];
   
   home-desktop.enable = true;
   home-hyprland = {

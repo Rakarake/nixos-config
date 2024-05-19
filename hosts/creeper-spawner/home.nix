@@ -1,6 +1,6 @@
 {
   imports = [
-    ../../home/global.nix ../../home
+    ../../home/rakarake
   ];
   home-server.enable = true;
 }

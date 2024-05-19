@@ -30,6 +30,11 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+
+    # Styling / Colorscheme / Font management
+    stylix = {
+      url = "github:danth/stylix";
+    };
   };
   outputs = { self, nixpkgs-stable, nixpkgs-unstable, home-manager, ... }@inputs:
     let
