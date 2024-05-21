@@ -12,6 +12,6 @@
     inputs.nix-index-database.hmModules.nix-index
     # Enable to use development environment
     inputs.dev-stuff.homeManagerModules.default
-    #inputs.stylix.homeManagerModules.stylix
+    inputs.stylix.homeManagerModules.stylix
   ];
 }

@@ -26,8 +26,44 @@ in {
     dev-stuff.enable = true;
 
     # Kitty config
-    home.file.".config/kitty/kitty.conf".source = ./kitty/kitty.conf;
-    home.file.".config/kitty/Catppuccin-Macchiato.conf".source = ./kitty/Catppuccin-Macchiato.conf;
+    programs.kitty = {
+      enable = true;
+      keybindings = {
+        # Amazing new tab
+        "ctrl+shift+t" = "new_tab_with_cwd !neighbor";
+      };
+      settings = {
+        linux_display_server = "wayland";
+        #hide_window_decorations = true;
+        
+        # Window Layoutot
+        remember_window_size = true;
+        initial_window_width = 740;
+        initial_window_height = 460;
+        #resize_draw_strategy = blank;
+        
+        # Font
+        font_size = "13.0";
+        font_family = "FiraCodeMedium";
+        bold_font = "auto";
+        italic_font = "auto";
+        bold_italic_font = "auto";
+        
+        # Scrolling
+        touch_scroll_multiplier = "5.0";
+        
+        # Tab bar
+        tab_bar_style = "powerline";
+        
+        # Audio bell
+        enable_audio_bell = false;
+        window_alert_on_bell = false;
+        
+        confirm_os_window_close = 0;
+        
+        wayland_titlebar_color = "background";
+      };
+    };
 
     # Ghci prompt
     home.file.".ghci".source = ./.ghci;

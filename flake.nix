@@ -92,13 +92,23 @@
 
       homeConfigurations = {
         # Lappy
-        "rakarake@thinky" = home-manager.lib.homeManagerConfiguration {
-          modules = [ ./hosts/thinky/home.nix ];
+        "rakarake@thinky-dark" = home-manager.lib.homeManagerConfiguration {
+          modules = [ ./hosts/thinky/dark.nix ];
           pkgs = (pkgsFor nixpkgs-unstable).x86_64-linux;
           extraSpecialArgs = args;
         };
-        "rakarake@cobblestone-generator" = home-manager.lib.homeManagerConfiguration {
-          modules = [ ./hosts/cobblestone-generator/home.nix ];
+        "rakarake@thinky-light" = home-manager.lib.homeManagerConfiguration {
+          modules = [ ./hosts/thinky/dark.nix ];
+          pkgs = (pkgsFor nixpkgs-unstable).x86_64-linux;
+          extraSpecialArgs = args;
+        };
+        "rakarake@cobblestone-generator-dark" = home-manager.lib.homeManagerConfiguration {
+          modules = [ ./hosts/cobblestone-generator/dark.nix ];
+          pkgs = (pkgsFor nixpkgs-unstable).x86_64-linux;
+          extraSpecialArgs = args;
+        };
+        "rakarake@cobblestone-generator-light" = home-manager.lib.homeManagerConfiguration {
+          modules = [ ./hosts/cobblestone-generator/light.nix ];
           pkgs = (pkgsFor nixpkgs-unstable).x86_64-linux;
           extraSpecialArgs = args;
         };

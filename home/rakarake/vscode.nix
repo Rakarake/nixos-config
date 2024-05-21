@@ -56,7 +56,7 @@
     ];
     userSettings = {
       # Theme
-      "workbench.colorTheme" = "Catppuccin Macchiato";
+      #"workbench.colorTheme" = "Catppuccin Macchiato";
       "workbench.iconTheme" = "catppuccin-macchiato";
 
       # Caps-Lock is escape fix

@@ -66,23 +66,6 @@ in {
       package = pkgs.papirus-icon-theme;
       name = "Papirus-Dark";
     };
-    gtk.theme = {
-      package = pkgs.adw-gtk3;
-      name = "Adw-gtk3-dark";
-    };
-    home.pointerCursor = {
-      gtk.enable = true;
-      x11.enable = true;
-      package = pkgs.gnome.adwaita-icon-theme;
-      name = "Adwaita";
-      #size = 32;
-    };
-    qt = {
-      enable = true;
-      platformTheme = "gnome";
-      style.package = pkgs.adwaita-qt;
-      style.name = "adwaita-dark";
-    };
 
     # Hyprland config
     wayland.windowManager.hyprland.extraConfig = ''

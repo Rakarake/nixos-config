@@ -142,11 +142,11 @@
         "wgsl_analyzer": "wgsl_analyzer"
       },
       "locked": {
-        "lastModified": 1715703105,
-        "narHash": "sha256-9Ibp4dYdME3mL+OIrHHeVzWpF3u83+X5FOyH/xVBiQY=",
+        "lastModified": 1716281941,
+        "narHash": "sha256-1mUPOt9S0J+650XJBII2OWF6vMKI7jnph3JuwYe0+A8=",
         "owner": "Rakarake",
         "repo": "nix-dev-environment",
-        "rev": "9a9b2ecc582ccc95a80d70754ee6f9aa70d216d5",
+        "rev": "6af782e3da72ab49070f52a7957d12920c6495cb",
         "type": "github"
       },
       "original": {

@@ -11,7 +11,6 @@ in {
       enable = true;
       package = pkgs.rofi-wayland;
       terminal = "${pkgs.kitty}/bin/kitty";
-      theme = ./theme.rasi;
       plugins = [
         pkgs.rofi-emoji
         pkgs.wtype  # Used to output the emoji
