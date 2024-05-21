@@ -98,7 +98,7 @@
           extraSpecialArgs = args;
         };
         "rakarake@thinky-light" = home-manager.lib.homeManagerConfiguration {
-          modules = [ ./hosts/thinky/dark.nix ];
+          modules = [ ./hosts/thinky/light.nix ];
           pkgs = (pkgsFor nixpkgs-unstable).x86_64-linux;
           extraSpecialArgs = args;
         };

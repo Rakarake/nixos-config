@@ -68,6 +68,8 @@ in
       nd = "nix develop";
       rebuild = "${pkgs.nh}/bin/nh os switch .";
       hmrebuild = "${pkgs.nh}/bin/nh home switch .";
+      hmrebuild-light = "home-manager switch '.#rakarake@thinky-light'";
+      hmrebuild-dark = "home-manager switch '.#rakarake@thinky-dark'";
       rebuildboot = "${pkgs.nh}/bin/nh os boot .";
     };
 
