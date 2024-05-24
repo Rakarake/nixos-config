@@ -20,11 +20,6 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
-    # Programming environment
-    dev-stuff = {
-      url = "github:Rakarake/nix-dev-environment";
-    };
-
     # Nix pre-baked index
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
@@ -34,6 +29,12 @@
     # Styling / Colorscheme / Font management
     stylix = {
       url = "github:danth/stylix";
+    };
+
+    # Wgsl language server
+    wgsl_analyzer = {
+      url = "github:wgsl-analyzer/wgsl-analyzer";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
   };
   outputs = { self, nixpkgs-stable, nixpkgs-unstable, home-manager, ... }@inputs:

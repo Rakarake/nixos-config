@@ -73,6 +73,16 @@ in
       rebuildboot = "${pkgs.nh}/bin/nh os boot .";
     };
 
+    # Tmux
+    programs.tmux = {
+      enable = true;
+      mouse = true;
+      extraConfig = ''
+        # Allows for sending images to the parent terminal
+        set -g allow-passthrough
+      '';
+    };
+
     # Git config
     programs.git = {
       enable = true;

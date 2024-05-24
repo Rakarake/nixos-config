@@ -23,7 +23,7 @@ in {
     home-xdg.enable = true;
 
     # Neovim config
-    dev-stuff.enable = true;
+    home-neovim.enable = true;
 
     # Kitty config
     programs.kitty = {
