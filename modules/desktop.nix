@@ -199,6 +199,13 @@ in {
     # Wireshark
     programs.wireshark.enable = true;
 
+    # Use encrypted cloudflare DNS
+    networking = {
+      nameservers = [ "1.1.1.1" "::1" ];
+      networkmanager.dns = "none";
+    };
+    services.dnscrypt-proxy2.enable = true;
+
     # Steam
     programs.steam = {
       enable = true;

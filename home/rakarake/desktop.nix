@@ -43,11 +43,11 @@ in {
         #resize_draw_strategy = blank;
         
         # Font
-        font_size = "13.0";
-        font_family = "FiraCodeMedium";
-        bold_font = "auto";
-        italic_font = "auto";
-        bold_italic_font = "auto";
+        #font_size = "13.0";
+        #font_family = "FiraCodeMedium";
+        #bold_font = "auto";
+        #italic_font = "auto";
+        #bold_italic_font = "auto";
         
         # Scrolling
         touch_scroll_multiplier = "5.0";

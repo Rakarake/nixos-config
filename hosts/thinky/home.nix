@@ -1,10 +1,8 @@
 {
-  imports = [ ../../home/rakarake ];
+  imports = [ ../../home/rakarake ../../home/rakarake/theme.nix ];
 
   # Wallpaper
   stylix.image = ./wallpaper.png;
-  stylix.cursor.name = "Adwaita";
-  stylix.cursor.size = 24;
 
   home-desktop.enable = true;
   home-hyprland.enable = true;
