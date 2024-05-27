@@ -77,6 +77,9 @@ in
     programs.tmux = {
       enable = true;
       mouse = true;
+      # Use Ctrl-A instead of Ctrl-B
+      prefix = "C-a";
+      keyMode = "vi";
       extraConfig = ''
         # Allows for sending images to the parent terminal
         set -g allow-passthrough
