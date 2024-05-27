@@ -200,15 +200,15 @@ in {
     # Wireshark
     programs.wireshark.enable = true;
 
-    # Use encrypted cloudflare DNS
-    networking = {
-      nameservers = [ "1.1.1.1" "::1" ];
-      networkmanager.dns = "none";
-    };
-    services.dnscrypt-proxy2.enable = true;
-    systemd.services.dnscrypt-proxy2.serviceConfig = {
-      StateDirectory = "dnscrypt-proxy";
-    };
+    ## Use encrypted cloudflare DNS
+    #networking = {
+    #  nameservers = [ "1.1.1.1" "::1" ];
+    #  networkmanager.dns = "none";
+    #};
+    #services.dnscrypt-proxy2.enable = true;
+    #systemd.services.dnscrypt-proxy2.serviceConfig = {
+    #  StateDirectory = "dnscrypt-proxy";
+    #};
 
     # Steam
     programs.steam = {
