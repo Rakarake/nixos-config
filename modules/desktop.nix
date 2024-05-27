@@ -206,6 +206,9 @@ in {
       networkmanager.dns = "none";
     };
     services.dnscrypt-proxy2.enable = true;
+    systemd.services.dnscrypt-proxy2.serviceConfig = {
+      StateDirectory = "dnscrypt-proxy";
+    };
 
     # Steam
     programs.steam = {
