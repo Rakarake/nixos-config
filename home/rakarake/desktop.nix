@@ -107,6 +107,7 @@ in {
       skim
       godot_4
       unityhub
+      cargo-mommy
     ];
 
     xdg.desktopEntries =
