@@ -110,6 +110,10 @@ in {
       cargo-mommy
     ];
 
+    home.shellAliases = {
+      cargo = "cargo mommy";
+    };
+
     xdg.desktopEntries =
     let
       # A desktop entry that launches an electron app with ozone turned on
