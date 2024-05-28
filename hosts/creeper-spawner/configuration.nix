@@ -300,7 +300,7 @@ in
   # Let's Encrypt
   security.acme = {
     acceptTerms = true;
-    defaults.email = "rak@rakarake.xyz";
+    defaults.email = "raka@rakarake.xyz";
   };
 
   # Nextcloud at "/var/lib/nextcloud"

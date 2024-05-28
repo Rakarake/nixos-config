@@ -98,6 +98,7 @@ in {
       logseq
       inkscape
       cpkgs.simple-shell-utils
+      parabolic
 
       # Minecraft time
       prismlauncher
