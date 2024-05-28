@@ -173,7 +173,7 @@ in {
       # Run a program without installing it
       bind=SUPERSHIFT,N,exec,rofi -dmenu | xargs -I % nix-shell -p % --run %
       # Emoji picker
-      bind=SUPER,e,exec,rofi -modi emoji -show emoji
+      bind=SUPER,e,exec,emote
       
       # Focus on window
       bind=SUPER,h,movefocus,l

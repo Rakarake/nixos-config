@@ -99,6 +99,7 @@ in {
       inkscape
       cpkgs.simple-shell-utils
       parabolic
+      emote
 
       # Minecraft time
       prismlauncher
