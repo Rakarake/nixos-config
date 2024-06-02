@@ -112,42 +112,42 @@ in
   # Hostname
   networking.hostName = "creeper-spawner";
 
-  # The data cluster
-  fileSystems."/data" = {
-    device = "/dev/disk/by-label/data";
-    fsType = "bcachefs";
+  ## The data cluster
+  #fileSystems."/data" = {
+  #  device = "/dev/sda4:/dev/nvme0n1";
+  #  fsType = "bcachefs";
+  #};
+  systemd.services.mount-data = {
+    description = "Bcachefs data mount";
+    script = "/run/current-system/sw/bin/mount -t bcachefs /dev/disk/by-label/data /data";
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      Type = "oneshot";
+    };
+    #serviceConfig = {
+    #  ExecStart = "/run/current-system/sw/bin/mount -t bcachefs /dev/sda4:/dev/nvme0n1 /data";
+    #  ExecStop = "/run/current-system/sw/bin/umount /var/lib/nextcloud";
+    #};
   };
-  #systemd.services.mount-data = {
-  #  description = "Bcachefs data mount";
-  #  script = "/run/current-system/sw/bin/mount -t bcachefs /dev/sda4:/dev/nvme0n1 /data";
-  #  wantedBy = [ "multi-user.target" ];
-  #  serviceConfig = {
-  #    Type = "oneshot";
-  #  };
-  #  #serviceConfig = {
-  #  #  ExecStart = "/run/current-system/sw/bin/mount -t bcachefs /dev/sda4:/dev/nvme0n1 /data";
-  #  #  ExecStop = "/run/current-system/sw/bin/umount /var/lib/nextcloud";
-  #  #};
-  #};
-  #systemd.services.mount-nextcloud = {
-  #  description = "Nextcloud data mount";
-  #  script = "/run/current-system/sw/bin/mount --bind /data/nextcloud /var/lib/nextcloud";
-  #  after = [ "mount-data.service" ];
-  #  wantedBy = [ "nextcloud-setup.service" ];
-  #  serviceConfig = {
-  #    Type = "oneshot";
-  #  };
-  #  #serviceConfig = {
-  #  #  ExecStart = "/run/current-system/sw/bin/mount --bind /data/nextcloud /var/lib/nextcloud";
-  #  #  ExecStop = "/run/current-system/sw/bin/umount /var/lib/nextcloud";
-  #  #};
-  #};
+  systemd.services.mount-nextcloud = {
+    description = "Nextcloud data mount";
+    script = "/run/current-system/sw/bin/mount --bind /data/nextcloud /var/lib/nextcloud";
+    after = [ "mount-data.service" ];
+    wantedBy = [ "nextcloud-setup.service" ];
+    serviceConfig = {
+      Type = "oneshot";
+    };
+    #serviceConfig = {
+    #  ExecStart = "/run/current-system/sw/bin/mount --bind /data/nextcloud /var/lib/nextcloud";
+    #  ExecStop = "/run/current-system/sw/bin/umount /var/lib/nextcloud";
+    #};
+  };
 
-  # Nextcloud mount point
-  fileSystems."/var/lib/nextcloud" = {
-    device = "/data/nextcloud";
-    options = [ "bind" ];
-  };
+  ## Nextcloud mount point
+  #fileSystems."/var/lib/nextcloud" = {
+  #  device = "/data/nextcloud";
+  #  options = [ "bind" ];
+  #};
   ## Gitlab mount point
   #fileSystems."/var/gitlab" = {
   #  device = "/data/gitlab";
