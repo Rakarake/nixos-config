@@ -119,7 +119,7 @@ in
   #};
   systemd.services.mount-data = {
     description = "Bcachefs data mount";
-    script = "/run/current-system/sw/bin/mount -t bcachefs /dev/disk/by-label/data /data";
+    script = "/run/current-system/sw/bin/mount -t bcachefs /dev/sda4:/dev/nvme0n1 /data";
     wantedBy = [ "multi-user.target" ];
     serviceConfig = {
       Type = "oneshot";
