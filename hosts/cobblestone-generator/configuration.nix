@@ -9,6 +9,22 @@
   # Hostname
   networking.hostName = "cobblestone-generator";  # Define your hostname.
 
+  # Wake on LAN, ty Breadly
+  networking.interfaces.enp4s0.wakeOnLan = {
+    enable = true;
+    policy = [ "magic" ];
+  };
+  systemd.services.wakeonlan = {
+    description = "Reenable wake on lan every boot";
+    after = [ "network.target" ];
+    serviceConfig = {
+      Type = "simple";
+      RemainAfterExit = "true";
+      ExecStart = "${pkgs.ethtool}/sbin/ethtool -s enp4s0 wol g";
+    };
+    wantedBy = [ "default.target" ];
+  };
+
   # ssh into desktop
   services.openssh = {
     enable = true;
