@@ -100,6 +100,7 @@ in {
       cpkgs.simple-shell-utils
       parabolic
       emote
+      moonlight-qt
 
       # Minecraft time
       prismlauncher
