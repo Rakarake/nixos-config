@@ -179,6 +179,8 @@ in {
                 padding-right:  2px;
                 margin-left:    2px;
                 margin-right:   2px;
+
+                color: rgb(181, 232, 224);
               }
         #workspaces button.active {
                 background-color: rgb(181, 232, 224);
