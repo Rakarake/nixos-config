@@ -6,7 +6,7 @@ in
   imports = [ ../../home/rakarake ../../home/rakarake/theme.nix ];
 
   # Wallpaper
-  stylix.image = ./wallpaper.png;
+  stylix.image = ../../home/rakarake/wallpaper.png;
 
   home-desktop.enable = true;
   home-hyprland = {
