@@ -175,6 +175,7 @@ in
     cloudflared
     ffmpeg
     waypipe
+    rsync
   ];
 
   # Fonts

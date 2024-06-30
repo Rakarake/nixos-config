@@ -79,6 +79,7 @@ in
         nvim-cmp
         cmp-nvim-lsp
         luasnip
+        editorconfig-vim
       ];
       extraLuaConfig = ''
 -- Neovim configuration
