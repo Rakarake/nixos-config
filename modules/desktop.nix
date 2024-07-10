@@ -48,7 +48,7 @@ in {
       nextcloud-client
       gnome.gnome-software
       mesa-demos  # Has programs such as glxgears
-      gnome.adwaita-icon-theme  # Just to be safe
+      adwaita-icon-theme  # Just to be safe
       mpv
       vlc
       imv

@@ -17,7 +17,7 @@ in {
     environment.systemPackages = with pkgs; [
       pipewire                     # Screensharing
       polkit_gnome                 # Polkit / gparted popup prompt provider
-      gnome.nautilus               # File manager
+      nautilus               # File manager
       swaylock                     # Screenlocker
       grim                         # Screenshot utility
       slurp                        # Screen "area" picker utility
@@ -34,7 +34,7 @@ in {
       adw-gtk3                     # Nice libadwaita gtk3 theme
       hyprpicker                   # Color picker
       nautilus-open-any-terminal
-      gnome.nautilus-python
+      nautilus-python
     ];
 
     # Witchcraft to get nautilus to open other terminals
