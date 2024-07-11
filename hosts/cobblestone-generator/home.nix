@@ -6,6 +6,7 @@ in
   imports = [ ../../home/rakarake ../../home/rakarake/theme.nix ];
 
   # Wallpaper
+  stylix.enable = true;
   stylix.image = ../../home/rakarake/wallpaper.png;
 
   home-desktop.enable = true;

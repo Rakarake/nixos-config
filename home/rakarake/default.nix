@@ -11,7 +11,6 @@
     ./hyprland
     ./neovim
     inputs.nix-index-database.hmModules.nix-index
-    # Enable to use development environment
     inputs.stylix.homeManagerModules.stylix
   ];
 }

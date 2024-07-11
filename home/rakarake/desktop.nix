@@ -21,6 +21,7 @@ in {
     home-common.enable = true;
     # XDG base directories
     home-xdg.enable = true;
+    nixpkgs.config.allowUnfree = true;
 
     # Neovim config
     home-neovim.enable = true;
@@ -94,7 +95,7 @@ in {
       audacity
       mullvad-vpn
       fragments
-      blender
+      #blender
       logseq
       inkscape
       cpkgs.simple-shell-utils
@@ -116,6 +117,11 @@ in {
     home.shellAliases = {
       cargo = "cargo mommy";
     };
+
+    # Moment
+    nixpkgs.config.permittedInsecurePackages = [
+      "electron-27.3.11"
+    ];
 
     xdg.desktopEntries =
     let
