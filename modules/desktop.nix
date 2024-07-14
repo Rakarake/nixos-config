@@ -74,7 +74,7 @@ in {
       hunspellDicts.en_US      # American
       hunspellDicts.en_GB-ise  # English
       krita
-      firefox
+      floorp
       ungoogled-chromium
       thunderbird
       qpwgraph
@@ -237,8 +237,6 @@ in {
     environment.sessionVariables = {
       # Needed for gamescope to run in steam
       ENABLE_VKBASALT = "1";
-      # Default browser
-      BROWSER = "firefox";
       # Always allow unfree nix packages 😛
       NIXPKGS_ALLOW_UNFREE = "1";
     };

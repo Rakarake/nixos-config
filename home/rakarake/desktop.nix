@@ -95,7 +95,7 @@ in {
       audacity
       mullvad-vpn
       fragments
-      #blender
+      blender
       logseq
       inkscape
       cpkgs.simple-shell-utils
