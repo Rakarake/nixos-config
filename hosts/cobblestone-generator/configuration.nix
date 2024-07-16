@@ -25,6 +25,25 @@
     wantedBy = [ "default.target" ];
   };
 
+  # Wireguard
+  networking.firewall.allowedTCPPorts = [ 51820 ];
+  networking.firewall.allowedUDPPorts = [ 51820 ];
+  networking.wg-quick.interfaces = {
+    wg0 = {
+      address = [ "10.0.1.4" ];
+      listenPort = 51820;
+      privateKeyFile = "/var/wireguard/private";
+      peers = [
+        {
+          publicKey = "51IbR93F5mYmGz+GKG1GNgXtOsbMqkDbUkTArDTxOQo=";
+          allowedIPs = [ "10.0.1.1" ];
+          endpoint = "172.232.146.169:51820";
+          persistentKeepalive = 25;
+        }
+      ];
+    };
+  };
+
   # Sunshine, remote gaming
   services.udev.packages = [ pkgs.sunshine ]; # allow access to create virtual input interfaces.
   #networking.firewall = {
