@@ -102,6 +102,7 @@ in {
       parabolic
       emote
       moonlight-qt
+      sublime-music
 
       # Minecraft time
       prismlauncher

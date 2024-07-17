@@ -78,7 +78,6 @@ in {
       ungoogled-chromium
       thunderbird
       qpwgraph
-      strawberry
       easyeffects
       gnome.gnome-mines
       gnome.gnome-sound-recorder
