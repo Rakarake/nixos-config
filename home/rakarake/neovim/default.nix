@@ -80,6 +80,9 @@ in
         cmp-nvim-lsp
         luasnip
         editorconfig-vim
+        # DAP
+        nvim-dap
+        telescope-dap-nvim
       ];
       extraLuaConfig = ''
 -- Neovim configuration
@@ -103,13 +106,13 @@ require'nvim-treesitter.configs'.setup {
 -- Add WGSL filetype
 vim.filetype.add({extension = {wgsl = "wgsl"}})
 
--- Universal run
-vim.keymap.set('n', '<leader>rr', '<cmd>belowright split term://bash ./run.sh<cr>')
-
 -- Vimwiki
 vim.g.vimwiki_list = {{path = '~/vimwiki/', syntax = 'markdown', ext = '.md'}}
 
 -- Telescope
+require('telescope').setup()
+-- Enalbe DAP integration
+require('telescope').load_extension('dap')
 -- Only files visible to git
 vim.keymap.set('n', '<leader>ff', '<cmd>Telescope git_files<cr>')
 -- All files
@@ -117,6 +120,7 @@ vim.keymap.set('n', '<leader>fv', '<cmd>Telescope find_files<cr>')
 vim.keymap.set('n', '<leader>fg', '<cmd>Telescope live_grep<cr>')
 vim.keymap.set('n', '<leader>fb', '<cmd>Telescope buffers<cr>')
 vim.keymap.set('n', '<leader>fh', '<cmd>Telescope help_tags<cr>')
+
 
 -- Buffers
 vim.keymap.set('n', '<leader>bn', '<cmd>bnext<cr>')
@@ -425,6 +429,15 @@ require'lspconfig'.omnisharp.setup {
 --        --mini = false,
 --    }
 --})
+
+-- DAP (Debug Adapter Protocol)
+-- Godot
+local dap = require('dap')
+dap.adapters.godot = {
+  type = "server",
+  host = '127.0.0.1',
+  port = 6006,
+}
       '';
     };
   };
