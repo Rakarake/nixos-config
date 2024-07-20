@@ -226,6 +226,8 @@ in {
 
       # Screen locking
       bind=SUPER,Escape,exec,${swaylockCommand}
+      bind=SUPERSHIFT,Escape,exec,sleep 1 && hyprctl dispatch dpms off && ${swaylockCommand}
+      bind=SUPERCONTROL,Escape,exec,sleep 1 && hyprctl dispatch dpms on
       bindl=,switch:Lid Switch,exec,${swaylockCommand}
 
       # Notifictations

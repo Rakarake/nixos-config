@@ -103,6 +103,7 @@ in {
       emote
       moonlight-qt
       sublime-music
+      gcolor3
 
       # Minecraft time
       prismlauncher
