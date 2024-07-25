@@ -92,16 +92,6 @@
   };
   boot.initrd.systemd.enable = true;
 
-  # Enable hardware acceleration, VA-API
-  hardware.graphics = {
-    enable = true;
-    extraPackages = with pkgs; [
-      libva  # Main package for VA-API
-      vaapiVdpau
-      libvdpau-va-gl
-    ];
-  };
-
   # Guest User
   users.users.guest = {
     isNormalUser = true;

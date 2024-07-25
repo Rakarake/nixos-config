@@ -35,6 +35,7 @@ in {
       hyprpicker                   # Color picker
       nautilus-open-any-terminal
       nautilus-python
+      hyprland-protocols
     ];
 
     # Witchcraft to get nautilus to open other terminals
