@@ -318,7 +318,7 @@ in
     phpOptions."opcache.interned_strings_buffer" = "23";
   };
   environment.etc.ffmpeg = { source = "${pkgs.ffmpeg}/bin/ffmpeg"; mode = "0555"; };
-  environment.etc.ffprobe = { source = "${pkgs.ffprobe}/bin/ffprobe"; mode = "0555"; };
+  environment.etc.ffprobe = { source = "${pkgs.ffmpeg}/bin/ffprobe"; mode = "0555"; };
 
   ## Onlyoffice
   #services.onlyoffice = {
