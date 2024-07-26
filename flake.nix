@@ -36,6 +36,12 @@
       url = "github:wgsl-analyzer/wgsl-analyzer";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+
+    # Bingbingo server
+    bingbingo = {
+      url = "github:Rakarake/bingbingo";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
   };
   outputs = { self, nixpkgs-stable, nixpkgs-unstable, home-manager, ... }@inputs:
     let

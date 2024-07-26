@@ -84,6 +84,9 @@ in
       extraConfig = ''
         # Allows for sending images to the parent terminal
         set -g allow-passthrough
+
+        # Diable status bar
+        set -g status off
       '';
     };
 

@@ -10,7 +10,7 @@ let
   muteVolumeCommand = "amixer set Master toggle";
   muteMicCommand = "amixer set Capture toggle";
   fileManagerCommand = "nautilus";
-  terminalCommand = "kitty";
+  terminalCommand = "alacritty";
 in {
 
   imports = [
@@ -59,7 +59,7 @@ in {
       };
       # Nautilus terminal
       "com/github/stunkymonkey/nautilus-open-any-terminal" = {
-        terminal = "kitty";
+        terminal = terminalCommand;
         keybindings = "<Ctrl><Alt>t";
         new-tab = false;
       };
