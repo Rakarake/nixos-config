@@ -66,7 +66,7 @@
         "when" = "terminalFocus";
       }
       {
-        "key" = "ctrl+shift+j";
+        "key" = "ctrl+p";
         "command" = "workbench.action.togglePanel";
       }
       {
