@@ -10,7 +10,7 @@ let
   muteVolumeCommand = "amixer set Master toggle";
   muteMicCommand = "amixer set Capture toggle";
   fileManagerCommand = "nautilus";
-  terminalCommand = "alacritty";
+  terminalCommand = "alacritty -e bash -c 'tmux attach || tmux'";
 in {
 
   imports = [
@@ -166,6 +166,7 @@ in {
       $mod = SUPER
 
       bind=SUPER,Return,exec,${terminalCommand}
+      bind=SUPERSHIFT,Return,exec,alacritty -e tmux
       bind=SUPER,Q,killactive,
       bind=SUPERSHIFTALT,E,exit,
       bind=SUPER,F,exec,${fileManagerCommand}

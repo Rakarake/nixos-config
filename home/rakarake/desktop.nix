@@ -62,12 +62,6 @@ in {
     # Alacritty
     programs.alacritty = {
       enable = true;
-      settings = {
-        shell = {
-          program = "bash";
-          args = ["-c" "tmux"];
-        };
-      };
     };
 
     # Ghci prompt
