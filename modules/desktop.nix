@@ -163,12 +163,12 @@ in {
       corefonts  # Microsoft fonts
     ];
 
-    # GPG / GnuPG
-    programs.gnupg.agent = {
-      enable = true;
-      # Enable the 'pinentryFlavor' in the DE specific config
-      #enableSSHSupport = true;
-    };
+    ## GPG / GnuPG
+    #programs.gnupg.agent = {
+    #  enable = true;
+    #  # Enable the 'pinentryFlavor' in the DE specific config
+    #  #enableSSHSupport = true;
+    #};
 
     # Docker or podman is needed for distrobox, it seems that podman works better
 

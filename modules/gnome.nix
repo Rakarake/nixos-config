@@ -12,9 +12,9 @@ in {
     services.xserver.displayManager.gdm.enable = true;
     services.xserver.desktopManager.gnome.enable = true;
 
-    programs.gnupg.agent = {
-      pinentryPackage = "gnome3";
-    };
+    #programs.gnupg.agent = {
+    #  pinentryPackage = "gnome3";
+    #};
 
     environment.variables = {
       #QT_QPA_PLATFORM = "wayland";
