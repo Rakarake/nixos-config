@@ -1,6 +1,6 @@
 # Desktop PC
 { inputs, ... }: {
-  imports = [ ../../modules/global.nix ../../modules ./hardware-configuration.nix inputs.joivan-nixos ];
+  imports = [ ../../modules/global.nix ../../modules ./hardware-configuration.nix inputs.jovian-nixos ];
 
   networking.hostName = "steamed-deck";
 
