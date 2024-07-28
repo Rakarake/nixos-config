@@ -109,6 +109,7 @@ in {
       moonlight-qt
       sublime-music
       gcolor3
+      ascii-draw
 
       # Minecraft time
       prismlauncher
