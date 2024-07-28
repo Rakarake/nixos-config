@@ -95,6 +95,11 @@
           modules = [ ./hosts/mass-destruction/configuration.nix ];
           specialArgs = args;
         };
+        # We are having steamed decks?
+        steamed-deck = nixpkgs-unstable.lib.nixosSystem {
+          modules = [ ./hosts/steamed-deck/configuration.nix ];
+          specialArgs = args;
+        };
       };
 
       homeConfigurations = {
