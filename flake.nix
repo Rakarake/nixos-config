@@ -124,6 +124,11 @@
           pkgs = (pkgsFor nixpkgs-unstable).x86_64-linux;
           extraSpecialArgs = args;
         };
+        "rakarake@steamed-deck" = home-manager.lib.homeManagerConfiguration {
+          modules = [ ./hosts/steamed-deck/home.nix ];
+          pkgs = (pkgsFor nixpkgs-unstable).x86_64-linux;
+          extraSpecialArgs = args;
+        };
         "rakarake@creeper-spawner" = home-manager.lib.homeManagerConfiguration {
           modules = [ ./hosts/creeper-spawner/home.nix ];
           pkgs = (pkgsFor nixpkgs-unstable).x86_64-linux;
