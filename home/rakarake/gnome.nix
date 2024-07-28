@@ -15,13 +15,13 @@ in {
       system76-scheduler  # Make foreground processes visable to the system76-scheduler
     ]);
 
-    gtk = {
-      enable = true;
-      theme = {
-        name = "adw-gtk3";
-        package = pkgs.adw-gtk3;
-      };
-    };
+    #gtk = {
+    #  enable = true;
+    #  theme = {
+    #    name = "adw-gtk3";
+    #    package = pkgs.adw-gtk3;
+    #  };
+    #};
     dconf.settings = {
       # Locale
       "system/locale" = {
