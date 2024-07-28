@@ -37,6 +37,12 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
+    # Steamdeck related options
+    jovian-nixos = {
+      url = "github:Jovian-Experiments/Jovian-NixOS";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+
     # Bingbingo server
     bingbingo = {
       url = "github:Rakarake/bingbingo";
