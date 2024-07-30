@@ -8,9 +8,9 @@
   jovian.steam.enable = true;
   jovian.devices.steamdeck.enable = true;
   jovian.steamos.useSteamOSConfig = true;
-  jovian.steam.desktopSession = "gnome";
+  jovian.steam.desktopSession = "Gnome";
 
   cfg-desktop.enable = true;
-  cfg-gnome.enable = true;
+  cfg-hyprland.enable = true;
 }
 

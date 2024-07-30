@@ -8,5 +8,5 @@
   stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-macchiato.yaml";
 
   home-desktop.enable = true;
-  home-gnome.enable = true;
+  home-hyprland.enable = true;
 }
