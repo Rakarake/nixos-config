@@ -21,7 +21,7 @@
       # Monitors
       monitor=${leftMonitor},1920x1080@60,-1920x0,1
       monitor=${rightMonitor},1920x1080@120,0x0,1
-      monitor=${deckMonitor},preferred,auto,1,transform,3
+      monitor=${deckMonitor},preferred,1920x0,1,transform,3
 
       # Workspaces
       workspace = 1,  monitor:${leftMonitor}, default:true
