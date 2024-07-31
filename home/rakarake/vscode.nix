@@ -132,16 +132,16 @@
       # Disable X clipboard
       "editor.selectionClipboard" = false;
 
-      # Tmux in terminal
-      "terminal.integrated.profiles.linux" = {
-        "bash" = null;
-        "tmux" = {
-          "path" = "bash";
-          "args" = ["-c" "tmux new -ADs \${PWD##*/}"];
-          "icon" = "terminal-tmux";
-        };
-      };
-      "terminal.integrated.defaultProfile.linux" = "tmux";
+      ## Tmux in terminal
+      #"terminal.integrated.profiles.linux" = {
+      #  "bash" = null;
+      #  "tmux" = {
+      #    "path" = "bash";
+      #    "args" = ["-c" "tmux new -ADs \${PWD##*/}"];
+      #    "icon" = "terminal-tmux";
+      #  };
+      #};
+      #"terminal.integrated.defaultProfile.linux" = "tmux";
 
       # Vim
       "vim.useSystemClipboard" = true;

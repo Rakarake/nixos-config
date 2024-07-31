@@ -10,7 +10,8 @@ let
   muteVolumeCommand = "amixer set Master toggle";
   muteMicCommand = "amixer set Capture toggle";
   fileManagerCommand = "nautilus";
-  terminalCommand = "alacritty -e bash -c 'tmux attach || tmux'";
+  #terminalCommand = "alacritty -e bash -c 'tmux attach || tmux'";
+  terminalCommand = "alacritty";
 in {
 
   imports = [
