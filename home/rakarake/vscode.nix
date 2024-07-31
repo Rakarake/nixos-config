@@ -56,27 +56,27 @@
     ];
     keybindings = [
       {
-        "key" = "ctrl+shift+a";
         "command" = "workbench.action.terminal.focusNext";
+        "key" = "ctrl+shift+a";
         "when" = "terminalFocus";
       }
       {
-        "key" = "ctrl+shift+b";
         "command" = "workbench.action.terminal.focusPrevious";
+        "key" = "ctrl+shift+b";
         "when" = "terminalFocus";
       }
       {
-        "key" = "ctrl+p";
         "command" = "workbench.action.togglePanel";
+        "key" = "ctrl+p";
       }
       {
-        "key" = "ctrl+shift+n";
         "command" = "workbench.action.terminal.new";
+        "key" = "ctrl+shift+n";
         "when" = "terminalFocus";
       }
       {
-        "key" = "ctrl+shift+w";
         "command" = "workbench.action.terminal.kill";
+        "key" = "ctrl+shift+w";
         "when" = "terminalFocus";
       }
       # File tree
@@ -96,8 +96,8 @@
         "when" = "editorTextFocus";
       }
       {
-        "key" = "n";
         "command" = "explorer.newFile";
+        "key" = "n";
         "when" = "filesExplorerFocus && !inputFocus";
       }
       {
@@ -106,19 +106,25 @@
         "when" = "filesExplorerFocus && !inputFocus";
       }
       {
-        "key" = "shift+n";
         "command" = "explorer.newFolder";
+        "key" = "shift+n";
         "when" = "explorerViewletFocus";
       }
       {
-        "key" = "shift+n";
         "command" = "workbench.action.newWindow";
+        "key" = "shift+n";
         "when" = "!explorerViewletFocus";
       }
       {
         "command" = "deleteFile";
         "key" = "d";
         "when" = "filesExplorerFocus && !inputFocus";
+      }
+      # Open project
+      {
+        "command" = "workbench.action.files.openFolder";
+        "key" = "d";
+        "when" = "openFolderWorkspaceSupport";
       }
     ];
     userSettings = {
@@ -132,16 +138,14 @@
       # Disable X clipboard
       "editor.selectionClipboard" = false;
 
-      ## Tmux in terminal
-      #"terminal.integrated.profiles.linux" = {
-      #  "bash" = null;
-      #  "tmux" = {
-      #    "path" = "bash";
-      #    "args" = ["-c" "tmux new -ADs \${PWD##*/}"];
-      #    "icon" = "terminal-tmux";
-      #  };
-      #};
-      #"terminal.integrated.defaultProfile.linux" = "tmux";
+      # Debloat
+      # Side bar on the right to not fuck with the code while searching etc
+      "workbench.sideBar.location" = "right";
+      "editor.minimap.autohide" = true;
+      "editor.scrollbar.vertical" = "hidden";
+      "window.menuBarVisibility" = "toggle";
+      "workbench.startupEditor" = "none";
+      "zenMode.centerLayout" = false;
 
       # Vim
       "vim.useSystemClipboard" = true;
@@ -227,9 +231,6 @@
       "files.autoSave" = "off";
       "[nix]"."editor.tabSize" = 2;
       #"window.zoomLevel" = 1;
-      "window.menuBarVisibility" = "toggle";
-      "workbench.startupEditor" = "none";
-      "zenMode.centerLayout" = false;
     };
   };
 }

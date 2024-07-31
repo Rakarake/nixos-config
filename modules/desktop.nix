@@ -55,13 +55,11 @@ in {
       linuxPackages_latest.perf # Performance metrics
       impression    # Boot drive creator
       nix-index     # For working with /nix/store
-      appimage-run
       libnotify
       wireshark
       libresprite
       qemu
       comma
-      smile # Emoji picker
       nix-tree
       outputs.packages.${system}.amogus
       man-pages
