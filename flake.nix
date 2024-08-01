@@ -77,34 +77,40 @@
 
       nixosConfigurations = {
         # Lappy
-        thinky = nixpkgs-unstable.lib.nixosSystem {
+        thinky = nixpkgs-unstable.lib.nixosSystem rec {
+          system = "x86_64-linux";
           modules = [ ./hosts/thinky/configuration.nix ];
-          specialArgs = args;
+          specialArgs = args // { inherit system; };
         };
         # Desky
-        cobblestone-generator = nixpkgs-unstable.lib.nixosSystem {
+        cobblestone-generator = nixpkgs-unstable.lib.nixosSystem rec {
+          system = "x86_64-linux";
           modules = [ ./hosts/cobblestone-generator/configuration.nix ];
-          specialArgs = args;
+          specialArgs = args // { inherit system; };
         };
         # Server
-        creeper-spawner = nixpkgs-stable.lib.nixosSystem {
+        creeper-spawner = nixpkgs-stable.lib.nixosSystem rec {
+          system = "x86_64-linux";
           modules = [ ./hosts/creeper-spawner/configuration.nix ];
-          specialArgs = args;
+          specialArgs = args // { inherit system; };
         };
         # Live configurations for when you wanna put NixOS on a USB-stick
-        live = nixpkgs-unstable.lib.nixosSystem {
+        live = nixpkgs-unstable.lib.nixosSystem rec {
+          system = "x86_64-linux";
           modules = [ ./hosts/live/configuration.nix ];
-          specialArgs = args;
+          specialArgs = args // { inherit system; };
         };
         # MASS DESTRUCTION, oh yeah, baby baby
-        mass-destruction = nixpkgs-stable.lib.nixosSystem {
+        mass-destruction = nixpkgs-stable.lib.nixosSystem rec {
+          system = "x86_64-linux";
           modules = [ ./hosts/mass-destruction/configuration.nix ];
-          specialArgs = args;
+          specialArgs = args // { inherit system; };
         };
         # We are having steamed decks?
-        steamed-deck = nixpkgs-unstable.lib.nixosSystem {
+        steamed-deck = nixpkgs-unstable.lib.nixosSystem rec {
+          system = "x86_64-linux";
           modules = [ ./hosts/steamed-deck/configuration.nix ];
-          specialArgs = args;
+          specialArgs = args // { inherit system; };
         };
       };
 
