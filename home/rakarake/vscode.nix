@@ -123,7 +123,7 @@
       # Open project
       {
         "command" = "workbench.action.files.openFolder";
-        "key" = "d";
+        "key" = "ctrl+shift+k";
         "when" = "openFolderWorkspaceSupport";
       }
     ];
