@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ system, inputs, pkgs, lib, ... }:
 
 let 
   # Open TCP/UDP ports
@@ -11,6 +11,7 @@ let
     graphana         = 2344;
     prometheus       = 9001;
     jellyfin         = 8096;
+    bingbingo        = 8097;
 
     minecraft        = 25565;
     minecraft-spruce = 1337;
@@ -63,6 +64,7 @@ in
   imports = [
     ../../modules/global.nix
     ./hardware-configuration.nix
+    inputs.bingbingo.nixosModules.${system}.default
     (minecraftServerTemplate "minecraftserver1" "A stylish minecraft server" pkgs.jdk21)
     (minecraftServerTemplate "minecraftserverspruce" "A wooden minecraft server" pkgs.jdk17)
   ];
@@ -253,19 +255,6 @@ in
         enableACME = true;  # Let's encrypt TLS automated, not certbot
       };
 
-      ## Onlyoffice
-      #${hostnames.onlyoffice} = {
-      #  #forceSSL = true;
-      #  #enableACME = true;
-      #};
-      
-      ## Gitlab
-      #${hostnames.git} = {
-      #  #forceSSL = true;
-      #  #enableACME = true;
-      #  locations."/".proxyPass = "http://unix:/run/gitlab/gitlab-workhorse.socket";
-      #};
-
       ${hostnames.website} = {
         # When not using cloudflare tunnel
         #forceSSL = true;
@@ -284,6 +273,11 @@ in
         #  proxyWebsockets = true;
         #  recommendedProxySettings = true;
         #};
+        locations."/bingbingo" = {
+          proxyPass = "http://localhost:${toString ports.bingbingo}";
+          proxyWebsockets = true;
+          recommendedProxySettings = true;
+        };
       };
     };
   };
@@ -319,6 +313,12 @@ in
   };
   environment.etc.ffmpeg = { source = "${pkgs.ffmpeg}/bin/ffmpeg"; mode = "0555"; };
   environment.etc.ffprobe = { source = "${pkgs.ffmpeg}/bin/ffprobe"; mode = "0555"; };
+
+  # Bingbingo
+  services.bingbingo = {
+    enable = true;
+    port = ports.bingbingo;
+  };
 
   ## Onlyoffice
   #services.onlyoffice = {
