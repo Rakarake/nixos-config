@@ -318,6 +318,7 @@ in
   services.bingbingo = {
     enable = true;
     port = ports.bingbingo;
+    subPath = "bingbingo";
   };
 
   ## Onlyoffice
