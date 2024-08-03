@@ -110,6 +110,7 @@ in {
       sublime-music
       gcolor3
       ascii-draw
+      newsflash
 
       # Minecraft time
       prismlauncher
