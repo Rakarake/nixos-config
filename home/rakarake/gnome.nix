@@ -36,12 +36,7 @@ in {
       };
       "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
         binding = "<Super>Return";
-        command = "kitty -e bash -c 'tmux attach || tmux'";
-        name = "Terminal";
-      };
-      "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
-        binding = "<Super><Shift>N";
-        command = "logseq --ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-webrtc-pipewire-capturer";
+        command = "alacritty";
         name = "Terminal";
       };
       # Keybinds
