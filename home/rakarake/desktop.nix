@@ -123,6 +123,9 @@ in {
       cargo-mommy
     ];
 
+    # Enable syncthing service in the background
+    services.syncthing.enable = true;
+
     home.shellAliases = {
       cargo = "cargo mommy";
     };
