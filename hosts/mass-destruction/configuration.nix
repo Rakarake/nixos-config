@@ -72,7 +72,7 @@ in
     tmux
     jdk17
     bcachefs-tools
-    neofetch
+    fastfetch
     cloudflared
     ffmpeg
     waypipe
@@ -84,6 +84,14 @@ in
     settings.PasswordAuthentication = false;
     settings.KbdInteractiveAuthentication = false;
     ports = [ ports.ssh ];
+  };
+
+  # Backup user
+  users.users.backup = {
+    isNormalUser = true;
+    openssh.authorizedKeys.keys = [
+      ''command="${pkgs.rrsync}/bin/rrsync /home/backup/dir/",restrict ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILgq+RAMpi4DsptmWOQXq+y/z1Ejt+63JL4vjY3Nmipi rakarake@creeper-spawner''
+    ];
   };
 
   # Bootloader
