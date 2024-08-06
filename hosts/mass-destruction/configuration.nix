@@ -3,7 +3,8 @@
 let 
   # Open TCP/UDP ports
   ports = {
-    ssh              = 8022 22;
+    ssh              = 8022;
+    ssh1             = 22;
     wireguard        = 51820;
     minecraft        =  8069;
   };
@@ -83,7 +84,7 @@ in
     enable = true;
     settings.PasswordAuthentication = false;
     settings.KbdInteractiveAuthentication = false;
-    ports = [ ports.ssh ];
+    ports = [ ports.ssh ports.ssh1];
   };
 
   # Bootloader
