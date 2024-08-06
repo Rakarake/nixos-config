@@ -3,7 +3,7 @@
 let 
   # Open TCP/UDP ports
   ports = {
-    ssh              = 8022;
+    ssh              = 8022 , 22;
     wireguard        = 51820;
     minecraft        =  8069;
   };
