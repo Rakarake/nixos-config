@@ -21,7 +21,6 @@ in {
     home-common.enable = true;
     # XDG base directories
     home-xdg.enable = true;
-    nixpkgs.config.allowUnfree = true;
 
     # Neovim config
     home-neovim.enable = true;
@@ -94,7 +93,7 @@ in {
       nicotine-plus
       ardour
       r2modman
-      pkgs.osu-lazer
+      #pkgs.osu-lazer
       superTuxKart
       gamescope
       audacity
