@@ -180,7 +180,14 @@
           system = "x86_64-linux";
         }
         {
-          name = "cobblestone-generator";
+          name = "creeper-spawner";
+          user = "rakarake";
+          variation = "home";
+          nixpkgs = nixpkgs-unstable;
+          system = "x86_64-linux";
+        }
+        {
+          name = "steamed-deck";
           user = "rakarake";
           variation = "home";
           nixpkgs = nixpkgs-unstable;
