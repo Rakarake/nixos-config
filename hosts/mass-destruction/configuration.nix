@@ -7,7 +7,7 @@ let
     ssh1             = 22;
     wireguard        = 51820;
     minecraft        =  8069;
-    openttd          =  3949;
+    openttd          =  3979;
   };
 
   # Minecraft server module template
