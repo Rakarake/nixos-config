@@ -67,7 +67,33 @@
           config.allowUnfree = true;
         }
       );
+
+      # (b -> a -> b) -> b -> [a] -> b
+      foldl = f : acc : xs : if xs == [] then acc else foldl f (f acc (builtins.head xs)) (builtins.tail xs);
+
       args = { inherit inputs outputs self; };
+      # Creates nixos configs from list
+      makeSystemConfigs = systemConfigs: (foldl ( acc: { name, nixpkgs, system }:
+          acc // {
+            ${name} = nixpkgs.lib.nixosSystem  {
+              inherit system;
+              modules = [ ./hosts/${name}/configuration.nix ];
+              specialArgs = args // { inherit system; };
+            };
+          }
+      ) {} systemConfigs);
+
+      # Creates a home-manager configs from list
+      makeHomeConfigs = homeConfigs: foldl ( acc: { name, nixpkgs, user, variation, system }:
+          acc // {
+            "${user}@${name}-${variation}" = home-manager.lib.homeManagerConfiguration {
+              inherit system;
+              modules = [ ./hosts/${name}/${variation}.nix ];
+              pkgs = (pkgsFor nixpkgs).${system};
+              extraSpecialArgs = args // { inherit system; };
+            };
+          }
+        ) {} homeConfigs;
     in
     {
       # Expose NixOS and HomeManager modules, just to be nice
@@ -75,78 +101,95 @@
       homeManagerModules = import ./home;
       packages = forEachSystem nixpkgs-unstable (pkgs: import ./pkgs { inherit pkgs; });
 
-      nixosConfigurations = {
-        # Lappy
-        thinky = nixpkgs-unstable.lib.nixosSystem rec {
-          system = "x86_64-linux";
-          modules = [ ./hosts/thinky/configuration.nix ];
-          specialArgs = args // { inherit system; };
-        };
-        # Desky
-        cobblestone-generator = nixpkgs-unstable.lib.nixosSystem rec {
-          system = "x86_64-linux";
-          modules = [ ./hosts/cobblestone-generator/configuration.nix ];
-          specialArgs = args // { inherit system; };
-        };
-        # Server
-        creeper-spawner = nixpkgs-stable.lib.nixosSystem rec {
-          system = "x86_64-linux";
-          modules = [ ./hosts/creeper-spawner/configuration.nix ];
-          specialArgs = args // { inherit system; };
-        };
-        # Live configurations for when you wanna put NixOS on a USB-stick
-        live = nixpkgs-unstable.lib.nixosSystem rec {
-          system = "x86_64-linux";
-          modules = [ ./hosts/live/configuration.nix ];
-          specialArgs = args // { inherit system; };
-        };
-        # MASS DESTRUCTION, oh yeah, baby baby
-        mass-destruction = nixpkgs-stable.lib.nixosSystem rec {
-          system = "x86_64-linux";
-          modules = [ ./hosts/mass-destruction/configuration.nix ];
-          specialArgs = args // { inherit system; };
-        };
-        # We are having steamed decks?
-        steamed-deck = nixpkgs-unstable.lib.nixosSystem rec {
-          system = "x86_64-linux";
-          modules = [ ./hosts/steamed-deck/configuration.nix ];
-          specialArgs = args // { inherit system; };
-        };
+      functions = {
+        inherit foldl;
+        inherit makeSystemConfigs;
+        inherit makeHomeConfigs;
       };
 
-      homeConfigurations = {
+      nixosConfigurations = makeSystemConfigs [
         # Lappy
-        "rakarake@thinky-dark" = home-manager.lib.homeManagerConfiguration {
-          modules = [ ./hosts/thinky/dark.nix ];
-          pkgs = (pkgsFor nixpkgs-unstable).x86_64-linux;
-          extraSpecialArgs = args;
-        };
-        "rakarake@thinky-light" = home-manager.lib.homeManagerConfiguration {
-          modules = [ ./hosts/thinky/light.nix ];
-          pkgs = (pkgsFor nixpkgs-unstable).x86_64-linux;
-          extraSpecialArgs = args;
-        };
-        "rakarake@cobblestone-generator-dark" = home-manager.lib.homeManagerConfiguration {
-          modules = [ ./hosts/cobblestone-generator/dark.nix ];
-          pkgs = (pkgsFor nixpkgs-unstable).x86_64-linux;
-          extraSpecialArgs = args;
-        };
-        "rakarake@cobblestone-generator-light" = home-manager.lib.homeManagerConfiguration {
-          modules = [ ./hosts/cobblestone-generator/light.nix ];
-          pkgs = (pkgsFor nixpkgs-unstable).x86_64-linux;
-          extraSpecialArgs = args;
-        };
-        "rakarake@steamed-deck" = home-manager.lib.homeManagerConfiguration {
-          modules = [ ./hosts/steamed-deck/home.nix ];
-          pkgs = (pkgsFor nixpkgs-unstable).x86_64-linux;
-          extraSpecialArgs = args;
-        };
-        "rakarake@creeper-spawner" = home-manager.lib.homeManagerConfiguration {
-          modules = [ ./hosts/creeper-spawner/home.nix ];
-          pkgs = (pkgsFor nixpkgs-unstable).x86_64-linux;
-          extraSpecialArgs = args;
-        };
-      };
+        {
+          name = "thinky";
+          system ="x86_64-linux";
+          nixpkgs = nixpkgs-unstable;
+        }
+        # Desky
+        {
+          name = "cobblestone-generator";
+          system = "x86_64-linux";
+          nixpkgs = nixpkgs-unstable;
+        }
+        # Server
+        {
+          name = "creeper-spawner";
+          system = "x86_64-linux";
+          nixpkgs = nixpkgs-stable;
+        }
+        # Live configurations for when you wanna put NixOS on a USB-stick
+        {
+          name = "live";
+          system = "x86_64-linux";
+          nixpkgs = nixpkgs-stable;
+        }
+        # MASS DESTRUCTION, oh yeah, baby baby
+        {
+          name = "mass-destruction";
+          system = "x86_64-linux";
+          nixpkgs = nixpkgs-stable;
+        }
+        # We are having steamed decks?
+        {
+          name = "steamed-deck";
+          system = "x86_64-linux";
+          nixpkgs = nixpkgs-unstable;
+        }
+      ];
+
+      homeConfigurations = makeHomeConfigs [
+        {
+          name = "thinky";
+          user = "rakarake";
+          variation = "dark";
+          nixpkgs = nixpkgs-unstable;
+          system = "x86_64-linux";
+        }
+        {
+          name = "thinky";
+          user = "rakarake";
+          variation = "light";
+          nixpkgs = nixpkgs-unstable;
+          system = "x86_64-linux";
+        }
+        {
+          name = "cobblestone-generator";
+          user = "rakarake";
+          variation = "dark";
+          nixpkgs = nixpkgs-stable;
+          system = "x86_64-linux";
+        }
+        {
+          name = "cobblestone-generator";
+          user = "rakarake";
+          variation = "light";
+          nixpkgs = nixpkgs-stable;
+          system = "x86_64-linux";
+        }
+        {
+          name = "cobblestone-generator";
+          user = "rakarake";
+          variation = "dark";
+          nixpkgs = nixpkgs-unstable;
+          system = "x86_64-linux";
+        }
+        {
+          name = "cobblestone-generator";
+          user = "rakarake";
+          variation = "light";
+          nixpkgs = nixpkgs-unstable;
+          system = "x86_64-linux";
+        }
+      ];
     };
 }
 

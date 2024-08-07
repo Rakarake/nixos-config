@@ -21,7 +21,6 @@ in {
     home-common.enable = true;
     # XDG base directories
     home-xdg.enable = true;
-    nixpkgs.config.allowUnfree = true;
 
     # Neovim config
     home-neovim.enable = true;
