@@ -7,6 +7,7 @@ let
 in {
   options.home-bash = {
     enable = mkEnableOption "User bash config";
+    historyFileSize = 100000;
     prompt = mkOption {
       type = types.str;
       # Minimal prompt without hostname

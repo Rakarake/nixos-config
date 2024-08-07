@@ -93,7 +93,7 @@ in {
       nicotine-plus
       ardour
       r2modman
-      pkgs.osu-lazer
+      #pkgs.osu-lazer
       superTuxKart
       gamescope
       audacity

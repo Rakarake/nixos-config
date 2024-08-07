@@ -87,13 +87,17 @@
       makeHomeConfigs = homeConfigs: foldl ( acc: { name, nixpkgs, user, variation, system }:
           acc // {
             "${user}@${name}-${variation}" = home-manager.lib.homeManagerConfiguration {
-              inherit system;
               modules = [ ./hosts/${name}/${variation}.nix ];
               pkgs = (pkgsFor nixpkgs).${system};
               extraSpecialArgs = args // { inherit system; };
             };
           }
-        ) {} homeConfigs;
+      ) {} homeConfigs;
+      #"rakarake@thinky-light" = home-manager.lib.homeManagerConfiguration {
+      #  modules = [ ./hosts/thinky/light.nix ];
+      #  pkgs = (pkgsFor nixpkgs-unstable).x86_64-linux;
+      #  extraSpecialArgs = args;
+      #};
     in
     {
       # Expose NixOS and HomeManager modules, just to be nice
@@ -178,14 +182,7 @@
         {
           name = "cobblestone-generator";
           user = "rakarake";
-          variation = "dark";
-          nixpkgs = nixpkgs-unstable;
-          system = "x86_64-linux";
-        }
-        {
-          name = "cobblestone-generator";
-          user = "rakarake";
-          variation = "light";
+          variation = "home";
           nixpkgs = nixpkgs-unstable;
           system = "x86_64-linux";
         }

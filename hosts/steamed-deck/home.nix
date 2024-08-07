@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-  imports = [ ../../home/rakarake ../../home/rakarake/theme.nix ];
+  imports = [ ../../home/rakarake/global.nix ../../home/rakarake ../../home/rakarake/theme.nix ];
 
   # Wallpaper
   stylix.enable = true;
