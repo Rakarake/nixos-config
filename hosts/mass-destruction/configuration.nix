@@ -78,7 +78,6 @@ in
     ffmpeg
     waypipe
     openttd
-    openttd-opengfx
   ];
 
   # SSH daemon
