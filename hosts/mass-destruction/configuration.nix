@@ -77,6 +77,8 @@ in
     cloudflared
     ffmpeg
     waypipe
+    openttd
+    openttd-gfx
   ];
 
   # SSH daemon
