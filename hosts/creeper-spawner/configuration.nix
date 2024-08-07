@@ -144,6 +144,15 @@ in
     #  ExecStop = "/run/current-system/sw/bin/umount /var/lib/nextcloud";
     #};
   };
+  systemd.services.mount-movies = {
+    description = "Mount raka's movies to be accessible by Jellyfin";
+    script = "/run/current-system/sw/bin/mount --bind /var/lib/nextcloud/data/Rakarake/files/Movies /var/lib/Movies";
+    after = [ "mount-data.service" ];
+    wantedBy = [ "nextcloud-setup.service" ];
+    serviceConfig = {
+      Type = "oneshot";
+    };
+  };
 
   ## Nextcloud mount point
   #fileSystems."/var/lib/nextcloud" = {
