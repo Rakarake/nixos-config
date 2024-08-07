@@ -30,6 +30,7 @@ let
     #onlyoffice = "onlyoffice.rakarake.xyz";
     git = "git.rakarake.xyz";
     grafana = "grafana.rakarake.xyz";
+    jellyfin = "jellyfin.rakarake.xyz";
   };
 
   # Minecraft server module template
@@ -103,6 +104,7 @@ in
           #"nextcloud.rakarake.xyz".service = "http://localhost:80";
           "git.rakarake.xyz".service = "http://localhost:80";
           "ssh.rakarake.xyz".service = "ssh://localhost:22";
+	  "jellyfin.rakarake.xyz".service = "http://localhost:80";
         };
       };
     };
@@ -146,7 +148,7 @@ in
   };
   systemd.services.mount-movies = {
     description = "Mount raka's movies to be accessible by Jellyfin";
-    script = "/run/current-system/sw/bin/mount --bind /var/lib/nextcloud/data/Rakarake/files/Movies /var/lib/Movies";
+    script = "/run/current-system/sw/bin/mount --bind /var/lib/nextcloud/data/Rakarake/files/Movies /var/Movies";
     after = [ "mount-data.service" ];
     wantedBy = [ "nextcloud-setup.service" ];
     serviceConfig = {
@@ -264,6 +266,14 @@ in
         enableACME = true;  # Let's encrypt TLS automated, not certbot
       };
 
+      ${hostnames.jellyfin} = {
+        locations."/" = {
+          proxyPass = "http://localhost:${toString ports.jellyfin}";
+          proxyWebsockets = true;
+          recommendedProxySettings = true;
+        };
+      };
+
       ${hostnames.website} = {
         # When not using cloudflare tunnel
         #forceSSL = true;
@@ -277,11 +287,6 @@ in
           proxyWebsockets = true;
           recommendedProxySettings = true;
         };
-        #locations."/jellyfin" = {
-        #  proxyPass = "http://localhost:${toString ports.jellyfin}";
-        #  proxyWebsockets = true;
-        #  recommendedProxySettings = true;
-        #};
         locations."/bingbingo" = {
           proxyPass = "http://localhost:${toString ports.bingbingo}";
           proxyWebsockets = true;
