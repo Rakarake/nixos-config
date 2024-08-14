@@ -2,6 +2,7 @@
   imports = [
     # At least make home manager available
     inputs.home-manager.nixosModules.home-manager
+    inputs.nixos-cosmic.nixosModules.default
   ];
   environment.systemPackages = [
     # Make the home manager command available

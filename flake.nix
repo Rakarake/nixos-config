@@ -48,6 +48,12 @@
       url = "github:Rakarake/bingbingo";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+    
+    # Cosmic WIP flake
+    nixos-cosmic  = {
+      url = "github:lilyinstarlight/nixos-cosmic";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
   };
   outputs = { self, nixpkgs-stable, nixpkgs-unstable, home-manager, ... }@inputs:
     let
