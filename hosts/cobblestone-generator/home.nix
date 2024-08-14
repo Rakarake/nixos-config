@@ -10,6 +10,7 @@ in
   stylix.image = ../../home/rakarake/wallpaper.png;
 
   home-desktop.enable = true;
+  home-gnome.enable = true;
   home-hyprland = {
     enable = true;
     useSwayidle = false;

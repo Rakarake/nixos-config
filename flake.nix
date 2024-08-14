@@ -169,21 +169,21 @@
           name = "cobblestone-generator";
           user = "rakarake";
           variation = "dark";
-          nixpkgs = nixpkgs-stable;
+          nixpkgs = nixpkgs-unstable;
           system = "x86_64-linux";
         }
         {
           name = "cobblestone-generator";
           user = "rakarake";
           variation = "light";
-          nixpkgs = nixpkgs-stable;
+          nixpkgs = nixpkgs-unstable;
           system = "x86_64-linux";
         }
         {
           name = "creeper-spawner";
           user = "rakarake";
           variation = "home";
-          nixpkgs = nixpkgs-unstable;
+          nixpkgs = nixpkgs-stable;
           system = "x86_64-linux";
         }
         {
