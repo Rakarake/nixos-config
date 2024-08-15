@@ -45,7 +45,7 @@ in
       ks = "kitten ssh";
 
       # Swag
-      uwu = "${pkgs.fastfetch}/bin/fastfetch --logo-width 40 --logo-height 20 --kitty-direct ${self}/logo.png";
+      uwu = "${pkgs.fastfetch}/bin/fastfetch --logo ${self}/home/rakarake/sillyascii";
       
       # Projects
       p = "cd ~/Projects";
