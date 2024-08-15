@@ -9,6 +9,7 @@
     ./server.nix
     ./gnome.nix
     ./hyprland
+    ./cosmic
     ./neovim
     inputs.nix-index-database.hmModules.nix-index
     inputs.stylix.homeManagerModules.stylix
