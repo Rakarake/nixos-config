@@ -4,8 +4,7 @@
 
   # Cool simple Hyprland config
   cfg-desktop.enable = true;
-  #cfg-hyprland.enable = true;
-  cfg-cosmic.enable = true;
+  cfg-hyprland.enable = true;
 
   # Hostname
   networking.hostName = "cobblestone-generator";  # Define your hostname.

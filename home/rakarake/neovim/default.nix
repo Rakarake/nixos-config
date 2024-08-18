@@ -49,7 +49,7 @@ in
       (agda.withPackages [ agdaPackages.standard-library ])
 
       # Typst
-      typst-lsp
+      #typst-lsp
 
       # WGSL
       inputs.wgsl_analyzer.packages.${system}.default
