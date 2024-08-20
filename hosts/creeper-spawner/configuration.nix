@@ -12,6 +12,7 @@ let
     prometheus       = 9001;
     jellyfin         = 8096;
     bingbingo        = 8097;
+    forgejo          = 8098;
 
     minecraft        = 25565;
     minecraft-spruce = 1337;
@@ -28,7 +29,7 @@ let
     website = "rakarake.xyz";
     nextcloud = "nextcloud.rakarake.xyz";
     #onlyoffice = "onlyoffice.rakarake.xyz";
-    git = "git.rakarake.xyz";
+    forgejo = "git.rakarake.xyz";
     grafana = "grafana.rakarake.xyz";
     jellyfin = "jellyfin.rakarake.xyz";
   };
@@ -274,6 +275,14 @@ in
         };
       };
 
+      ${hostnames.forgejo} = {
+        locations."/" = {
+          proxyPass = "http://localhost:${toString ports.jellyfin}";
+          proxyWebsockets = true;
+          recommendedProxySettings = true;
+        };
+      };
+
       ${hostnames.website} = {
         # When not using cloudflare tunnel
         #forceSSL = true;
@@ -335,29 +344,31 @@ in
     subPath = "bingbingo";
   };
 
+  # Forgeo
+  services.forgejo = {
+    enable = true;
+    database.type = "postgres";
+    lfs.enable = true;
+    settings = {
+      server = {
+        DOMAIN = hostnames.forgejo;
+        ROOT_URL = "https://${hostnames.forgejo}/"; 
+        HTTP_PORT = ports.forgejo;
+      };
+      service.DISABLE_REGISTRATION = true; 
+      actions = {
+        ENABLED = true;
+        DEFAULT_ACTIONS_URL = "github";
+      };
+    };
+  };
+
   ## Onlyoffice
   #services.onlyoffice = {
   #  enable = true;
   #  hostname = hostnames.onlyoffice;
   #  port = 8000;
   #};
-
-  ## Gitlab
-  #services.gitlab = {
-  #  enable = true;
-  #  https = true;
-  #  # Https port when copying link for repo
-  #  port = 443;
-  #  host = hostnames.git;
-  #  initialRootPasswordFile = /data/secrets/rootPassword;
-  #  secrets = {
-  #    secretFile = /data/secrets/secret;
-  #    otpFile = /data/secrets/optsecret;
-  #    dbFile = /data/secrets/dbsecret;
-  #    jwsFile = pkgs.runCommand "oidcKeyBase" {} "${pkgs.openssl}/bin/openssl genrsa 2048 > $out";
-  #  };
-  #};
-  #systemd.services.gitlab-backup.environment.BACKUP = "dump";
 
   # Bootloader
   boot.loader.systemd-boot.enable = true;
