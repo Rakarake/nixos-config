@@ -101,9 +101,9 @@ in
         default = "http_status:404";
         credentialsFile = "/var/cloudflare-tunnel.json";
         ingress = {
-          "rakarake.xyz".service = "http://localhost:80";
+          #"rakarake.xyz".service = "http://localhost:80";
           #"nextcloud.rakarake.xyz".service = "http://localhost:80";
-          "git.rakarake.xyz".service = "http://localhost:80";
+          #"git.rakarake.xyz".service = "http://localhost:80";
           "ssh.rakarake.xyz".service = "ssh://localhost:22";
 	  "jellyfin.rakarake.xyz".service = "http://localhost:80";
         };
@@ -276,11 +276,12 @@ in
       };
 
       ${hostnames.forgejo} = {
-        locations."/" = {
-          proxyPass = "http://localhost:${toString ports.forgejo}";
-          proxyWebsockets = true;
-          recommendedProxySettings = true;
-        };
+        forceSSL = true;
+        enableACME = true;
+        extraConfig = ''
+          client_max_body_size 512M;
+        '';
+        locations."/".proxyPass = "http://localhost:${toString ports.forgejo}";
       };
 
       ${hostnames.website} = {
