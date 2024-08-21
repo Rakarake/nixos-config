@@ -277,7 +277,7 @@ in
 
       ${hostnames.forgejo} = {
         locations."/" = {
-          proxyPass = "http://localhost:${toString ports.jellyfin}";
+          proxyPass = "http://localhost:${toString ports.forgejo}";
           proxyWebsockets = true;
           recommendedProxySettings = true;
         };
@@ -349,6 +349,7 @@ in
     enable = true;
     database.type = "postgres";
     lfs.enable = true;
+    stateDir = "/data/forgejo";
     settings = {
       server = {
         DOMAIN = hostnames.forgejo;
