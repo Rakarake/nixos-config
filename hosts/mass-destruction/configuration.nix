@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, ssh-keys, ... }:
 
 let 
   # Open TCP/UDP ports
@@ -146,22 +146,13 @@ in
       isNormalUser = true;
       description = "Magarnicle";
       extraGroups = [ "networkmanager" "wheel" "nextcloud" ];
-      openssh.authorizedKeys.keys = [
-        "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCtNpdgfbXtZurgN8GpLwAH3tIcMNi4hz1eZtvuBm+bTCV154EwBz+DO4eeja3GmWzOSrObjbuinxjdf+vqNFdKnqfI4eISaV54BJnJv4A5xWDqv5+iJNPD2AjIp2RswM43QcdM9MqbPnAjMcKo5TdUwFlrzR2Czv6M5//XJekrDP9dzCbhd8tT/ECEzdPrk3ItEpVPC7so+zmY9USu9duPOKSTfLDRmfK8sRnePAdkNn99yawJVh7tr2FypI9zd/N0AuhkmseQ+hP0L8vVIITB3yHXOnN33xaoXX19Lz6gVa0GQJs5YliKGB0WgHVml+b+NSGFAKsWnxB+HktW6l+KL3j/D7dZt8rbvS/t+4ecLOprTSuAbwY+Hj8iDcBF9Enpi4zo1TF0Rct2YMwOJwm/lCrYNkpxqP3SsHSrVXChmfRZgWWYmNTK1FQbMd+0KiMmy75jJq4PvshSadpPz23AqgivPG1a9G79y01mD+/gLtqpLYqaGtQtV/MD7Q4qK50= magarnicle@Microwave"
-        "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDddPLXUtA5KRLJcgTYAOVmaJ4Rncz2JznX3yew44J7RbZgzKb16BxfentZDCruDNWSwmc3AvyzK/+NqpndQrROIMJ/CYDj4w59P+l+LgOZQSxOYPEH65glcJFdrdiINj5kYfkeazHHM5lHEgb9kUFbYhekpuU81LDqSHdjfQclopwlmZ4vUs8uhqaKza+6hTpgWP+t5uN4mc0Wwu1zNV7FVXarUMkSknaQ4Fz7HAbzUxIQXMH3PCmP6FP53XnGlaphVUfvv1W/kyczCuBObcVWxaasVb95SbTYG90NxYj27Co4wwPclM9NKu2oLdDt+lI47b7SahvqF6XWr2ACvEwcyLGE/jYaeGMpLT0Nrjn1XdJtHUuDWubbEq8lBJ0hRPqbp5K/qYwu1s9bLGXCXskgdP7++o/M9SQAv6XkdSgn6ghfPYGb8a0bR+nDLbgvty9WlaXhaGQsfMrHPLo1FS39IGnXkXT3QuzKxnmc7UpPqjqRDHiRXNKUwruyD0MTo5M= magarnicle@drakonServ"
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFztyKnk8kdQYm1ycs1KNcUArTnFRuKsNivrjyrbM19N magarnicle@microwave"
-      ];
+      openssh.authorizedKeys.keys = ssh-keys.magarnicle;
     };
     users.rakarake = {
       isNormalUser = true;
       description = "Rakarake";
       extraGroups = [ "networkmanager" "wheel" "nextcloud" ];
-      openssh.authorizedKeys.keys = [
-        "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDswNWTldzMxDmGVMmftP1veTWsWqYehiSglmUktQa4JRkWbzHh20nF90l69T7gYgq551KYsgB83Kdexe+j5GARzeaJB3700mUKHHoBW80RwVQKZuj5HEqy2cvaEGywx84WS9uJDs09wmFABM0FBRjeEHfvHQsE6elB0zVDsCogSBl4T+bW9sxzrMZpXsjmdJ//9QE1mLaZlYLBLwc79iAZFL4ZeWqGFl/gHyA+lLOvgmrtJMBeIMw3CZI8LNLtbTK0PILzSzTOnfFtx3L72wgqUm49P1taFC9WncPy0TN9fJoXV9WjRlrwvJNWycRnMJNmVg4f4gSCYEI1lcspN04ahZH+nOTFhl2dQrw5x2QWCMfATNQPzBYvuFr/UyaaNFpUFp4QD9lccokB8rq99ls97EtZ1w4RitGvc8GGcZ8qy8iIcijT4JRZxxYAH8ebSwykXZCdTSD21uMebyRnScZf/xHaGV6MH7NIeRH7YlaWI+kpWbd7SqHtDbtecPHqAeE= Williams GPG Key"
-
-        "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDZYtvc+W667rSI3JidOFL96UgEyqcGXHtg1B84ovKaAJVRDgT5M0VJFEQ2L2a2PeEirBYktlHiQxqevMWvQvvJh+WAB9RiIQlAez65i0hMuJcLwo/JpEGRX0QT4gaej+DjUEO/0Z8+Q6sYN/Bwgs/IaJKD2oHCKe95qQC7nhfpGbpqsLPRAmlOaqms4sqUFhVeQlirltcv2hzJ2cMHwIpI40j+n/MbKQ3iJUOicjHqiZMgTXzHoq1RuG3RtYQ2O7RSmJbthca2PD7XlmPq07dXc49yPomeXxvTt2JUsvgry4X8OvKwXcGU2E1XJ0MCDphQaAJuCKqeygAuXGowpfTKjmw3neHn124iGozGmKgbR8uU3TrEpa3P0HLfDkWKdSGv50GApIVa2fhnqwt4nvVpEm/MqCD35y22b/j+KwypPKDq1BZPuIQGmPYuQwuoH9UaHH13uJxtv8JoKm2l359Qrs8v+fjeBh9kNoKSVG0CJBShIW2odRZDpXS2Ds1zUX8= rakarake@rakarake-pc"
-
-      ];
+      openssh.authorizedKeys.keys = ssh-keys.rakarake;
     };
     # Backup user
     users.backup = {

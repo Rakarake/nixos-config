@@ -77,7 +77,12 @@
       # (b -> a -> b) -> b -> [a] -> b
       foldl = f : acc : xs : if xs == [] then acc else foldl f (f acc (builtins.head xs)) (builtins.tail xs);
 
-      args = { inherit inputs outputs self; };
+      # Stuff accessible in modules
+      args = {
+        inherit inputs outputs self;
+        ssh-keys = import ./ssh-keys.nix;
+      };
+
       # Creates nixos configs from list
       makeSystemConfigs = systemConfigs: (foldl ( acc: { name, nixpkgs, system }:
           acc // {
