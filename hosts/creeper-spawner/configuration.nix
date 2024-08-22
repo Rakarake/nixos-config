@@ -28,7 +28,6 @@ let
   hostnames = {
     website = "rakarake.xyz";
     nextcloud = "nextcloud.rakarake.xyz";
-    #onlyoffice = "onlyoffice.rakarake.xyz";
     forgejo = "git.rakarake.xyz";
     grafana = "grafana.rakarake.xyz";
     jellyfin = "jellyfin.rakarake.xyz";
@@ -93,35 +92,12 @@ in
     };
   };
 
-  # We love IPV4
-  #services.cloudflared = {
-  #  enable = true;
-  #  tunnels = {
-  #    "creeper-spawner" = {
-  #      default = "http_status:404";
-  #      credentialsFile = "/var/cloudflare-tunnel.json";
-  #      ingress = {
-  #        #"rakarake.xyz".service = "http://localhost:80";
-  #        #"nextcloud.rakarake.xyz".service = "http://localhost:80";
-  #        #"git.rakarake.xyz".service = "http://localhost:80";
-  #        #"ssh.rakarake.xyz".service = "ssh://localhost:22";
-  #        #"jellyfin.rakarake.xyz".service = "http://localhost:80";
-  #      };
-  #    };
-  #  };
-  #};
-
   # Linux kernel version
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Hostname
   networking.hostName = "creeper-spawner";
 
-  ## The data cluster
-  #fileSystems."/data" = {
-  #  device = "/dev/sda4:/dev/nvme0n1";
-  #  fsType = "bcachefs";
-  #};
   systemd.services.mount-data = {
     description = "Bcachefs data mount";
     script = "/run/current-system/sw/bin/mount -t bcachefs /dev/sda4:/dev/nvme0n1 /data";
@@ -129,10 +105,6 @@ in
     serviceConfig = {
       Type = "oneshot";
     };
-    #serviceConfig = {
-    #  ExecStart = "/run/current-system/sw/bin/mount -t bcachefs /dev/sda4:/dev/nvme0n1 /data";
-    #  ExecStop = "/run/current-system/sw/bin/umount /var/lib/nextcloud";
-    #};
   };
   systemd.services.mount-nextcloud = {
     description = "Nextcloud data mount";
@@ -142,10 +114,6 @@ in
     serviceConfig = {
       Type = "oneshot";
     };
-    #serviceConfig = {
-    #  ExecStart = "/run/current-system/sw/bin/mount --bind /data/nextcloud /var/lib/nextcloud";
-    #  ExecStop = "/run/current-system/sw/bin/umount /var/lib/nextcloud";
-    #};
   };
   systemd.services.mount-movies = {
     description = "Mount raka's movies to be accessible by Jellyfin";
@@ -156,17 +124,6 @@ in
       Type = "oneshot";
     };
   };
-
-  ## Nextcloud mount point
-  #fileSystems."/var/lib/nextcloud" = {
-  #  device = "/data/nextcloud";
-  #  options = [ "bind" ];
-  #};
-  ## Gitlab mount point
-  #fileSystems."/var/gitlab" = {
-  #  device = "/data/gitlab";
-  #  options = [ "bind" ];
-  #};
 
   # Open ports
   networking.firewall.allowedTCPPorts = lib.attrsets.attrValues ports;
@@ -367,13 +324,6 @@ in
     };
   };
 
-  ## Onlyoffice
-  #services.onlyoffice = {
-  #  enable = true;
-  #  hostname = hostnames.onlyoffice;
-  #  port = 8000;
-  #};
-
   # Bootloader
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -381,9 +331,9 @@ in
   # Enable networking
   networking.networkmanager.enable = true;
 
-  ## Set your time zone
-  #time.timeZone = "Europe/Stockholm";
-  #services.automatic-timezoned.enable = true;
+  # Set your time zone
+  time.timeZone = "Europe/Stockholm";
+  services.automatic-timezoned.enable = true;
 
   # Select internationalisation properties
   i18n.defaultLocale = "en_US.UTF-8";

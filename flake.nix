@@ -99,11 +99,6 @@
             };
           }
       ) {} homeConfigs;
-      #"rakarake@thinky-light" = home-manager.lib.homeManagerConfiguration {
-      #  modules = [ ./hosts/thinky/light.nix ];
-      #  pkgs = (pkgsFor nixpkgs-unstable).x86_64-linux;
-      #  extraSpecialArgs = args;
-      #};
     in
     {
       # Expose NixOS and HomeManager modules, just to be nice
