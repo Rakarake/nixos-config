@@ -110,6 +110,7 @@ in {
       gcolor3
       ascii-draw
       newsflash
+      monero-gui
 
       # Minecraft time
       prismlauncher
@@ -142,8 +143,14 @@ in {
         exec = "${name} --ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-webrtc-pipewire-capturer";
         icon = name;
       };
+      qtWaylandApp = name : {
+        name = "${name} wayland";
+        exec = ''${name} -platform "wayland;xcb"'';
+        icon = name;
+      };
       # Takes a list of executable names and makes wayland desktop entries for them
       makeElectronWaylandApps = appNames : (lib.listToAttrs (map (name : { name = "${name}Wayland"; value = electronWaylandApp name; }) appNames));
+      makeQTWaylandApps = appNames : (lib.listToAttrs (map (name : { name = "${name}Wayland"; value = qtWaylandApp name; }) appNames));
     in {
       godotSingleWindow = {
         name = "Godot 4 Single Window";
@@ -161,6 +168,10 @@ in {
       "code"
       "codium"
       "vesktop"
-    ]);
+    ])
+    // (makeQTWaylandApps [
+      "monero-wallet-gui"
+    ])
+    ;
   };
 }
