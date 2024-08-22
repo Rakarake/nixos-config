@@ -94,22 +94,22 @@ in
   };
 
   # We love IPV4
-  services.cloudflared = {
-    enable = true;
-    tunnels = {
-      "creeper-spawner" = {
-        default = "http_status:404";
-        credentialsFile = "/var/cloudflare-tunnel.json";
-        ingress = {
-          #"rakarake.xyz".service = "http://localhost:80";
-          #"nextcloud.rakarake.xyz".service = "http://localhost:80";
-          #"git.rakarake.xyz".service = "http://localhost:80";
-          "ssh.rakarake.xyz".service = "ssh://localhost:22";
-	  "jellyfin.rakarake.xyz".service = "http://localhost:80";
-        };
-      };
-    };
-  };
+  #services.cloudflared = {
+  #  enable = true;
+  #  tunnels = {
+  #    "creeper-spawner" = {
+  #      default = "http_status:404";
+  #      credentialsFile = "/var/cloudflare-tunnel.json";
+  #      ingress = {
+  #        #"rakarake.xyz".service = "http://localhost:80";
+  #        #"nextcloud.rakarake.xyz".service = "http://localhost:80";
+  #        #"git.rakarake.xyz".service = "http://localhost:80";
+  #        #"ssh.rakarake.xyz".service = "ssh://localhost:22";
+  #        #"jellyfin.rakarake.xyz".service = "http://localhost:80";
+  #      };
+  #    };
+  #  };
+  #};
 
   # Linux kernel version
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -186,7 +186,7 @@ in
     jdk17
     bcachefs-tools
     fastfetch
-    cloudflared
+    #cloudflared
     ffmpeg
     waypipe
     rsync
@@ -268,6 +268,8 @@ in
       };
 
       ${hostnames.jellyfin} = {
+        forceSSL = true;
+        enableACME = true;  # Let's encrypt TLS automated, not certbot
         locations."/" = {
           proxyPass = "http://localhost:${toString ports.jellyfin}";
           proxyWebsockets = true;
@@ -286,8 +288,8 @@ in
 
       ${hostnames.website} = {
         # When not using cloudflare tunnel
-        #forceSSL = true;
-        #enableACME = true;
+        forceSSL = true;
+        enableACME = true;
 
         # Homepage
         locations."/".root = "/var/www/${hostnames.website}/public";
