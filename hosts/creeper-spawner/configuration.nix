@@ -13,6 +13,7 @@ let
     jellyfin         = 8096;
     bingbingo        = 8097;
     forgejo          = 8098;
+    monero           = 18081;
 
     minecraft        = 25565;
     minecraft-spruce = 1337;
@@ -325,10 +326,11 @@ in
   };
 
   # Monero
-  #services.monero = {
-  #  enable = true;
-  #  dataDir = "/data/monero";
-  #};
+  services.monero = {
+    enable = true;
+    dataDir = "/data/monero";
+    limits.threads = 2;
+  };
 
   # Bootloader
   boot.loader.systemd-boot.enable = true;
