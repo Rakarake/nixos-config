@@ -95,13 +95,5 @@
     description = "Guest";
     extraGroups = [ "networkmanager" ];
   };
-
-  # Mount music
-  fileSystems = {
-    "/home/rakarake/MORB" = {
-      label = "MORB";
-      fsType = "btrfs";
-    };
-  };
 }
 
