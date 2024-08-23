@@ -2,28 +2,32 @@
 
 let 
   # Open TCP/UDP ports
-  ports = {
-    ssh              = 22;
-    http             = 80;
-    https            = 443;
-    #onlyoffice       = 8000;
-    wireguard        = 51820;
-    graphana         = 2344;
-    prometheus       = 9001;
-    jellyfin         = 8096;
-    bingbingo        = 8097;
-    forgejo          = 8098;
-    monero           = 18081;
+  publicPorts = {
+    ssh                = 22;
+    http               = 80;
+    https              = 443;
 
-    minecraft        = 25565;
-    minecraft-spruce = 1337;
+    wireguard          = 51820;
+    monero             = 18081;
 
-    prt2             = 8002;
-    prt3             = 8003;
-    prt4             = 8004;
-    prt5             = 8005;
+    minecraft          = 25565;
+    minecraft-spruce   = 1337;
+
+    prt2               = 8002;
+    prt3               = 8003;
+    prt4               = 8004;
+    prt5               = 8005;
   };
-  prometheusNodePort = 9002;
+
+  localPorts = {
+    graphana           = 2344;
+    prometheus         = 9001;
+    prometheusNodePort = 9002;
+    jellyfin           = 8096;
+    bingbingo          = 8097;
+    forgejo            = 8098;
+  };
+
 
   # Hostnames
   hostnames = {
@@ -75,7 +79,7 @@ in
   networking.wg-quick.interfaces = {
     wg0 = {
       address = [ "10.0.1.2" ];
-      listenPort = ports.wireguard;
+      listenPort = publicPorts.wireguard;
       privateKeyFile = "/var/wireguard/private";
       peers = [
         {
@@ -127,8 +131,8 @@ in
   };
 
   # Open ports
-  networking.firewall.allowedTCPPorts = lib.attrsets.attrValues ports;
-  networking.firewall.allowedUDPPorts = lib.attrsets.attrValues ports;
+  networking.firewall.allowedTCPPorts = lib.attrsets.attrValues publicPorts;
+  networking.firewall.allowedUDPPorts = lib.attrsets.attrValues publicPorts;
 
   # Utility programs
   environment.systemPackages = with pkgs; [
@@ -170,7 +174,7 @@ in
     enable = true;
     settings.PasswordAuthentication = false;
     settings.KbdInteractiveAuthentication = false;
-    ports = [ ports.ssh ];
+    ports = [ publicPorts.ssh ];
   };
 
   # Graphana
@@ -178,7 +182,7 @@ in
     enable = true;
     #domain = "grafana.rakarake.xyz";
     settings.server = {
-      http_port = ports.graphana;
+      http_port = localPorts.graphana;
       http_addr = "127.0.0.1";
       root_url = "https://rakarake.xyz/grafana";
       serve_from_sub_path = true;
@@ -188,19 +192,19 @@ in
   # Prometheus
   services.prometheus = {
     enable = true;
-    port = ports.prometheus;
+    port = localPorts.prometheus;
     exporters = {
       node = {
         enable = true;
         enabledCollectors = [ "systemd" ];
-        port = prometheusNodePort;
+        port = localPorts.prometheusNodePort;
       };
     };
     scrapeConfigs = [
       {
         job_name = "creeper-gaming";
         static_configs = [{
-          targets = [ "127.0.0.1:${toString prometheusNodePort}" ];
+          targets = [ "127.0.0.1:${toString localPorts.prometheusNodePort}" ];
         }];
       }
     ];
@@ -229,7 +233,7 @@ in
         forceSSL = true;
         enableACME = true;  # Let's encrypt TLS automated, not certbot
         locations."/" = {
-          proxyPass = "http://localhost:${toString ports.jellyfin}";
+          proxyPass = "http://localhost:${toString localPorts.jellyfin}";
           proxyWebsockets = true;
           recommendedProxySettings = true;
         };
@@ -241,7 +245,7 @@ in
         extraConfig = ''
           client_max_body_size 512M;
         '';
-        locations."/".proxyPass = "http://localhost:${toString ports.forgejo}";
+        locations."/".proxyPass = "http://localhost:${toString localPorts.forgejo}";
       };
 
       ${hostnames.website} = {
@@ -253,12 +257,12 @@ in
         locations."/".root = "/var/www/${hostnames.website}/public";
         # Grafana stats visualizer
         locations."/grafana" = {
-          proxyPass = "http://localhost:${toString ports.graphana}";
+          proxyPass = "http://localhost:${toString localPorts.graphana}";
           proxyWebsockets = true;
           recommendedProxySettings = true;
         };
         locations."/bingbingo" = {
-          proxyPass = "http://localhost:${toString ports.bingbingo}";
+          proxyPass = "http://localhost:${toString localPorts.bingbingo}";
           proxyWebsockets = true;
           recommendedProxySettings = true;
         };
@@ -301,7 +305,7 @@ in
   # Bingbingo
   services.bingbingo = {
     enable = true;
-    port = ports.bingbingo;
+    port = localPorts.bingbingo;
     subPath = "bingbingo";
   };
 
@@ -315,7 +319,7 @@ in
       server = {
         DOMAIN = hostnames.forgejo;
         ROOT_URL = "https://${hostnames.forgejo}/"; 
-        HTTP_PORT = ports.forgejo;
+        HTTP_PORT = localPorts.forgejo;
       };
       service.DISABLE_REGISTRATION = true; 
       actions = {
