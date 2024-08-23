@@ -248,6 +248,9 @@ in {
 
       # Screenshots
       bind=SUPER,S,exec,grim -g "$(slurp -d)" - | wl-copy
+
+      # Screen recordings
+      bind=SUPERALT,S,exec,${pkgs.wf-recorder}/bin/wf-recorder -g "$(slurp)" -f ~/Videos/vebeo.mp4
       
       # MISC
       bind=SUPERALTSHIFT,S,exec,systemctl poweroff

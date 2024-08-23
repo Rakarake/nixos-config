@@ -53,6 +53,9 @@
       # C#
       ms-dotnettools.csharp
       ms-dotnettools.vscode-dotnet-runtime
+
+      # Risc-V
+      zhwu95.riscv
     ];
     keybindings = [
       {
