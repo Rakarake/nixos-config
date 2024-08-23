@@ -23,6 +23,9 @@ in
 
     # LSP packages
     home.packages = with pkgs; [
+      # Needed for telescope's grep functionality
+      ripgrep
+
       # HTML / CSS / JSON / ESLint language server
       vscode-langservers-extracted
 
