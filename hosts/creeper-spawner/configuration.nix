@@ -8,7 +8,8 @@ let
     https              = 443;
 
     wireguard          = 51820;
-    monero             = 18081;
+    monero             = 18080;
+    moneroRpc          = 18081;
 
     minecraft          = 25565;
     minecraft-spruce   = 1337;
