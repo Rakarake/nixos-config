@@ -1,8 +1,9 @@
 { pkgs, inputs, ... }:
 {
-  #home.packages = [ vscodePackage ];
-  #home.file.".config/Code/User/settings.json".text = ''
-  #'';
+  home.packages = with pkgs; [
+    # Needed for vscode-clangd
+    clang-tools
+  ];
   programs.vscode = {
     enable = true;
     package = pkgs.vscodium; #// { pname = "vscode"; };
@@ -38,8 +39,8 @@
       # Live Share
       ms-vsliveshare.vsliveshare
 
-      # C++
-      ms-vscode.cpptools
+      # C/C++
+      llvm-vs-code-extensions.vscode-clangd
 
       # CMAKE
       twxs.cmake
@@ -202,7 +203,7 @@
         { "before" = [ "leader" "f" "f" ]; "commands" = [ "workbench.action.quickOpen" ]; }
         { "before" = [ "leader" "d" "f" ]; "commands" = [ "editor.action.formatDocument" ]; }
         {
-          "before" = [ "g" "h" ];
+          "before" = [ "leader" "e" ];
           "commands" = [ "editor.action.showDefinitionPreviewHover" ];
         }
       ];
