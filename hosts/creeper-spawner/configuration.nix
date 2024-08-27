@@ -10,6 +10,8 @@ let
     wireguard          = 51820;
     monero             = 18080;
     moneroRpc          = 18081;
+    moeroP2Pool        = 37889;
+    moeroP2PoolMini    = 37888;
 
     minecraft          = 25565;
     minecraft-spruce   = 1337;
