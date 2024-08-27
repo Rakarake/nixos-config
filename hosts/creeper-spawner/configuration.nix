@@ -334,7 +334,12 @@ in
   services.monero = {
     enable = true;
     dataDir = "/data/monero";
-    limits.threads = 2;
+    #limits.threads = 2;
+    #rpc.address = "0.0.0.0";
+    #rpc.port = publicPorts.moneroRpc;
+    #rpc.restricted = false;
+    #rpc.user = "morbius";
+    #rpc.password = "mr-beast";
   };
 
   # Bootloader
