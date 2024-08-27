@@ -168,7 +168,16 @@ in
     proggyfonts
     nerdfonts
     corefonts  # Microsoft fonts
+    ubuntu_font_family
   ];
+
+  fontconfig = {
+    defaultFonts = {
+      serif = [  "Liberation Serif" ];
+      sansSerif = [ "Ubuntu" ];
+      monospace = [ "Ubuntu Mono" ];
+    };
+  };
 
   # SSH daemon
   services.openssh = {
