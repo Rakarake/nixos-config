@@ -171,7 +171,7 @@ in
     ubuntu_font_family
   ];
 
-  fontconfig = {
+  fonts.fontconfig = {
     defaultFonts = {
       serif = [  "Liberation Serif" ];
       sansSerif = [ "Ubuntu" ];
