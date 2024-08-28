@@ -1,4 +1,4 @@
-{ system, inputs, pkgs, lib, ssh-keys, ... }:
+{ system, inputs, pkgs, lib, ssh-keys, config, ... }:
 
 let 
   # Open TCP/UDP ports
@@ -345,16 +345,27 @@ in
     };
   };
 
-  # Monero
+  # Monero, p2pool can be run using this node
+  age.secrets.monero-node-password.file = ../../secrets/secret1.age;
   services.monero = {
     enable = true;
     dataDir = "/data/monero";
-    #limits.threads = 2;
-    #rpc.address = "0.0.0.0";
-    #rpc.port = publicPorts.moneroRpc;
-    #rpc.restricted = false;
-    #rpc.user = "morbius";
-    #rpc.password = "mr-beast";
+    rpc = {
+      user = "monero";
+      password = builtins.readFile config.age.secrets.monero-node-password.path;
+      port = publicPorts.moneroRpc;
+      address = "0.0.0.0";
+    };
+    extraConfig = ''
+      confirm-external-bind
+      zmq-pub tcp://0.0.0.0:18083
+      out-peers 8 
+      in-peers 16 
+      add-priority-node=p2pmd.xmrvsbeast.com:18080
+      add-priority-node=nodes.hashvault.pro:18080
+      disable-dns-checkpoints
+      enable-dns-blocklist
+    '';
   };
 
   # Bootloader
