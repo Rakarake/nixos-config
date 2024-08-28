@@ -10,6 +10,7 @@ let
     wireguard          = 51820;
     monero             = 18080;
     moneroRpc          = 18081;
+    moneroZMQ          = 18083;
     moeroP2Pool        = 37889;
     moeroP2PoolMini    = 37888;
 
@@ -155,6 +156,9 @@ in
     ffmpeg
     waypipe
     rsync
+    p2pool
+    xmrig
+    monero-cli
   ];
 
   # Fonts
