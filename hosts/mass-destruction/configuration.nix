@@ -79,7 +79,6 @@ in
     ffmpeg
     waypipe
     openttd
-    lspci
   ];
 
   # SSH daemon
