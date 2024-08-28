@@ -45,7 +45,7 @@ in {
       gamemode
       tmux
       nextcloud-client
-      gnome.gnome-software
+      gnome-software
       mesa-demos  # Has programs such as glxgears
       adwaita-icon-theme  # Just to be safe
       mpv
@@ -76,8 +76,8 @@ in {
       thunderbird
       qpwgraph
       #easyeffects
-      gnome.gnome-mines
-      gnome.gnome-sound-recorder
+      gnome-mines
+      gnome-sound-recorder
       ffmpeg
       waypipe
       okular
@@ -231,6 +231,8 @@ in {
       };
     };
     environment.sessionVariables = {
+      # Default editor, systemd home thing does not work
+      EDITOR = "nvim";
       # Needed for gamescope to run in steam
       ENABLE_VKBASALT = "1";
       # Always allow unfree nix packages 😛

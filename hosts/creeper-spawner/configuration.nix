@@ -1,4 +1,4 @@
-{ system, inputs, pkgs, lib, ssh-keys, ... }:
+{ system, inputs, pkgs, lib, ssh-keys, config, ... }:
 
 let 
   # Open TCP/UDP ports
@@ -341,22 +341,27 @@ in
     };
   };
 
-  # Monero
-#monerod --rpc-bind-ip 0.0.0.0 --rpc-bind-port 18081 --confirm-external-bind --rpc-login monero: --data-dir=/data/monero --zmq-pub tcp://0.0.0.0:18083 --out-peers 8 --in-peers 16 --add-priority-node=p2pmd.xmrvsbeast.com:18080 --add-priority-node=nodes.hashvault.pro:18080 --disable-dns-checkpoints --enable-dns-blocklist
+  # Monero, p2pool can be run using this node
+  age.secrets.monero-node-password.file = ../../secrets/secret1.age;
   services.monero = {
     enable = true;
     dataDir = "/data/monero";
-
     rpc = {
       user = "monero";
-      password = "";
+      password = builtins.readFile config.age.secrets.monero-node-password.path;
       port = publicPorts.moneroRpc;
       address = "0.0.0.0";
     };
-    
-    extraConfig = {
-
-    };
+    extraConfig = ''
+      confirm-external-bind
+      zmq-pub tcp://0.0.0.0:18083
+      out-peers 8 
+      in-peers 16 
+      add-priority-node=p2pmd.xmrvsbeast.com:18080
+      add-priority-node=nodes.hashvault.pro:18080
+      disable-dns-checkpoints
+      enable-dns-blocklist
+    '';
   };
 
   # Bootloader

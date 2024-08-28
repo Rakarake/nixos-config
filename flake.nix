@@ -9,7 +9,7 @@
     };
 
     # UwU
-    queercat= {
+    queercat = {
       url = "github:Elsa002/queercat";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
@@ -53,6 +53,11 @@
     nixos-cosmic  = {
       url = "github:lilyinstarlight/nixos-cosmic";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+
+    # Agenix
+    agenix = {
+      url = "github:ryantm/agenix";
     };
   };
   outputs = { self, nixpkgs-stable, nixpkgs-unstable, home-manager, ... }@inputs:
