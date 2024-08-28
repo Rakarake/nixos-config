@@ -116,7 +116,12 @@ in
     LC_TIME = "sv_SE.UTF-8";
   };
 
+  services.xserver.videoDrivers = ["nvidia"];
 
+  hardware.nvidia = {
+    modesetting.enable = true;
+    nvidiaSettings = true;
+  };
 
   # Wireguard
   networking.wg-quick.interfaces = {
