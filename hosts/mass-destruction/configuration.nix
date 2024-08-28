@@ -58,6 +58,14 @@ in
       fsType = "bcachefs";
     };
 
+hardware.graphics.enable = true;
+  services.xserver.videoDrivers = ["nvidia"];
+
+  hardware.nvidia = {
+    modesetting.enable = true;
+    nvidiaSettings = true;
+  }
+
   # Open ports
   networking.firewall.allowedTCPPorts = lib.attrsets.attrValues ports;
   networking.firewall.allowedUDPPorts = lib.attrsets.attrValues ports;
