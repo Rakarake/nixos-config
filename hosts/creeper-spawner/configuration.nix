@@ -141,6 +141,7 @@ in
   # Utility programs
   environment.systemPackages = with pkgs; [
     vim
+    neovim
     git
     wget
     unzip
@@ -346,27 +347,53 @@ in
   };
 
   # Monero, p2pool can be run using this node
-  age.secrets.monero-node-password.file = ../../secrets/secret1.age;
-  services.monero = {
-    enable = true;
-    dataDir = "/data/monero";
-    rpc = {
-      user = "monero";
-      password = builtins.readFile config.age.secrets.monero-node-password.path;
-      port = publicPorts.moneroRpc;
-      address = "0.0.0.0";
-    };
-    extraConfig = ''
-      confirm-external-bind
-      zmq-pub tcp://0.0.0.0:18083
-      out-peers 8 
-      in-peers 16 
-      add-priority-node=p2pmd.xmrvsbeast.com:18080
-      add-priority-node=nodes.hashvault.pro:18080
-      disable-dns-checkpoints
-      enable-dns-blocklist
-    '';
+#monerod --rpc-bind-ip 0.0.0.0 --rpc-bind-port 18081 --confirm-external-bind --rpc-login monero:jxtTUdA4mHUOttW6Dqe7 --data-dir=/data/monero --zmq-pub tcp://0.0.0.0:18083 --out-peers 8 --in-peers 16 --add-priority-node=p2pmd.xmrvsbeast.com:18080 --add-priority-node=nodes.hashvault.pro:18080 --disable-dns-checkpoints --enable-dns-blocklist
+  age.identityPaths = [ "/home/rakarake/.ssh/id_ed25519" ]; 
+  age.secrets.monero-rpc-login = {
+    file = ../../secrets/monero-rpc-login.age;
+    owner = "monero";
+    group = "monero";
   };
+
+  systemd.services.monero-node = {
+    enable = true;
+    description = "Monero node 🐖";
+    after = [ "network.target" ];
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      User = "monero";
+      ExecStart = "${pkgs.monero-cli}/bin/monerod --non-interactive --config-file ${config.age.secrets.monero-rpc-login.path} --rpc-bind-ip 0.0.0.0 --rpc-bind-port 18081 --confirm-external-bind --data-dir=/data/monero --zmq-pub tcp://0.0.0.0:18083 --out-peers 8 --in-peers 16 --add-priority-node=p2pmd.xmrvsbeast.com:18080 --add-priority-node=nodes.hashvault.pro:18080 --disable-dns-checkpoints --enable-dns-blocklist";
+      Restart = "always";
+      SuccessExitStatus = [ 0 1 ];
+    };
+  };
+  users.groups.monero = {};
+  users.users.monero = {
+    isSystemUser = true;
+    description = "Monero user";
+    group = "monero";
+  };
+
+  #services.monero = {
+  #  enable = true;
+  #  dataDir = "/data/monero";
+  #  rpc = {
+  #    user = "monero";
+  #    password = "jxtTUdA4mHUOttW6Dqe7"; #builtins.readFile config.age.secrets.monero-node-password.path;
+  #    port = publicPorts.moneroRpc;
+  #    address = "0.0.0.0";
+  #  };
+  #  extraConfig = ''
+  #    confirm-external-bind
+  #    zmq-pub tcp://0.0.0.0:18083
+  #    out-peers 8 
+  #    in-peers 16 
+  #    add-priority-node=p2pmd.xmrvsbeast.com:18080
+  #    add-priority-node=nodes.hashvault.pro:18080
+  #    disable-dns-checkpoints
+  #    enable-dns-blocklist
+  #  '';
+  #};
 
   # Bootloader
   boot.loader.systemd-boot.enable = true;
@@ -395,14 +422,12 @@ in
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users = {
-    motd = "Welcome, beware of hungry hippos 🦛";
-    users.rakarake = {
-      isNormalUser = true;
-      description = "Rakarake";
-      extraGroups = [ "networkmanager" "wheel" "nextcloud" ];
-      openssh.authorizedKeys.keys = ssh-keys.rakarake;
-    };
+  users.motd = "Welcome, beware of hungry hippos 🦛";
+  users.users.rakarake = {
+    isNormalUser = true;
+    description = "Rakarake";
+    extraGroups = [ "networkmanager" "wheel" "nextcloud" ];
+    openssh.authorizedKeys.keys = ssh-keys.rakarake;
   };
 
   nixpkgs.config.allowUnfree = true;

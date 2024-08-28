@@ -3,5 +3,5 @@ let
   keys = users.rakarake ++ users.magarnicle;
 in
 {
-  "monero-node-password.age".publicKeys = keys;
+  "monero-rpc-login.age".publicKeys = keys;
 }

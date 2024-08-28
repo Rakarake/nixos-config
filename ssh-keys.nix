@@ -4,6 +4,7 @@
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOoGAZUMI9b5R00TuHtZ9J4JCfMPsN0GciXvr0aRpsn/ rakarake@cobblestone-generator"
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOcFzi6jMIQ7+4YZxn5N1HiC+e/VXRnZoOwxox8InigZ rakarake@steamed-deck"
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINXP+TGNURIBBCWcCA5sN1rd/gd8/MYzTv+fwGYOQmC4 rakarake@thinky"
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILgq+RAMpi4DsptmWOQXq+y/z1Ejt+63JL4vjY3Nmipi rakarake@creeper-spawner"
   ];
   magarnicle = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFztyKnk8kdQYm1ycs1KNcUArTnFRuKsNivrjyrbM19N magarnicle@microwave"
