@@ -64,7 +64,7 @@ hardware.graphics.enable = true;
   hardware.nvidia = {
     modesetting.enable = true;
     nvidiaSettings = true;
-  }
+  };
 
   # Open ports
   networking.firewall.allowedTCPPorts = lib.attrsets.attrValues ports;
