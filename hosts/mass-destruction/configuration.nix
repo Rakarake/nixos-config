@@ -49,7 +49,7 @@ let
       description = description;
       serviceConfig = {
         User = name;
-        ExecStart = "${pkgs.tmux}/bin/tmux -S tmux.socket new-session -d -s ${name} /bin/sh start.sh";
+        ExecStart = "${pkgs.tmux}/bin/tmux -S tmux.socket new-session -d -s ${name} openttd -D";
         ExecStop = "${pkgs.tmux}/bin/tmux -S tmux.socket kill-session -t ${name}";
         Type = "forking";
         WorkingDirectory=/data/OpenTTDservers/${name};
