@@ -38,12 +38,40 @@ let
     };
   };
 
+  # OpenTTD server module template
+  # Takes name, figures everything out itself, users, location (/var/<name>)
+  openttdServerTemplate = name : description : {
+    systemd.services.${name} = {
+      enable = true;
+      path = [ pkgs.coreutils pkgs.tmux pkgs.bash pkgs.ncurses ];
+      wantedBy = [ "multi-user.target" ]; 
+      after = [ "network.target" ];
+      description = description;
+      serviceConfig = {
+        User = name;
+        ExecStart = "${pkgs.tmux}/bin/tmux -S tmux.socket new-session -d -s ${name} /bin/sh start.sh";
+        ExecStop = "${pkgs.tmux}/bin/tmux -S tmux.socket kill-session -t ${name}";
+        Type = "forking";
+        WorkingDirectory=/data/OpenTTDservers/${name};
+      };
+    };
+    users = {
+      groups.${name} = {};
+      users.${name} = {
+        isSystemUser = true;
+        description = "OpenTTD server ${name}";
+        group = name;
+      };
+    };
+  };
+
 in
 {
   imports = [
     ../../modules/global.nix
     ./hardware-configuration.nix
     (minecraftServerTemplate "minecraftserver-kreate" "A not so kreative minekraft server" pkgs.jdk17)
+    (openttdServerTemplate "openTTDserver-massdestruction" "Transporting destruction since 2024")
   ];
 
   # Linux kernel version
