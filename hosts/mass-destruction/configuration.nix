@@ -43,7 +43,7 @@ let
   openttdServerTemplate = name : description : {
     systemd.services.${name} = {
       enable = true;
-      path = [ pkgs.coreutils pkgs.tmux pkgs.bash pkgs.ncurses ];
+      path = [ pkgs.coreutils pkgs.tmux pkgs.bash pkgs.ncurses pkgs.openttd];
       wantedBy = [ "multi-user.target" ]; 
       after = [ "network.target" ];
       description = description;
