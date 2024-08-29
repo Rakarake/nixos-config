@@ -71,7 +71,7 @@ in
     ../../modules/global.nix
     ./hardware-configuration.nix
     (minecraftServerTemplate "minecraftserver-kreate" "A not so kreative minekraft server" pkgs.jdk17)
-    (openttdServerTemplate "openTTDserver-massdestruction" "Transporting destruction since 2024")
+    (openttdServerTemplate "openTTDserver-massdestruction" "transporting destruction since 2024")
   ];
 
   # Linux kernel version
