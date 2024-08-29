@@ -9,21 +9,21 @@
   # Hostname
   networking.hostName = "cobblestone-generator";  # Define your hostname.
 
-  # Wake on LAN, ty Breadly
-  networking.interfaces.enp4s0.wakeOnLan = {
-    enable = true;
-    policy = [ "magic" ];
-  };
-  systemd.services.wakeonlan = {
-    description = "Reenable wake on lan every boot";
-    after = [ "network.target" ];
-    serviceConfig = {
-      Type = "simple";
-      RemainAfterExit = "true";
-      ExecStart = "${pkgs.ethtool}/sbin/ethtool -s enp4s0 wol g";
-    };
-    wantedBy = [ "default.target" ];
-  };
+  ## Wake on LAN, ty Breadly
+  #networking.interfaces.enp4s0.wakeOnLan = {
+  #  enable = true;
+  #  policy = [ "magic" ];
+  #};
+  #systemd.services.wakeonlan = {
+  #  description = "Reenable wake on lan every boot";
+  #  after = [ "network.target" ];
+  #  serviceConfig = {
+  #    Type = "simple";
+  #    RemainAfterExit = "true";
+  #    ExecStart = "${pkgs.ethtool}/sbin/ethtool -s enp4s0 wol g";
+  #  };
+  #  wantedBy = [ "default.target" ];
+  #};
 
   # Wireguard
   networking.firewall.allowedTCPPorts = [ 51820 ];
@@ -45,7 +45,7 @@
   };
 
   # Sunshine, remote gaming
-  services.udev.packages = [ pkgs.sunshine ]; # allow access to create virtual input interfaces.
+  #services.udev.packages = [ pkgs.sunshine ]; # allow access to create virtual input interfaces.
   #networking.firewall = {
   #  enable = true;
   #  allowedTCPPorts = [ 47984 47989 47990 48010 ];
@@ -56,12 +56,12 @@
   #};
   # Prevents this error:
   # Fatal: You must run [sudo setcap cap_sys_admin+p $(readlink -f sunshine)] for KMS display capture to work!
-  security.wrappers.sunshine = {
-    owner = "root";
-    group = "root";
-    capabilities = "cap_sys_admin+p";
-    source = "${pkgs.sunshine}/bin/sunshine";
-  };
+  #security.wrappers.sunshine = {
+  #  owner = "root";
+  #  group = "root";
+  #  capabilities = "cap_sys_admin+p";
+  #  source = "${pkgs.sunshine}/bin/sunshine";
+  #};
   # Needed for network discovery
   services.avahi.enable = true;
   services.avahi.publish.enable = true;
@@ -79,7 +79,7 @@
   # Desktop specific packages
   environment.systemPackages = with pkgs; [
     corectrl  # We like big graphics
-    sunshine
+    #sunshine
   ];
 
   # Enable Plymouth
