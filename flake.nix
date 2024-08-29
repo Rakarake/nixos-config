@@ -145,7 +145,7 @@
         {
           name = "live";
           system = "x86_64-linux";
-          nixpkgs = nixpkgs-stable;
+          nixpkgs = nixpkgs-unstable;
         }
         # MASS DESTRUCTION, oh yeah, baby baby
         {
