@@ -6,6 +6,15 @@
   cfg-desktop.enable = true;
   cfg-hyprland.enable = true;
 
+  # Monero mining
+
+  boot.kernelModules = [ "msr" ];
+
+  # OpenCL
+  hardware.opengl.extraPackages = with pkgs; [
+    rocmPackages.clr.icd
+  ];
+
   # Hostname
   networking.hostName = "cobblestone-generator";  # Define your hostname.
 
@@ -79,7 +88,12 @@
   # Desktop specific packages
   environment.systemPackages = with pkgs; [
     corectrl  # We like big graphics
+
     #sunshine
+
+    # Monero mining
+    p2pool
+    xmrig
   ];
 
   # Enable Plymouth
