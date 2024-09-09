@@ -80,11 +80,25 @@ in {
       };
     };
 
+    # Mangohud
+    programs.mangohud = {
+      enable = true;
+      settings = {
+        toggle_hud =          "Shift_L+F12";
+        toggle_preset =       "Shift_L+F10";
+        toggle_hud_position = "Shift_L+F11";
+        toggle_fps_limit =    "Shift_L+F1";
+        toggle_logging=       "Shift_L+F2";
+        reload_cfg =          "Shift_L+F4";
+        upload_log =          "Shift_L+F3";
+      };
+    };
+    stylix.targets.mangohud.enable = false;
+
     # User specific packages
     home.packages = with pkgs; [
       steam-run
       steamtinkerlaunch
-      mangohud
       obs-studio
       protonup-qt
       baobab
