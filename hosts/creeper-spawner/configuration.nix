@@ -394,6 +394,7 @@ in
       "Pleroma.Web.Endpoint" = {
         url.host = hostnames.akkoma;
       };
+      ":configurable_from_database" = true;
     };
   };
 
