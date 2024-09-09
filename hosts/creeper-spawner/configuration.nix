@@ -40,6 +40,7 @@ let
     forgejo = "git.rakarake.xyz";
     grafana = "grafana.rakarake.xyz";
     jellyfin = "jellyfin.rakarake.xyz";
+    akkoma = "akk.rakarake.xyz";
   };
 
   # Minecraft server module template
@@ -265,6 +266,12 @@ in
         locations."/".proxyPass = "http://localhost:${toString localPorts.forgejo}";
       };
 
+      ${hostnames.akkoma} = {
+        forceSSL = true;
+        enableACME = true;
+        locations."/".proxyPass = "http://unix:/run/akkoma/socket";
+      };
+
       ${hostnames.website} = {
         # When not using cloudflare tunnel
         forceSSL = true;
@@ -374,26 +381,21 @@ in
     group = "monero";
   };
 
-  #services.monero = {
-  #  enable = true;
-  #  dataDir = "/data/monero";
-  #  rpc = {
-  #    user = "monero";
-  #    password = "jxtTUdA4mHUOttW6Dqe7"; #builtins.readFile config.age.secrets.monero-node-password.path;
-  #    port = publicPorts.moneroRpc;
-  #    address = "0.0.0.0";
-  #  };
-  #  extraConfig = ''
-  #    confirm-external-bind
-  #    zmq-pub tcp://0.0.0.0:18083
-  #    out-peers 8 
-  #    in-peers 16 
-  #    add-priority-node=p2pmd.xmrvsbeast.com:18080
-  #    add-priority-node=nodes.hashvault.pro:18080
-  #    disable-dns-checkpoints
-  #    enable-dns-blocklist
-  #  '';
-  #};
+  # Akkoma
+  services.akkoma.enable = true;
+  services.akkoma.config = {
+    ":pleroma" = {
+      ":instance" = {
+        name = "Freddyverse Central";
+        description = "Personal fedi server 🍓";
+        email = "raka@rakarake.xyz";
+        registration_open = false;
+      };
+      "Pleroma.Web.Endpoint" = {
+        url.host = hostnames.akkoma;
+      };
+    };
+  };
 
   # Bootloader
   boot.loader.systemd-boot.enable = true;
