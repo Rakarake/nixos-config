@@ -11,6 +11,7 @@ in {
     ./xdg.nix
     ./vscode.nix
     ./common.nix
+    ./mpv
   ];
 
   options.home-desktop = {
@@ -143,14 +144,6 @@ in {
 
     home.shellAliases = {
       cargo = "cargo mommy";
-    };
-
-    # Mpv
-    programs.mpv = {
-      enable = true;
-      config = {
-        hr-seek = "yes";
-      };
     };
 
     # Moment
