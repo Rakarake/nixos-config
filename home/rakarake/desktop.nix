@@ -145,6 +145,14 @@ in {
       cargo = "cargo mommy";
     };
 
+    # Mpv
+    programs.mpv = {
+      enable = true;
+      config = {
+        hr-seek = "yes";
+      };
+    };
+
     # Moment
     nixpkgs.config.permittedInsecurePackages = [
       "electron-27.3.11"
