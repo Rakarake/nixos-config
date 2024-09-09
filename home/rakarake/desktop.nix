@@ -11,6 +11,7 @@ in {
     ./xdg.nix
     ./vscode.nix
     ./common.nix
+    ./mpv
   ];
 
   options.home-desktop = {
