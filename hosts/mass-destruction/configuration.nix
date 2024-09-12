@@ -109,9 +109,6 @@ in
     openttd
   ];
 
-      # Watch this not work
-      fastfetch = "${pkgs.fastfetch}/bin/fastfetch --logo ./nixos-config/hosts/mass-destruction/FastFetchMassDestructionArt";
-
   # SSH daemon
   services.openssh = {
     enable = true;
