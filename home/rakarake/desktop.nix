@@ -92,6 +92,8 @@ in {
         toggle_logging=       "Shift_L+F2";
         reload_cfg =          "Shift_L+F4";
         upload_log =          "Shift_L+F3";
+
+        no_display = true;
       };
     };
     stylix.targets.mangohud.enable = false;
