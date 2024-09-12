@@ -136,8 +136,6 @@ in {
 
       # Hacking
       skim
-      godot_4
-      unityhub
       cargo-mommy
     ];
 
