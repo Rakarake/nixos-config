@@ -7,7 +7,7 @@
     };
     scripts = with pkgs.mpvScripts; [
       mpris
-      thumbnail
+      #thumbnail
     ];
   };
 }
