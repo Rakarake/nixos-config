@@ -7,7 +7,8 @@
     };
     scripts = with pkgs.mpvScripts; [
       mpris
-      #thumbnail
+      thumbfast
+      modernx
     ];
   };
 }
