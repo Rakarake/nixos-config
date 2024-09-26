@@ -59,6 +59,11 @@
     agenix = {
       url = "github:ryantm/agenix";
     };
+
+    # Yuzu
+    yuzu = {
+      url = "github:Rakarake/yuzu";
+    };
   };
   outputs = { self, nixpkgs-stable, nixpkgs-unstable, home-manager, ... }@inputs:
     let

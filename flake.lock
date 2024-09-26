@@ -670,6 +670,22 @@
         "type": "github"
       }
     },
+    "nixpkgs_3": {
+      "locked": {
+        "lastModified": 1727264057,
+        "narHash": "sha256-KQPI8CTTnB9CrJ7LrmLC4VWbKZfljEPBXOFGZFRpxao=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "759537f06e6999e141588ff1c9be7f3a5c060106",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-24.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "queercat": {
       "inputs": {
         "flake-utils": "flake-utils_3",
@@ -704,7 +720,8 @@
         "nixpkgs-unstable": "nixpkgs-unstable",
         "queercat": "queercat",
         "stylix": "stylix",
-        "wgsl_analyzer": "wgsl_analyzer"
+        "wgsl_analyzer": "wgsl_analyzer",
+        "yuzu": "yuzu"
       }
     },
     "rust-overlay": {
@@ -910,6 +927,24 @@
       "original": {
         "owner": "wgsl-analyzer",
         "repo": "wgsl-analyzer",
+        "type": "github"
+      }
+    },
+    "yuzu": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_3"
+      },
+      "locked": {
+        "lastModified": 1727352008,
+        "narHash": "sha256-F6h4V+IRJYvuKp6R4LReCWUkLoxqD90z3qqMiP3kuNw=",
+        "owner": "Rakarake",
+        "repo": "yuzu",
+        "rev": "22e48a7a9b10e677544009f731145de0ef44a935",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Rakarake",
+        "repo": "yuzu",
         "type": "github"
       }
     }

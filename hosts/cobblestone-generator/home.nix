@@ -1,7 +1,4 @@
-{ pkgs, outputs, ... }:
-let
-  cpkgs = outputs.packages.${pkgs.system};
-in
+{ inputs, system, ... }:
 {
   imports = [ ../../home/rakarake/global.nix ../../home/rakarake ../../home/rakarake/theme.nix ];
 
@@ -44,6 +41,6 @@ in
     '';
   };
   home.packages = [
-    cpkgs.yuzu
+    inputs.yuzu.packages.${system}.default
   ];
 }
