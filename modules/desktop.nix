@@ -40,7 +40,7 @@ in {
       btrfs-progs
       distrobox
       pandoc
-      pavucontrol
+      pwvucontrol
       gparted
       gamemode
       tmux
