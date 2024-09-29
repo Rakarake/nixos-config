@@ -71,7 +71,7 @@ in {
       hunspellDicts.en_US      # American
       hunspellDicts.en_GB-ise  # English
       krita
-      floorp
+      firefox
       ungoogled-chromium
       thunderbird
       qpwgraph

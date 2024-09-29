@@ -24,7 +24,7 @@ in
     systemd.user.sessionVariables = {
       EDITOR = "nvim";
       VISUAL = "nvim";
-      BROWSER = "floorp";
+      BROWSER = "firefox";
       MANPAGER= "nvim +Man!";
     };
 
@@ -32,7 +32,7 @@ in
     home.shellAliases = {
       g = "git";
       e = "nvim";
-      b = "floorp";
+      b = "firefox";
       open = "xdg-open";
       "\":q\"" = "exit";
       "\"..\"" = "cd ..";

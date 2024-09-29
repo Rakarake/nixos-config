@@ -2,7 +2,7 @@
 with lib;
 let
   cfg = config.home-xdg;
-  browser =     ["floorp.desktop"];
+  browser =     ["firefox.desktop"];
   audioPlayer = ["mpv.desktop"];
   videoPlayer = ["mpv.desktop"];
   imageViewer = ["imv.desktop"];
