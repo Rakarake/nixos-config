@@ -96,7 +96,7 @@
       # Creates nixos configs from list
       makeSystemConfigs = systemConfigs: (foldl ( acc: { name, nixpkgs, system }:
           acc // {
-            ${name} = nixpkgs.lib.nixosSystem  {
+            ${name} = nixpkgs.lib.nixosSystem {
               inherit system;
               modules = [ ./hosts/${name}/configuration.nix ];
               specialArgs = args // { inherit system; };
@@ -105,10 +105,10 @@
       ) {} systemConfigs);
 
       # Creates a home-manager configs from list
-      makeHomeConfigs = homeConfigs: foldl ( acc: { name, nixpkgs, user, variation, system }:
+      makeHomeConfigs = homeConfigs: foldl ( acc: { name, nixpkgs, user, variation ? "default", system }:
           acc // {
             "${user}@${name}-${variation}" = home-manager.lib.homeManagerConfiguration {
-              modules = [ ./hosts/${name}/${variation}.nix ];
+              modules = [ ./home/${user}/default.nix ./home/${user}/${variation}.nix ./hosts/${name}/home.nix ];
               pkgs = (pkgsFor nixpkgs).${system};
               extraSpecialArgs = args // { inherit system; };
             };

@@ -1,6 +1,7 @@
-# General style, import this, no options available
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
+  # Styling
+  stylix.enable = true;
+  stylix.image = ./wallpaper.png;
   stylix.cursor.name = "Adwaita";
   stylix.cursor.size = 24;
   stylix.fonts = {

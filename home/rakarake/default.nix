@@ -3,6 +3,7 @@
 # Choose a desktop such as gnome or kde.
 { inputs, ... }:
 {
+  nixpkgs.config.allowUnfree = true;
   imports = [
     ./common.nix
     ./desktop.nix
