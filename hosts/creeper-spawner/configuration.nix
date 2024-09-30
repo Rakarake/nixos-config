@@ -303,7 +303,7 @@ in
   # Nextcloud at "/var/lib/nextcloud"
   services.nextcloud = {
     enable = true;
-    package = pkgs.nextcloud28;
+    package = pkgs.nextcloud29;
     hostName = hostnames.nextcloud;
     database.createLocally = true;
     autoUpdateApps.enable = true;
@@ -322,6 +322,9 @@ in
     };
     # Bigger cache, nextcloud admin page complains without this
     phpOptions."opcache.interned_strings_buffer" = "23";
+    #extraApps = {
+    #  inherit (config.services.nextcloud.package.packages.apps) richdocuments;
+    #};
   };
   environment.etc.ffmpeg = { source = "${pkgs.ffmpeg}/bin/ffmpeg"; mode = "0555"; };
   environment.etc.ffprobe = { source = "${pkgs.ffmpeg}/bin/ffprobe"; mode = "0555"; };
