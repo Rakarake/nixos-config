@@ -1,5 +1,4 @@
-{ inputs, system, ... }:
-{
+{ pkgs, inputs, system, ... }: {
   imports = [ ../../home/rakarake/global.nix ../../home/rakarake ../../home/rakarake/theme.nix ];
 
   # Wallpaper
@@ -36,8 +35,12 @@
       # Monitor screenshots
       bind=SUPER,R,exec,grim -o ${leftMonitor} - | wl-copy
       bind=SUPERSHIFT,R,exec,grim -o ${leftMonitor}
-      bind=SUPER,T,exec,grim -o ${mainMonitor} - | wl-copt
+      bind=SUPER,T,exec,grim -o ${mainMonitor} - | wl-copy
       bind=SUPERSHIFT,T,exec,grim -o ${mainMonitor}
+
+      # Screen recording
+      bind=SUPERALT,R,exec,${pkgs.wl-screenrec}/bin/wl-screenrec -g "$(slurp)" -f ~/Videos/vebeo.mp4 --audio --audio-device alsa_output.pci-0000_14_00.4.analog-stereo.monitor
+      bind=SUPERALT,T,exec,pkill --signal SIGINT wf-recorder
     '';
   };
   home.packages = [
