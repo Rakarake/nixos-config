@@ -64,6 +64,12 @@
     yuzu = {
       url = "github:Rakarake/yuzu";
     };
+
+    # Catppuccin
+    catppuccin = {
+      url = "github:catppuccin/nix";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
   };
   outputs = { self, nixpkgs-stable, nixpkgs-unstable, home-manager, ... }@inputs:
     let

@@ -96,7 +96,6 @@ in {
         no_display = true;
       };
     };
-    stylix.targets.mangohud.enable = false;
 
     # User specific packages
     home.packages = with pkgs; [

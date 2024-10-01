@@ -1,5 +1,6 @@
 { pkgs, ... }: {
   # Styling
+  catppuccin.accent = "pink";
   stylix.enable = true;
   stylix.image = ./wallpaper.png;
   stylix.cursor.name = "Adwaita";
@@ -15,4 +16,21 @@
       terminal = 12;
     };
   };
+
+  # Qt
+  qt = {
+    enable = true;
+    platformTheme.name = "kvantum";
+    style = {
+      name = "kvantum";
+      catppuccin.enable = true;
+    };
+  };
+
+  # Mangohud
+  stylix.targets.mangohud.enable = false;
+
+  # Neovim
+  stylix.targets.neovim.enable = false;
+  programs.neovim.catppuccin.enable = true;
 }
