@@ -1,6 +1,6 @@
-{
+{ lib, ... }: {
   # Wallpaper
-  stylix.image = ./wallpaper.png;
+  stylix.image = lib.mkForce ./wallpaper.png;
 
   home-desktop.enable = true;
   home-hyprland.enable = true;
