@@ -34,7 +34,7 @@
 
       # Screen recording
       bind=SUPERALT,R,exec,${pkgs.wl-screenrec}/bin/wl-screenrec -g "$(slurp)" -f ~/Videos/vebeo.mp4 --audio --audio-device alsa_output.pci-0000_14_00.4.analog-stereo.monitor
-      bind=SUPERALT,T,exec,pkill --signal SIGINT wf-recorder
+      bind=SUPERALT,T,exec,pkill --signal SIGINT wl-screenrec
     '';
   };
   home.packages = [
