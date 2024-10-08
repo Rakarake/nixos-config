@@ -31,7 +31,6 @@ in {
       cava                         # Used to visualize audio in the bar
       networkmanagerapplet         # Log in to your wifi with this cool utility
       papirus-icon-theme           # Used to make nm-applet and blueman-applet not look ass
-      adw-gtk3                     # Nice libadwaita gtk3 theme
       hyprpicker                   # Color picker
       nautilus-open-any-terminal
       nautilus-python
