@@ -261,7 +261,7 @@ in
         forceSSL = true;
         enableACME = true;
         extraConfig = ''
-          client_max_body_size 512M;
+          client_max_body_size 16G;
         '';
         locations."/".proxyPass = "http://localhost:${toString localPorts.forgejo}";
       };
