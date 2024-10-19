@@ -184,7 +184,7 @@ in
     users.backup = {
       isNormalUser = true;
       openssh.authorizedKeys.keys = [
-        ''command="${pkgs.rrsync}/bin/rrsync /data/backup/Nextcloud/",restrict ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILgq+RAMpi4DsptmWOQXq+y/z1Ejt+63JL4vjY3Nmipi rakarake@creeper-spawner''
+        ''command="${pkgs.rrsync}/bin/rrsync /data/backup/",restrict ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILgq+RAMpi4DsptmWOQXq+y/z1Ejt+63JL4vjY3Nmipi rakarake@creeper-spawner''
       ];
     };
   };
