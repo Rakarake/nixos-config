@@ -24,7 +24,7 @@ let
         ExecStart = "${pkgs.tmux}/bin/tmux -S tmux.socket new-session -d -s ${name} /bin/sh start.sh";
         ExecStop = "${pkgs.tmux}/bin/tmux -S tmux.socket kill-session -t ${name}";
         Type = "forking";
-        RestartOnFailure = "on-failure";
+        Restart = "on-failure";
         WorkingDirectory=/data/MCservers/${name};
       };
     };
