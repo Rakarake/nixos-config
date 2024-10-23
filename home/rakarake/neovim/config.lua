@@ -7,6 +7,7 @@ vim.cmd('filetype indent plugin on')
 
 -- Theme / Colorscheme
 --vim.cmd.colorscheme("catppuccin-macchiato")
+vim.cmd.colorscheme "catppuccin"
 
 -- Treesitter setup
 require'nvim-treesitter.configs'.setup {
