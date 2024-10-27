@@ -63,7 +63,7 @@ in {
       outputs.packages.${system}.amogus
       man-pages
       man-pages-posix
-      wineWowPackages.staging
+      wineWowPackages.stagingFull
       libreoffice-qt
       onlyoffice-bin
       hunspell                 # Libreoffice spelling
