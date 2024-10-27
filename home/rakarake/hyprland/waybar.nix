@@ -14,7 +14,7 @@ in {
         target = "graphical-session.target";
       };
       settings.mainBar = {
-        layer = "top";
+        layer = "bottom";
         position = "top";
         modules-left = [
           "custom/launcher"
@@ -30,6 +30,7 @@ in {
         ];
         modules-right = [
           "pulseaudio"
+          "hyprland/language"
           "backlight"
           "network"
           "battery"
@@ -44,6 +45,11 @@ in {
           "on-click-middle" = "exec default_wall";
           "on-click-right" = "exec wallpaper_random";
           "tooltip" = false;
+        };
+        "hyprland/language" = {
+          "format" = "󰌌 {}";
+           "format-en" = "en";
+           "format-tr" = "se";
         };
         "pulseaudio" = {
           "scroll-step" = 1;
@@ -205,9 +211,12 @@ in {
                 padding-right: 6px;
                 color: #7ebae4;
               }
-        #mode, #clock, #memory, #temperature,#cpu,#mpd, #custom-wall, #temperature, #backlight, #pulseaudio, #network, #battery, #idle_inhibitor, #custom-powermenu, #custom-cava-internal, #custom-workspace-left, #custom-workspace-right {
-                padding-left: 10px;
-                padding-right: 10px;
+        #language {
+          color: #b7bdf8;
+        }
+        #mode, #clock, #memory, #temperature,#cpu,#mpd, #custom-wall, #temperature, #backlight, #pulseaudio, #network, #battery, #idle_inhibitor, #custom-powermenu, #custom-cava-internal, #custom-workspace-left, #custom-workspace-right, #language {
+                padding-left: 7px;
+                padding-right: 7px;
               }
               /* #mode { */
               /* 	margin-left: 10px; */
