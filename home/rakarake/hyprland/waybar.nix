@@ -48,8 +48,6 @@ in {
         };
         "hyprland/language" = {
           "format" = "󰌌 {}";
-           "format-en" = "en";
-           "format-tr" = "se";
         };
         "pulseaudio" = {
           "scroll-step" = 1;
