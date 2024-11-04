@@ -143,7 +143,7 @@
         {
           name = "cobblestone-generator";
           system = "x86_64-linux";
-          nixpkgs = nixpkgs-stable;
+          nixpkgs = nixpkgs-unstable;
         }
         # Server
         {
@@ -190,14 +190,14 @@
           name = "cobblestone-generator";
           user = "rakarake";
           variation = "dark";
-          nixpkgs = nixpkgs-stable;
+          nixpkgs = nixpkgs-unstable;
           system = "x86_64-linux";
         }
         {
           name = "cobblestone-generator";
           user = "rakarake";
           variation = "light";
-          nixpkgs = nixpkgs-stable;
+          nixpkgs = nixpkgs-unstable;
           system = "x86_64-linux";
         }
         {

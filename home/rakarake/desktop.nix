@@ -127,6 +127,7 @@ in {
       ascii-draw
       newsflash
       monero-gui
+      handbrake
 
       # Minecraft time
       prismlauncher
