@@ -401,6 +401,26 @@ in
     };
   };
 
+  # Automatic backups
+  systemd.timers."backup" = {
+    wantedBy = [ "timers.target" ];
+    timerConfig = {
+      OnCalendar = "daily";
+      Persistent = true; 
+      Unit = "backup.service";
+    };
+  };
+  systemd.services."backup" = {
+    script = ''
+      set -eu
+      ${pkgs.rsync}/bin/rsync -Pav -e "ssh -p 8022" /data/  backup@rakarake.xyz:
+    '';
+    serviceConfig = {
+      Type = "oneshot";
+      User = "rakarake";
+    };
+  };
+
   # Bootloader
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
