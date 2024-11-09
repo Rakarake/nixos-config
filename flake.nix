@@ -110,6 +110,7 @@
       ) {} systemConfigs);
 
       # Creates a home-manager configs from list
+      # If no variation is specified, "user@system-default" is generated
       makeHomeConfigs = homeConfigs: foldl ( acc: { name, nixpkgs, user, variation ? "default", system }:
           acc // {
             "${user}@${name}-${variation}" = home-manager.lib.homeManagerConfiguration {
@@ -203,14 +204,12 @@
         {
           name = "creeper-spawner";
           user = "rakarake";
-          variation = "home";
           nixpkgs = nixpkgs-stable;
           system = "x86_64-linux";
         }
         {
           name = "steamed-deck";
           user = "rakarake";
-          variation = "home";
           nixpkgs = nixpkgs-unstable;
           system = "x86_64-linux";
         }
