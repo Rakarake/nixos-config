@@ -411,6 +411,7 @@ in
     };
   };
   systemd.services."backup" = {
+    path = [ pkgs.ssh ];
     script = ''
       set -eu
       ${pkgs.rsync}/bin/rsync -Pav -e "ssh -p 8022" /data/  backup@rakarake.xyz:
