@@ -414,7 +414,7 @@ in
     path = [ pkgs.ssh ];
     script = ''
       set -eu
-      ${pkgs.rsync}/bin/rsync -Pav -e "ssh -p 8022" /data/  backup@rakarake.xyz:
+      ${pkgs.rsync}/bin/rsync -Pav -e "${pkgs.openssh}/bin/ssh -p 8022" /data/  backup@rakarake.xyz:
     '';
     serviceConfig = {
       Type = "oneshot";
