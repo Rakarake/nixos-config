@@ -405,7 +405,7 @@ in
   systemd.timers."backup" = {
     wantedBy = [ "timers.target" ];
     timerConfig = {
-      OnCalendar = "daily 03:00";
+      OnCalendar = "*-*-* 3:00:00";
       Persistent = true; 
       Unit = "backup.service";
     };
