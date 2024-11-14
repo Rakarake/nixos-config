@@ -30,6 +30,9 @@
   # Mangohud
   stylix.targets.mangohud.enable = false;
 
+  # Hyprland
+  stylix.targets.hyprland.enable = false;
+
   # Neovim
   stylix.targets.neovim.enable = false;
   programs.neovim.catppuccin.enable = true;

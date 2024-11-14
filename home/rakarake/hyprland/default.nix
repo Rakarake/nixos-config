@@ -132,11 +132,11 @@ in {
       decoration {
         #blur_ignore_opacity = 1
         #blur_new_optimizations = true
-        drop_shadow = true
-        shadow_range=true
-        shadow_render_power=20
-        col.shadow= 0x33000000
-        col.shadow_inactive=0x22000000
+        #drop_shadow = true
+        #shadow_range=true
+        #shadow_render_power=20
+        #col.shadow= 0x33000000
+        #col.shadow_inactive=0x22000000
         rounding=16
         #active_opacity= 0.90
         #inactive_opacity= 0.90
