@@ -3,9 +3,13 @@
   inputs = {
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
-    home-manager = {
+    home-manager-unstable = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+    home-manager-stable = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
     };
 
     # UwU
@@ -70,7 +74,7 @@
       url = "github:catppuccin/nix";
     };
   };
-  outputs = { self, nixpkgs-stable, nixpkgs-unstable, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs-stable, nixpkgs-unstable, home-manager-stable, home-manager-unstable, ... }@inputs:
     let
       inherit (self) outputs;
       # If using nixpkgs-stable, just don't use home manager stuff
@@ -111,11 +115,11 @@
 
       # Creates a home-manager configs from list
       # If no variation is specified, "user@system-default" is generated
-      makeHomeConfigs = homeConfigs: foldl ( acc: { name, nixpkgs, user, variation ? "default", system }:
+      makeHomeConfigs = homeConfigs: foldl ( acc: { name, stableChannel, user, variation ? "default", system }:
           acc // {
-            "${user}@${name}-${variation}" = home-manager.lib.homeManagerConfiguration {
+            "${user}@${name}-${variation}" = (if stableChannel then home-manager-stable else home-manager-unstable).lib.homeManagerConfiguration {
               modules = [ ./home/${user}/default.nix ./home/${user}/${variation}.nix ./hosts/${name}/home.nix ];
-              pkgs = (pkgsFor nixpkgs).${system};
+              pkgs = (pkgsFor (if stableChannel then nixpkgs-stable else nixpkgs-unstable)).${system};
               extraSpecialArgs = args // { inherit system; };
             };
           }
@@ -144,7 +148,7 @@
         {
           name = "cobblestone-generator";
           system = "x86_64-linux";
-          nixpkgs = nixpkgs-unstable;
+          nixpkgs = nixpkgs-stable;
         }
         # Server
         {
@@ -177,40 +181,40 @@
           name = "thinky";
           user = "rakarake";
           variation = "dark";
-          nixpkgs = nixpkgs-unstable;
+          stableChannel = false;
           system = "x86_64-linux";
         }
         {
           name = "thinky";
           user = "rakarake";
           variation = "light";
-          nixpkgs = nixpkgs-unstable;
+          stableChannel = false;
           system = "x86_64-linux";
         }
         {
           name = "cobblestone-generator";
           user = "rakarake";
           variation = "dark";
-          nixpkgs = nixpkgs-unstable;
+          stableChannel = true;
           system = "x86_64-linux";
         }
         {
           name = "cobblestone-generator";
           user = "rakarake";
           variation = "light";
-          nixpkgs = nixpkgs-unstable;
+          stableChannel = true;
           system = "x86_64-linux";
         }
         {
           name = "creeper-spawner";
           user = "rakarake";
-          nixpkgs = nixpkgs-stable;
+          stableChannel = true;
           system = "x86_64-linux";
         }
         {
           name = "steamed-deck";
           user = "rakarake";
-          nixpkgs = nixpkgs-unstable;
+          stableChannel = false;
           system = "x86_64-linux";
         }
       ];
