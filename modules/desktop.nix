@@ -82,6 +82,7 @@ in {
       waypipe
       okular
       android-studio
+      alpaca
     ];
 
     # Nh

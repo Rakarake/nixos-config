@@ -26,7 +26,8 @@
       james-yu.latex-workshop
 
       # Typst
-      nvarner.typst-lsp
+      myriad-dreamin.tinymist
+
       haskell.haskell
 
       # Haskell
