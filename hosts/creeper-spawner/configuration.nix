@@ -329,6 +329,19 @@ in
   environment.etc.ffmpeg = { source = "${pkgs.ffmpeg}/bin/ffmpeg"; mode = "0555"; };
   environment.etc.ffprobe = { source = "${pkgs.ffmpeg}/bin/ffprobe"; mode = "0555"; };
 
+  # Nextcloud Whiteboard
+  # Use this to connect:
+  #nextcloud-occ config:app:set whiteboard collabBackendUrl --value="http://localhost:3002"
+  #nextcloud-occ config:app:set whiteboard jwt_secret_key --value="test123"
+  environment.etc."nextcloud-whiteboard-secret".text = ''
+    JWT_SECRET_KEY=test123
+  '';
+  services.nextcloud-whiteboard-server = {
+    enable = true;
+    settings.NEXTCLOUD_URL = "http://localhost";
+    secrets = [ /etc/nextcloud-whiteboard-secret ];
+  };
+
   # Bingbingo
   services.bingbingo = {
     enable = true;
