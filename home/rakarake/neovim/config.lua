@@ -275,7 +275,7 @@ require'lspconfig'.wgsl_analyzer.setup{
 }
 
 -- Typst
-require'lspconfig'.typst_lsp.setup{
+require'lspconfig'.tinymist.setup{
      capabilities = capabilities,
      on_attach = on_attach,
      flags = lsp_flags,

@@ -52,7 +52,7 @@ in
       (agda.withPackages [ agdaPackages.standard-library ])
 
       # Typst
-      #typst-lsp
+      tinymist
 
       # WGSL
       inputs.wgsl_analyzer.packages.${system}.default
