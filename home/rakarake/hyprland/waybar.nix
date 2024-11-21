@@ -39,6 +39,10 @@ in {
           "custom/powermenu"
         ];
 
+        "temperature" = {
+          "critical-threshold" = 90;
+          "format" = " {temperatureC}°C";
+        };
         "custom/launcher" = {
           "format" = " ";
           "on-click" = "pkill rofi || rofi -show combi -modes combi -combi-modes \"window,drun,run\" -icon-theme \"Papirus\" -show-icons";
@@ -161,6 +165,7 @@ in {
           animation-timing-function: linear;
           animation-iteration-count: infinite;
           animation-direction: alternate;
+          border-radius: 5px;
         }
         window#waybar {
           background-color: transparent;
@@ -212,7 +217,7 @@ in {
         #language {
           color: #b7bdf8;
         }
-        #mode, #clock, #memory, #temperature,#cpu,#mpd, #custom-wall, #temperature, #backlight, #pulseaudio, #network, #battery, #idle_inhibitor, #custom-powermenu, #custom-cava-internal, #custom-workspace-left, #custom-workspace-right, #language {
+        #mode, #clock, #memory,#cpu,#mpd, #custom-wall, #temperature, #backlight, #pulseaudio, #network, #battery, #idle_inhibitor, #custom-powermenu, #custom-cava-internal, #custom-workspace-left, #custom-workspace-right, #language {
                 padding-left: 7px;
                 padding-right: 7px;
               }
