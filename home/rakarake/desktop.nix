@@ -128,6 +128,8 @@ in {
       newsflash
       monero-gui
       handbrake
+      alpaca
+      pipeline
 
       # Minecraft time
       prismlauncher
