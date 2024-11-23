@@ -217,7 +217,7 @@ in {
         #language {
           color: #b7bdf8;
         }
-        #mode, #clock, #memory,#cpu,#mpd, #custom-wall, #temperature, #backlight, #pulseaudio, #network, #battery, #idle_inhibitor, #custom-powermenu, #custom-cava-internal, #custom-workspace-left, #custom-workspace-right, #language {
+        #mode, #clock, #memory,#cpu,#mpd, #custom-wall, #temperature, #backlight, #pulseaudio, #network, #battery, #idle_inhibitor, #custom-powermenu, #custom-workspace-left, #custom-workspace-right, #language {
                 padding-left: 7px;
                 padding-right: 7px;
               }
@@ -282,10 +282,6 @@ in {
               }
         #mpd {
                 color: #c0caf5;
-              }
-        #custom-cava-internal{
-                font-family: "Hack Nerd Font" ;
-                color: #33ccff;
               }
       '';
     };

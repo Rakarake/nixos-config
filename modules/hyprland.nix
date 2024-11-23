@@ -28,7 +28,6 @@ in {
       playerctl                    # MPRIS global player controller
       swayidle                     # Idle inhibitor, knows when computer is ueseless
       brightnessctl                # Laptop brighness controls
-      cava                         # Used to visualize audio in the bar
       networkmanagerapplet         # Log in to your wifi with this cool utility
       papirus-icon-theme           # Used to make nm-applet and blueman-applet not look ass
       hyprpicker                   # Color picker
