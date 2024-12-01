@@ -130,6 +130,7 @@ in {
       handbrake
       alpaca
       pipeline
+      tor-browser
 
       # Minecraft time
       prismlauncher

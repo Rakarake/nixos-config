@@ -62,7 +62,7 @@
 
     # Yuzu
     yuzu = {
-      url = "github:Rakarake/yuzu";
+      url = "github:Rakarake/yuzu-merged";
     };
 
     # Catppuccin
