@@ -130,6 +130,7 @@ in {
       alpaca
       tor-browser
       supersonic
+      video-trimmer
 
       # Minecraft time
       prismlauncher
