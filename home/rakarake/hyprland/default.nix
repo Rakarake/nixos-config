@@ -76,16 +76,16 @@ in {
     wayland.windowManager.hyprland.extraConfig = ''
 
       # Autostart
-      exec-once = ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1
-      exec-once = ${pkgs.xdg-desktop-portal-hyprland}/libexec/xdg-desktop-portal-hyprland
-      exec-once = sleep 2 ; waybar
-      exec-once = sleep 5 ; nextcloud
-      exec-once = sleep 5 ; blueman-applet
-      exec-once = sleep 5 ; nm-applet
-      exec-once = swaybg -i ${config.stylix.image}
-      exec-once = swaync
-      exec-once = gsettings set org.gnome.nm-applet disable-disconnected-notifications "true"
-      exec-once = gsettings set org.gnome.nm-applet disable-connected-notifications "true"
+      exec-once = uwsm app -- ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1
+      exec-once = uwsm app -- ${pkgs.xdg-desktop-portal-hyprland}/libexec/xdg-desktop-portal-hyprland
+      exec-once = uwsm app -- sleep 3 ; waybar
+      exec-once = uwsm app -- sleep 6 ; nextcloud
+      exec-once = uwsm app -- sleep 6 ; blueman-applet
+      exec-once = uwsm app -- sleep 6 ; nm-applet
+      exec-once = uwsm app -- swaybg -i ${config.stylix.image}
+      exec-once = uwsm app -- swaync
+      exec-once = uwsm app -- gsettings set org.gnome.nm-applet disable-disconnected-notifications "true"
+      exec-once = uwsm app -- gsettings set org.gnome.nm-applet disable-connected-notifications "true"
       ${if cfg.useSwayidle then "exec-once= swayidle timeout 800 '${swaylockCommand}' timeout 900 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on' timeout 1700 'systemctl suspend'A" else ""}
 
       # Default for non specified monitors
@@ -163,20 +163,19 @@ in {
       # Keybindings
       $mod = SUPER
 
-      bind=SUPER,Return,exec,${terminalCommand}
-      bind=SUPERSHIFT,Return,exec,alacritty -e tmux
+      bind=SUPER,Return,exec,uwsm app -- ${terminalCommand}
       bind=SUPER,Q,killactive,
       bind=SUPERSHIFTALT,E,exit,
-      bind=SUPER,F,exec,${fileManagerCommand}
+      bind=SUPER,F,exec,uwsm app -- ${fileManagerCommand}
       bind=SUPER,V,togglefloating,
       bind=SUPER,P,pseudo
       # NOTE: use '-theme gruvbox' to specify theme
-      bind=SUPER,D,exec,rofi -show combi -modes combi -combi-modes "window,drun,run" -icon-theme "Papirus" -show-icons
-      bind=SUPERSHIFT,D,exec,rofi -show run
+      bind=SUPER,D,exec,uwsm app -- rofi -show combi -modes combi -combi-modes "window,drun,run" -icon-theme "Papirus" -show-icons
+      bind=SUPERSHIFT,D,exec,uwsm app -- rofi -show run
       # Run a program without installing it
-      bind=SUPERSHIFT,N,exec,rofi -dmenu | xargs -I % nix-shell -p % --run %
+      bind=SUPERSHIFT,N,exec,uwsm app -- rofi -dmenu | xargs -I % nix-shell -p % --run %
       # Emoji picker
-      bind=SUPER,e,exec,emote
+      bind=SUPER,e,exec,uwsm app -- emote
       
       # Focus on window
       bind=SUPER,h,movefocus,l
@@ -224,17 +223,17 @@ in {
       bind=,XF86AudioNext,exec,playerctl next
 
       # Screen locking
-      bind=SUPER,Escape,exec,${swaylockCommand}
-      bind=SUPERSHIFT,Escape,exec,sleep 1 && hyprctl dispatch dpms off && ${swaylockCommand}
-      bind=SUPERCONTROL,Escape,exec,sleep 1 && hyprctl dispatch dpms on
-      bindl=,switch:Lid Switch,exec,${swaylockCommand}
+      bind=SUPER,Escape,exec,uwsm app -- ${swaylockCommand}
+      bind=SUPERSHIFT,Escape,exec,uwsm app -- sleep 1 && hyprctl dispatch dpms off && ${swaylockCommand}
+      bind=SUPERCONTROL,Escape,exec,uwsm app -- sleep 1 && hyprctl dispatch dpms on
+      bindl=,switch:Lid Switch,exec,uwsm app -- ${swaylockCommand}
 
       # Notifictations
-      bind=SUPER,n,exec,swaync-client -t -sw
+      bind=SUPER,n,exec,uwsm app -- swaync-client -t -sw
 
       # Color picker
-      bind=SUPER,Z,exec,hyprpicker --format=rgb | wl-copy
-      bind=SUPER,X,exec,hyprpicker --format=hex | wl-copy
+      bind=SUPER,Z,exec,uwsm app -- hyprpicker --format=rgb | wl-copy
+      bind=SUPER,X,exec,uwsm app -- hyprpicker --format=hex | wl-copy
 
       # Custom media keys
       bind=SUPERALT,l,exec,playerctl next
@@ -244,7 +243,7 @@ in {
       bind=SUPERALT,j,exec,${lowerVolumeCommand}
 
       # Screenshots
-      bind=SUPER,S,exec,grim -g "$(slurp -d)" - | wl-copy
+      bind=SUPER,S,exec,uwsm app -- grim -g "$(slurp -d)" - | wl-copy
 
       # MISC
       bind=SUPERALTSHIFT,S,exec,systemctl poweroff

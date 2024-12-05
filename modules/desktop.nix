@@ -156,9 +156,8 @@ in {
       mplus-outline-fonts.githubRelease
       dina-font
       proggyfonts
-      nerd-fonts.noto
       corefonts  # Microsoft fonts
-    ];
+    ] ++ (builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts));
 
     ## GPG / GnuPG
     #programs.gnupg.agent = {
