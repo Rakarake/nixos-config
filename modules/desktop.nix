@@ -156,7 +156,7 @@ in {
       mplus-outline-fonts.githubRelease
       dina-font
       proggyfonts
-      nerdfonts
+      nerd-fonts.noto
       corefonts  # Microsoft fonts
     ];
 

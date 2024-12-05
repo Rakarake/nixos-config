@@ -122,15 +122,14 @@ in {
       parabolic
       emote
       moonlight-qt
-      sublime-music
       gcolor3
       ascii-draw
       newsflash
       monero-gui
       handbrake
       alpaca
-      pipeline
       tor-browser
+      supersonic
 
       # Minecraft time
       prismlauncher
