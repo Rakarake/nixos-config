@@ -156,6 +156,7 @@ in {
       mplus-outline-fonts.githubRelease
       dina-font
       proggyfonts
+      orbitron
       corefonts  # Microsoft fonts
     ] ++ (builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts));
 
