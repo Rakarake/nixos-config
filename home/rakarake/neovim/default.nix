@@ -23,45 +23,21 @@ in
 
     # LSP packages
     home.packages = with pkgs; [
-      # Needed for telescope's grep functionality
-      ripgrep
-
-      # HTML / CSS / JSON / ESLint language server
-      vscode-langservers-extracted
-
-      # C / C++
-      ccls          # A C/C++ language server
-
-      # Haskell
-      haskell-language-server
-
-      # Nix??? 😲
-      nil  # Nix language server
-
-      # Rust
-      rustfmt
-      rust-analyzer # Rust language server
-
-      # Lua
-      lua-language-server
-
-      # Go
-      gopls
-
-      # Agda
-      (agda.withPackages [ agdaPackages.standard-library ])
-
-      # Typst
-      tinymist
-
-      # WGSL
-      inputs.wgsl_analyzer.packages.${system}.default
-
-      # C#
-      omnisharp-roslyn
-
-      # Erlang
-      erlang-ls
+      ripgrep                        # Needed for telescope's grep functionality
+      vscode-langservers-extracted   # HTML / CSS / JSON / ESLint language server
+      ccls                           # A C/C++ language server # C / C++
+      haskell-language-server        # Haskell
+      nil                            # Nix??? 😲
+      rustfmt                        # Rust
+      rust-analyzer                  # Rust language server
+      lua-language-server            # Lua
+      gopls                          # Go
+      (agda.withPackages [ agdaPackages.standard-library ]) # Agda
+      tinymist                                              # Typst
+      inputs.wgsl_analyzer.packages.${system}.default       # WGSL
+      omnisharp-roslyn                                      # C#
+      erlang-ls                                             # Erlang
+      pyright                                               # Python
     ];
 
     # Neovim config
@@ -86,6 +62,11 @@ in
         # DAP
         nvim-dap
         telescope-dap-nvim
+        # Other
+        mini-nvim            # Align stuff
+        # Oil
+        oil-nvim
+        # 
       ];
       extraLuaConfig = builtins.readFile ./config.lua + ''
 -- C# LSP support

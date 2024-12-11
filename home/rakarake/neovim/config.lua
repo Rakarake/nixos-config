@@ -111,26 +111,26 @@ vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
-  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+  --vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   -- Mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
-  local bufopts = { noremap=true, silent=true, buffer=bufnr }
-  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
-  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-  vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-  vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
-  vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
-  vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
-  vim.keymap.set('n', '<space>wl', function()
-    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-  end, bufopts)
-  vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
-  vim.keymap.set('n', '<space>ro', vim.lsp.buf.rename, bufopts)
-  vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
-  vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-  vim.keymap.set('n', '<space>fm', vim.lsp.buf.formatting, bufopts)
+  --local bufopts = { noremap=true, silent=true, buffer=bufnr }
+  --vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
+  --vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+  --vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+  --vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+  --vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
+  --vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
+  --vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
+  --vim.keymap.set('n', '<space>wl', function()
+  --  print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+  --end, bufopts)
+  --vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
+  --vim.keymap.set('n', '<space>ro', vim.lsp.buf.rename, bufopts)
+  --vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
+  --vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+  --vim.keymap.set('n', '<space>fm', vim.lsp.buf.formatting, bufopts)
 end
 local lsp_flags = {
   -- This is the default in Nvim 0.7+
@@ -191,37 +191,37 @@ cmp.setup {
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
+-- Built in neovim lsp config, for the peice of mind
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+    virtual_text = false,
+    signs = true,
+    update_in_insert = false,
+    underline = false,
+    border = "single",
+    severity_sort = true,
+})
+
+local default = {
+    capabilities = capabilities,
+    on_attach = on_attach,
+    flags = lsp_flags,
+}
+
 -- Individual language server setup
 -- HTML
-require'lspconfig'.html.setup {
-    capabilities = capabilities,
-    on_attach = on_attach,
-    flags = lsp_flags,
-}
+require'lspconfig'.html.setup(default)
 
 -- CSS
-require'lspconfig'.cssls.setup {
-    capabilities = capabilities,
-    on_attach = on_attach,
-    flags = lsp_flags,
-}
+require'lspconfig'.cssls.setup(default)
 
 -- Javascript
-require'lspconfig'.eslint.setup{
-    capabilities = capabilities,
-    on_attach = on_attach,
-    flags = lsp_flags,
-}
+require'lspconfig'.eslint.setup(default)
 
 -- C/C++
-require'lspconfig'.ccls.setup{
-    capabilities = capabilities,
-    on_attach = on_attach,
-    flags = lsp_flags,
-}
+require'lspconfig'.ccls.setup(default)
 
 -- Rust
-require'lspconfig'.rust_analyzer.setup{
+require'lspconfig'.rust_analyzer.setup {
     capabilities = capabilities,
     on_attach = on_attach,
     flags = lsp_flags,
@@ -232,61 +232,36 @@ require'lspconfig'.rust_analyzer.setup{
 }
 
 -- Haskell
-require'lspconfig'.hls.setup{
+require'lspconfig'.hls.setup {
     capabilities = capabilities,
     on_attach = on_attach,
     flags = lsp_flags,
     filetypes = { 'haskell', 'lhaskell', 'cabal' },
 }
 
+-- Python
+require'lspconfig'.pyright.setup(default)
+
 -- GDScript
-require'lspconfig'.gdscript.setup{
-    capabilities = capabilities,
-    on_attach = on_attach,
-    flags = lsp_flags,
-}
+require'lspconfig'.gdscript.setup(default)
 
 -- Java
-require'lspconfig'.jdtls.setup{
-     capabilities = capabilities,
-     on_attach = on_attach,
-     flags = lsp_flags,
- }
+require'lspconfig'.jdtls.setup(default)
 
 -- Nix
-require'lspconfig'.nil_ls.setup{
-     capabilities = capabilities,
-     on_attach = on_attach,
-     flags = lsp_flags,
-}
+require'lspconfig'.nil_ls.setup(default)
 
 -- Go
-require'lspconfig'.gopls.setup{
-     capabilities = capabilities,
-     on_attach = on_attach,
-     flags = lsp_flags,
-}
+require'lspconfig'.gopls.setup(default)
 
 -- WGSL
-require'lspconfig'.wgsl_analyzer.setup{
-     capabilities = capabilities,
-     on_attach = on_attach,
-     flags = lsp_flags,
-}
+require'lspconfig'.wgsl_analyzer.setup(default)
 
 -- Typst
-require'lspconfig'.tinymist.setup{
-     capabilities = capabilities,
-     on_attach = on_attach,
-     flags = lsp_flags,
-}
+require'lspconfig'.tinymist.setup(default)
 
 -- Erlang
-require'lspconfig'.erlangls.setup{
-     capabilities = capabilities,
-     on_attach = on_attach,
-     flags = lsp_flags,
-}
+require'lspconfig'.erlangls.setup(default)
 
 -- Catppuccin theme integrations
 --require("catppuccin").setup({
