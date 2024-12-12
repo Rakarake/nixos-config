@@ -44,10 +44,10 @@ in {
     home-rofi.enable = true;
 
     # Swaylock config file
-    home.file.".config/hypr/swaylock.conf".source = ./swaylock.conf;
+    xdg.configFile."hypr/swaylock.conf".source = ./swaylock.conf;
 
     # Swaync theme file
-    home.file.".config/swaync/style.css".source = ./swaync.css;
+    xdg.configFile."swaync/style.css".source = ./swaync.css;
     
     ## KDE / Dolphin config file
     #home.file.".config/kdeglobals".source = ./kdeglobals;

@@ -15,11 +15,11 @@ in
 
   config = lib.mkIf cfg.enable {
     # Make sure undodir exists
-    home.file.".config/nvim/undodir/gamnangstyle".text = "whop\n";
+    xdg.configFile."nvim/undodir/gamnangstyle".text = "whop\n";
     # Neovim filetype specific configs
-    home.file.".config/nvim/ftplugin/gdscript.lua".source = ./ftplugin/gdscript.lua;
-    home.file.".config/nvim/ftplugin/html.lua".source = ./ftplugin/html.lua;
-    home.file.".config/nvim/snippets/cs.lua".source = ./snippets/cs.lua;
+    xdg.configFile."nvim/ftplugin/gdscript.lua".source = ./ftplugin/gdscript.lua;
+    xdg.configFile."nvim/ftplugin/html.lua".source = ./ftplugin/html.lua;
+    xdg.configFile."nvim/snippets/cs.lua".source = ./snippets/cs.lua;
 
     # LSP packages
     home.packages = with pkgs; [

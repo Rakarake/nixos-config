@@ -145,10 +145,6 @@ in {
     # Enable syncthing service in the background
     services.syncthing.enable = true;
 
-    home.shellAliases = {
-      cargo = "cargo mommy";
-    };
-
     # Moment
     nixpkgs.config.permittedInsecurePackages = [
       "electron-27.3.11"

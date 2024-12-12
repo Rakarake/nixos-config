@@ -7,6 +7,6 @@ in {
     enable = mkEnableOption "Custom cosmic user configuration";
   };
   config = mkIf cfg.enable {
-    home.file.".config/cosmic/com.system76.CosmicComp/v1/xkb_config".source = ./xkb_config;
+    xdg.configFile."cosmic/com.system76.CosmicComp/v1/xkb_config".source = ./xkb_config;
   };
 }
