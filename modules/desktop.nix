@@ -196,6 +196,9 @@ in {
     # Wireshark
     programs.wireshark.enable = true;
 
+    # Firejail
+    programs.firejail.enable = true;
+
     ## Use encrypted cloudflare DNS
     #networking = {
     #  nameservers = [ "1.1.1.1" "::1" ];
