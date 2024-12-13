@@ -303,6 +303,7 @@ dap.configurations.gdscript = {
 require'mini.icons'.setup()
 require'mini.align'.setup()
 require'mini.move'.setup()
+require'mini.surround'.setup()
 
 -- Oil
 require'oil'.setup({
