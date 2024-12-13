@@ -98,6 +98,7 @@ local toggleterm = require("toggleterm").setup {
 }
 -- Go to left window in terminal mode
 vim.keymap.set('t', '<C-w>h', "<C-\\><C-n><C-w>h",{silent = true})
+vim.keymap.set('t', '<C-n>', "<C-\\><C-n>",{silent = true})
 
 -- LSP Configuration
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
@@ -298,9 +299,15 @@ dap.configurations.gdscript = {
   }
 }
 
--- mini.icons
+-- mini libraries
 require'mini.icons'.setup()
+require'mini.align'.setup()
+require'mini.move'.setup()
 
 -- Oil
-require'oil'.setup()
+require'oil'.setup({
+  keymaps = {
+    ["<BS>"] = { "actions.parent", mode = "n" },
+  }
+})
 
