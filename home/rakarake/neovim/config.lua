@@ -1,4 +1,6 @@
 -- Neovim configuration
+
+-- Leader key
 vim.g.mapleader = ' '
 
 -- Load filetype specific configurations
@@ -24,9 +26,9 @@ vim.filetype.add({extension = {wgsl = "wgsl"}})
 vim.g.vimwiki_list = {{path = '~/vimwiki/', syntax = 'markdown', ext = '.md'}}
 
 -- Telescope
-require('telescope').setup()
+require'telescope'.setup()
 -- Enalbe DAP integration
-require('telescope').load_extension('dap')
+require'telescope'.load_extension('dap')
 -- Only files visible to git
 vim.keymap.set('n', '<leader>ff', '<cmd>Telescope git_files<cr>')
 -- All files
@@ -73,7 +75,7 @@ vim.opt.undofile = true
 vim.keymap.set('n', '<leader>p', '<cmd>nohlsearch<Bar>:echo<cr>')
 
 -- Toggleterm
-local toggleterm = require("toggleterm").setup {
+local toggleterm = require'toggleterm'.setup {
     size = vim.o.columns * 0.45,
     direction = 'vertical', 
     open_mapping = [[<C-P>]],
@@ -139,16 +141,16 @@ local lsp_flags = {
 }
 
 -- luasnip setup
-local luasnip = require 'luasnip'
+local luasnip = require'luasnip'
 
-require("luasnip.loaders.from_lua").lazy_load({ paths = "~/.config/nvim/snippets" })
+require'luasnip.loaders.from_lua'.lazy_load({ paths = "~/.config/nvim/snippets" })
 
 -- nvim-cmp configuration
 -- Add additional capabilities supported by nvim-cmp
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').default_capabilities()
+capabilities = require'cmp_nvim_lsp'.default_capabilities()
 -- nvim-cmp setup
-local cmp = require 'cmp'
+local cmp = require'cmp'
 cmp.setup {
   snippet = {
     expand = function(args)
@@ -311,4 +313,5 @@ require'oil'.setup({
     ["<BS>"] = { "actions.parent", mode = "n" },
   }
 })
+vim.keymap.set('n', '<space>od', require"oil".open, opts)
 
