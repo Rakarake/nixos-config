@@ -63,7 +63,7 @@ in
         nvim-dap
         telescope-dap-nvim
         # Other
-        mini-nvim            # Align stuff
+        mini-nvim            # MANY THINGS
         # Oil
         oil-nvim
         # 

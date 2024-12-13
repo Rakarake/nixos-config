@@ -298,3 +298,9 @@ dap.configurations.gdscript = {
   }
 }
 
+-- mini.icons
+require'mini.icons'.setup()
+
+-- Oil
+require'oil'.setup()
+
