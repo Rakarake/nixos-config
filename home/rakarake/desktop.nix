@@ -100,6 +100,7 @@ in {
     # User specific packages
     home.packages = with pkgs; [
       steam-run
+      appimage-run
       steamtinkerlaunch
       obs-studio
       protonup-qt
