@@ -133,6 +133,10 @@ in {
       supersonic
       video-trimmer
 
+      # Emulators
+      fceux
+      dolphin-emu
+
       # Minecraft time
       prismlauncher
       glfw-wayland-minecraft
