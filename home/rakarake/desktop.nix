@@ -132,6 +132,8 @@ in {
       tor-browser
       supersonic
       video-trimmer
+      pipeline
+      easyeffects
 
       # Emulators
       fceux
