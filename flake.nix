@@ -210,6 +210,7 @@
         {
           name = "steamed-deck";
           user = "rakarake";
+          variation = "light";
           nixpkgs = nixpkgs-unstable;
           system = "x86_64-linux";
         }

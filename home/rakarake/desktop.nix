@@ -101,6 +101,7 @@ in {
     # User specific packages
     home.packages = with pkgs; [
       steam-run
+      appimage-run
       steamtinkerlaunch
       obs-studio
       protonup-qt
@@ -132,6 +133,12 @@ in {
       tor-browser
       supersonic
       video-trimmer
+      pipeline
+      easyeffects
+
+      # Emulators
+      fceux
+      dolphin-emu
 
       # Minecraft time
       prismlauncher
