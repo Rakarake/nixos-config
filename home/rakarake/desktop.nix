@@ -59,9 +59,10 @@ in {
       };
     };
 
-    # Alacritty
-    programs.alacritty = {
+    ## Terminal
+    programs.foot = {
       enable = true;
+      server.enable = true;
     };
 
     # Ghci prompt
