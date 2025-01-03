@@ -150,8 +150,8 @@ in {
       cargo-mommy
     ];
 
-    # Enable syncthing service in the background
-    services.syncthing.enable = true;
+    ## Enable syncthing service in the background
+    #services.syncthing.enable = true;
 
     # Moment
     nixpkgs.config.permittedInsecurePackages = [
