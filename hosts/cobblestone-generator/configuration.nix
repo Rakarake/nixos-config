@@ -10,10 +10,10 @@
 
   boot.kernelModules = [ "msr" ];
 
-  # OpenCL
-  hardware.graphics.extraPackages = with pkgs; [
-    rocmPackages.clr.icd
-  ];
+  ## OpenCL
+  #hardware.graphics.extraPackages = with pkgs; [
+  #  rocmPackages.clr.icd
+  #];
 
   # Hostname
   networking.hostName = "cobblestone-generator";  # Define your hostname.

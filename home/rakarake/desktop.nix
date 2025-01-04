@@ -108,7 +108,7 @@ in {
       vesktop
       helvum
       nicotine-plus
-      ardour
+      #ardour
       r2modman
       #pkgs.osu-lazer
       superTuxKart

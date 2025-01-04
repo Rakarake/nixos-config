@@ -23,9 +23,9 @@
     platformTheme.name = "kvantum";
     style = {
       name = "kvantum";
-      catppuccin.enable = true;
     };
   };
+  catppuccin.kvantum.enable = true;
 
   # Mangohud
   stylix.targets.mangohud.enable = false;
@@ -35,5 +35,6 @@
 
   # Neovim
   stylix.targets.neovim.enable = false;
-  programs.neovim.catppuccin.enable = true;
+  catppuccin.nvim.enable = true;
 }
+
