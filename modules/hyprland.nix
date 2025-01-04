@@ -14,38 +14,15 @@ in {
       withUWSM  = true;  # Enable "Universal Wayland Session Manager" systemd wrapper thingy
     };
 
-    # Packages needed by the Hyprland configuration
-    environment.systemPackages = with pkgs; [
-      pipewire                     # Screensharing
-      polkit_gnome                 # Polkit / gparted popup prompt provider
-      nautilus               # File manager
-      swaylock                     # Screenlocker
-      grim                         # Screenshot utility
-      slurp                        # Screen "area" picker utility
-      swaybg                       # Anime wallpapers
-      swaynotificationcenter       # Notification daemon
-      pamixer                      # Used for panel sound control
-      alsa-utils                   # keyboard volume control
-      playerctl                    # MPRIS global player controller
-      swayidle                     # Idle inhibitor, knows when computer is ueseless
-      brightnessctl                # Laptop brighness controls
-      networkmanagerapplet         # Log in to your wifi with this cool utility
-      papirus-icon-theme           # Used to make nm-applet and blueman-applet not look ass
-      hyprpicker                   # Color picker
-      nautilus-open-any-terminal
-      nautilus-python
-      hyprland-protocols
-    ];
-
-    # Witchcraft to get nautilus to open other terminals
-    services.xserver.desktopManager.gnome.extraGSettingsOverridePackages = [
-      pkgs.nautilus-open-any-terminal
-    ];
-    # Let nautilus find extensions
-    environment.sessionVariables.NAUTILUS_EXTENSION_DIR = "${config.system.path}/lib/nautilus/extensions-4";
-    environment.pathsToLink = [
-      "/share/nautilus-python/extensions"
-    ];
+    ## Witchcraft to get nautilus to open other terminals
+    #services.xserver.desktopManager.gnome.extraGSettingsOverridePackages = [
+    #  pkgs.nautilus-open-any-terminal
+    #];
+    ## Let nautilus find extensions
+    #environment.sessionVariables.NAUTILUS_EXTENSION_DIR = "${config.system.path}/lib/nautilus/extensions-4";
+    #environment.pathsToLink = [
+    #  "/share/nautilus-python/extensions"
+    #];
 
     environment.sessionVariables = {
       # NixOS specific option for enabling wayland in Electron apps

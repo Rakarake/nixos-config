@@ -9,7 +9,7 @@ let
   lowerVolumeCommand = "amixer set Master 5%-";
   muteVolumeCommand = "amixer set Master toggle";
   muteMicCommand = "amixer set Capture toggle";
-  fileManagerCommand = "nautilus";
+  fileManagerCommand = "thunar";
 in {
 
   imports = [
@@ -40,6 +40,30 @@ in {
     wayland.windowManager.hyprland.enable = true;
     home-waybar.enable = true;
     home-rofi.enable = true;
+
+    # Packages needed by the Hyprland configuration
+    home.packages = with pkgs; [
+      pipewire                     # Screensharing
+      polkit_gnome                 # Polkit / gparted popup prompt provider
+      #nautilus                    # File manager
+      swaylock                     # Screenlocker
+      grim                         # Screenshot utility
+      slurp                        # Screen "area" picker utility
+      swaybg                       # Anime wallpapers
+      swaynotificationcenter       # Notification daemon
+      pamixer                      # Used for panel sound control
+      alsa-utils                   # keyboard volume control
+      playerctl                    # MPRIS global player controller
+      swayidle                     # Idle inhibitor, knows when computer is ueseless
+      brightnessctl                # Laptop brighness controls
+      networkmanagerapplet         # Log in to your wifi with this cool utility
+      papirus-icon-theme           # Used to make nm-applet and blueman-applet not look ass
+      hyprpicker                   # Color picker
+      #nautilus-open-any-terminal
+      #nautilus-python
+      hyprland-protocols
+      xfce.thunar
+    ];
 
     # Swaylock config file
     xdg.configFile."hypr/swaylock.conf".source = ./swaylock.conf;

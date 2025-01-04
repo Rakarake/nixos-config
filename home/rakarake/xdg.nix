@@ -8,7 +8,7 @@ let
   imageViewer = ["imv.desktop"];
   mailClient  = ["thunderbird.desktop"];
   pdfViewer   = ["org.gnome.Evince.desktop"];
-  fileManager = ["nautilus.desktop"];
+  fileManager = ["thunar.desktop"];
 
   # XDG MIME types
   associations = {
