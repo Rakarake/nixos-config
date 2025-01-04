@@ -107,8 +107,6 @@ in
     ffmpeg
     waypipe
     openttd
-    p2pool
-    xmrig
   ];
 
   # SSH daemon
