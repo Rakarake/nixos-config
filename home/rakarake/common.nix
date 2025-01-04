@@ -1,4 +1,4 @@
-{ lib, config, pkgs, self, ... }:
+{ lib, config, pkgs, self, user, hostname, ... }:
 let
   cfg = config.home-common;
 in
@@ -68,10 +68,10 @@ in
       flake = "nix flake";
       nd = "nix develop";
       rebuild = "${pkgs.nh}/bin/nh os switch .";
-      hmrebuild = "${pkgs.nh}/bin/nh home switch .";
-      hmrebuild-light = "home-manager switch '.#rakarake@thinky-light'";
-      hmrebuild-dark = "home-manager switch '.#rakarake@thinky-dark'";
       rebuildboot = "${pkgs.nh}/bin/nh os boot .";
+      homebuild = "${pkgs.nh}/bin/nh home switch -c ${user}@${hostname} .";
+      lightbuild = "${pkgs.nh}/bin/nh home switch -c ${user}@${hostname}-light .";
+      darkbuild = "${pkgs.nh}/bin/nh home switch -c ${user}@${hostname}-dark .";
     };
 
     # Tmux

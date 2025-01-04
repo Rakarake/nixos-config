@@ -99,24 +99,24 @@
       };
 
       # Creates nixos configs from list
-      makeSystemConfigs = systemConfigs: (foldl ( acc: { name, nixpkgs, system }:
+      makeSystemConfigs = systemConfigs: (foldl ( acc: { hostname, nixpkgs, system }:
           acc // {
-            ${name} = nixpkgs.lib.nixosSystem {
+            ${hostname} = nixpkgs.lib.nixosSystem {
               inherit system;
-              modules = [ ./hosts/${name}/configuration.nix ];
-              specialArgs = args // { inherit system; };
+              modules = [ ./hosts/${hostname}/configuration.nix ];
+              specialArgs = args // { inherit system hostname; };
             };
           }
       ) {} systemConfigs);
 
       # Creates a home-manager configs from list
       # If no variation is specified, "user@system-default" is generated
-      makeHomeConfigs = homeConfigs: foldl ( acc: { name, nixpkgs, user, variation ? "default", system }:
+      makeHomeConfigs = homeConfigs: foldl ( acc: { hostname, nixpkgs, user, variation ? "default", system }:
           acc // {
-            "${user}@${name}-${variation}" = home-manager.lib.homeManagerConfiguration {
-              modules = [ ./home/${user}/default.nix ./home/${user}/${variation}.nix ./hosts/${name}/home.nix ];
+            "${user}@${hostname}-${variation}" = home-manager.lib.homeManagerConfiguration {
+              modules = [ ./home/${user}/default.nix ./home/${user}/${variation}.nix ./hosts/${hostname}/home.nix ];
               pkgs = (pkgsFor nixpkgs).${system};
-              extraSpecialArgs = args // { inherit system; };
+              extraSpecialArgs = args // { inherit system hostname user; };
             };
           }
       ) {} homeConfigs;
@@ -136,37 +136,37 @@
       nixosConfigurations = makeSystemConfigs [
         # Lappy
         {
-          name = "thinky";
+          hostname = "thinky";
           system ="x86_64-linux";
           nixpkgs = nixpkgs-unstable;
         }
         # Desky
         {
-          name = "cobblestone-generator";
+          hostname = "cobblestone-generator";
           system = "x86_64-linux";
           nixpkgs = nixpkgs-unstable;
         }
         # Server
         {
-          name = "creeper-spawner";
+          hostname = "creeper-spawner";
           system = "x86_64-linux";
           nixpkgs = nixpkgs-stable;
         }
         # Live configurations for when you wanna put NixOS on a USB-stick
         {
-          name = "live";
+          hostname = "live";
           system = "x86_64-linux";
           nixpkgs = nixpkgs-unstable;
         }
         # MASS DESTRUCTION, oh yeah, baby baby
         {
-          name = "mass-destruction";
+          hostname = "mass-destruction";
           system = "x86_64-linux";
           nixpkgs = nixpkgs-stable;
         }
         # We are having steamed decks?
         {
-          name = "steamed-deck";
+          hostname = "steamed-deck";
           system = "x86_64-linux";
           nixpkgs = nixpkgs-unstable;
         }
@@ -174,41 +174,41 @@
 
       homeConfigurations = makeHomeConfigs [
         {
-          name = "thinky";
+          hostname = "thinky";
           user = "rakarake";
           variation = "dark";
           nixpkgs = nixpkgs-unstable;
           system = "x86_64-linux";
         }
         {
-          name = "thinky";
+          hostname = "thinky";
           user = "rakarake";
           variation = "light";
           nixpkgs = nixpkgs-unstable;
           system = "x86_64-linux";
         }
         {
-          name = "cobblestone-generator";
+          hostname = "cobblestone-generator";
           user = "rakarake";
           variation = "dark";
           nixpkgs = nixpkgs-unstable;
           system = "x86_64-linux";
         }
         {
-          name = "cobblestone-generator";
+          hostname = "cobblestone-generator";
           user = "rakarake";
           variation = "light";
           nixpkgs = nixpkgs-unstable;
           system = "x86_64-linux";
         }
         {
-          name = "creeper-spawner";
+          hostname = "creeper-spawner";
           user = "rakarake";
           nixpkgs = nixpkgs-stable;
           system = "x86_64-linux";
         }
         {
-          name = "steamed-deck";
+          hostname = "steamed-deck";
           user = "rakarake";
           variation = "light";
           nixpkgs = nixpkgs-unstable;
