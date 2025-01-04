@@ -10,9 +10,6 @@ let
     openttd          =  3979;
   };
 
-  # Monero mining
-  boot.kernelModules = [ "msr" ];
-
   # Minecraft server module template
   # Takes name, figures everything out itself, users, location (/var/<name>)
   minecraftServerTemplate = name : description : java-package : {
@@ -110,8 +107,8 @@ in
     ffmpeg
     waypipe
     openttd
-p2pool
-xmrig
+    p2pool
+    xmrig
   ];
 
   # SSH daemon
