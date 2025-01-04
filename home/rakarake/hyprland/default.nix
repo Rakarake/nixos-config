@@ -10,8 +10,6 @@ let
   muteVolumeCommand = "amixer set Master toggle";
   muteMicCommand = "amixer set Capture toggle";
   fileManagerCommand = "nautilus";
-  #terminalCommand = "alacritty -e bash -c 'tmux attach || tmux'";
-  terminalCommand = "alacritty";
 in {
 
   imports = [
@@ -60,7 +58,7 @@ in {
       };
       # Nautilus terminal
       "com/github/stunkymonkey/nautilus-open-any-terminal" = {
-        terminal = terminalCommand;
+        terminal = "${config.home-xdg.terminal}";
         keybindings = "<Ctrl><Alt>t";
         new-tab = false;
       };
@@ -163,7 +161,7 @@ in {
       # Keybindings
       $mod = SUPER
 
-      bind=SUPER,Return,exec,uwsm app -- ${terminalCommand}
+      bind=SUPER,Return,exec,uwsm app -- ${config.home-xdg.terminal}
       bind=SUPER,Q,killactive,
       bind=SUPERSHIFTALT,E,exit,
       bind=SUPER,F,exec,uwsm app -- ${fileManagerCommand}

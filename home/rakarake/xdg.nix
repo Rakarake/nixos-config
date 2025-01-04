@@ -48,6 +48,12 @@ let
 in {
   options.home-xdg = {
     enable = mkEnableOption "Default apps";
+
+    # Default terminal command
+    terminal = mkOption {
+      type = types.str;
+      default = "${pkgs.foot}/bin/foot";
+    };
   };
   config = mkIf cfg.enable {
     xdg = {

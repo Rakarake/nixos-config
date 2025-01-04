@@ -59,9 +59,10 @@ in {
       };
     };
 
-    # Alacritty
-    programs.alacritty = {
+    ## Terminal
+    programs.foot = {
       enable = true;
+      server.enable = true;
     };
 
     # Ghci prompt
@@ -149,8 +150,8 @@ in {
       cargo-mommy
     ];
 
-    # Enable syncthing service in the background
-    services.syncthing.enable = true;
+    ## Enable syncthing service in the background
+    #services.syncthing.enable = true;
 
     # Moment
     nixpkgs.config.permittedInsecurePackages = [
