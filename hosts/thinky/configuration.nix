@@ -10,6 +10,9 @@
   # Hostname
   networking.hostName = "thinky";  # Define your hostname.
 
+  # Linux kernel package
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
   # Plymouth has problems covering the initial part of the boot, this makes
   # things black. Kinda stupid, but I like it.
   boot.kernelParams = ["quiet"];

@@ -99,9 +99,6 @@ in {
     # fwupdmgr update - to update devices (now or at boot)
     services.fwupd.enable = true;
 
-    # Linux kernel package
-    boot.kernelPackages = pkgs.linuxPackages_latest;
-
     # Input engines
     i18n.inputMethod.ibus.engines = [
       pkgs.ibus-engines.mozc

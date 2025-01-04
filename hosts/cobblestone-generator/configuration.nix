@@ -6,8 +6,10 @@
   cfg-desktop.enable = true;
   cfg-hyprland.enable = true;
 
-  # Monero mining
+  # Linux kernel package
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
+  # Monero mining
   boot.kernelModules = [ "msr" ];
 
   ## OpenCL
