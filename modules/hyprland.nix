@@ -11,7 +11,6 @@ in {
     # Enable hyprland
     programs.hyprland = {
       enable = true;
-      withUWSM  = true;  # Enable "Universal Wayland Session Manager" systemd wrapper thingy
     };
 
     ## Witchcraft to get nautilus to open other terminals
