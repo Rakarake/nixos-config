@@ -5,7 +5,7 @@
 
   # Desktop config
   cfg-desktop.enable = true;
-  cfg-hyprland.enable = true;
+  cfg-dwl.enable = true;
 
   # Hostname
   networking.hostName = "thinky";  # Define your hostname.

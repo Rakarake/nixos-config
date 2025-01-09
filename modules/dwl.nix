@@ -23,11 +23,19 @@
 
       # Portals
       xdg.portal.enable = true;
-      xdg.portal.configPackages = [ pkgs.xdg-desktop-portal-wlr ];
-      xdg.portal.wlr.enable = true;    # Desktop portal
+      xdg.portal.configPackages = with pkgs; [
+        xdg-desktop-portal-wlr
+        xdg-desktop-portal-gtk
+      ];
+
+      # Dbus go wrommm 
+      services.dbus.enable = lib.mkDefault true;
+      
+      xdg.portal.wlr.enable = true;  # Desktop portal
+      services.seatd.enable = true;  # Arch wiki says this is needed
       xdg.portal.wlr.settings = {
         screencast = {
-          output_name = "HDMI-A-1";
+          output_name = "eDP-1";
           max_fps = 30;
           chooser_type = "simple";
           chooser_cmd = "${pkgs.slurp}/bin/slurp -f %o -or";
