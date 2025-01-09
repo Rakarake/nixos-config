@@ -18,12 +18,13 @@ let
     #swaync &
     gsettings set org.gnome.nm-applet disable-disconnected-notifications "true"
     gsettings set org.gnome.nm-applet disable-connected-notifications "true"
-    nextcloud &
+    #nextcloud &
     blueman-applet &
     nm-applet &
   '';
   
 in {
+
   options.home-dwl = {
     # Option to enable dwl config
     enable = mkEnableOption "Custom dwl config";

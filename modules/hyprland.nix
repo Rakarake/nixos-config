@@ -32,10 +32,6 @@ in {
     # Enable "pam thingy" for swaylock so that it can unlock with password
     security.pam.services.swaylock = {};
     security.pam.services.polkit_gnome = {};
-    # We use gdm cuz lazy
-    services.xserver.displayManager.gdm.enable = true;
-    # Cuz we lazy
-    services.xserver.desktopManager.gnome.enable = true;
     # Blueman service
     services.blueman.enable = true;
   };

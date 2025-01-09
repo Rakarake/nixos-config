@@ -17,6 +17,8 @@
       security.pam.services.swaylock = {};
       security.pam.services.polkit_gnome = {};
 
+      security.polkit.enable = true;
+
       # Bluetooth
       hardware.bluetooth.enable = true;
       services.blueman.enable = true;
@@ -32,7 +34,7 @@
       services.dbus.enable = lib.mkDefault true;
       
       xdg.portal.wlr.enable = true;  # Desktop portal
-      services.seatd.enable = true;  # Arch wiki says this is needed
+      #services.seatd.enable = true;  # Arch wiki says this is needed
       xdg.portal.wlr.settings = {
         screencast = {
           output_name = "eDP-1";

@@ -9,15 +9,15 @@ in {
   };
   config = mkIf cfg.enable {
     # Enable the GNOME Desktop Environment.
-    services.xserver.displayManager.gdm.enable = true;
     services.xserver.desktopManager.gnome.enable = true;
+    #services.xserver.displayManager.gdm.enable = true;
 
     #programs.gnupg.agent = {
     #  pinentryPackage = "gnome3";
     #};
 
-    environment.variables = {
-      #QT_QPA_PLATFORM = "wayland";
-    };
+    #environment.variables = {
+    #  #QT_QPA_PLATFORM = "wayland";
+    #};
   };
 }
