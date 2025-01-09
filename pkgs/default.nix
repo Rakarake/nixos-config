@@ -1,5 +1,5 @@
 { pkgs, ... }: {
   amogus = pkgs.callPackage ./amogus { };
   simple-shell-utils = pkgs.callPackage ./simple-shell-utils { };
-  bbuilder = pkgs.callPackage ./bbuilder { };
+  dwl-custom = pkgs.callPackage ./dwl-custom { };
 }

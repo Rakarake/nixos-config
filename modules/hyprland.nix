@@ -1,5 +1,5 @@
 # Hyprland system configuration
-{ lib, inputs, config, pkgs, ... }:
+{ lib, inputs, outputs, system, config, pkgs, ... }:
 with lib;                      
 let
   cfg = config.cfg-hyprland;
@@ -12,6 +12,12 @@ in {
     programs.hyprland = {
       enable = true;
     };
+
+    # TODO: move this to its own module
+    environment.systemPackages = with pkgs; [
+      outputs.packages.${system}.dwl-custom
+      foot
+    ];
 
     ## Witchcraft to get nautilus to open other terminals
     #services.xserver.desktopManager.gnome.extraGSettingsOverridePackages = [
