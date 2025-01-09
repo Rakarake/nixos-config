@@ -4,7 +4,7 @@
 
   # Cool simple Hyprland config
   cfg-desktop.enable = true;
-  cfg-hyprland.enable = true;
+  cfg-dwl.enable = true;
 
   # Linux kernel package
   boot.kernelPackages = pkgs.linuxPackages_latest;

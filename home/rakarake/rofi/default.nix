@@ -4,13 +4,13 @@ let
   cfg = config.home-rofi;
 in {
   options.home-rofi = {
-    enable = mkEnableOption "Custom gnome system configuration";
+    enable = mkEnableOption "Rofi config";
   };
   config = mkIf cfg.enable {
     programs.rofi = {
       enable = true;
       package = pkgs.rofi-wayland;
-      terminal = "${pkgs.kitty}/bin/kitty";
+      terminal = "${pkgs.foot}/bin/foot";
     };
   };
 }

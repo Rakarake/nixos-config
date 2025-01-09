@@ -4,7 +4,7 @@ with lib;
 let
   cfg = config.home-hyprland;
   # pidof swaylock makes sure that we do not start multiple instances of swaylock
-  swaylockCommand = "pidof swaylock || swaylock -k -C ~/.config/hypr/swaylock.conf -i ${config.stylix.image}";
+  swaylockCommand = "pidof swaylock || swaylock -k -C ~/.config/swaylock.conf -i ${config.stylix.image}";
   raiseVolumeCommand = "amixer set Master 5%+";
   lowerVolumeCommand = "amixer set Master 5%-";
   muteVolumeCommand = "amixer set Master toggle";
@@ -14,7 +14,6 @@ in {
 
   imports = [
     ./waybar.nix
-    ./rofi
   ];
 
   options.home-hyprland = {
@@ -66,7 +65,7 @@ in {
     ];
 
     # Swaylock config file
-    xdg.configFile."hypr/swaylock.conf".source = ./swaylock.conf;
+    xdg.configFile."swaylock.conf".source = ../swaylock.conf;
 
     # Swaync theme file
     xdg.configFile."swaync/style.css".source = ./swaync.css;

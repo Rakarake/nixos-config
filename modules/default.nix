@@ -5,5 +5,6 @@
     ./kde.nix
     ./hyprland.nix
     ./cosmic.nix
+    ./dwl.nix
   ];
 }
