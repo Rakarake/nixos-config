@@ -42,6 +42,7 @@ vim.keymap.set('n', '<leader>fh', '<cmd>Telescope help_tags<cr>')
 vim.keymap.set('n', '<leader>bn', '<cmd>bnext<cr>')
 vim.keymap.set('n', '<leader>bp', '<cmd>bprevious<cr>')
 vim.keymap.set('n', '<leader>bd', '<cmd>bdelete<cr>')
+vim.keymap.set('n', '<leader>bf', '<cmd>e %:h<cr>', {silent = true})
 
 -- Insert a tab with Shift-Tab in insert mode
 vim.keymap.set('i', '<S-Tab>', '<C-V><Tab>')
