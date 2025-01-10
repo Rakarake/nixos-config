@@ -13,11 +13,10 @@
         foot
         wlr-randr
       ];
+
       # Enable "pam thingy" for swaylock so that it can unlock with password
       security.pam.services.swaylock = {};
       security.pam.services.polkit_gnome = {};
-
-      security.polkit.enable = true;
 
       # Bluetooth
       hardware.bluetooth.enable = true;
@@ -30,13 +29,10 @@
         xdg-desktop-portal-gtk
       ];
 
-      # Dbus go wrommm 
-      services.dbus.enable = lib.mkDefault true;
-
-      # Keyring, dbus service to remember passwords
-      services.gnome.gnome-keyring.enable = true;
-      
-      xdg.portal.wlr.enable = true;  # Desktop portal
-      #services.seatd.enable = true;  # Arch wiki says this is needed
+      security.polkit.enable = true;               # Polkit
+      services.dbus.enable = lib.mkDefault true;   # Dbus go wrommm 
+      services.gnome.gnome-keyring.enable = true;  # Keyring, dbus service to remember passwords
+      xdg.portal.wlr.enable = true;                # Desktop portal
+      services.seatd.enable = true;                # Arch wiki says this is needed
     };
 }

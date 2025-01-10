@@ -9,6 +9,7 @@ let
   muteVolumeCommand = "amixer set Master toggle";
   muteMicCommand = "amixer set Capture toggle";
   fileManagerCommand = "thunar";
+  # The autostart script
   dwl-autostart = pkgs.writeShellScriptBin "dwl-autostart" '' 
     wlr-randr --output DP-1 --mode 1920x1080@144.001007 --pos 1920,0
     wlr-randr --output DP-2 --mode 1920x1080@143.854996 --pos 0,0
@@ -23,7 +24,10 @@ let
     blueman-applet &
     nm-applet &
   '';
-  
+  # Starts dwl with the right options in the right context
+  dwl-startup = pkgs.writeShellScriptBin "dwl-startup" '' 
+    dbus-run-session dwl -s ${dwl-autostart}/bin/dwl-autostart
+  '';
 in {
 
   options.home-dwl = {
@@ -49,12 +53,8 @@ in {
       papirus-icon-theme           # Used to make nm-applet and blueman-applet not look ass
       xfce.thunar
       dwl-autostart
+      dwl-startup
     ];
-
-    home.shellAliases = {
-      # For starting a session from the tty (or a nested one)
-      dwl-startup = "dwl -s ${dwl-autostart}/bin/dwl-autostart";
-    };
 
     # Swaylock config file
     xdg.configFile."swaylock.conf".source = ../swaylock.conf;
