@@ -32,7 +32,8 @@ in {
     # Enable "pam thingy" for swaylock so that it can unlock with password
     security.pam.services.swaylock = {};
     security.pam.services.polkit_gnome = {};
-    # Blueman service
+    # Bluetooth
     services.blueman.enable = true;
+    hardware.bluetooth.enable = true;
   };
 }
