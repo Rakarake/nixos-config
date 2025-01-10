@@ -32,6 +32,9 @@
 
       # Dbus go wrommm 
       services.dbus.enable = lib.mkDefault true;
+
+      # Keyring, dbus service to remember passwords
+      services.gnome.gnome-keyring.enable = true;
       
       xdg.portal.wlr.enable = true;  # Desktop portal
       #services.seatd.enable = true;  # Arch wiki says this is needed
