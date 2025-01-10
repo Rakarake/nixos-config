@@ -35,13 +35,5 @@
       
       xdg.portal.wlr.enable = true;  # Desktop portal
       #services.seatd.enable = true;  # Arch wiki says this is needed
-      xdg.portal.wlr.settings = {
-        screencast = {
-          output_name = "eDP-1";
-          max_fps = 30;
-          chooser_type = "simple";
-          chooser_cmd = "${pkgs.slurp}/bin/slurp -f %o -or";
-        };
-      };
     };
 }

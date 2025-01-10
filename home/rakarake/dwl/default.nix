@@ -14,6 +14,7 @@ let
     wlr-randr --output DP-2 --mode 1920x1080@143.854996 --pos 0,0
     ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1 &
     ${pkgs.xdg-desktop-portal-wlr}/libexec/xdg-desktop-portal-wlr &
+    ${pkgs.xdg-desktop-portal-gtk}/libexec/xdg-desktop-portal-gtk &
     swaybg -i ${config.stylix.image} &
     #swaync &
     gsettings set org.gnome.nm-applet disable-disconnected-notifications "true"
@@ -68,6 +69,14 @@ in {
         region = "sv_SE.UTF-8";
       };
     };
+
+    # Desktop portal config
+    xdg.configFile."xdg-desktop-portal-wlr/config".text = ''
+      [screencast]
+      max_fps=30
+      chooser_type=simple
+      chooser_cmd=slurp -d -w 1 -f %o -or
+    '';
 
     # Theming
     gtk.iconTheme = {
