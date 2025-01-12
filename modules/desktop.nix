@@ -308,7 +308,7 @@ in {
     users.users.rakarake = {
       isNormalUser = true;
       description = "Rakarake";
-      extraGroups = [ "networkmanager" "wheel" "adbusers" "docker" "wireshark" "davfs2" "libvirtd" "vboxusers" ];
+      extraGroups = [ "networkmanager" "wheel" "seat" "adbusers" "docker" "wireshark" "davfs2" "libvirtd" "vboxusers" ];
     };
 
     # Mullvad Service
@@ -316,6 +316,7 @@ in {
 
     # Enable the flatpak service
     services.flatpak.enable = true;
+    xdg.portal.enable = true;
 
     # Collect all the garbage automatically!
     #nix.gc = {

@@ -11,11 +11,14 @@ let
   fileManagerCommand = "thunar";
   # The autostart script
   dwl-autostart = pkgs.writeShellScriptBin "dwl-autostart" '' 
+    # Needed for portal
+    #dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=dwl
+    ${pkgs.dbus}/bin/dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP DISPLAY XDG_SESSION_TYPE
     wlr-randr --output DP-1 --mode 1920x1080@144.001007 --pos 1920,0
     wlr-randr --output DP-2 --mode 1920x1080@143.854996 --pos 0,0
-    ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1 &
-    ${pkgs.xdg-desktop-portal-wlr}/libexec/xdg-desktop-portal-wlr &
-    ${pkgs.xdg-desktop-portal-gtk}/libexec/xdg-desktop-portal-gtk &
+    #${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1 &
+    #${pkgs.xdg-desktop-portal-wlr}/libexec/xdg-desktop-portal-wlr &
+    #${pkgs.xdg-desktop-portal-gtk}/libexec/xdg-desktop-portal-gtk &
     swaybg -i ${config.stylix.image} &
     #swaync &
     gsettings set org.gnome.nm-applet disable-disconnected-notifications "true"
@@ -23,10 +26,23 @@ let
     #nextcloud &
     blueman-applet &
     nm-applet &
+    sleep infinity
   '';
   # Starts dwl with the right options in the right context
   dwl-startup = pkgs.writeShellScriptBin "dwl-startup" '' 
-    dbus-run-session dwl -s ${dwl-autostart}/bin/dwl-autostart
+    export XDG_CURRENT_DESKTOP=dwl
+    ${dwl}/bin/dwl -s ${dwl-autostart}/bin/dwl-autostart
+    #dbus-run-session ${dwl}/bin/dwl -s ${dwl-autostart}/bin/dwl-autostart
+  '';
+  dwl = pkgs.dwl.overrideAttrs (old: {
+    src = ./.;
+    prePatch = ''
+      printf '${confighExtra}' >> config.h
+    '';
+  });
+  confighExtra = ''
+    /* logging */
+    static int log_level = WLR_ERROR;
   '';
 in {
 
@@ -70,13 +86,20 @@ in {
       };
     };
 
-    # Desktop portal config
-    xdg.configFile."xdg-desktop-portal-wlr/config".text = ''
-      [screencast]
-      max_fps=30
-      chooser_type=simple
-      chooser_cmd=slurp -d -w 1 -f %o -or
-    '';
+    ## Desktop portal config
+    #xdg.configFile."xdg-desktop-portal-wlr/config".text = ''
+    #  [screencast]
+    #  output_name=DP-1
+    #  max_fps=30
+    #  chooser_type=simple
+    #  chooser_cmd=slurp -f %o -or
+    #'';
+    #xdg.configFile."xdg-desktop-portal/default-portals.conf".text = ''
+    #  [preferred]
+    #  default=gtk
+    #  org.freedesktop.impl.portal.Screenshot=wlr
+    #  org.freedesktop.impl.portal.ScreenCast=wlr
+    #'';
 
     # Theming
     gtk.iconTheme = {
