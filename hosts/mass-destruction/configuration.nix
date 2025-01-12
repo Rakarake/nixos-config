@@ -8,10 +8,6 @@ let
     wireguard        = 51820;
     minecraft        =  8069;
     openttd          =  3979;
-    somecryptothing  =  3333;
-    p2p              = 37889;
-    rpc              = 18081;
-    zmq              = 18083;
   };
 
   # Minecraft server module template
