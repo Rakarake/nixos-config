@@ -93,6 +93,9 @@ in
   networking.firewall.allowedTCPPorts = lib.attrsets.attrValues ports;
   networking.firewall.allowedUDPPorts = lib.attrsets.attrValues ports;
 
+  # DONT DO THIS, BAD PRACTICE
+  networking.firewall.enable = false;
+
   # Utility programs
   environment.systemPackages = with pkgs; [
     vim
