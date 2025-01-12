@@ -126,6 +126,11 @@ in
     ports = [ ports.ssh ports.ssh1];
   };
 
+  # Needed for network discovery
+  services.avahi.enable = true;
+  services.avahi.publish.enable = true;
+  services.avahi.publish.userServices = true;
+
   # Bootloader
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
