@@ -9,10 +9,10 @@ in {
   config = mkIf cfg.enable {
     programs.waybar = {
       enable = true;
-      systemd = {
-        enable = false;
-        target = "graphical-session.target";
-      };
+      #systemd = {
+      #  enable = false;
+      #  target = "graphical-session.target";
+      #};
       settings.mainBar = {
         layer = "bottom";
         position = "top";
