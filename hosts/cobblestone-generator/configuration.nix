@@ -4,9 +4,17 @@
 
   # Cool simple Hyprland config
   cfg-desktop.enable = true;
-  #cfg-hyprland.enable = true;
+  cfg-hyprland.enable = true;
   #services.xserver.displayManager.gdm.enable = true;
-  cfg-dwl.enable = true;
+  services.greetd = {
+    enable = true;
+    settings = {
+      default_session = {
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet";
+      };
+    };
+  };
+  #cfg-dwl.enable = true;
   xdg.portal.wlr.settings.screencast = {
     output_name = "DP-1";
     max_fps = 30;

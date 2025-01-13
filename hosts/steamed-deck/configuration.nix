@@ -16,5 +16,6 @@
 
   cfg-desktop.enable = true;
   cfg-hyprland.enable = true;
+  services.xserver.displayManager.gdm.enable = true;
 }
 
