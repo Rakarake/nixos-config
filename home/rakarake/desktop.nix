@@ -136,6 +136,7 @@ in {
       video-trimmer
       pipeline
       easyeffects
+      evince
 
       # Emulators
       fceux

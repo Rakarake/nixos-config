@@ -32,6 +32,10 @@ in {
     # Enable "pam thingy" for swaylock so that it can unlock with password
     security.pam.services.swaylock = {};
     security.pam.services.polkit_gnome = {};
+
+    #  Polkit
+    security.polkit.enable = true;
+
     # Keyring, dbus service to remember passwords
     services.gnome.gnome-keyring.enable = true;
     # Bluetooth
