@@ -138,10 +138,18 @@ in {
       easyeffects
       evince
       resources
+      file-roller
 
       # Emulators
       fceux
       dolphin-emu
+      torzu
+      (pkgs.retroarch.withCores (cores: with cores; [
+        mesen
+        bsnes
+        citra
+        parallel-n64
+      ]))
 
       # Minecraft time
       prismlauncher
