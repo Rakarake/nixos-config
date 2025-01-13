@@ -137,6 +137,7 @@ in {
       pipeline
       easyeffects
       evince
+      resources
 
       # Emulators
       fceux
