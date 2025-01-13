@@ -62,7 +62,6 @@ in {
       #nautilus-python
       hyprland-protocols
       xfce.thunar
-      gvfs  # might be needed for thunar trash-can
     ];
 
     # Swaylock config file

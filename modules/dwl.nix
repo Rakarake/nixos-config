@@ -13,6 +13,9 @@
         wlr-randr
       ];
 
+      # Needed for thunar/nautilus trash-can, other one for dolphin
+      services.gvfs.enable = true;
+
       # Enable "pam thingy" for swaylock so that it can unlock with password
       security.pam.services.swaylock = {};
       security.pam.services.polkit_gnome = {};

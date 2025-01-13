@@ -68,7 +68,6 @@ in {
       networkmanagerapplet         # Log in to your wifi with this cool utility
       papirus-icon-theme           # Used to make nm-applet and blueman-applet not look ass
       xfce.thunar
-      gvfs  # might be needed for thunar trash-can
       dwl-autostart
       dwl-startup
     ];

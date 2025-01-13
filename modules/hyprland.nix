@@ -13,6 +13,9 @@ in {
       enable = true;
     };
 
+    # Needed for thunar/nautilus trash-can, other one for dolphin
+    services.gvfs.enable = true;
+
     ## Witchcraft to get nautilus to open other terminals
     #services.xserver.desktopManager.gnome.extraGSettingsOverridePackages = [
     #  pkgs.nautilus-open-any-terminal
