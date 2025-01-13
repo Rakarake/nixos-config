@@ -227,7 +227,7 @@ in {
       EDITOR = "nvim";
       # Needed for gamescope to run in steam
       ENABLE_VKBASALT = "1";
-      # Always allow unfree nix packages 😛
+      # Always allow unfree nix packages :(
       NIXPKGS_ALLOW_UNFREE = "1";
     };
 

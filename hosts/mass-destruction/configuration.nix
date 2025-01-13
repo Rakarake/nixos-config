@@ -93,9 +93,6 @@ in
   networking.firewall.allowedTCPPorts = lib.attrsets.attrValues ports;
   networking.firewall.allowedUDPPorts = lib.attrsets.attrValues ports;
 
-  # DONT DO THIS, BAD PRACTICE
-  networking.firewall.enable = false;
-
   # Utility programs
   environment.systemPackages = with pkgs; [
     vim
@@ -124,6 +121,11 @@ in
     settings.KbdInteractiveAuthentication = false;
     ports = [ ports.ssh ports.ssh1];
   };
+
+  # Needed for network discovery
+  services.avahi.enable = true;
+  services.avahi.publish.enable = true;
+  services.avahi.publish.userServices = true;
 
   # Bootloader
   boot.loader.systemd-boot.enable = true;
