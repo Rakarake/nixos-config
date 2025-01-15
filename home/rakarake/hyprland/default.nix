@@ -48,6 +48,7 @@ in {
       swaylock                     # Screenlocker
       grim                         # Screenshot utility
       slurp                        # Screen "area" picker utility
+      wl-screenrec                 # Screen reccording utility
       swaybg                       # Anime wallpapers
       swaynotificationcenter       # Notification daemon
       pamixer                      # Used for panel sound control

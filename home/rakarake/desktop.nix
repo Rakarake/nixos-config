@@ -139,6 +139,7 @@ in {
       evince
       resources
       file-roller
+      rclone
 
       # Emulators
       fceux
