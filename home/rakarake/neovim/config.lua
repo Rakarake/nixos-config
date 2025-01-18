@@ -224,16 +224,23 @@ require'lspconfig'.eslint.setup(default)
 -- C/C++
 require'lspconfig'.ccls.setup(default)
 
--- Rust
-require'lspconfig'.rust_analyzer.setup {
-    capabilities = capabilities,
-    on_attach = on_attach,
-    flags = lsp_flags,
-    -- Server-specific settings...
-    settings = {
-      ["rust-analyzer"] = {}
-    }
-}
+---- Rust
+--require'lspconfig'.rust_analyzer.setup {
+--    capabilities = capabilities,
+--    on_attach = on_attach,
+--    flags = lsp_flags,
+--    -- Server-specific settings...
+--    settings = {
+--      ["rust-analyzer"] = {}
+--    },
+--    commands = {
+--        ExpandMacro = {
+--            function()
+--                vim.lsp.buf_request_all(0, "rust-analyzer/expandMacro", vim.lsp.util.make_position_params(), vim.print)
+--            end
+--        },
+--    },
+--}
 
 -- Haskell
 require'lspconfig'.hls.setup {
@@ -266,6 +273,30 @@ require'lspconfig'.tinymist.setup(default)
 
 -- Erlang
 require'lspconfig'.erlangls.setup(default)
+
+
+
+-- Rust
+local bufnr = vim.api.nvim_get_current_buf()
+vim.keymap.set(
+  "n", 
+  "<leader>a", 
+  function()
+    vim.cmd.RustLsp('codeAction') -- supports rust-analyzer's grouping
+    -- or vim.lsp.buf.codeAction() if you don't want grouping.
+  end,
+  { silent = true, buffer = bufnr }
+)
+vim.keymap.set(
+  "n", 
+  "K",  -- Override Neovim's built-in hover keymap with rustaceanvim's hover actions
+  function()
+    vim.cmd.RustLsp({'hover', 'actions'})
+  end,
+  { silent = true, buffer = bufnr }
+)
+
+
 
 -- Catppuccin theme integrations
 --require("catppuccin").setup({

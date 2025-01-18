@@ -66,7 +66,8 @@ in
         mini-nvim            # MANY THINGS
         # Oil
         oil-nvim
-        # 
+        # Rust
+        rustaceanvim
       ];
       extraLuaConfig = builtins.readFile ./config.lua + ''
 -- C# LSP support
