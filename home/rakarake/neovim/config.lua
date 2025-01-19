@@ -295,7 +295,7 @@ vim.keymap.set(
   end,
   { silent = true, buffer = bufnr }
 )
-
+vim.keymap.set("n", "<leader>re", "<cmd>RustLsp expandMacro<cr>", {silent = true})
 
 
 -- Catppuccin theme integrations

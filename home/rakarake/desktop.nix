@@ -140,6 +140,7 @@ in {
       resources
       file-roller
       rclone
+      gnome-calculator
 
       # Emulators
       fceux
