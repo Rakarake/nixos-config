@@ -16,15 +16,14 @@ in {
     # Needed for thunar/nautilus trash-can, other one for dolphin
     services.gvfs.enable = true;
 
-    ## Witchcraft to get nautilus to open other terminals
-    #services.xserver.desktopManager.gnome.extraGSettingsOverridePackages = [
-    #  pkgs.nautilus-open-any-terminal
-    #];
-    ## Let nautilus find extensions
-    #environment.sessionVariables.NAUTILUS_EXTENSION_DIR = "${config.system.path}/lib/nautilus/extensions-4";
-    #environment.pathsToLink = [
-    #  "/share/nautilus-python/extensions"
-    #];
+    ## Get nautilus to open other terminals
+    programs.nautilus-open-any-terminal = {
+      enable = true;
+      terminal = "foot";
+    };
+    environment.systemPackages = with pkgs; [
+      nautilus
+    ];
 
     environment.sessionVariables = {
       # NixOS specific option for enabling wayland in Electron apps

@@ -9,7 +9,7 @@ let
   lowerVolumeCommand = "amixer set Master 5%-";
   muteVolumeCommand = "amixer set Master toggle";
   muteMicCommand = "amixer set Capture toggle";
-  fileManagerCommand = "thunar";
+  fileManagerCommand = "nautilus";
 in {
 
   imports = [
@@ -37,6 +37,7 @@ in {
   config = mkIf cfg.enable {
     # Enable Hyprland
     wayland.windowManager.hyprland.enable = true;
+    wayland.windowManager.hyprland.systemd.enable = true;
     home-waybar.enable = true;
     home-rofi.enable = true;
 
@@ -62,7 +63,7 @@ in {
       #nautilus-open-any-terminal
       #nautilus-python
       hyprland-protocols
-      xfce.thunar
+      nautilus
     ];
 
     # Swaylock config file
