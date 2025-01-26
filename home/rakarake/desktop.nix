@@ -23,8 +23,9 @@ in {
     # Default applications
     home-xdg = {
       enable = true;
-      terminal = { package = pkgs.foot; bin = "foot"; desktop = "foot.desktop"; };
-      file-manager = { package = pkgs.nautilus; bin = "nautilus"; desktop = "nautilus.desktop"; };
+      # Since we are using a custom mpv
+      audio-player = { package = pkgs.hello; bin = "mpv"; desktop = "mpv.desktop"; };
+      video-player = { package = pkgs.hello; bin = "mpv"; desktop = "mpv.desktop"; };
     };
 
     # Neovim config

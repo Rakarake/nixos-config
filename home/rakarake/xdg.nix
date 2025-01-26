@@ -2,45 +2,37 @@
 with lib;
 let
   cfg = config.home-xdg;
-  browser =     ["firefox.desktop"];
-  audioPlayer = ["mpv.desktop"];
-  videoPlayer = ["mpv.desktop"];
-  imageViewer = ["imv.desktop"];
-  mailClient  = ["thunderbird.desktop"];
-  pdfViewer   = ["org.gnome.Evince.desktop"];
-  fileManager = ["nautilus.desktop"];
-
   # XDG MIME types
   associations = {
     # Browser
-    "application/x-extension-htm"   = browser;
-    "application/x-extension-html"  = browser;
-    "application/x-extension-shtml" = browser;
-    "application/x-extension-xht"   = browser;
-    "application/x-extension-xhtml" = browser;
-    "application/xhtml+xml"         = browser;
-    "text/html"                     = browser;
-    "x-scheme-handler/about"        = browser;
-    "x-scheme-handler/chrome"       = browser;
-    "x-scheme-handler/ftp"          = browser;
-    "x-scheme-handler/http"         = browser;
-    "x-scheme-handler/https"        = browser;
-    "x-scheme-handler/unknown"      = browser;
+    "application/x-extension-htm"   = cfg.browser.desktop;
+    "application/x-extension-html"  = cfg.browser.desktop;
+    "application/x-extension-shtml" = cfg.browser.desktop;
+    "application/x-extension-xht"   = cfg.browser.desktop;
+    "application/x-extension-xhtml" = cfg.browser.desktop;
+    "application/xhtml+xml"         = cfg.browser.desktop;
+    "text/html"                     = cfg.browser.desktop;
+    "x-scheme-handler/about"        = cfg.browser.desktop;
+    "x-scheme-handler/chrome"       = cfg.browser.desktop;
+    "x-scheme-handler/ftp"          = cfg.browser.desktop;
+    "x-scheme-handler/http"         = cfg.browser.desktop;
+    "x-scheme-handler/https"        = cfg.browser.desktop;
+    "x-scheme-handler/unknown"      = cfg.browser.desktop;
 
     # Mail
-    "handler/mailto" = mailClient;
+    "handler/mailto" = cfg.mail-client.desktop;
 
     # Multimedia
-    "audio/*"         = audioPlayer;
-    "audio/flac"      = audioPlayer;
-    "audio/mp3"       = audioPlayer;
-    "video/*"         = videoPlayer;
-    "video/mp4"       = videoPlayer;
-    "video/mkv"       = videoPlayer;
-    "image/*"         = imageViewer;
-    "image/png"       = imageViewer;
-    "image/jpg"       = imageViewer;
-    "application/pdf" = pdfViewer;
+    "audio/*"         = cfg.audio-player.desktop;
+    "audio/flac"      = cfg.audio-player.desktop;
+    "audio/mp3"       = cfg.audio-player.desktop;
+    "video/*"         = cfg.video-player.desktop;
+    "video/mp4"       = cfg.video-player.desktop;
+    "video/mkv"       = cfg.video-player.desktop;
+    "image/*"         = cfg.image-viewer.desktop;
+    "image/png"       = cfg.image-viewer.desktop;
+    "image/jpg"       = cfg.image-viewer.desktop;
+    "application/pdf" = cfg.pdf-viewer.desktop;
 
     # File manager
     "inode/directory" = cfg.file-manager.desktop;
@@ -53,11 +45,35 @@ in {
     # programs are installed
     terminal = mkOption {
       type = types.attrs;
-      default = { package = pkgs.xterm; bin = "xterm"; desktop = "xterm.desktop"; };
+      default = { package = pkgs.foot; bin = "foot"; desktop = "foot.desktop"; };
     };
     file-manager = mkOption {
       type = types.attrs;
-      default = { package = pkgs.pcmanfm; bin = "pcmanfm"; desktop = "pcmanfm.desktop"; };
+      default = { package = pkgs.nautilus; bin = "nautilus"; desktop = "nautilus.desktop"; };
+    };
+    browser = mkOption {
+      type = types.attrs;
+      default = { package = pkgs.firefox; bin = "firefox"; desktop = "firefox.desktop"; };
+    };
+    audio-player = mkOption {
+      type = types.attrs;
+      default = { package = pkgs.mpv; bin = "mpv"; desktop = "mpv.desktop"; };
+    };
+    video-player = mkOption {
+      type = types.attrs;
+      default = { package = pkgs.mpv; bin = "mpv"; desktop = "mpv.desktop"; };
+    };
+    image-viewer = mkOption {
+      type = types.attrs;
+      default = { package = pkgs.imv; bin = "imv"; desktop = "imv.desktop"; };
+    };
+    mail-client = mkOption {
+      type = types.attrs;
+      default = { package = pkgs.thunderbird; bin = "thunderbird"; desktop = "thunderbird.desktop"; };
+    };
+    pdf-viewer = mkOption {
+      type = types.attrs;
+      default = { package = pkgs.evince; bin = "evince"; desktop = "org.gnome.Evince.desktop"; };
     };
   };
   config = mkIf cfg.enable {
@@ -65,6 +81,12 @@ in {
     home.packages = [
       cfg.terminal.package
       cfg.file-manager.package
+      cfg.browser.package
+      cfg.audio-player.package
+      cfg.video-player.package
+      cfg.image-viewer.package
+      cfg.mail-client.package
+      cfg.pdf-viewer.package
     ];
     xdg = {
       enable = true;
