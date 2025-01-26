@@ -20,12 +20,13 @@ let
     #${pkgs.xdg-desktop-portal-wlr}/libexec/xdg-desktop-portal-wlr &
     #${pkgs.xdg-desktop-portal-gtk}/libexec/xdg-desktop-portal-gtk &
     swaybg -i ${config.stylix.image} &
-    #swaync &
+    swaync &
     gsettings set org.gnome.nm-applet disable-disconnected-notifications "true"
     gsettings set org.gnome.nm-applet disable-connected-notifications "true"
-    #nextcloud &
-    blueman-applet &
-    nm-applet &
+    yambar
+    nextcloud &
+    #blueman-applet &
+    #nm-applet &
     sleep infinity
   '';
   # Starts dwl with the right options in the right context
@@ -75,6 +76,27 @@ in {
     # Swaylock config file
     xdg.configFile."swaylock.conf".source = ../swaylock.conf;
 
+    # Yambar
+    programs.yambar = {
+      enable = true;
+      settings = {
+        bar = {
+          location = "top";
+          height = 26;
+          background = "00000066";
+          center = [
+            {
+              clock.content = [
+                {
+                  string.text = "{time}";
+                }
+              ];
+            }
+          ];
+        };
+      };
+    };
+
     ## Swaync theme file
     #xdg.configFile."swaync/style.css".source = ./swaync.css;
     
@@ -85,21 +107,6 @@ in {
         region = "sv_SE.UTF-8";
       };
     };
-
-    ## Desktop portal config
-    #xdg.configFile."xdg-desktop-portal-wlr/config".text = ''
-    #  [screencast]
-    #  output_name=DP-1
-    #  max_fps=30
-    #  chooser_type=simple
-    #  chooser_cmd=slurp -f %o -or
-    #'';
-    #xdg.configFile."xdg-desktop-portal/default-portals.conf".text = ''
-    #  [preferred]
-    #  default=gtk
-    #  org.freedesktop.impl.portal.Screenshot=wlr
-    #  org.freedesktop.impl.portal.ScreenCast=wlr
-    #'';
 
     # Theming
     gtk.iconTheme = {
