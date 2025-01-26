@@ -43,19 +43,29 @@ let
     "application/pdf" = pdfViewer;
 
     # File manager
-    "inode/directory" = fileManager;
+    "inode/directory" = cfg.file-manager.desktop;
   };
 in {
   options.home-xdg = {
     enable = mkEnableOption "Default apps";
 
-    # Default terminal command
+    # For used within other modules, these options also makes sure that the
+    # programs are installed
     terminal = mkOption {
-      type = types.str;
-      default = "${pkgs.foot}/bin/foot";
+      type = types.attrs;
+      default = { package = pkgs.xterm; bin = "xterm"; desktop = "xterm.desktop"; };
+    };
+    file-manager = mkOption {
+      type = types.attrs;
+      default = { package = pkgs.pcmanfm; bin = "pcmanfm"; desktop = "pcmanfm.desktop"; };
     };
   };
   config = mkIf cfg.enable {
+    # Make sure that the default applications are installed
+    home.packages = [
+      cfg.terminal.package
+      cfg.file-manager.package
+    ];
     xdg = {
       enable = true;
       configFile."mimeapps.list".force = true;

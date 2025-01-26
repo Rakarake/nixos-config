@@ -20,8 +20,12 @@ in {
 
   config = lib.mkIf cfg.enable {
     home-common.enable = true;
-    # XDG base directories
-    home-xdg.enable = true;
+    # Default applications
+    home-xdg = {
+      enable = true;
+      terminal = { package = pkgs.foot; bin = "foot"; desktop = "foot.desktop"; };
+      file-manager = { package = pkgs.nautilus; bin = "nautilus"; desktop = "nautilus.desktop"; };
+    };
 
     # Neovim config
     home-neovim.enable = true;

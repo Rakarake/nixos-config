@@ -35,7 +35,7 @@ in {
       };
       "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
         binding = "<Super>Return";
-        command = "${config.home-xdg.terminal}";
+        command = "${config.home-xdg.terminal.bin}";
         name = "Terminal";
       };
       # Keybinds

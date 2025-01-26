@@ -83,7 +83,7 @@ in {
       };
       # Nautilus terminal
       "com/github/stunkymonkey/nautilus-open-any-terminal" = {
-        terminal = "${config.home-xdg.terminal}";
+        terminal = "${config.home-xdg.terminal.bin}";
         keybindings = "<Ctrl><Alt>t";
         new-tab = false;
       };
@@ -186,7 +186,7 @@ in {
       # Keybindings
       $mod = SUPER
 
-      bind=SUPER,Return,exec,${config.home-xdg.terminal}
+      bind=SUPER,Return,exec,${config.home-xdg.terminal.bin}
       bind=SUPER,Q,killactive,
       bind=SUPERSHIFTALT,E,exit,
       bind=SUPER,F,exec,${fileManagerCommand}
