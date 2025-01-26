@@ -8,7 +8,7 @@ let
   lowerVolumeCommand = "amixer set Master 5%-";
   muteVolumeCommand = "amixer set Master toggle";
   muteMicCommand = "amixer set Capture toggle";
-  fileManagerCommand = "thunar";
+  fileManagerCommand = "nautilus";
   # The autostart script
   dwl-autostart = pkgs.writeShellScriptBin "dwl-autostart" '' 
     # Needed for portal
@@ -67,7 +67,7 @@ in {
       brightnessctl                # Laptop brighness controls
       networkmanagerapplet         # Log in to your wifi with this cool utility
       papirus-icon-theme           # Used to make nm-applet and blueman-applet not look ass
-      xfce.thunar
+      nautilus
       dwl-autostart
       dwl-startup
     ];
