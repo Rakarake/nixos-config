@@ -122,12 +122,22 @@ static const enum libinput_config_tap_button_map button_map = LIBINPUT_CONFIG_TA
 /* commands */
 static const char *termcmd[] = { "foot", NULL };
 static const char *menucmd[] = { "rofi", "-show", "combi", "-modes", "combi", "-combi-modes", "\"window,drun,run\"", NULL };
+static const char *raisevol[] = { "amixer", "set", "Master", "5%+", NULL };
+static const char *lowervol[] = { "amixer", "set", "Master", "5%-", NULL };
+static const char *mutevol[] = { "amixer", "set", "Master", "toggle", NULL };
+static const char *mutemic[] = { "amixer", "set", "Capture", "toggle", NULL };
 
 static const Key keys[] = {
 	/* Note that Shift changes certain key codes: c -> C, 2 -> at, etc. */
 	/* modifier                  key                 function        argument */
 	{ MODKEY,                    XKB_KEY_d,          spawn,          {.v = menucmd} },
 	{ MODKEY,                    XKB_KEY_Return,     spawn,          {.v = termcmd} },
+	{ MODKEY,                    XKB_KEY_Escape,     spawn,          {.v = lockscreen} },
+	{ MODKEY|WLR_MODIFIER_ALT,   XKB_KEY_k,          spawn,          {.v = raisevol} },
+	{ MODKEY|WLR_MODIFIER_ALT,   XKB_KEY_j,          spawn,          {.v = lowervol} },
+	{ MODKEY|WLR_MODIFIER_ALT,   XKB_KEY_p,          spawn,          {.v = mutevol} },
+	{ MODKEY|WLR_MODIFIER_ALT,   XKB_KEY_m,          spawn,          {.v = mutemic} },
+	{ MODKEY,                    XKB_KEY_f,          spawn,          {.v = filemanager} },
 	{ MODKEY,                    XKB_KEY_j,          focusstack,     {.i = +1} },
 	{ MODKEY,                    XKB_KEY_k,          focusstack,     {.i = -1} },
 	{ MODKEY,                    XKB_KEY_i,          incnmaster,     {.i = +1} },
