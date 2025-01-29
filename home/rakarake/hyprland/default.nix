@@ -121,13 +121,16 @@ in {
         kb_options=grp:win_space_toggle,caps:escape
       
         follow_mouse=1
-        #sensitivity=0.3
         touchpad {
           scroll_factor=0.6
           natural_scroll=true
           disable_while_typing=false
           clickfinger_behavior=true
         }
+      }
+
+      master {
+        new_status = master
       }
       
       gestures {
@@ -136,51 +139,25 @@ in {
       }
       
       general {
-        gaps_in=3
-        gaps_out=5
+        layout = master
+        gaps_in=0
+        gaps_out=0
         border_size=2
         col.active_border=0xfff5c2e7
         col.inactive_border=0xff45475a
+        resize_on_border = true  # Can use mouse without super to resize
       }
       
       misc {
         # VRR (Variable Refresh Rate)
-        vrr = 2  # 2: only fullscreen, 1: always, 0: off
+        vrr = 0  # 2: only fullscreen, 1: always, 0: off
         disable_splash_rendering = true  # Disables splash screen
         disable_hyprland_logo = true
         force_default_wallpaper = true  # Disables anime girls bihind your wallpaper
       }
-
-      
-      decoration {
-        #blur_ignore_opacity = 1
-        #blur_new_optimizations = true
-        #drop_shadow = true
-        #shadow_range=true
-        #shadow_render_power=20
-        #col.shadow= 0x33000000
-        #col.shadow_inactive=0x22000000
-        rounding=16
-        #active_opacity= 0.90
-        #inactive_opacity= 0.90
-        #blur=true
-        #blur_size=2 # minimum 1
-        #blur_passes=4 # minimum 1, more passes = more resource intensive.
-        # Your blur "amount" is blur_size * blur_passes, but high blur_size (over around 5-ish) will produce artifacts.
-        # if you want heavy blur, you need to up the blur_passes.
-        # the more passes, the more you can up the blur_size without noticing artifacts.
-      }
       
       animations {
-        enabled=1
-        #bezier=overshot,0.05,0.9,0.1,1.1 # Version 1
-        #bezier=overshot,0.13,0.99,0.29,1.09 # Version 2
-        #bezier= overshot,0,0.61,0.22,1.12 #Current active
-        bezier= overshot,0,0.61,0.22,1.0 #Current active
-        animation=windows,1,3.8,default,slide 
-        animation=border,1,4,default
-        animation=fade,1,4,default
-        animation=workspaces,1,3.8,overshot
+        enabled=0
       }
 
       # Keybindings
@@ -201,10 +178,16 @@ in {
       bind=SUPER,e,exec,emote
       
       # Focus on window
-      bind=SUPER,h,movefocus,l
-      bind=SUPER,l,movefocus,r
-      bind=SUPER,k,movefocus,u
-      bind=SUPER,j,movefocus,d
+      #bind=SUPER,h,movefocus,l
+      #bind=SUPER,l,movefocus,r
+      #bind=SUPER,k,movefocus,u
+      #bind=SUPER,j,movefocus,d
+
+      # Master layout related
+      bind=SUPER,j,layoutmsg,cyclenext
+	  bind=SUPER,k,layoutmsg,cycleprev
+      bind=SUPER,h,resizeactive,-30 0
+      bind=SUPER,l,resizeactive,30 0
       
       # Move window
       bind=SUPERSHIFT,h,movewindow,l
@@ -213,22 +196,18 @@ in {
       bind=SUPERSHIFT,j,movewindow,d
       
       # Resize window
-      bind=SUPERCONTROLALT,h,resizeactive,-30 0
-      bind=SUPERCONTROLALT,l,resizeactive,30 0
-      bind=SUPERCONTROLALT,k,resizeactive,0 -30
-      bind=SUPERCONTROLALT,j,resizeactive,0 30
+      #bind=SUPERCONTROLALT,h,resizeactive,-30 0
+      #bind=SUPERCONTROLALT,l,resizeactive,30 0
+      #bind=SUPERCONTROLALT,k,resizeactive,0 -30
+      #bind=SUPERCONTROLALT,j,resizeactive,0 30
       
       # Fullscreen and maximization
       bind=SUPER,M,fullscreen,1
       bind=SUPER,B,fullscreen,0
       
       # Move to workspace left or right
-      bind=SUPERCONTROL,l,workspace,+1
-      bind=SUPERCONTROL,h,workspace,-1
-      
-      # Move widow and view left or right
-      bind=SUPERCONTROLSHIFT,l,movetoworkspace,+1
-      bind=SUPERCONTROLSHIFT,h,movetoworkspace,-1
+      #bind=SUPERCONTROL,l,workspace,+1
+      #bind=SUPERCONTROL,h,workspace,-1
       
       # Mouse window controls
       bindm=SUPER,mouse:272,movewindow
