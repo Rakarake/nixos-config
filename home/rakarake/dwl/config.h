@@ -17,8 +17,8 @@ static const float fullscreen_bg[]         = {0.1f, 0.1f, 0.1f, 1.0f}; /* You ca
 /* tagging - TAGCOUNT must be no greater than 31 */
 #define TAGCOUNT (9)
 
-///* logging */
-//static int log_level = WLR_ERROR;
+/* logging */
+static int log_level = WLR_ERROR;
 
 /* NOTE: ALWAYS keep a rule declared even if you don't use rules (e.g leave at least one example) */
 static const Rule rules[] = {
@@ -126,6 +126,8 @@ static const char *raisevol[] = { "amixer", "set", "Master", "5%+", NULL };
 static const char *lowervol[] = { "amixer", "set", "Master", "5%-", NULL };
 static const char *mutevol[] = { "amixer", "set", "Master", "toggle", NULL };
 static const char *mutemic[] = { "amixer", "set", "Capture", "toggle", NULL };
+static const char *lockscreen[] = { "/bin/sh", "-c", "pidof swaylock || swaylock -k -C ~/.config/swaylock.conf", NULL };
+static const char *filemanager[] = { "nautilus", NULL };
 
 static const Key keys[] = {
 	/* Note that Shift changes certain key codes: c -> C, 2 -> at, etc. */

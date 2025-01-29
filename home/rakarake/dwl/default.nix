@@ -21,22 +21,22 @@ let
   '';
   dwl = pkgs.dwl.overrideAttrs (old: {
     src = ./.;
-    prePatch = ''
-      echo -e '${confighExtra}\n$(cat config.h)' > config.h
-    '';
+    #prePatch = ''
+    #  #echo -e '${confighExtra}\n$(cat config.h)' > config.h
+    #'';
     #printf '${confighExtra}' >> config.h
     #echo -e '${confighExtra}' >> config.h
   });
 
   # Extra config.h content that uses some nix stuff
   # 'pidof swaylock' makes sure that we do not start multiple instances of swaylock
-  confighExtra = ''
-    /* logging */
-    static int log_level = WLR_ERROR;
-    /* keybind commands */
-    static const char *lockscreen[] = { "/bin/sh", "-c", "pidof swaylock || swaylock -k -C ~/.config/swaylock.conf -i ${config.stylix.image}", NULL };
-    static const char *filemanager[] = { "${config.home-xdg.file-manager.bin}", NULL };
-  '';
+  #confighExtra = ''
+  #  /* logging */
+  #  static int log_level = WLR_ERROR;
+  #  /* keybind commands */
+  #  static const char *lockscreen[] = { "/bin/sh", "-c", "pidof swaylock || swaylock -k -C ~/.config/swaylock.conf -i ${config.stylix.image}", NULL };
+  #  static const char *filemanager[] = { "${config.home-xdg.file-manager.bin}", NULL };
+  #'';
 in {
 
   options.home-dwl = {

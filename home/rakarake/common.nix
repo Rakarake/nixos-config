@@ -21,7 +21,7 @@ in
     home-bash.enable = true;
 
     # Session variables
-    systemd.user.sessionVariables = {
+    home.sessionVariables = {
       EDITOR = "nvim";
       VISUAL = "nvim";
       BROWSER = "firefox";
