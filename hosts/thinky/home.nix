@@ -3,6 +3,7 @@
   stylix.image = lib.mkForce ./wallpaper.png;
 
   home-desktop.enable = true;
+  home-gnome.enable = true;
   home-hyprland = {
     enable = true;
     additionalConfig = ''

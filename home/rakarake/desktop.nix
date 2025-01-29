@@ -146,6 +146,7 @@ in {
       file-roller
       rclone
       gnome-calculator
+      gnupg1
 
       # Emulators
       fceux

@@ -6,15 +6,16 @@
   # Desktop config
   cfg-desktop.enable = true;
   cfg-hyprland.enable = true;
-  #services.xserver.displayManager.gdm.enable = true;
-  services.greetd = {
-    enable = true;
-    settings = {
-      default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet";
-      };
-    };
-  };
+  cfg-gnome.enable = true;
+  services.xserver.displayManager.gdm.enable = true;
+  #services.greetd = {
+  #  enable = true;
+  #  settings = {
+  #    default_session = {
+  #      command = "${pkgs.greetd.tuigreet}/bin/tuigreet";
+  #    };
+  #  };
+  #};
 
   # Hostname
   networking.hostName = "thinky";  # Define your hostname.
