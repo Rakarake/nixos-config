@@ -37,6 +37,6 @@
       bind=SUPERALT,T,exec,pkill --signal SIGINT wl-screenrec
     '';
   };
-   Waybar CPU temperature sensor
+  # Waybar CPU temperature sensor
   programs.waybar.settings.mainBar.temperature.hwmon-path = "/sys/devices/platform/PNP0C14:02/wmi_bus/wmi_bus-PNP0C14:02/466747A0-70EC-11DE-8A39-0800200C9A66/hwmon/hwmon3/temp1_input";
 }
