@@ -28,25 +28,8 @@ in
     xdg.configFile."swaylock.conf".source = ../swaylock.conf;
 
     # Yambar
-    programs.yambar = {
-      enable = true;
-      settings = {
-        bar = {
-          location = "top";
-          height = 26;
-          background = "00000066";
-          center = [
-            {
-              clock.content = [
-                {
-                  string.text = "{time}";
-                }
-              ];
-            }
-          ];
-        };
-      };
-    };
+    programs.yambar.enable = true;
+    xdg.configFile."yambar/config.yml".source = ./yambar.yml;
 
     # Swaync
     services.swaync.enable = true;
@@ -73,9 +56,25 @@ in
         # Wallpaper
         swaybg -i ${config.stylix.image} &
 
+        # Other stuff
+        yambar &
+        riverctl rule-add ssd                    # Serverside decorations only
+        riverctl set-cursor-warp on-focus-change # Cursor follows focus
+        riverctl focus-follows-cursor always     # Focus follows cursor
+        riverctl hide-cursor timeout 10000
+
+        # Keyboard options
+        riverctl keyboard-layout -options "grp:win_space_toggle,caps:escape" "us,se"
+
+        # Monitor setup
+        wlr-randr --output DP-1 --mode 1920x1080@144.001007 --pos 1920,0
+        wlr-randr --output DP-2 --mode 1920x1080@143.854996 --pos 0,0
+
         riverctl map normal Super Return spawn foot
         riverctl map normal Super Q close
         riverctl map normal Super+Shift+Alt E exit
+        riverctl map normal Super D spawn 'rofi -show combi -modes combi -combi-modes "window,drun,run"'
+        riverctl map normal Super+Shift D spawn "rofi -show run"
 
         # Super+J and Super+K to focus the next/previous view in the layout stack
         riverctl map normal Super J focus-view next
@@ -156,7 +155,7 @@ in
         riverctl map normal Super+Shift 0 set-view-tags $all_tags
         
         # Super+Space to toggle float
-        riverctl map normal Super Space toggle-float
+        riverctl map normal Super V toggle-float
         
         # Super+F to toggle fullscreen
         riverctl map normal Super F toggle-fullscreen
@@ -202,11 +201,11 @@ in
         
         # Set background and border color
         riverctl background-color 0x002b36
-        riverctl border-color-focused 0x93a1a1
-        riverctl border-color-unfocused 0x586e75
+        riverctl border-color-focused 0xfff5c2e7
+        riverctl border-color-unfocused 0xff45475a
         
         # Set keyboard repeat rate
-        riverctl set-repeat 50 300
+        riverctl set-repeat 25 600
         
         # Make all views with an app-id that starts with "float" and title "foo" start floating.
         riverctl rule-add -app-id 'float*' -title 'foo' float
@@ -217,7 +216,7 @@ in
         # Set the default layout generator to be rivertile and start it.
         # River will send the process group of the init executable SIGTERM on exit.
         riverctl default-layout rivertile
-        rivertile -view-padding 6 -outer-padding 6 &
+        rivertile -view-padding 0 -outer-padding 0 &
       '';
     };
   };
