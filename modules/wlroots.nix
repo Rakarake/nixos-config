@@ -1,10 +1,10 @@
   { lib, outputs, system, config, pkgs, ... }:
   with lib;                      
   let
-    cfg = config.cfg-dwl;
+    cfg = config.cfg-wlroots;
   in {
-    options.cfg-dwl = {
-      enable = mkEnableOption "dwl custom";
+    options.cfg-wlroots = {
+      enable = mkEnableOption "wlroots common system config";
     };
     config = mkIf cfg.enable {
 
@@ -30,8 +30,9 @@
         xdg-desktop-portal-gtk
       ];
       # Taken from https://github.com/NixOS/nixpkgs/blob/nixos-unstable/nixos/modules/programs/wayland/sway.nix
-      xdg.portal.config = {
-        dwl = {
+      xdg.portal.config =
+      let
+        c = {
           default = "gtk";
           "org.freedesktop.impl.portal.ScreenCast" = "wlr";
           "org.freedesktop.impl.portal.Screenshot" = "wlr";
@@ -40,6 +41,9 @@
           # stopping firefox from using wayland idle-inhibit
           "org.freedesktop.impl.portal.Inhibit" = "none";
         };
+      in {
+        dwl = c;
+        river = c;
       };
 
       # Must specify monitors in host config

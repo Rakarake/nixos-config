@@ -1,6 +1,6 @@
 { pkgs, inputs, system, ... }: {
   home-desktop.enable = true;
-  home-dwl.enable = true;
+  home-river.enable = true;
   #home-hyprland = {
   #  enable = true;
   #  useSwayidle = false;

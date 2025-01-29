@@ -3,9 +3,9 @@
   imports = [ ../../modules/global.nix ../../modules ./hardware-configuration.nix ];
 
   cfg-desktop.enable = true;
-  cfg-hyprland.enable = true;
+  #cfg-hyprland.enable = true;
   #services.xserver.displayManager.gdm.enable = true;
-  services.xserver.displayManager.sddm = {
+  services.displayManager.sddm = {
     enable = true;
     wayland.enable = true;
     theme = "catppuccin-sddm-corners";
@@ -18,13 +18,14 @@
   #    };
   #  };
   #};
-  #cfg-dwl.enable = true;
-  #xdg.portal.wlr.settings.screencast = {
-  #  output_name = "DP-1";
-  #  max_fps = 30;
-  #  chooser_type = "simple";
-  #  chooser_cmd = "${pkgs.slurp}/bin/slurp -f %o -or";
-  #};
+  #cfg-wlroots.enable = true;
+  cfg-river.enable = true;
+  xdg.portal.wlr.settings.screencast = {
+    output_name = "DP-1";
+    max_fps = 30;
+    chooser_type = "simple";
+    chooser_cmd = "${pkgs.slurp}/bin/slurp -f %o -or";
+  };
 
   # Linux kernel package
   boot.kernelPackages = pkgs.linuxPackages_latest;
