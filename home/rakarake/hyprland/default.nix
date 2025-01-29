@@ -103,7 +103,6 @@ in {
       exec-once = ${pkgs.xdg-desktop-portal-hyprland}/libexec/xdg-desktop-portal-hyprland
       exec-once = sleep 3 ; waybar
       exec-once = sleep 6 ; nextcloud
-      exec-once = sleep 6 ; blueman-applet
       exec-once = sleep 6 ; nm-applet
       exec-once = swaybg -i ${config.stylix.image}
       exec-once = swaync
@@ -170,7 +169,7 @@ in {
       bind=SUPER,V,togglefloating,
       bind=SUPER,P,pseudo
       # NOTE: use '-theme gruvbox' to specify theme
-      bind=SUPER,D,exec,rofi -show combi -modes combi -combi-modes "window,drun,run" -icon-theme "Papirus" -show-icons
+      bind=SUPER,D,exec,rofi -show combi -modes combi -combi-modes "window,drun,run" -show-icons
       bind=SUPERSHIFT,D,exec,rofi -show run
       # Run a program without installing it
       bind=SUPERSHIFT,N,exec,rofi -dmenu | xargs -I % nix-shell -p % --run %
