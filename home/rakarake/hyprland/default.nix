@@ -60,6 +60,7 @@ in {
       networkmanagerapplet         # Log in to your wifi with this cool utility
       papirus-icon-theme           # Used to make nm-applet and blueman-applet not look ass
       hyprpicker                   # Color picker
+      emote
       #nautilus-open-any-terminal
       #nautilus-python
       hyprland-protocols
@@ -106,6 +107,7 @@ in {
       exec-once = sleep 6 ; nm-applet
       exec-once = swaybg -i ${config.stylix.image}
       exec-once = swaync
+      exec-once = emote
       exec-once = gsettings set org.gnome.nm-applet disable-disconnected-notifications "true"
       exec-once = gsettings set org.gnome.nm-applet disable-connected-notifications "true"
       ${if cfg.useSwayidle then "exec-once= swayidle timeout 800 '${swaylockCommand}' timeout 900 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on' timeout 1700 'systemctl suspend'A" else ""}
