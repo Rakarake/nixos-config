@@ -165,7 +165,7 @@ in {
           animation-timing-function: linear;
           animation-iteration-count: infinite;
           animation-direction: alternate;
-          border-radius: 5px;
+          border-radius: 8px;
         }
         window#waybar {
           background-color: transparent;

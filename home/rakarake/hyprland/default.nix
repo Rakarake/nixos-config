@@ -187,12 +187,16 @@ in {
 	  bind=SUPER,k,layoutmsg,cycleprev
       bind=SUPER,h,resizeactive,-30 0
       bind=SUPER,l,resizeactive,30 0
+      #bind=SUPERSHIFT,j,swapnext,d
+      #bind=SUPERSHIFT,k,swapprev,u
       
+      #TODO: dont follow windows!
+
       # Move window
-      bind=SUPERSHIFT,h,movewindow,l
-      bind=SUPERSHIFT,l,movewindow,r
-      bind=SUPERSHIFT,k,movewindow,u
-      bind=SUPERSHIFT,j,movewindow,d
+      #bind=SUPERSHIFT,h,movewindow,l
+      #bind=SUPERSHIFT,l,movewindow,r
+      #bind=SUPERSHIFT,k,movewindow,u
+      #bind=SUPERSHIFT,j,movewindow,d
       
       # Resize window
       #bind=SUPERCONTROLALT,h,resizeactive,-30 0
@@ -261,7 +265,7 @@ in {
               builtins.toString (x + 1 - (c * 10));
           in ''
             bind = $mod, ${ws}, workspace, ${toString (x + 1)}
-            bind = $mod SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}
+            bind = $mod SHIFT, ${ws}, movetoworkspacesilent, ${toString (x + 1)}
           ''
         )
         10)}
