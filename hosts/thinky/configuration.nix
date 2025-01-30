@@ -6,8 +6,13 @@
   # Desktop config
   cfg-desktop.enable = true;
   cfg-hyprland.enable = true;
-  cfg-gnome.enable = true;
-  services.xserver.displayManager.gdm.enable = true;
+  #cfg-gnome.enable = true;
+  #services.xserver.displayManager.gdm.enable = true;
+  services.displayManager.sddm = {
+    enable = true;
+    wayland.enable = true;
+    theme = "catppuccin-sddm-corners";
+  };
   #services.greetd = {
   #  enable = true;
   #  settings = {
