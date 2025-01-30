@@ -169,7 +169,7 @@ in {
       bind=SUPER,V,togglefloating,
       bind=SUPER,P,pseudo
       # NOTE: use '-theme gruvbox' to specify theme
-      bind=SUPER,D,exec,rofi -show combi -modes combi -combi-modes "window,drun,run" -show-icons
+      bind=SUPER,D,exec,rofi -show combi -modes combi -combi-modes "window,drun,run"
       bind=SUPERSHIFT,D,exec,rofi -show run
       # Run a program without installing it
       bind=SUPERSHIFT,N,exec,rofi -dmenu | xargs -I % nix-shell -p % --run %

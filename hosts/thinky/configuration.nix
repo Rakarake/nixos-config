@@ -22,6 +22,11 @@
   #  };
   #};
 
+  environment.systemPackages = with pkgs; [
+    # SDDM theme
+    catppuccin-sddm-corners
+  ];
+
   # Hostname
   networking.hostName = "thinky";  # Define your hostname.
 
