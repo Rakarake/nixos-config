@@ -186,12 +186,12 @@ in {
       #bind=SUPER,j,movefocus,d
 
       # Master layout related
-      bind=SUPER,j,layoutmsg,cyclenext
-	  bind=SUPER,k,layoutmsg,cycleprev
+      bind=SUPER,j,layoutmsg,cyclenext,noloop
+	  bind=SUPER,k,layoutmsg,cycleprev,noloop
+      bind=SUPERSHIFT,j,layoutmsg,swapnext,noloop
+      bind=SUPERSHIFT,k,layoutmsg,swapprev,noloop
       bind=SUPER,h,resizeactive,-30 0
       bind=SUPER,l,resizeactive,30 0
-      bind=SUPERSHIFT,j,swapnext,d
-      bind=SUPERSHIFT,k,swapprev,u
       
       #TODO: dont follow windows!
 
