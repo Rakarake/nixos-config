@@ -190,8 +190,8 @@ in {
 	  bind=SUPER,k,layoutmsg,cycleprev
       bind=SUPER,h,resizeactive,-30 0
       bind=SUPER,l,resizeactive,30 0
-      #bind=SUPERSHIFT,j,swapnext,d
-      #bind=SUPERSHIFT,k,swapprev,u
+      bind=SUPERSHIFT,j,swapnext,d
+      bind=SUPERSHIFT,k,swapprev,u
       
       #TODO: dont follow windows!
 
