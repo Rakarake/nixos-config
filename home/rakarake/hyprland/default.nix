@@ -192,6 +192,10 @@ in {
       bind=SUPERSHIFT,k,layoutmsg,swapprev,noloop
       bind=SUPER,h,resizeactive,-30 0
       bind=SUPER,l,resizeactive,30 0
+      bind=SUPER,comma,focusmonitor,l
+      bind=SUPER,period,focusmonitor,r
+      bind=SUPERSHIFT,comma,movewindow,mon:l
+      bind=SUPERSHIFT,period,movewindow,mon:r
       
       #TODO: dont follow windows!
 
