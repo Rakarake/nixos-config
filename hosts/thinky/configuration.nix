@@ -1,9 +1,10 @@
 # Thinkpad X1 Carbon Gen 4 Specific settings
 # I wish the fingerprint reader worked
 { pkgs, ... }: {
-  imports = [ ../../modules/global.nix ../../modules ./hardware-configuration.nix ];
+  imports = [ ./hardware-configuration.nix ];
 
   # Desktop config
+  cfg-global.enable = true;
   cfg-desktop.enable = true;
   cfg-hyprland.enable = true;
   #cfg-gnome.enable = true;

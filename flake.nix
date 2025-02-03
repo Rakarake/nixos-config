@@ -104,7 +104,7 @@
           acc // {
             ${hostname} = nixpkgs.lib.nixosSystem {
               inherit system;
-              modules = [ ./hosts/${hostname}/configuration.nix ];
+              modules = [ ./hosts/${hostname}/configuration.nix ./modules ];
               specialArgs = args // { inherit system hostname; };
             };
           }

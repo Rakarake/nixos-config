@@ -68,11 +68,12 @@ let
 in
 {
   imports = [
-    ../../modules/global.nix
     ./hardware-configuration.nix
     (minecraftServerTemplate "minecraftserver-kreate" "A not so kreative minekraft server" pkgs.jdk17)
     (openttdServerTemplate "openTTDserver-massdestruction" "transporting destruction since 2024")
   ];
+
+  cfg-global.enable = true;
 
   # Linux kernel version
   boot.kernelPackages = pkgs.linuxPackages_latest;

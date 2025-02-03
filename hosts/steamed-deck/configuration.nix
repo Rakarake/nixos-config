@@ -1,10 +1,14 @@
 # Desktop PC
 { inputs, ... }: {
   imports = [
-    ../../modules/global.nix
-    ../../modules ./hardware-configuration.nix
+    ./hardware-configuration.nix
     inputs.jovian-nixos.nixosModules.default
   ];
+
+  cfg-global.enable = true;
+  cfg-desktop.enable = true;
+  cfg-hyprland.enable = true;
+  services.xserver.displayManager.gdm.enable = true;
 
   networking.hostName = "steamed-deck";
 
@@ -13,9 +17,5 @@
   jovian.devices.steamdeck.enable = true;
   jovian.steamos.useSteamOSConfig = true;
   jovian.steam.desktopSession = "Gnome";
-
-  cfg-desktop.enable = true;
-  cfg-hyprland.enable = true;
-  services.xserver.displayManager.gdm.enable = true;
 }
 

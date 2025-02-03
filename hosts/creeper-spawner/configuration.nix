@@ -73,12 +73,13 @@ let
 in
 {
   imports = [
-    ../../modules/global.nix
     ./hardware-configuration.nix
     inputs.bingbingo.nixosModules.${system}.default
     (minecraftServerTemplate "minecraftserver1" "A stylish minecraft server" pkgs.jdk21)
     (minecraftServerTemplate "minecraftserverspruce" "A wooden minecraft server" pkgs.jdk17)
   ];
+
+  cfg-global.enable = true;
 
   # Wireguard
   networking.wg-quick.interfaces = {

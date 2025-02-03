@@ -1,7 +1,8 @@
 # Desktop PC
 { pkgs, ssh-keys, ... }: {
-  imports = [ ../../modules/global.nix ../../modules ./hardware-configuration.nix ];
+  imports = [ ./hardware-configuration.nix ];
 
+  cfg-global.enable = true;
   cfg-desktop.enable = true;
   cfg-hyprland.enable = true;
   #services.xserver.displayManager.gdm.enable = true;
