@@ -316,8 +316,29 @@ in {
     users.users.rakarake = {
       isNormalUser = true;
       description = "Rakarake";
-      extraGroups = [ "networkmanager" "wheel" "seat" "adbusers" "docker" "wireshark" "davfs2" "libvirtd" "vboxusers" ];
+      extraGroups = [
+        "networkmanager"
+        # For sudo
+        "wheel"
+        "seat"
+        # Adb: android debugging
+        "adbusers"
+        "docker"
+        "wireshark"
+        "davfs2"
+
+        # For viritualization
+        "libvirtd"
+        "vboxusers"
+
+        # Needed for xremap
+        "uinput"
+        "input"
+      ];
     };
+
+    # Needed for xremap home-manager config to work
+    hardware.uinput.enable = true;
 
     # Mullvad Service
     services.mullvad-vpn.enable = true;

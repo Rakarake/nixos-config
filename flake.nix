@@ -60,14 +60,15 @@
       url = "github:ryantm/agenix";
     };
 
-    # Yuzu
-    yuzu = {
-      url = "github:Rakarake/yuzu-merged";
-    };
-
     # Catppuccin
     catppuccin = {
       url = "github:catppuccin/nix";
+    };
+
+    # Xremap
+    xremap = {
+      url = "github:xremap/nix-flake";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
   };
   outputs = { self, nixpkgs-stable, nixpkgs-unstable, home-manager, ... }@inputs:
