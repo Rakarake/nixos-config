@@ -31,6 +31,12 @@
   # Linux kernel package
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
+  # Enable SSD trimming
+  services.fstrim = {
+    enable = true;
+    interval = "weekly"; # the default
+  };
+
   # Monero mining
   boot.kernelModules = [ "msr" ];
 
