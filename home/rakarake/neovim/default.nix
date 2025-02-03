@@ -17,8 +17,11 @@ in
     # Make sure undodir exists
     xdg.configFile."nvim/undodir/gamnangstyle".text = "whop\n";
     # Neovim filetype specific configs
-    xdg.configFile."nvim/ftplugin/gdscript.lua".source = ./ftplugin/gdscript.lua;
-    xdg.configFile."nvim/ftplugin/html.lua".source = ./ftplugin/html.lua;
+    xdg.configFile."nvim/after/ftplugin/gdscript.lua".source = ./after/ftplugin/gdscript.lua;
+    xdg.configFile."nvim/after/ftplugin/html.lua".source = ./after/ftplugin/html.lua;
+    xdg.configFile."nvim/after/ftplugin/rust.lua".source = ./after/ftplugin/rust.lua;
+    xdg.configFile."nvim/after/ftplugin/nix.lua".source = ./after/ftplugin/nix.lua;
+    # Snippets
     xdg.configFile."nvim/snippets/cs.lua".source = ./snippets/cs.lua;
 
     # LSP packages
