@@ -151,7 +151,7 @@
         {
           hostname = "creeper-spawner";
           system = "x86_64-linux";
-          nixpkgs = nixpkgs-stable;
+          nixpkgs = nixpkgs-unstable;
         }
         # Live configurations for when you wanna put NixOS on a USB-stick
         {
@@ -163,7 +163,7 @@
         {
           hostname = "mass-destruction";
           system = "x86_64-linux";
-          nixpkgs = nixpkgs-stable;
+          nixpkgs = nixpkgs-unstable;
         }
         # We are having steamed decks?
         {
@@ -205,7 +205,7 @@
         {
           hostname = "creeper-spawner";
           user = "rakarake";
-          nixpkgs = nixpkgs-stable;
+          nixpkgs = nixpkgs-unstable;
           system = "x86_64-linux";
         }
         {
