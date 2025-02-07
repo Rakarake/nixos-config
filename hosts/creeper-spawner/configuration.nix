@@ -175,10 +175,9 @@ in
     mplus-outline-fonts.githubRelease
     dina-font
     proggyfonts
-    nerdfonts
     corefonts  # Microsoft fonts
     ubuntu_font_family
-  ];
+  ] ++ (builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts));
 
   fonts.fontconfig = {
     defaultFonts = {
