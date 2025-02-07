@@ -31,12 +31,6 @@
       url = "github:danth/stylix";
     };
 
-    # Wgsl language server
-    wgsl_analyzer = {
-      url = "github:wgsl-analyzer/wgsl-analyzer";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
-
     # Steamdeck related options
     jovian-nixos = {
       url = "github:Jovian-Experiments/Jovian-NixOS";

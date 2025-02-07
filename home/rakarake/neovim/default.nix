@@ -37,7 +37,7 @@ in
       gopls                          # Go
       (agda.withPackages [ agdaPackages.standard-library ]) # Agda
       tinymist                                              # Typst
-      inputs.wgsl_analyzer.packages.${system}.default       # WGSL
+      wgsl-analyzer                                         # WGSL
       omnisharp-roslyn                                      # C#
       erlang-ls                                             # Erlang
       pyright                                               # Python
