@@ -444,7 +444,7 @@ in
   networking.networkmanager.enable = true;
 
   # Set your time zone
-  time.timeZone = "Europe/Stockholm";
+  #time.timeZone = "Europe/Stockholm";
   services.automatic-timezoned.enable = true;
 
   # Select internationalisation properties
