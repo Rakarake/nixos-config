@@ -11,9 +11,10 @@ build a live ISO image.
 `sudo nixos-rebuild switch --flake '.#hostname'` to rebuild system with the right hostname.
 After this, `sudo nixos-rebuild switch --flake .` can be used instead.
 
-`home-manager switch --flake .` to initiate home-manager, in order to get aliases etc
-(after that, the aliases `rebuild` `hmrebuild` can be used for rebuilding the system and
-the home-manager config respectively).
+`home-manager switch --flake '.#<user>/<hostname>-<variation>'` to initiate home-manager.
+Currently, home configurations can be specified to have versions, usually
+dark/light versions (default for "I don't care"). Look at flake.nix how this
+is configured.
 
 `nix flake update` to update, requires rebuild to apply.
 
@@ -37,10 +38,6 @@ set the 'package channel' to nixos-unstable (not system config).
 
 ## Minecraft Servers
 `tmux -S /var/<name-of-server>/tmux.socket attach` to to enter the server console
-
-## New configurations
-Remember to include `modules/default.nix` (makes options available) and `modules/global.nix`
-(important global options).
 
 ## Troubleshooting
 ### When switching from Plasma to Gnome
