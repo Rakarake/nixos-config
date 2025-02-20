@@ -334,6 +334,9 @@ in {
         # Needed for xremap
         "uinput"
         "input"
+
+        # RTS LAB
+        "dialout"
       ];
     };
 
