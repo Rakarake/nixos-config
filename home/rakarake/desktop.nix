@@ -122,7 +122,8 @@ in {
       gamescope
       audacity
       mullvad-vpn
-      varia
+      fragments
+      #varia
       blender
       logseq
       inkscape

@@ -74,7 +74,6 @@ in {
       emote
       #nautilus-open-any-terminal
       #nautilus-python
-      hyprland-protocols
       nautilus
     ];
 
