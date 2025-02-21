@@ -303,7 +303,7 @@ in
   # Nextcloud at "/var/lib/nextcloud"
   services.nextcloud = {
     enable = true;
-    package = pkgs.nextcloud29;
+    package = pkgs.nextcloud30;
     hostName = hostnames.nextcloud;
     database.createLocally = true;
     autoUpdateApps.enable = true;
