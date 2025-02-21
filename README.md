@@ -25,8 +25,7 @@ NOTE: run as root to remove old system packages and boot entries.
 
 `nix-store --optimize` to link derivations with the same content, saving space.
 
-`sudo nix-env --delete-generations --profile /nix/var/nix/profiles/system 10d`
-to remove bootloader entries.
+`sudo nix-collect-garbage -d` then *rebuild* to remove bootloader entries.
 
 `sudo nix-env --list-generations --profile /nix/var/nix/profiles/system` to
 list your generations.
