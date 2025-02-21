@@ -69,7 +69,7 @@ in
       nd = "nix develop";
       rebuild = "${pkgs.nh}/bin/nh os switch .";
       rebuildboot = "${pkgs.nh}/bin/nh os boot .";
-      homebuild = "${pkgs.nh}/bin/nh home switch -c ${user}@${hostname} .";
+      homebuild = "${pkgs.nh}/bin/nh home switch -c ${user}@${hostname}-default .";
       lightbuild = "${pkgs.nh}/bin/nh home switch -c ${user}@${hostname}-light .";
       darkbuild = "${pkgs.nh}/bin/nh home switch -c ${user}@${hostname}-dark .";
     };
