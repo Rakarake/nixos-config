@@ -63,7 +63,7 @@ in {
       wl-screenrec                 # Screen reccording utility
       swaybg                       # Anime wallpapers
       swaynotificationcenter       # Notification daemon
-      pamixer                      # Used for panel sound control
+      #pamixer                      # Used for panel sound control
       alsa-utils                   # keyboard volume control
       playerctl                    # MPRIS global player controller
       swayidle                     # Idle inhibitor, knows when computer is ueseless
