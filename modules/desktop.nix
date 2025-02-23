@@ -14,7 +14,6 @@ in {
   config = mkIf cfg.enable { # System Packages/Programs To search, run:
     # $ nix search wget
     environment.systemPackages = with pkgs; [
-      openttd
       vim
       wget
       gnumake
