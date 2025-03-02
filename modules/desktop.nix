@@ -347,6 +347,7 @@ in {
 
     # Enable the flatpak service
     services.flatpak.enable = true;
+    fonts.fontDir.enable = true;  # Fonts don't work otherwise?
     xdg.portal.enable = true;
 
     # Collect all the garbage automatically!
