@@ -40,7 +40,7 @@ let
     forgejo = "git.rakarake.xyz";
     grafana = "grafana.rakarake.xyz";
     jellyfin = "jellyfin.rakarake.xyz";
-    akkoma = "akk.rakarake.xyz";
+    #akkoma = "akk.rakarake.xyz";
   };
 
   # Minecraft server module template
@@ -247,15 +247,15 @@ in
         enableACME = true;  # Let's encrypt TLS automated, not certbot
       };
 
-      ${hostnames.jellyfin} = {
-        forceSSL = true;
-        enableACME = true;  # Let's encrypt TLS automated, not certbot
-        locations."/" = {
-          proxyPass = "http://localhost:${toString localPorts.jellyfin}";
-          proxyWebsockets = true;
-          recommendedProxySettings = true;
-        };
-      };
+      #${hostnames.jellyfin} = {
+      #  forceSSL = true;
+      #  enableACME = true;  # Let's encrypt TLS automated, not certbot
+      #  locations."/" = {
+      #    proxyPass = "http://localhost:${toString localPorts.jellyfin}";
+      #    proxyWebsockets = true;
+      #    recommendedProxySettings = true;
+      #  };
+      #};
 
       ${hostnames.forgejo} = {
         forceSSL = true;
@@ -266,11 +266,11 @@ in
         locations."/".proxyPass = "http://localhost:${toString localPorts.forgejo}";
       };
 
-      ${hostnames.akkoma} = {
-        forceSSL = true;
-        enableACME = true;
-        locations."/".proxyPass = "http://unix:/run/akkoma/socket";
-      };
+      #${hostnames.akkoma} = {
+      #  forceSSL = true;
+      #  enableACME = true;
+      #  locations."/".proxyPass = "http://unix:/run/akkoma/socket";
+      #};
 
       ${hostnames.website} = {
         # When not using cloudflare tunnel
@@ -396,22 +396,22 @@ in
     group = "monero";
   };
 
-  # Akkoma
-  services.akkoma.enable = true;
-  services.akkoma.config = {
-    ":pleroma" = {
-      ":instance" = {
-        name = "Freddyverse Central";
-        description = "Personal fedi server 🍓";
-        email = "raka@rakarake.xyz";
-        registration_open = false;
-      };
-      "Pleroma.Web.Endpoint" = {
-        url.host = hostnames.akkoma;
-      };
-      ":configurable_from_database" = true;
-    };
-  };
+  ## Akkoma
+  #services.akkoma.enable = true;
+  #services.akkoma.config = {
+  #  ":pleroma" = {
+  #    ":instance" = {
+  #      name = "Freddyverse Central";
+  #      description = "Personal fedi server 🍓";
+  #      email = "raka@rakarake.xyz";
+  #      registration_open = false;
+  #    };
+  #    "Pleroma.Web.Endpoint" = {
+  #      url.host = hostnames.akkoma;
+  #    };
+  #    ":configurable_from_database" = true;
+  #  };
+  #};
 
   # Automatic backups
   systemd.timers."backup" = {
