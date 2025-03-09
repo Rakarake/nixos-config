@@ -332,7 +332,7 @@ in
   # Nextcloud Whiteboard
   services.nextcloud-whiteboard-server = {
     enable = true;
-    settings.NEXTCLOUD_URL = "http://localhost";
+    settings.NEXTCLOUD_URL = "https://${hostnames.nextcloud}";
     secrets = [ config.age.secrets.nextcloud-whiteboard-secret.path ];
   };
   age.secrets.nextcloud-whiteboard-secret = {
