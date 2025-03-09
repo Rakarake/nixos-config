@@ -4,4 +4,5 @@ let
 in
 {
   "monero-rpc-login.age".publicKeys = keys;
+  "nextcloud-whiteboard-secret.age".publicKeys = keys;
 }
