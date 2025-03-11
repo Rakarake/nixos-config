@@ -325,3 +325,18 @@ require'oil'.setup({
 })
 vim.keymap.set('n', '<space>od', require"oil".open, opts)
 
+-- Hex editor
+vim.keymap.set("n", "<leader>hr", "<cmd>%! xxd<CR><cmd>set filetype=xxd<CR>")
+-- Using marks, does not work
+--vim.keymap.set("n", "<leader>hw", "mx<cmd>%! xxd -r<CR><cmd>w<CR><cmd>%! xxd<CR>'x")
+local write_hex = function ()
+    local win = vim.api.nvim_get_current_win()
+    local pos = vim.api.nvim_win_get_cursor(win)
+    vim.cmd("%!xxd -r")
+    vim.cmd("w")
+    vim.cmd("%!xxd")
+    vim.api.nvim_win_set_cursor(win, pos)
+end
+
+vim.keymap.set("n", "<leader>hw", write_hex)
+

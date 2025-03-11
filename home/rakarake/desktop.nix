@@ -127,7 +127,7 @@ in {
       fragments
       #varia
       blender
-      logseq
+      #logseq
       inkscape
       cpkgs.simple-shell-utils
       parabolic
@@ -151,6 +151,7 @@ in {
       gnome-calculator
       gnome-clocks
       gnupg1
+      okteta
 
       # Emulators
       fceux
@@ -210,7 +211,6 @@ in {
         exec = "gamescope -W 1920 -H 1080 --adaptive-sync -f -r 600 -e -- steam";
       };
     } // (makeElectronWaylandApps [
-      "logseq"
       "code"
       "codium"
       "vesktop"

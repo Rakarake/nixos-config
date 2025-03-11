@@ -79,7 +79,7 @@ in {
       gnome-sound-recorder
       ffmpeg
       waypipe
-      okular
+      kdePackages.okular
       android-studio
     ];
 
@@ -120,10 +120,10 @@ in {
 
     # Fix Logseq bad old electron problem
     nixpkgs.config.permittedInsecurePackages = [
-      "electron-20.3.12"
-      "electron-24.8.6"
-      "electron-25.9.0"
-      "freeimage-unstable-2021-11-01"
+      #"electron-20.3.12"
+      #"electron-24.8.6"
+      #"electron-25.9.0"
+      #"freeimage-unstable-2021-11-01"
     ];
     #nixpkgs.overlays = [
     #  (
