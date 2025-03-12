@@ -24,7 +24,7 @@ in
     home.sessionVariables = {
       EDITOR = "nvim";
       VISUAL = "nvim";
-      BROWSER = "firefox";
+      BROWSER = config.home-xdg.browser.bin;
       MANPAGER= "nvim +Man!";
     };
 
@@ -32,7 +32,7 @@ in
     home.shellAliases = {
       g = "git";
       e = "nvim";
-      b = "firefox";
+      b = config.home-xdg.browser.bin;
       open = "xdg-open";
       "\":q\"" = "exit";
       "\"..\"" = "cd ..";
