@@ -157,7 +157,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 })
 -- taken from: https://codeberg.org/zacoons/.dotfiles/src/branch/master/.config/nvim/lua/config/lazy.lua
 -- see `:h completeopt`
-vim.opt.completeopt="menuone,noselect,popup"
+vim.opt.completeopt="menuone,noselect,popup,fuzzy"
 -- map <c-space> to activate completion, (normaly <c-x><c-o>)
 vim.keymap.set("i", "<c-space>", function() vim.lsp.completion.get() end)
 -- map <cr> to <c-y> when the popup menu is visible
