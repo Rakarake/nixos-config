@@ -3,8 +3,8 @@
   catppuccin.accent = "pink";
   stylix.enable = true;
   stylix.image = ./wallpaper.png;
-  stylix.cursor.name = "Adwaita";
-  stylix.cursor.size = 24;
+  #stylix.cursor.name = "Adwaita";
+  #stylix.cursor.size = 24;
   stylix.fonts = {
     monospace = {
       package = pkgs.fira-code;
