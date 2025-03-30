@@ -26,6 +26,9 @@ in
       VISUAL = "nvim";
       BROWSER = config.home-xdg.browser.bin;
       MANPAGER= "nvim +Man!";
+      # Enable wayland for qt and electron by default, just unset to use default
+      QT_QPA_PLATFORM = "wayland";
+      NIXOS_OZONE_WL = "1";
     };
 
     # Shell aliases

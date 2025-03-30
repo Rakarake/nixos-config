@@ -230,8 +230,6 @@ in {
       };
     };
     environment.sessionVariables = {
-      # Default editor, systemd home thing does not work
-      EDITOR = "nvim";
       # Needed for gamescope to run in steam
       ENABLE_VKBASALT = "1";
       # Always allow unfree nix packages :(
