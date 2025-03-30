@@ -3,8 +3,11 @@
   catppuccin.accent = "pink";
   stylix.enable = true;
   stylix.image = ./wallpaper.png;
-  #stylix.cursor.name = "Adwaita";
-  #stylix.cursor.size = 24;
+  stylix.cursor = {
+    package = pkgs.adwaita-icon-theme;
+    name = "Adwaita";
+    size = 24;
+  };
   stylix.fonts = {
     monospace = {
       package = pkgs.fira-code;
@@ -26,6 +29,11 @@
   #  };
   #};
   #catppuccin.kvantum.enable = true;
+  catppuccin.kvantum = {
+    enable = true;
+    apply = true;
+    accent = "pink";
+  };
 
   # Mangohud
   stylix.targets.mangohud.enable = false;
