@@ -43,12 +43,6 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     
-    # Cosmic WIP flake
-    nixos-cosmic  = {
-      url = "github:lilyinstarlight/nixos-cosmic";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
-
     # Agenix
     agenix = {
       url = "github:ryantm/agenix";

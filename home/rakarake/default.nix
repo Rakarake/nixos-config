@@ -10,7 +10,6 @@
     ./server.nix
     ./gnome.nix
     ./hyprland
-    ./cosmic
     ./neovim
     ./rofi
     ./dwl
