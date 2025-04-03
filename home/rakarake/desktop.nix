@@ -157,6 +157,7 @@ in {
       fceux
       dolphin-emu
       torzu
+      ryujinx
       (pkgs.retroarch.withCores (cores: with cores; [
         mesen
         bsnes
