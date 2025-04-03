@@ -83,9 +83,6 @@ in {
     # Swaync theme file
     xdg.configFile."swaync/style.css".source = ../swaync.css;
     
-    ## KDE / Dolphin config file
-    #home.file.".config/kdeglobals".source = ./kdeglobals;
-    
     # Dconf settings
     dconf.settings = {
       # Locale
