@@ -107,7 +107,6 @@ in
     jdk17
     bcachefs-tools
     fastfetch
-    cloudflared
     ffmpeg
     waypipe
     openttd

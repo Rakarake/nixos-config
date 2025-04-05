@@ -108,7 +108,8 @@ in {
 
       # Autostart
       exec-once = ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1
-      exec-once = ${pkgs.xdg-desktop-portal-hyprland}/libexec/xdg-desktop-portal-hyprland
+      #exec-once = ${pkgs.xdg-desktop-portal-hyprland}/libexec/xdg-desktop-portal-hyprland
+      #exec-once = ${pkgs.xdg-desktop-portal-gtk}/libexec/xdg-desktop-portal-gtk
       exec-once = sleep 3 ; waybar
       exec-once = sleep 6 ; nextcloud
       exec-once = sleep 6 ; nm-applet

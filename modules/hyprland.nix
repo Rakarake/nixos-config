@@ -23,7 +23,13 @@ in {
     };
     environment.systemPackages = with pkgs; [
       nautilus
+      xdg-desktop-portal-gtk
     ];
+
+    xdg.portal = {
+      enable = true;
+      extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    };
 
     environment.sessionVariables = {
       # NixOS specific option for enabling wayland in Electron apps
