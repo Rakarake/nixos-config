@@ -120,7 +120,7 @@
     corectrl  # We like big graphics
 
     # SDDM theme
-    catppuccin-sddm-corners
+    #catppuccin-sddm-corners
 
     #sunshine
 

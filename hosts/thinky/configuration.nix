@@ -8,12 +8,12 @@
   cfg-desktop.enable = true;
   cfg-hyprland.enable = true;
   #cfg-gnome.enable = true;
-  #services.xserver.displayManager.gdm.enable = true;
-  services.displayManager.sddm = {
-    enable = true;
-    wayland.enable = true;
-    theme = "catppuccin-sddm-corners";
-  };
+  services.xserver.displayManager.gdm.enable = true;
+  #services.displayManager.sddm = {
+  #  enable = true;
+  #  wayland.enable = true;
+  #  theme = "catppuccin-sddm-corners";
+  #};
   #services.greetd = {
   #  enable = true;
   #  settings = {
@@ -25,7 +25,7 @@
 
   environment.systemPackages = with pkgs; [
     # SDDM theme
-    catppuccin-sddm-corners
+    #catppuccin-sddm-corners
   ];
 
   # Hostname
