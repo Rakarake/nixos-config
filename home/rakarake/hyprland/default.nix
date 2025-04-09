@@ -4,7 +4,7 @@ with lib;
 let
   cfg = config.home-hyprland;
   # pidof swaylock makes sure that we do not start multiple instances of swaylock
-  swaylockCommand = "pidof swaylock || swaylock -k -C ~/.config/swaylock.conf -i ${config.stylix.image}";
+  swaylockCommand = "pidof swaylock || swaylock -k -C ~/.config/swaylock.conf -i ${config.home-xdg.wallpaper}";
   raiseVolumeCommand = "amixer set Master 5%+";
   lowerVolumeCommand = "amixer set Master 5%-";
   muteVolumeCommand = "amixer set Master toggle";
@@ -113,7 +113,7 @@ in {
       exec-once = sleep 3 ; waybar
       exec-once = sleep 6 ; nextcloud
       exec-once = sleep 6 ; nm-applet
-      exec-once = swaybg -i ${config.stylix.image}
+      exec-once = swaybg -i ${config.home-xdg.wallpaper}
       exec-once = swaync
       exec-once = emote
       exec-once = gsettings set org.gnome.nm-applet disable-disconnected-notifications "true"

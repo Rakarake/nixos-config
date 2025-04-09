@@ -75,6 +75,11 @@ in {
       type = types.attrs;
       default = { package = pkgs.evince; bin = "evince"; desktop = "org.gnome.Evince.desktop"; };
     };
+    # uh, not xdg but ok
+    wallpaper = mkOption {
+      type = types.path;
+      default = ./wallpaper.png;
+    };
   };
   config = mkIf cfg.enable {
     # Make sure that the default applications are installed

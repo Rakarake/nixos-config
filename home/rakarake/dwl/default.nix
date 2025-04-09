@@ -8,7 +8,7 @@ let
     ${pkgs.dbus}/bin/dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP DISPLAY XDG_SESSION_TYPE
     wlr-randr --output DP-1 --mode 1920x1080@144.001007 --pos 1920,0
     wlr-randr --output DP-2 --mode 1920x1080@143.854996 --pos 0,0
-    swaybg -i ${config.stylix.image} &
+    swaybg -i ${config.home-xdg.wallpaper} &
     swaync &
     yambar
     nextcloud &

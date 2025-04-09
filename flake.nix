@@ -177,6 +177,13 @@
           system = "x86_64-linux";
         }
         {
+          hostname = "thinky";
+          user = "rakarake";
+          variation = "default";
+          nixpkgs = nixpkgs-unstable;
+          system = "x86_64-linux";
+        }
+        {
           hostname = "cobblestone-generator";
           user = "rakarake";
           variation = "dark";
@@ -187,6 +194,13 @@
           hostname = "cobblestone-generator";
           user = "rakarake";
           variation = "light";
+          nixpkgs = nixpkgs-unstable;
+          system = "x86_64-linux";
+        }
+        {
+          hostname = "cobblestone-generator";
+          user = "rakarake";
+          variation = "default";
           nixpkgs = nixpkgs-unstable;
           system = "x86_64-linux";
         }

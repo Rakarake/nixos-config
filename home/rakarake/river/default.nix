@@ -54,7 +54,7 @@ in
       systemd.enable = true;
       extraConfig = ''
         # Wallpaper
-        swaybg -i ${config.stylix.image} &
+        swaybg -i ${config.home-xdg.wallpaper} &
 
         # Other stuff
         yambar &

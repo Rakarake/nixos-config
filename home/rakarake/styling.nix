@@ -1,8 +1,8 @@
-{ pkgs, ... }: {
+{ pkgs, config, ... }: {
   # Styling
   catppuccin.accent = "pink";
   stylix.enable = true;
-  stylix.image = ./wallpaper.png;
+  stylix.image = config.home-xdg.wallpaper;
   stylix.cursor = {
     package = pkgs.adwaita-icon-theme;
     name = "Adwaita";
