@@ -11,6 +11,7 @@ in {
     # Enable hyprland
     programs.hyprland = {
       enable = true;
+      withUWSM = true;
     };
 
     # Needed for thunar/nautilus trash-can, other one for dolphin
