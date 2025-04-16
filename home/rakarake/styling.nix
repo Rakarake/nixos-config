@@ -19,6 +19,9 @@
       terminal = 12;
     };
   };
+  home.packages = with pkgs; [
+    adw-gtk3
+  ];
 
   # Qt
   #qt = {

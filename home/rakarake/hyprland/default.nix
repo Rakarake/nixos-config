@@ -98,10 +98,10 @@ in {
     };
 
     # Theming
-    gtk.iconTheme = {
-      package = pkgs.papirus-icon-theme;
-      name = "Papirus-Dark";
-    };
+    #gtk.iconTheme = {
+    #  package = pkgs.papirus-icon-theme;
+    #  name = "Papirus-Dark";
+    #};
 
     # Hyprland config
     wayland.windowManager.hyprland.extraConfig = ''
