@@ -1,6 +1,15 @@
 { lib, config, pkgs, self, user, hostname, ... }:
 let
   cfg = config.home-common;
+  environmentVariables = {
+    EDITOR = "nvim";
+    VISUAL = "nvim";
+    BROWSER = config.home-xdg.browser.bin;
+    MANPAGER= "nvim +Man!";
+    # Enable wayland for qt and electron by default, just unset to use default
+    QT_QPA_PLATFORM = "wayland";
+    NIXOS_OZONE_WL = "1";
+  };
 in
 {
   imports = [
@@ -21,15 +30,8 @@ in
     home-bash.enable = true;
 
     # Session variables
-    home.sessionVariables = {
-      EDITOR = "nvim";
-      VISUAL = "nvim";
-      BROWSER = config.home-xdg.browser.bin;
-      MANPAGER= "nvim +Man!";
-      # Enable wayland for qt and electron by default, just unset to use default
-      QT_QPA_PLATFORM = "wayland";
-      NIXOS_OZONE_WL = "1";
-    };
+    home.sessionVariables = environmentVariables;
+    systemd.user.sessionVariables = environmentVariables;
 
     # Shell aliases
     home.shellAliases = {
