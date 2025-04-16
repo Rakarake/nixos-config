@@ -7,7 +7,7 @@
   cfg-global.enable = true;
   cfg-desktop.enable = true;
   cfg-hyprland.enable = true;
-  #cfg-gnome.enable = true;
+  cfg-gnome.enable = true;
   services.xserver.displayManager.gdm.enable = true;
   #services.displayManager.sddm = {
   #  enable = true;
