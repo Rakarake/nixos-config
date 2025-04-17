@@ -58,6 +58,11 @@
       url = "github:xremap/nix-flake";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+
+    # Hyprland
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+    };
   };
   outputs = { self, nixpkgs-stable, nixpkgs-unstable, home-manager, ... }@inputs:
     let

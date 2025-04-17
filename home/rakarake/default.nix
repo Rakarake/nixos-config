@@ -16,7 +16,7 @@
     ./river
     inputs.nix-index-database.hmModules.nix-index
     inputs.stylix.homeManagerModules.stylix
-    inputs.catppuccin.homeManagerModules.catppuccin
+    inputs.catppuccin.homeModules.catppuccin
     inputs.xremap.homeManagerModules.default
   ];
   # Follow the rules!

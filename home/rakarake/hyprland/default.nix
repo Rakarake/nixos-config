@@ -37,7 +37,9 @@ in {
   config = mkIf cfg.enable {
     # Enable Hyprland
     wayland.windowManager.hyprland.enable = true;
-    wayland.windowManager.hyprland.systemd.enable = true;
+    # Make sure everything in PATH is available for systemd to start
+    # https://wiki.hyprland.org/Nix/Hyprland-on-Home-Manager/#programs-dont-work-in-systemd-services-but-do-on-the-terminal
+    wayland.windowManager.hyprland.systemd.variables = ["--all"];
     home-waybar.enable = true;
     home-rofi.enable = true;
 

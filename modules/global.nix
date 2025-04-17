@@ -18,8 +18,14 @@ in {
         nginxStable = super.nginxStable.override { openssl = super.pkgs.libressl; }; 
       })
     ];
-    # Enable Flakes
-    nix.settings.experimental-features = [ "flakes" "nix-command" ];
+    # Global nix settings
+    nix.settings = {
+      # Enable Flakes
+      experimental-features = [ "flakes" "nix-command" ];
+      # Cachix
+      substituters = ["https://hyprland.cachix.org"];
+      trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+    };
     # Allow unfree packages
     nixpkgs.config.allowUnfree = true;
   };

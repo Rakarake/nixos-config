@@ -12,6 +12,10 @@ in {
     programs.hyprland = {
       enable = true;
       withUWSM = true;
+      # Use flake atm
+      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+      # make sure to also set the portal package, so that they are in sync
+      portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
     };
 
     # Needed for thunar/nautilus trash-can, other one for dolphin
