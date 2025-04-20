@@ -114,6 +114,7 @@ vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
 vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
+vim.keymap.set('n', '<space>re', vim.lsp.buf.rename, opts)
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -317,4 +318,24 @@ local write_hex = function ()
 end
 
 vim.keymap.set("n", "<leader>hw", write_hex)
+
+
+vim.cmd([[
+	command -bar -nargs=? -complete=help HC execute s:HC(<q-args>)
+	let s:did_open_help = v:false
+
+	function s:HC(subject) abort
+	  let mods = 'silent noautocmd keepalt'
+	  if !s:did_open_help
+	    execute mods .. ' help'
+	    execute mods .. ' helpclose'
+	    let s:did_open_help = v:true
+	  endif
+	  if !empty(getcompletion(a:subject, 'help'))
+	    execute mods .. ' edit ' .. &helpfile
+	    set buftype=help
+	  endif
+	  return 'help ' .. a:subject
+	endfunction
+]])
 
