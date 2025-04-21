@@ -192,6 +192,8 @@ in {
       bind=SUPER,e,exec,emote
       # Open image in clipboard
       bind=SUPERSHIFT,o,exec,open-file-in-clipboard
+      # Open clipboard manager
+      bind=SUPERSHIFT,c,exec,copyq show
       
       # Focus on window
       #bind=SUPER,h,movefocus,l
