@@ -122,7 +122,7 @@ in {
       exec-once = gsettings set org.gnome.nm-applet disable-disconnected-notifications "true"
       exec-once = gsettings set org.gnome.nm-applet disable-connected-notifications "true"
       ${if cfg.useSwayidle then "exec-once= swayidle timeout 800 '${swaylockCommand}' timeout 900 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on' timeout 1700 'systemctl suspend'A" else ""}
-      exec-once = ${pkgs.copyq}
+      exec-once = ${pkgs.copyq}/bin/copyq
 
       # Default for non specified monitors
       monitor=,preferred,auto,1
