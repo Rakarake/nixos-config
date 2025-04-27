@@ -212,6 +212,7 @@
         {
           hostname = "creeper-spawner";
           user = "rakarake";
+          variation = "default";
           nixpkgs = nixpkgs-unstable;
           system = "x86_64-linux";
         }
