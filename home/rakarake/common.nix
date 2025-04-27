@@ -33,6 +33,10 @@ in
     home.sessionVariables = environmentVariables;
     systemd.user.sessionVariables = environmentVariables;
 
+    home.packages = with pkgs; [
+      bc  # basic calculator
+    ];
+
     # Shell aliases
     home.shellAliases = {
       g = "git";
