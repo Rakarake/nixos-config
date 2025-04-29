@@ -110,8 +110,7 @@ in
     ffmpeg
     waypipe
     openttd
-    p2pool
-    xmrig
+    matrix-conduit
   ];
 
   # SSH daemon
