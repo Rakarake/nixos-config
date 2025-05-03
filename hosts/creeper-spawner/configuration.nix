@@ -472,7 +472,7 @@ in
   users.users.rakarake = {
     isNormalUser = true;
     description = "Rakarake";
-    extraGroups = [ "networkmanager" "wheel" "nextcloud" "forgejo" "monero" "jellyfin" ];
+    extraGroups = [ "networkmanager" "wheel" "wireshark" "nextcloud" "forgejo" "monero" "jellyfin" ];
     openssh.authorizedKeys.keys = ssh-keys.rakarake;
   };
 
