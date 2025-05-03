@@ -344,8 +344,8 @@ in
   };
   age.secrets.nextcloud-whiteboard-secret = {
     file = ../../secrets/nextcloud-whiteboard-secret.age;
-    owner = "nextcloud";
-    group = "nextcloud";
+    owner = "nextcloud-whiteboard-server";
+    group = "nextcloud-whiteboard-server";
   };
 
   # Bingbingo
