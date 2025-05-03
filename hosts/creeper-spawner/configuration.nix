@@ -251,7 +251,10 @@ in
       ${hostnames.whiteboard} = {
         forceSSL = true;
         enableACME = true;  # Let's encrypt TLS automated, not certbot
-        locations."/".proxyPass = "http://localhost:${toString localPorts.whiteboard}";
+        locations."/" = {
+          proxyWebsockets = true;
+          proxyPass = "http://localhost:${toString localPorts.whiteboard}";
+        };
       };
 
       #${hostnames.jellyfin} = {
