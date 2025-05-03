@@ -30,6 +30,7 @@ let
     jellyfin           = 8096;
     bingbingo          = 8097;
     forgejo            = 8098;
+    whiteboard         = 3002;
   };
 
 
@@ -40,6 +41,7 @@ let
     forgejo = "git.rakarake.xyz";
     grafana = "grafana.rakarake.xyz";
     jellyfin = "jellyfin.rakarake.xyz";
+    whiteboard = "whiteboard.rakarake.xyz";
     #akkoma = "akk.rakarake.xyz";
   };
 
@@ -245,6 +247,11 @@ in
       ${hostnames.nextcloud} = {
         forceSSL = true;
         enableACME = true;  # Let's encrypt TLS automated, not certbot
+      };
+      ${hostnames.whiteboard} = {
+        forceSSL = true;
+        enableACME = true;  # Let's encrypt TLS automated, not certbot
+        locations."/".proxyPass = "http://localhost:${toString localPorts.whiteboard}";
       };
 
       #${hostnames.jellyfin} = {
