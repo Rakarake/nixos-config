@@ -8,6 +8,8 @@ let
     wireguard        = 51820;
     minecraft        =  8069;
     openttd          =  3979;
+    conduit1         =  443;
+    conduit          =  8448;
   };
 
   # Minecraft server module template
