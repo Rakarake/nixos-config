@@ -152,6 +152,8 @@ in {
       gnome-clocks
       gnupg1
       okteta
+      krita
+      gimp3
 
       # Emulators
       fceux

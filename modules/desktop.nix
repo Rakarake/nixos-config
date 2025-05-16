@@ -69,7 +69,6 @@ in {
       hunspellDicts.sv_SE      # Swedish
       hunspellDicts.en_US      # American
       hunspellDicts.en_GB-ise  # English
-      krita
       firefox
       ungoogled-chromium
       thunderbird
