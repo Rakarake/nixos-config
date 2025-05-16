@@ -294,7 +294,29 @@ require'mini.icons'.setup()
 require'mini.align'.setup()
 require'mini.move'.setup()
 require'mini.surround'.setup()
-require'mini.completion'.setup()
+require'mini.operators'.setup()
+
+-- Autocompletion engine for LSP and other things
+require'blink.cmp'.setup({
+    keymap = {
+        preset = 'default',
+        ['<Tab>'] = { 'select_and_accept', 'fallback' },
+        ['<C-l>'] = { 'show_documentation', 'fallback' },
+        ['<C-h>'] = { 'hide_documentation', 'fallback' },
+        ['<C-j>'] = { 'scroll_documentation_down', 'fallback' },
+        ['<C-k>'] = { 'scroll_documentation_up', 'fallback' },
+    },
+    appearance = {
+      nerd_font_variant = 'mono'
+    },
+    completion = { documentation = { auto_show = false } },
+    sources = {
+      default = { 'lsp', 'path', 'snippets', 'buffer' },
+    },
+    fuzzy = { implementation = "prefer_rust_with_warning" },
+    -- Experimental feature (signatures: when starting writing a function)
+    signature = { enabled = true }
+})
 
 -- Oil
 require'oil'.setup({
@@ -320,6 +342,7 @@ end
 vim.keymap.set("n", "<leader>hw", write_hex)
 
 
+-- ':HC' to open manpage in current buffer.
 vim.cmd([[
 	command -bar -nargs=? -complete=help HC execute s:HC(<q-args>)
 	let s:did_open_help = v:false
