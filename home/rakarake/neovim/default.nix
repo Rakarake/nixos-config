@@ -59,6 +59,9 @@ in
         # LSP
         nvim-lspconfig
         luasnip
+        # Completion
+        blink-cmp
+        # Editor config
         editorconfig-vim
         # DAP
         nvim-dap
