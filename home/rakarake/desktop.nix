@@ -156,7 +156,7 @@ in {
       # Emulators
       fceux
       dolphin-emu
-      torzu
+      #torzu
       ryujinx
       (pkgs.retroarch.withCores (cores: with cores; [
         mesen
