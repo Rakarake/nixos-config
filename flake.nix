@@ -115,8 +115,8 @@
                 ./home/${user}/default.nix
                 ./home/${user}/${variation}.nix
                 ./hosts/${hostname}/home.nix
-                ./home/${user}/${hostname}/hosts/${hostname}.nix
-                ];
+                ./home/${user}/hosts/${hostname}.nix
+              ];
               pkgs = (pkgsFor nixpkgs).${system};
               extraSpecialArgs = args // { inherit system hostname user; };
             };
