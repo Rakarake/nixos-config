@@ -37,6 +37,8 @@ in
       bc  # basic calculator
     ];
 
+    home-neovim.enable = true;
+
     # Shell aliases
     home.shellAliases = {
       g = "git";
