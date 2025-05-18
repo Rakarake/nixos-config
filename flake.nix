@@ -111,7 +111,12 @@
       makeHomeConfigs = homeConfigs: foldl ( acc: { hostname, nixpkgs, user, variation ? "default", system }:
           acc // {
             "${user}@${hostname}-${variation}" = home-manager.lib.homeManagerConfiguration {
-              modules = optionalPaths nixpkgs [ ./home/${user}/default.nix ./home/${user}/${variation}.nix ./hosts/${hostname}/home.nix ];
+              modules = optionalPaths nixpkgs [
+                ./home/${user}/default.nix
+                ./home/${user}/${variation}.nix
+                ./hosts/${hostname}/home.nix
+                ./home/${user}/${hostname}/hosts/${hostname}.nix
+                ];
               pkgs = (pkgsFor nixpkgs).${system};
               extraSpecialArgs = args // { inherit system hostname user; };
             };
