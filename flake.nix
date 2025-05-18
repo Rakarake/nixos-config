@@ -103,12 +103,15 @@
           }
       ) {} systemConfigs);
 
+      # Helper function to create a list of only the provided paths that actually exist.
+      optionalPaths = nixpkgs: listOfPaths: foldl (acc: val: acc ++ (nixpkgs.lib.optional (builtins.pathExists val)) val) [] listOfPaths;
+
       # Creates a home-manager configs from list
       # If no variation is specified, "user@system-default" is generated
       makeHomeConfigs = homeConfigs: foldl ( acc: { hostname, nixpkgs, user, variation ? "default", system }:
           acc // {
             "${user}@${hostname}-${variation}" = home-manager.lib.homeManagerConfiguration {
-              modules = [ ./home/${user}/default.nix ./home/${user}/${variation}.nix ./hosts/${hostname}/home.nix ];
+              modules = optionalPaths nixpkgs [ ./home/${user}/default.nix ./home/${user}/${variation}.nix ./hosts/${hostname}/home.nix ];
               pkgs = (pkgsFor nixpkgs).${system};
               extraSpecialArgs = args // { inherit system hostname user; };
             };
