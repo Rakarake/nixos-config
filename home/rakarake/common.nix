@@ -35,6 +35,7 @@ in
 
     home.packages = with pkgs; [
       bc  # basic calculator
+      typst
     ];
 
     home-neovim.enable = true;
