@@ -34,6 +34,9 @@ in {
         export COLORTERM='truecolor'
         # Makes history ignore duplicates and ones starting with whitespace
         export HISTCONTROL='ignoreboth'  
+
+        # Make sure that EDITOR is set
+        export EDITOR='${config.home-xdg.text-editor.bin}'
       '';
     };
   };

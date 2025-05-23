@@ -75,6 +75,11 @@ in {
       type = types.attrs;
       default = { package = pkgs.evince; bin = "evince"; desktop = "org.gnome.Evince.desktop"; };
     };
+    # TODO set up .desktop file for ediotr
+    text-editor = mkOption {
+      type = types.attrs;
+      default = { package = pkgs.neovim; bin = "nvim"; };
+    };
     # uh, not xdg but ok
     wallpaper = mkOption {
       type = types.path;
@@ -92,6 +97,7 @@ in {
       cfg.image-viewer.package
       cfg.mail-client.package
       cfg.pdf-viewer.package
+      #cfg.text-editor.package
     ];
     xdg = {
       enable = true;

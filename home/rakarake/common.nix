@@ -2,7 +2,7 @@
 let
   cfg = config.home-common;
   environmentVariables = {
-    EDITOR = "nvim";
+    EDITOR = lib.mkForce "${config.home-xdg.text-editor.bin}";
     VISUAL = "nvim";
     BROWSER = config.home-xdg.browser.bin;
     MANPAGER= "nvim +Man!";

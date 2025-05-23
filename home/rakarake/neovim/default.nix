@@ -46,7 +46,7 @@ in
     # Neovim config
     programs.neovim = {
       enable = true;
-      defaultEditor = true;
+      #defaultEditor = true;
       plugins = with pkgs.vimPlugins; [
         nvim-lspconfig
         nvim-treesitter.withAllGrammars
