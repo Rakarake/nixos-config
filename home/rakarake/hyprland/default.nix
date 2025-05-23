@@ -77,7 +77,6 @@ in {
       #nautilus-open-any-terminal
       #nautilus-python
       nautilus
-      copyq
     ];
 
     # Swaylock config file
@@ -122,7 +121,6 @@ in {
       exec-once = gsettings set org.gnome.nm-applet disable-disconnected-notifications "true"
       exec-once = gsettings set org.gnome.nm-applet disable-connected-notifications "true"
       ${if cfg.useSwayidle then "exec-once= swayidle timeout 800 '${swaylockCommand}' timeout 900 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on' timeout 1700 'systemctl suspend'A" else ""}
-      exec-once = ${pkgs.copyq}/bin/copyq
 
       # Default for non specified monitors
       monitor=,preferred,auto,1
@@ -192,8 +190,6 @@ in {
       bind=SUPER,e,exec,emote
       # Open image in clipboard
       bind=SUPERSHIFT,o,exec,open-file-in-clipboard
-      # Open clipboard manager
-      bind=SUPERSHIFT,c,exec,copyq show
       
       # Focus on window
       #bind=SUPER,h,movefocus,l
