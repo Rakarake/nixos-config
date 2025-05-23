@@ -10,7 +10,6 @@ in
   config = mkIf cfg.enable {
     home-rofi.enable = true;
     home.packages = with pkgs; [
-      pipewire                     # Screensharing
       swaylock                     # Screenlocker
       grim                         # Screenshot utility
       slurp                        # Screen "area" picker utility
@@ -53,6 +52,12 @@ in
       enable = true;
       systemd.enable = true;
       extraConfig = ''
+        # Required to get screensharing to work https://wiki.archlinux.org/title/River#Troubleshooting
+        # Apperently the home manager module is just not maintained ☹️
+        systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+        dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river
+        systemctl --user restart xdg-desktop-portal
+
         # Wallpaper
         swaybg -i ${config.home-xdg.wallpaper} &
 
