@@ -4,8 +4,6 @@
 { lib, config, pkgs, outputs, ... }:
 let
   cfg = config.home-desktop;
-  # Custom packages defined in the toplevel flake
-  cpkgs = outputs.packages.${pkgs.system};
 in {
   imports = [
     ./xdg.nix
@@ -129,7 +127,6 @@ in {
       blender
       #logseq
       inkscape
-      cpkgs.simple-shell-utils
       parabolic
       emote
       moonlight-qt

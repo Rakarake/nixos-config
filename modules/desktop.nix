@@ -59,7 +59,6 @@ in {
       qemu
       comma
       nix-tree
-      outputs.packages.${system}.amogus
       man-pages
       man-pages-posix
       wineWowPackages.waylandFull

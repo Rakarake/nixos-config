@@ -1,4 +1,4 @@
-{ lib, config, pkgs, self, user, hostname, ... }:
+{ lib, outputs, config, pkgs, self, user, hostname, ... }:
 let
   cfg = config.home-common;
   environmentVariables = {
@@ -10,6 +10,8 @@ let
     QT_QPA_PLATFORM = "wayland";
     NIXOS_OZONE_WL = "1";
   };
+  # Custom packages defined in the toplevel flake
+  cpkgs = outputs.packages.${pkgs.system};
 in
 {
   imports = [
@@ -36,6 +38,9 @@ in
     home.packages = with pkgs; [
       bc  # basic calculator
       typst
+      # Scripts and stuff
+      cpkgs.amogus
+      cpkgs.simple-shell-utils
     ];
 
     home-neovim.enable = true;
