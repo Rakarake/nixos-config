@@ -33,8 +33,20 @@ in {
     programs.librewolf = {
       enable = true;
       settings = {
+        # Vertical tabs
         "sidebar.verticalTabs" = true;
+        # Restore previous session on startup
+        "browser.startup.page" = 3;
+        # Enable webgl
         "webgl.disabled" = false;
+        # Don't clear cookies and history
+        "privacy.clearOnShutdown.history" = false;
+        "privacy.clearOnShutdown.cookies" = false;
+        "privacy.sanitize.sanitizeOnShutdown" = false;
+        # Force big scrollbars
+        "widget.non-native-theme.scrollbar.size.override" = 25;
+        # Middle mouse button scrolling
+        "general.autoScroll" = true;
       };
       profiles = {
         default = {
