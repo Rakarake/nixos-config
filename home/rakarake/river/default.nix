@@ -3,6 +3,10 @@ with lib;
 let
   cfg = config.home-river;
   swaylockCommand = "pidof swaylock || swaylock -k";
+  raiseVolumeCommand = "amixer set Master 5%+";
+  lowerVolumeCommand = "amixer set Master 5%-";
+  muteVolumeCommand = "amixer set Master toggle";
+  muteMicCommand = "amixer set Capture toggle";
 in
 {
   imports = [
@@ -17,7 +21,7 @@ in
       grim                         # Screenshot utility
       slurp                        # Screen "area" picker utility
       swaybg                       # Anime wallpapers
-      #pamixer                     # Used for panel sound control
+      pamixer                     # Used for panel sound control
       alsa-utils                   # keyboard volume control
       playerctl                    # MPRIS global player controller
       swayidle                     # Idle inhibitor, knows when computer is ueseless
@@ -66,6 +70,9 @@ in
         systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
         dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river
         systemctl --user restart xdg-desktop-portal
+
+        # Bar
+        waybar &
 
         # Wallpaper
         swaybg -i ${config.home-xdg.wallpaper} &

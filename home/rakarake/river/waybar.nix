@@ -1,4 +1,4 @@
-{ lib, config, ... }:
+{ pkgs, lib, config, ... }:
 with lib;                      
 let
   cfg = config.home-waybar;
@@ -9,10 +9,9 @@ in {
   config = mkIf cfg.enable {
     programs.waybar = {
       enable = true;
-      #systemd = {
-      #  enable = false;
-      #  target = "graphical-session.target";
-      #};
+      systemd = {
+        enable = false;
+      };
       settings.mainBar = {
         layer = "bottom";
         position = "top";
@@ -42,15 +41,10 @@ in {
         "river/language" = {
           "format" = "󰌌 {}";
         };
-        "pulseaudio" = {
+        "wireplumber" = {
           "scroll-step" = 1;
-          "format" = "{icon} {volume}%";
+          "format" = "{volume}%";
           "format-muted" = "󰖁 Muted";
-          "format-icons" = {
-            "default" = [ "" "" "" ];
-          };
-          "on-click" = "pamixer -t";
-          "tooltip" = false;
         };
         "clock" = {
           "interval" = 60;
