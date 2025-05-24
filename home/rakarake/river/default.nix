@@ -5,6 +5,9 @@ let
   swaylockCommand = "pidof swaylock || swaylock -k";
 in
 {
+  imports = [
+    ./waybar.nix
+  ];
   options.home-river = {
     enable = mkEnableOption "river config";
   };
@@ -27,6 +30,9 @@ in
 
     # Swaync
     services.swaync.enable = true;
+
+    # Bar
+    home-waybar.enable = true;
 
     # Swayidle
     services.swayidle = {

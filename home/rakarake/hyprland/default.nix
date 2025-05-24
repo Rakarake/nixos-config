@@ -11,11 +11,6 @@ let
   muteMicCommand = "amixer set Capture toggle";
   fileManagerCommand = "nautilus";
 in {
-
-  imports = [
-    ./waybar.nix
-  ];
-
   options.home-hyprland = {
     # Option to enable Hyprland config
     enable = mkEnableOption "Custom Hyprland system configuration";
