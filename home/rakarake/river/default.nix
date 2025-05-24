@@ -7,6 +7,9 @@ let
   lowerVolumeCommand = "amixer set Master 5%-";
   muteVolumeCommand = "amixer set Master toggle";
   muteMicCommand = "amixer set Capture toggle";
+  playerNext = "playerctl next";
+  playerPrev = "playerctl previous";
+  playerPause = "playerctl play-pause";
 in
 {
   imports = [
@@ -218,15 +221,22 @@ in
             riverctl map $mode None XF86Eject spawn 'eject -T'
         
             # Control pulse audio volume with pamixer (https://github.com/cdemoulins/pamixer)
-            riverctl map $mode None XF86AudioRaiseVolume  spawn 'pamixer -i 5'
-            riverctl map $mode None XF86AudioLowerVolume  spawn 'pamixer -d 5'
-            riverctl map $mode None XF86AudioMute         spawn 'pamixer --toggle-mute'
+            riverctl map $mode None XF86AudioRaiseVolume  spawn '${raiseVolumeCommand}'
+            riverctl map $mode None XF86AudioLowerVolume  spawn '${lowerVolumeCommand}'
+            riverctl map $mode None XF86AudioMute         spawn '${muteVolumeCommand}'
         
             # Control MPRIS aware media players with playerctl (https://github.com/altdesktop/playerctl)
-            riverctl map $mode None XF86AudioMedia spawn 'playerctl play-pause'
-            riverctl map $mode None XF86AudioPlay  spawn 'playerctl play-pause'
-            riverctl map $mode None XF86AudioPrev  spawn 'playerctl previous'
-            riverctl map $mode None XF86AudioNext  spawn 'playerctl next'
+            riverctl map $mode None XF86AudioMedia spawn '${playerPause}'
+            riverctl map $mode None XF86AudioPlay  spawn '${playerPause}'
+            riverctl map $mode None XF86AudioPrev  spawn '${playerPrev}'
+            riverctl map $mode None XF86AudioNext  spawn '${playerNext}'
+            riverctl map $mode Super+Alt L spawn '${playerNext}'
+            riverctl map $mode Super+Alt H spawn '${playerPrev}'
+            riverctl map $mode Super+Alt K spawn '${raiseVolumeCommand}'
+            riverctl map $mode Super+Alt J spawn '${lowerVolumeCommand}'
+            riverctl map $mode Super+Alt P spawn '${playerPause}'
+            riverctl map $mode Super+Alt M spawn '${muteVolumeCommand}'
+            riverctl map $mode Super+Alt N spawn '${muteMicCommand}'
         
             # Control screen backlight brightness with brightnessctl (https://github.com/Hummer12007/brightnessctl)
             riverctl map $mode None XF86MonBrightnessUp   spawn 'brightnessctl set +5%'
