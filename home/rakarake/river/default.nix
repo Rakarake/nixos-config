@@ -52,7 +52,6 @@ in
         swaybg -i ${config.home-xdg.wallpaper} &
 
         # Other stuff
-        yambar &
         riverctl rule-add ssd                    # Serverside decorations only
         riverctl set-cursor-warp on-focus-change # Cursor follows focus
         riverctl focus-follows-cursor always     # Focus follows cursor
