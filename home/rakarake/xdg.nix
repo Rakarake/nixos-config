@@ -53,7 +53,7 @@ in {
     };
     browser = mkOption {
       type = types.attrs;
-      default = { package = pkgs.firefox; bin = "firefox"; desktop = "firefox.desktop"; };
+      default = { package = pkgs.librewolf; bin = "librewolf"; desktop = "librewolf.desktop"; };
     };
     audio-player = mkOption {
       type = types.attrs;
@@ -87,18 +87,6 @@ in {
     };
   };
   config = mkIf cfg.enable {
-    # Make sure that the default applications are installed
-    home.packages = [
-      cfg.terminal.package
-      cfg.file-manager.package
-      cfg.browser.package
-      cfg.audio-player.package
-      cfg.video-player.package
-      cfg.image-viewer.package
-      cfg.mail-client.package
-      cfg.pdf-viewer.package
-      #cfg.text-editor.package
-    ];
     xdg = {
       enable = true;
       configFile."mimeapps.list".force = true;

@@ -68,7 +68,7 @@ in {
       hunspellDicts.sv_SE      # Swedish
       hunspellDicts.en_US      # American
       hunspellDicts.en_GB-ise  # English
-      firefox
+      librewolf
       ungoogled-chromium
       thunderbird
       qpwgraph

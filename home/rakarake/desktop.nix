@@ -29,6 +29,22 @@ in {
     # Neovim config
     home-neovim.enable = true;
 
+    # Browser
+    programs.librewolf = {
+      enable = true;
+      settings = {
+        "sidebar.verticalTabs" = true;
+        "webgl.disabled" = false;
+      };
+      profiles = {
+        default = {
+          name = "default";
+          isDefault = true;
+          extensions.force = true;
+        };
+      };
+    };
+
     # Kitty config
     programs.kitty = {
       enable = true;

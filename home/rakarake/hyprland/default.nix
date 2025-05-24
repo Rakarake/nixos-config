@@ -83,7 +83,7 @@ in {
     xdg.configFile."swaylock.conf".source = ../swaylock.conf;
 
     # Swaync theme file
-    xdg.configFile."swaync/style.css".source = ../swaync.css;
+    #xdg.configFile."swaync/style.css".source = ../swaync.css;
     
     # Dconf settings
     dconf.settings = {

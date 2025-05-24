@@ -36,7 +36,7 @@ in {
         export HISTCONTROL='ignoreboth'  
 
         # Make sure that EDITOR is set
-        export EDITOR='${config.home-xdg.text-editor.bin}'
+        #export EDITOR='${config.home-xdg.text-editor.bin}'
       '';
     };
   };

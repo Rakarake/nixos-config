@@ -42,12 +42,6 @@ in
       };
     };
 
-    # Theming
-    gtk.iconTheme = {
-      package = pkgs.papirus-icon-theme;
-      name = "Papirus-Dark";
-    };
-
     wayland.windowManager.river = {
       enable = true;
       systemd.enable = true;
@@ -206,8 +200,8 @@ in
         
         # Set background and border color
         riverctl background-color 0x002b36
-        riverctl border-color-focused 0xfff5c2e7
-        riverctl border-color-unfocused 0xff45475a
+        riverctl border-color-focused 0xf5bde6
+        riverctl border-color-unfocused 0x494d64
         
         # Set keyboard repeat rate
         riverctl set-repeat 25 600

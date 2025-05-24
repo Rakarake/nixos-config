@@ -32,11 +32,18 @@
   #  };
   #};
   #catppuccin.kvantum.enable = true;
-  catppuccin.kvantum = {
-    enable = true;
-    apply = true;
-    accent = "pink";
-  };
+  stylix.targets.qt.enable = true;
+  #catppuccin.kvantum = {
+  #  enable = true;
+  #  apply = true;
+  #  accent = "pink";
+  #};
+
+  # Enable for firefox/librewolf
+  #stylix.targets.librewolf.profileNames = [ "default" ];
+  #stylix.targets.librewolf.colorTheme.enable = true;
+  #stylix.targets.firefox.profileNames = [ "default" ];
+  #stylix.targets.firefox.colorTheme.enable = true;
 
   # Mangohud
   stylix.targets.mangohud.enable = false;
