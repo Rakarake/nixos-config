@@ -34,6 +34,7 @@ in
       swayidle                     # Idle inhibitor, knows when computer is ueseless
       brightnessctl                # Laptop brighness controls
       nautilus
+      networkmanagerapplet         # Log in to your wifi with this cool utility
     ];
 
     # Screenlocker
@@ -80,6 +81,11 @@ in
 
         # Bar
         waybar &
+
+        # NetworkManager applet
+        gsettings set org.gnome.nm-applet disable-disconnected-notifications "true"
+        gsettings set org.gnome.nm-applet disable-connected-notifications "true"
+        nm-applet &
 
         # Wallpaper
         swaybg -i ${config.home-xdg.wallpaper} &

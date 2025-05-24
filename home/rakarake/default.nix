@@ -15,7 +15,7 @@
     ./dwl
     ./river
     inputs.nix-index-database.hmModules.nix-index
-    inputs.stylix.homeManagerModules.stylix
+    inputs.stylix.homeModules.stylix
     inputs.catppuccin.homeModules.catppuccin
     inputs.xremap.homeManagerModules.default
   ];
