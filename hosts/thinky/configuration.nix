@@ -6,9 +6,10 @@
   # Desktop config
   cfg-global.enable = true;
   cfg-desktop.enable = true;
-  cfg-hyprland.enable = true;
-  cfg-gnome.enable = true;
-  services.xserver.displayManager.gdm.enable = true;
+  cfg-river.enable = true;
+  #cfg-hyprland.enable = true;
+  #cfg-gnome.enable = true;
+  #services.xserver.displayManager.gdm.enable = true;
   #services.displayManager.sddm = {
   #  enable = true;
   #  wayland.enable = true;
@@ -23,10 +24,10 @@
   #  };
   #};
 
-  environment.systemPackages = with pkgs; [
-    # SDDM theme
-    #catppuccin-sddm-corners
-  ];
+  #environment.systemPackages = with pkgs; [
+  #  # SDDM theme
+  #  #catppuccin-sddm-corners
+  #];
 
   # Hostname
   networking.hostName = "thinky";  # Define your hostname.
@@ -36,7 +37,7 @@
 
   # Plymouth has problems covering the initial part of the boot, this makes
   # things black. Kinda stupid, but I like it.
-  boot.kernelParams = ["quiet"];
+  #boot.kernelParams = ["quiet"];
 
   # Enable automatic login for the user.
   #services.xserver.displayManager.autoLogin.enable = true;
@@ -49,15 +50,15 @@
   services.power-profiles-daemon.enable = false;
   services.tlp.enable = true;
 
-  # Enable Plymouth
-  boot.plymouth = {
-    enable = true;
-    logo = ./fraud.png;
-  };
-  boot.initrd.systemd.enable = true;
+  ## Enable Plymouth
+  #boot.plymouth = {
+  #  enable = true;
+  #  logo = ./fraud.png;
+  #};
+  #boot.initrd.systemd.enable = true;
 
-  # Fans???
-  programs.coolercontrol.enable = true;
+  ## Fans???
+  #programs.coolercontrol.enable = true;
 
   # Enable SSD trimming
   services.fstrim = {

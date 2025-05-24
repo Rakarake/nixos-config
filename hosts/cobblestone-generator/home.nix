@@ -1,6 +1,11 @@
 { pkgs, inputs, system, ... }: {
   home-desktop.enable = true;
   home-river.enable = true;
+  home-river.extraConfig = ''
+    # Monitor setup
+    wlr-randr --output DP-1 --mode 1920x1080@144.001007 --pos 1920,0
+    wlr-randr --output DP-2 --mode 1920x1080@143.854996 --pos 0,0
+  '';
   #home-gnome.enable = true;
   #home-hyprland = {
   #  enable = true;

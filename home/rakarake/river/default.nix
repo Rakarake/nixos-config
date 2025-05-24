@@ -17,6 +17,10 @@ in
   ];
   options.home-river = {
     enable = mkEnableOption "river config";
+    extraConfig = mkOption {
+      type = types.str;
+      default = "";
+    };
   };
   config = mkIf cfg.enable {
     home-rofi.enable = true;
@@ -94,12 +98,6 @@ in
 
         # Keyboard options
         riverctl keyboard-layout -options "grp:win_space_toggle,caps:escape" "us,se"
-
-        # Monitor setup
-        # TODO move this to individual config
-        # TODO add adaptive-sync
-        wlr-randr --output DP-1 --mode 1920x1080@144.001007 --pos 1920,0
-        wlr-randr --output DP-2 --mode 1920x1080@143.854996 --pos 0,0
 
         riverctl map normal Super Return spawn "${config.home-xdg.terminal.bin}"
         riverctl map normal Super F spawn "${config.home-xdg.file-manager.bin}"
@@ -264,6 +262,9 @@ in
         
         # Application Autostart
         nextcloud &
+
+        # Extra config
+        ${cfg.extraConfig}
       '';
     };
   };
