@@ -26,10 +26,6 @@ in
     # Swaylock config file
     xdg.configFile."swaylock.conf".source = ../swaylock.conf;
 
-    # Yambar
-    programs.yambar.enable = true;
-    xdg.configFile."yambar/config.yml".source = ./yambar.yml;
-
     # Swaync
     services.swaync.enable = true;
     #xdg.configFile."swaync/style.css".source = ../swaync.css;

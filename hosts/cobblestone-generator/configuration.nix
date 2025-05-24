@@ -4,9 +4,9 @@
 
   cfg-global.enable = true;
   cfg-desktop.enable = true;
-  cfg-hyprland.enable = true;
-  cfg-gnome.enable = true;
-  services.xserver.displayManager.gdm.enable = true;
+  #cfg-hyprland.enable = true;
+  #cfg-gnome.enable = true;
+  #services.xserver.displayManager.gdm.enable = true;
   #services.displayManager.sddm = {
   #  enable = true;
   #  wayland.enable = true;
@@ -20,8 +20,8 @@
   #    };
   #  };
   #};
-  #cfg-wlroots.enable = true;
-  #cfg-river.enable = true;
+  cfg-wlroots.enable = true;
+  cfg-river.enable = true;
   #xdg.portal.wlr.settings.screencast = {
   #  output_name = "DP-1";
   #  max_fps = 30;
