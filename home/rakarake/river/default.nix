@@ -14,14 +14,22 @@ in
       grim                         # Screenshot utility
       slurp                        # Screen "area" picker utility
       swaybg                       # Anime wallpapers
-      swaynotificationcenter       # Notification daemon
-      #pamixer                      # Used for panel sound control
+      #pamixer                     # Used for panel sound control
       alsa-utils                   # keyboard volume control
       playerctl                    # MPRIS global player controller
       swayidle                     # Idle inhibitor, knows when computer is ueseless
       brightnessctl                # Laptop brighness controls
       nautilus
     ];
+
+    # Notification daemon
+    services.mako = {
+      enable = true;
+      settings = {
+        default-timeout = 2;
+        icons = true;
+      };
+    };
 
     # Swaylock config file
     xdg.configFile."swaylock.conf".source = ../swaylock.conf;
@@ -37,6 +45,8 @@ in
         region = "sv_SE.UTF-8";
       };
     };
+
+    services.polkit-gnome.enable = true;
 
     wayland.windowManager.river = {
       enable = true;
@@ -152,7 +162,12 @@ in
         riverctl map normal Super V toggle-float
         
         # Super+F to toggle fullscreen
-        riverctl map normal Super F toggle-fullscreen
+        riverctl map normal Super B toggle-fullscreen
+
+        # Super+Shift+Alt+S to shut down computer
+        riverctl map normal Super+Shift+Alt S spawn systemctl poweroff
+        riverctl map normal Super+Shift+Alt R spawn systemctl reboot
+        riverctl map normal Super+Shift+Alt N spawn systemctl suspend
         
         # Super+{Up,Right,Down,Left} to change layout orientation
         riverctl map normal Super Up    send-layout-cmd rivertile "main-location top"
@@ -211,6 +226,9 @@ in
         # River will send the process group of the init executable SIGTERM on exit.
         riverctl default-layout rivertile
         rivertile -view-padding 0 -outer-padding 0 &
+        
+        # Application Autostart
+        nextcloud &
       '';
     };
   };

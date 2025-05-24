@@ -31,6 +31,9 @@ in
     # Bash config
     home-bash.enable = true;
 
+    # Btop
+    programs.btop.enable = true;
+
     # Session variables
     home.sessionVariables = environmentVariables;
     systemd.user.sessionVariables = environmentVariables;

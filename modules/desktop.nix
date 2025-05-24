@@ -24,7 +24,6 @@ in {
       onefetch
       bat
       htop
-      btop
       neo-cowsay
       inputs.queercat.defaultPackage.${system}
       powertop  # Power usage inspector
