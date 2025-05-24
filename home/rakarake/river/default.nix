@@ -2,6 +2,7 @@
 with lib;
 let
   cfg = config.home-river;
+  swaylockCommand = "pidof swaylock || swaylock -k";
 in
 {
   options.home-river = {
@@ -10,7 +11,6 @@ in
   config = mkIf cfg.enable {
     home-rofi.enable = true;
     home.packages = with pkgs; [
-      swaylock                     # Screenlocker
       grim                         # Screenshot utility
       slurp                        # Screen "area" picker utility
       swaybg                       # Anime wallpapers
@@ -22,21 +22,23 @@ in
       nautilus
     ];
 
-    # Notification daemon
-    services.mako = {
-      enable = true;
-      settings = {
-        default-timeout = 2;
-        icons = true;
-      };
-    };
-
-    # Swaylock config file
-    xdg.configFile."swaylock.conf".source = ../swaylock.conf;
+    # Screenlocker
+    programs.swaylock.enable = true;
 
     # Swaync
     services.swaync.enable = true;
-    #xdg.configFile."swaync/style.css".source = ../swaync.css;
+
+    # Swayidle
+    services.swayidle = {
+      enable = true;
+      events = [
+        { event = "before-sleep"; command = "${pkgs.swaylock}/bin/swaylock -fF"; }
+      ];
+      timeouts = [
+        { timeout = 800; command = "${swaylockCommand}"; }
+        { timeout = 1700; command = "systemctl suspend"; }
+      ];
+    };
     
     # Dconf settings
     dconf.settings = {
@@ -46,6 +48,7 @@ in
       };
     };
 
+    # Polkit, allowing programs to achieve higher privilages
     services.polkit-gnome.enable = true;
 
     wayland.windowManager.river = {
@@ -61,6 +64,12 @@ in
         # Wallpaper
         swaybg -i ${config.home-xdg.wallpaper} &
 
+        # Open notifications
+        riverctl map normal Super N spawn "swaync-client -t -sw"
+
+        # Lock screen
+        riverctl map normal Super Escape spawn "${swaylockCommand}"
+
         # Other stuff
         riverctl rule-add ssd                    # Serverside decorations only
         riverctl set-cursor-warp on-focus-change # Cursor follows focus
@@ -71,10 +80,13 @@ in
         riverctl keyboard-layout -options "grp:win_space_toggle,caps:escape" "us,se"
 
         # Monitor setup
+        # TODO move this to individual config
+        # TODO add adaptive-sync
         wlr-randr --output DP-1 --mode 1920x1080@144.001007 --pos 1920,0
         wlr-randr --output DP-2 --mode 1920x1080@143.854996 --pos 0,0
 
-        riverctl map normal Super Return spawn foot
+        riverctl map normal Super Return spawn "${config.home-xdg.terminal.bin}"
+        riverctl map normal Super F spawn "${config.home-xdg.file-manager.bin}"
         riverctl map normal Super Q close
         riverctl map normal Super+Shift+Alt E exit
         riverctl map normal Super D spawn 'rofi -show combi -modes combi -combi-modes "window,drun,run"'
@@ -165,9 +177,9 @@ in
         riverctl map normal Super B toggle-fullscreen
 
         # Super+Shift+Alt+S to shut down computer
-        riverctl map normal Super+Shift+Alt S spawn systemctl poweroff
-        riverctl map normal Super+Shift+Alt R spawn systemctl reboot
-        riverctl map normal Super+Shift+Alt N spawn systemctl suspend
+        riverctl map normal Super+Alt+Shift S spawn "systemctl poweroff"
+        riverctl map normal Super+Alt+Shift R spawn "systemctl reboot"
+        riverctl map normal Super+Alt+Shift N spawn "systemctl suspend"
         
         # Super+{Up,Right,Down,Left} to change layout orientation
         riverctl map normal Super Up    send-layout-cmd rivertile "main-location top"
