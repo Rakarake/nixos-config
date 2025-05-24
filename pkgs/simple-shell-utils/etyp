@@ -1,8 +1,5 @@
 touch $1
-if typst compile $1; then
-  # Open generated PDF
-  xdg-open $(echo ${"$" + "{1%.*}" + ".pdf"}) &
-fi
+typst compile $1; xdg-open "${1%.*}.pdf" &
 2>/dev/null 1>/dev/null typst watch $1 &
 $EDITOR $1
 echo "closing background tasks"
