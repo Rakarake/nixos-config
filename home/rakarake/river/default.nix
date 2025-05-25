@@ -123,6 +123,9 @@ in
         # with other hardware. This is what I got from my thinkpad.
         riverctl input "*TouchPad*" natural-scroll enabled
 
+        # Touchapd scroll factor
+        riverctl input "*TouchPad*" scroll-factor 0.6
+
         riverctl map normal Super Return spawn "${config.home-xdg.terminal.bin}"
         riverctl map normal Super F spawn "${config.home-xdg.file-manager.bin}"
         riverctl map normal Super Q close
