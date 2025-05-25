@@ -19,12 +19,7 @@ in {
   config = lib.mkIf cfg.enable {
     home-common.enable = true;
     # Default applications
-    home-xdg = {
-      enable = true;
-      # Since we are using a custom mpv
-      audio-player = { package = pkgs.hello; bin = "mpv"; desktop = "mpv.desktop"; };
-      video-player = { package = pkgs.hello; bin = "mpv"; desktop = "mpv.desktop"; };
-    };
+    home-xdg.enable = true;
 
     # Neovim config
     home-neovim.enable = true;

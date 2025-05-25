@@ -75,7 +75,7 @@ in {
       type = types.attrs;
       default = { package = pkgs.evince; bin = "evince"; desktop = "org.gnome.Evince.desktop"; };
     };
-    # TODO set up .desktop file for ediotr
+    # TODO set up .desktop file for text editor
     text-editor = mkOption {
       type = types.attrs;
       default = { package = pkgs.neovim; bin = "nvim"; };
