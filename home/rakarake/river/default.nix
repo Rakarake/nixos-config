@@ -118,6 +118,11 @@ in
         # Keyboard options
         riverctl keyboard-layout -options "grp:win_space_toggle,caps:escape" "us,se"
 
+        # Touchpad naturall scrolling
+        # NOTE: the device using glob might look different on 
+        # with other hardware. This is what I got from my thinkpad.
+        riverctl input "*TouchPad*" natural-scroll enabled
+
         riverctl map normal Super Return spawn "${config.home-xdg.terminal.bin}"
         riverctl map normal Super F spawn "${config.home-xdg.file-manager.bin}"
         riverctl map normal Super Q close
