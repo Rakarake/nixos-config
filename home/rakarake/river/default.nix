@@ -96,6 +96,19 @@ in
         # Lock screen
         riverctl map normal Super Escape spawn "${swaylockCommand}"
 
+        # Screenshot
+        riverctl map normal Super S spawn 'grim -g "$(slurp -d)" - | wl-copy'
+
+        # Screenshots of default monitor
+        riverctl map normal Super R       spawn grim - | wl-copy
+        riverctl map normal Super+Shift R spawn grim
+
+        # Stop screen recording
+        riverctl map normal Super+Alt B spawn pkill --signal SIGINT wl-screenrec
+
+        # Open file in clipboard
+        riverctl map normal Super+Shift O spawn open-file-in-clipboard
+
         # Other stuff
         riverctl rule-add ssd                    # Serverside decorations only
         riverctl set-cursor-warp on-focus-change # Cursor follows focus

@@ -1,10 +1,31 @@
 { pkgs, inputs, system, ... }: {
   home-desktop.enable = true;
   home-river.enable = true;
-  home-river.extraConfig = ''
+  home-river.extraConfig = let
+    mainMonitor = "DP-1";
+    leftMonitor = "DP-2";
+  in ''
     # Monitor setup
-    wlr-randr --output DP-1 --mode 1920x1080@144.001007 --pos 1920,0
-    wlr-randr --output DP-2 --mode 1920x1080@143.854996 --pos 0,0
+    wlr-randr --output ${mainMonitor} --mode 1920x1080@144.001007 --pos 1920,0
+    wlr-randr --output ${leftMonitor} --mode 1920x1080@143.854996 --pos 0,0
+
+    # Monitor screenshots
+    riverctl map normal Super R       spawn grim -o ${leftMonitor} - | wl-copy
+    riverctl map normal Super+Shift R spawn grim -o ${leftMonitor}
+    riverctl map normal Super T       spawn grim -o ${mainMonitor} - | wl-copy
+    riverctl map normal Super+Shift T spawn grim -o ${mainMonitor}
+
+    # Screen recording
+    # To file in Videos + clipboard
+    riverctl map normal Super+Alt V spawn\
+      '${pkgs.wl-screenrec}/bin/wl-screenrec -g "$(slurp)" -f ~/Videos/vibeo.mp4\
+      --audio --audio-device alsa_output.pci-0000_14_00.4.analog-stereo.monitor\
+      ; wl-copy --type "text/uri-list" <<< file://$(realpath ~/Videos/vibeo.mp4)'
+
+    # To file in Videos
+    riverctl map normal Super+Alt+Shift V spawn\
+      '${pkgs.wl-screenrec}/bin/wl-screenrec -g "$(slurp)" -f ~/Videos/vibeo.mp4\
+      --audio --audio-device alsa_output.pci-0000_14_00.4.analog-stereo.monitor'
   '';
   #home-gnome.enable = true;
   #home-hyprland = {
