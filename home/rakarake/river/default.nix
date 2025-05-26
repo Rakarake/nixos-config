@@ -126,6 +126,10 @@ in
         # Touchapd scroll factor
         riverctl input "*TouchPad*" scroll-factor 0.6
 
+        # Touchpad tap
+        riverctl input "*TouchPad*" tap
+        riverctl input "*TouchPad*" tap-button-map left-right-middle
+
         riverctl map normal Super Return spawn "${config.home-xdg.terminal.bin}"
         riverctl map normal Super F spawn "${config.home-xdg.file-manager.bin}"
         riverctl map normal Super Q close
