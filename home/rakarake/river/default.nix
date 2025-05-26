@@ -2,7 +2,7 @@
 with lib;
 let
   cfg = config.home-river;
-  swaylockCommand = "pidof swaylock || swaylock -k";
+  swaylockCommand = "${pkgs.swaylock}/bin/swaylock";
   raiseVolumeCommand = "amixer set Master 5%+";
   lowerVolumeCommand = "amixer set Master 5%-";
   muteVolumeCommand = "amixer set Master toggle";
@@ -20,6 +20,10 @@ in
     extraConfig = mkOption {
       type = types.str;
       default = "";
+    };
+    useSwayidle = mkOption {
+      type = types.bool;
+      default = true;
     };
   };
   config = mkIf cfg.enable {
@@ -48,13 +52,13 @@ in
 
     # Swayidle
     services.swayidle = {
-      enable = true;
+      enable = cfg.useSwayidle;
       events = [
-        { event = "before-sleep"; command = "${pkgs.swaylock}/bin/swaylock -fF"; }
+        { event = "before-sleep"; command = "${swaylockCommand}"; }
       ];
       timeouts = [
         { timeout = 800; command = "${swaylockCommand}"; }
-        { timeout = 1700; command = "systemctl suspend"; }
+        { timeout = 1700; command = "${pkgs.systemd}/bin/systemctl suspend"; }
       ];
     };
     

@@ -1,6 +1,7 @@
 { pkgs, inputs, system, ... }: {
   home-desktop.enable = true;
   home-river.enable = true;
+  home-river.useSwayidle = false;
   home-river.extraConfig = let
     mainMonitor = "DP-1";
     leftMonitor = "DP-2";
