@@ -35,6 +35,9 @@ in
       brightnessctl                # Laptop brighness controls
       nautilus
       networkmanagerapplet         # Log in to your wifi with this cool utility
+      # Clipboard stuff
+      cliphist
+      wl-clip-persist
     ];
 
     # Screenlocker
@@ -105,6 +108,15 @@ in
 
         # Stop screen recording
         riverctl map normal Super+Alt B spawn pkill --signal SIGINT wl-screenrec
+
+        # Persistent clipboard
+        wl-clip-persist --clipboard regular &
+
+        # Clipboard manager
+        wl-paste --type text --watch cliphist store &
+
+        # Access clipboard manager
+        riverctl map normal Super C spawn "cliphist list | rofi -dmenu | cliphist decode | wl-copy"
 
         # Open file in clipboard
         riverctl map normal Super+Shift O spawn open-file-in-clipboard

@@ -65,6 +65,7 @@ vim.opt.clipboard = "unnamedplus"     -- Set clipboard to system's
 vim.opt.secure = true                 -- Secure files yes
 vim.opt.ignorecase = true             -- Case insensitive search when no caps
 vim.opt.smartcase = true
+vim.opt.scrolloff = 7                 -- The space below search result
 
 -- Eternal undo
 vim.opt.swapfile = false  -- No backup/swap files
