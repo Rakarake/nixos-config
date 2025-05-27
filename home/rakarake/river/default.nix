@@ -2,7 +2,7 @@
 with lib;
 let
   cfg = config.home-river;
-  swaylockCommand = "pidof swaylock || swaylock -k";
+  swaylockCommand = "${pkgs.swaylock}/bin/swaylock";
   raiseVolumeCommand = "amixer set Master 5%+";
   lowerVolumeCommand = "amixer set Master 5%-";
   muteVolumeCommand = "amixer set Master toggle";
@@ -20,6 +20,10 @@ in
     extraConfig = mkOption {
       type = types.str;
       default = "";
+    };
+    useSwayidle = mkOption {
+      type = types.bool;
+      default = true;
     };
   };
   config = mkIf cfg.enable {
@@ -51,13 +55,13 @@ in
 
     # Swayidle
     services.swayidle = {
-      enable = true;
+      enable = cfg.useSwayidle;
       events = [
-        { event = "before-sleep"; command = "${pkgs.swaylock}/bin/swaylock -fF"; }
+        { event = "before-sleep"; command = "${swaylockCommand}"; }
       ];
       timeouts = [
         { timeout = 800; command = "${swaylockCommand}"; }
-        { timeout = 1700; command = "systemctl suspend"; }
+        { timeout = 1700; command = "${pkgs.systemd}/bin/systemctl suspend"; }
       ];
     };
     
@@ -129,6 +133,18 @@ in
 
         # Keyboard options
         riverctl keyboard-layout -options "grp:win_space_toggle,caps:escape" "us,se"
+
+        # Touchpad naturall scrolling
+        # NOTE: the device using glob might look different on 
+        # with other hardware. This is what I got from my thinkpad.
+        riverctl input "*TouchPad*" natural-scroll enabled
+
+        # Touchapd scroll factor
+        riverctl input "*TouchPad*" scroll-factor 0.6
+
+        # Touchpad tap
+        riverctl input "*TouchPad*" tap
+        riverctl input "*TouchPad*" tap-button-map left-right-middle
 
         riverctl map normal Super Return spawn "${config.home-xdg.terminal.bin}"
         riverctl map normal Super F spawn "${config.home-xdg.file-manager.bin}"
