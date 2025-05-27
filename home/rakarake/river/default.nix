@@ -122,6 +122,9 @@ in
         # Access clipboard manager
         riverctl map normal Super C spawn "cliphist list | rofi -dmenu | cliphist decode | wl-copy"
 
+        # Clear clipboard manager
+        riverctl map normal Super+Shift C spawn "cliphist wipe"
+
         # Open file in clipboard
         riverctl map normal Super+Shift O spawn open-file-in-clipboard
 
