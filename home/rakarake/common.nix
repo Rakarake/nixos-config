@@ -41,7 +41,13 @@ in
     home.packages = with pkgs; [
       bc  # basic calculator
       typst
-      # Scripts and stuff
+
+      # Rusty utils
+      fd
+      ripgrep
+      ripgrep-all  # Searches within structured documents (pdf, docx etc)
+
+      # My scripts
       cpkgs.amogus
       cpkgs.simple-shell-utils
     ];

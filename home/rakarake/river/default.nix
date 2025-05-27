@@ -32,13 +32,14 @@ in
       grim                         # Screenshot utility
       slurp                        # Screen "area" picker utility
       swaybg                       # Anime wallpapers
-      pamixer                     # Used for panel sound control
+      pamixer                      # Used for panel sound control
       alsa-utils                   # keyboard volume control
       playerctl                    # MPRIS global player controller
       swayidle                     # Idle inhibitor, knows when computer is ueseless
       brightnessctl                # Laptop brighness controls
       nautilus
       networkmanagerapplet         # Log in to your wifi with this cool utility
+      emote                        # emoji picker
       # Clipboard stuff
       cliphist
       wl-clip-persist
@@ -85,6 +86,10 @@ in
         systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
         dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river
         systemctl --user restart xdg-desktop-portal
+
+        # Emoji picker
+        emote &  # Run in background
+        riverctl map normal Super E emote
 
         # Bar
         waybar &
