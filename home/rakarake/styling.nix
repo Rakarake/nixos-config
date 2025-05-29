@@ -32,7 +32,15 @@
   #  };
   #};
   #catppuccin.kvantum.enable = true;
-  stylix.targets.qt.enable = true;
+  #stylix.targets.qt.enable = true;
+
+  # Home manager option needed???
+  qt.enable = true;
+  qt.style.name = "kvantum";
+  qt.platformTheme.name = "kvantum";
+  catppuccin.kvantum.enable = true;
+  catppuccin.kvantum.apply = true;
+
   #catppuccin.kvantum = {
   #  enable = true;
   #  apply = true;
