@@ -11,6 +11,7 @@ let
     federation       =  8448;
     synapse          =  8008;
     http             =    80;
+    https            =   443;
   };
 
   # Minecraft server module template
