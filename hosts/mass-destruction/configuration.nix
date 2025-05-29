@@ -184,7 +184,7 @@ in
       registration_shared_secret_path = /var/lib/matrix-synapse/hotfreddy;
       listeners = [
         {
-          port = 8008;
+          port = ports.synapse;
           bind_addresses = [ "::1" ];
           type = "https";
           tls = false;
@@ -205,6 +205,29 @@ in
     file = ../../secrets/matrix-synapse-secret-config.age;
     owner = "matrix-synapse";
     group = "matrix-synapse";
+  };
+
+  # Let's Encrypt
+  security.acme = {
+    acceptTerms = true;
+    defaults.email = "scolipede2@hotmail.com";
+  };
+
+  # Proxy, enable https etc
+  services.nginx = {
+    enable = true;
+    recommendedProxySettings = true;
+    virtualHosts = {
+      # Nextcloud
+      "chat.mdf.farm" = {
+        forceSSL = true;
+        enableACME = true;  # Let's encrypt TLS automated, not certbot
+        locations."/" = {
+          proxyWebsockets = true;
+          proxyPass = "http://localhost:${toString ports.synapse}";
+        };
+      };
+    };
   };
 
   # Wireguard
