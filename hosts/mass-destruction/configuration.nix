@@ -186,7 +186,7 @@ in
         {
           port = ports.synapse;
           bind_addresses = [ "::1" ];
-          type = "https";
+          type = "http";
           tls = false;
           x_forwarded = true;
           resources = [
