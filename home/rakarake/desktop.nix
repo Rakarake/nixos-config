@@ -174,6 +174,7 @@ in {
       okteta
       krita
       gimp3
+      nheko
 
       # Emulators
       fceux
@@ -202,6 +203,7 @@ in {
 
     # Moment
     nixpkgs.config.permittedInsecurePackages = [
+      "olm-3.2.16"         # For matrix client
       "electron-27.3.11"
     ];
 
