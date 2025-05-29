@@ -1,4 +1,4 @@
-{ pkgs, lib, ssh-keys, ... }:
+{ config, pkgs, lib, ssh-keys, ... }:
 
 let 
   # Open TCP/UDP ports
@@ -8,8 +8,8 @@ let
     wireguard        = 51820;
     minecraft        =  8069;
     openttd          =  3979;
-    conduit1         =  443;
-    conduit          =  8448;
+    federation       =  8448;
+    synapse          =  8008;
   };
 
   # Minecraft server module template
@@ -112,7 +112,7 @@ in
     ffmpeg
     waypipe
     openttd
-    matrix-conduit
+    matrix-synapse
   ];
 
   # SSH daemon
@@ -152,6 +152,59 @@ in
     LC_PAPER = "sv_SE.UTF-8";
     LC_TELEPHONE = "sv_SE.UTF-8";
     LC_TIME = "sv_SE.UTF-8";
+  };
+
+  # Conduit
+  #services.matrix-conduit = {
+  #  enable = true;
+   # settings.global = {
+     # server_name = "127.0.0.1";
+    #  databse_backend = "sqlite";
+   #   port = 8448;
+  #    address = "0.0.0.0";
+ #     registation_token = "gabagool";
+#      allow_registration = true;
+#    };
+#  };
+
+  # Synapse
+  services.postgresql.enable = true;
+  services.postgresql.initialScript = pkgs.writeText "synapse-init.sql" ''
+    CREATE ROLE "matrix-synapse" WITH LOGIN PASSWORD 'synapse';
+    CREATE DATABASE "matrix-synapse" WITH OWNER "matrix-synapse"
+      TEMPLATE template0
+      LC_COLLATE = "C"
+      LC_CTYPE = "C";
+  '';
+
+  services.matrix-synapse = {
+    enable = true;
+    settings = {
+      server_name = "chat.mdf.farm";
+      registration_shared_secret_path = /var/lib/matrix-synapse/hotfreddy;
+      listeners = [
+        {
+          port = 8008;
+          bind_addresses = [ "::1" ];
+          type = "https";
+          tls = false;
+          x_forwarded = true;
+          resources = [
+            {
+              names = [ "client" "federation" ];
+              compress = false;
+            }
+          ];
+        }
+      ];
+    };
+  };
+
+  # not synapse lol
+  age.secrets.matrix-synapse-secret-config = {
+    file = ../../secrets/matrix-synapse-secret-config.age;
+    owner = "matrix-synapse";
+    group = "matrix-synapse";
   };
 
   # Wireguard
