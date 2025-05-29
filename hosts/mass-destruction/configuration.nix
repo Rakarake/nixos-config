@@ -10,6 +10,7 @@ let
     openttd          =  3979;
     federation       =  8448;
     synapse          =  8008;
+    http             =    80;
   };
 
   # Minecraft server module template
