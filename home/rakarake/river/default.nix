@@ -116,7 +116,7 @@ in
         riverctl map normal Super+Shift R spawn grim
 
         # Stop screen recording
-        riverctl map normal Super+Alt B spawn pkill --signal SIGINT wl-screenrec
+        riverctl map normal Super+Alt B spawn "pkill --signal SIGINT wl-screenrec"
 
         # Persistent clipboard
         wl-clip-persist --clipboard regular &

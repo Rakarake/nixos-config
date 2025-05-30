@@ -11,10 +11,10 @@
     wlr-randr --output ${leftMonitor} --mode 1920x1080@143.854996 --pos 0,0
 
     # Monitor screenshots
-    riverctl map normal Super R       spawn grim -o ${leftMonitor} - | wl-copy
-    riverctl map normal Super+Shift R spawn grim -o ${leftMonitor}
-    riverctl map normal Super T       spawn grim -o ${mainMonitor} - | wl-copy
-    riverctl map normal Super+Shift T spawn grim -o ${mainMonitor}
+    riverctl map normal Super R       spawn "grim -o ${leftMonitor} - | wl-copy"
+    riverctl map normal Super+Shift R spawn "grim -o ${leftMonitor}"
+    riverctl map normal Super T       spawn "grim -o ${mainMonitor} - | wl-copy"
+    riverctl map normal Super+Shift T spawn "grim -o ${mainMonitor}"
 
     # Screen recording
     # To file in Videos + clipboard

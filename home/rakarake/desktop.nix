@@ -174,7 +174,7 @@ in {
       okteta
       krita
       gimp3
-      nheko
+      fluffychat
 
       # Emulators
       fceux
@@ -203,7 +203,8 @@ in {
 
     # Moment
     nixpkgs.config.permittedInsecurePackages = [
-      "olm-3.2.16"         # For matrix client
+      "olm-3.2.16"               # For nheko matrix client
+      "fluffychat-linux-1.26.1"  # Fluffychat
       "electron-27.3.11"
     ];
 
