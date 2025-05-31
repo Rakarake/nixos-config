@@ -91,7 +91,6 @@ in
       
       # Nix Fast
       n = "cd ~/Projects/nixos-config";
-      flake = "nix flake";
       nd = "nix develop";
       rebuild = "${pkgs.nh}/bin/nh os switch .";
       rebuildboot = "${pkgs.nh}/bin/nh os boot .";

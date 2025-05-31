@@ -1,0 +1,2 @@
+# Simple wrapper around "nix shell nixpkgs#"
+nix shell nixpkgs#$(echo $1)
