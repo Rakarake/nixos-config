@@ -204,6 +204,7 @@ in
   };
 
   # not synapse lol
+  age.identityPaths = [ "/home/rakarake/.ssh/id_ed25519" "/home/magarnicle/.ssh/id_ed25519" ]; 
   age.secrets.hotfreddy = {
     file = ../../secrets/hotfreddy.age;
     owner = "matrix-synapse";
