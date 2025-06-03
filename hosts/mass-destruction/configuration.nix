@@ -183,7 +183,8 @@ in
     enable = true;
     settings = {
       server_name = "chat.mdf.farm";
-      registration_shared_secret_path = config.age.secrets.monero-rpc-login.path;
+      #serve_server_wellknown = true;
+      registration_shared_secret_path = config.age.secrets.hotfreddy.path;
       listeners = [
         {
           port = ports.synapse;
@@ -203,7 +204,7 @@ in
   };
 
   # not synapse lol
-  age.secrets.matrix-synapse-secret-config = {
+  age.secrets.hotfreddy = {
     file = ../../secrets/hotfreddy.age;
     owner = "matrix-synapse";
     group = "matrix-synapse";
