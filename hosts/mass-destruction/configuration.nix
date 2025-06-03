@@ -183,7 +183,7 @@ in
     enable = true;
     settings = {
       server_name = "chat.mdf.farm";
-      #serve_server_wellknown = true;
+      serve_server_wellknown = true;
       registration_shared_secret_path = config.age.secrets.hotfreddy.path;
       listeners = [
         {
