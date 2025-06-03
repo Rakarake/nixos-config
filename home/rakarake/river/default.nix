@@ -89,7 +89,7 @@ in
 
         # Emoji picker
         emote &  # Run in background
-        riverctl map normal Super E emote
+        riverctl map normal Super E spawn emote
 
         # Bar
         waybar &
