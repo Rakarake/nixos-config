@@ -300,6 +300,14 @@ in
           proxyPass = "http://localhost:${toString ports.synapse}";
         };
       };
+      # Element, matrix frontend
+      "element.mdf.farm" = {
+        forceSSL = true;
+        enableACME = true;  # Let's encrypt TLS automated, not certbot
+        locations."/" = {
+          root = pkgs.element-web;
+        };
+      };
     };
   };
 
