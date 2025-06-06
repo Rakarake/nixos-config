@@ -12,6 +12,8 @@ let
     synapse          =  8008;
     http             =    80;
     https            =   443;
+    coturn           =  3478;
+    coturn2          =  5349;
   };
 
   # Minecraft server module template
@@ -93,10 +95,6 @@ in
     { device = "/dev/sda";
       fsType = "bcachefs";
     };
-
-  # Open ports
-  networking.firewall.allowedTCPPorts = lib.attrsets.attrValues ports;
-  networking.firewall.allowedUDPPorts = lib.attrsets.attrValues ports;
 
   # Utility programs
   environment.systemPackages = with pkgs; [
@@ -181,10 +179,15 @@ in
 
   services.matrix-synapse = {
     enable = true;
-    settings = {
+    settings = with config.services.coturn; {
       server_name = "chat.mdf.farm";
       serve_server_wellknown = true;
       registration_shared_secret_path = config.age.secrets.hotfreddy.path;
+
+      turn_uris = ["turn:${realm}:3478?transport=udp" "turn:${realm}:3478?transport=tcp"];
+      turn_shared_secret_path = config.age.secrets.freakyfoxy.path;
+      turn_user_lifetime = "1h";
+
       listeners = [
         {
           port = ports.synapse;
@@ -203,12 +206,81 @@ in
     };
   };
 
+  services.coturn = rec {
+    enable = true;
+    no-cli = true;
+    no-tcp-relay = true;
+    min-port = 49000;
+    max-port = 50000;
+    use-auth-secret = true;
+    static-auth-secret-file = config.age.secrets.freakyfoxy.path;
+    realm = "voip.mdf.farm";
+    cert = "${config.security.acme.certs.${realm}.directory}/full.pem";
+    pkey = "${config.security.acme.certs.${realm}.directory}/key.pem";
+    extraConfig = ''
+      # for debugging
+      verbose
+      # ban private IP ranges
+      no-multicast-peers
+      denied-peer-ip=0.0.0.0-0.255.255.255
+      denied-peer-ip=10.0.0.0-10.255.255.255
+      denied-peer-ip=100.64.0.0-100.127.255.255
+      denied-peer-ip=127.0.0.0-127.255.255.255
+      denied-peer-ip=169.254.0.0-169.254.255.255
+      denied-peer-ip=172.16.0.0-172.31.255.255
+      denied-peer-ip=192.0.0.0-192.0.0.255
+      denied-peer-ip=192.0.2.0-192.0.2.255
+      denied-peer-ip=192.88.99.0-192.88.99.255
+      denied-peer-ip=192.168.0.0-192.168.255.255
+      denied-peer-ip=198.18.0.0-198.19.255.255
+      denied-peer-ip=198.51.100.0-198.51.100.255
+      denied-peer-ip=203.0.113.0-203.0.113.255
+      denied-peer-ip=240.0.0.0-255.255.255.255
+      denied-peer-ip=::1
+      denied-peer-ip=64:ff9b::-64:ff9b::ffff:ffff
+      denied-peer-ip=::ffff:0.0.0.0-::ffff:255.255.255.255
+      denied-peer-ip=100::-100::ffff:ffff:ffff:ffff
+      denied-peer-ip=2001::-2001:1ff:ffff:ffff:ffff:ffff:ffff:ffff
+      denied-peer-ip=2002::-2002:ffff:ffff:ffff:ffff:ffff:ffff:ffff
+      denied-peer-ip=fc00::-fdff:ffff:ffff:ffff:ffff:ffff:ffff:ffff
+      denied-peer-ip=fe80::-febf:ffff:ffff:ffff:ffff:ffff:ffff:ffff
+    '';
+  };
+  # open the firewall TODO merge with other firewall settings
+  networking.firewall = {
+    interfaces.enp4s0 = let
+      range = with config.services.coturn; lib.singleton {
+        from = min-port;
+        to = max-port;
+      };
+    in
+    {
+      allowedUDPPortRanges = range;
+      allowedUDPPorts = lib.attrsets.attrValues ports;
+      allowedTCPPortRanges = [ ];
+      allowedTCPPorts = lib.attrsets.attrValues ports;
+    };
+  };
+
+  security.acme.certs = {
+    "voip.mdf.farm" = {
+      group = "turnserver";
+      postRun = "systemctl reload nginx.service; systemctl restart coturn.service";
+    };
+  };
+
   # not synapse lol
   age.identityPaths = [ "/home/rakarake/.ssh/id_ed25519" "/home/magarnicle/.ssh/id_ed25519" ]; 
   age.secrets.hotfreddy = {
     file = ../../secrets/hotfreddy.age;
     owner = "matrix-synapse";
     group = "matrix-synapse";
+  };
+  age.secrets.freakyfoxy = {
+    file = ../../secrets/freakyfoxy.age;
+    mode = "770";
+    owner = "turnserver";
+    group = "turnserver";
   };
 
   # Let's Encrypt
@@ -222,7 +294,17 @@ in
     enable = true;
     recommendedProxySettings = true;
     virtualHosts = {
-      # Nextcloud
+      # Coturn
+      "voip.mdf.farm" = {
+        forceSSL = true;
+        enableACME = true;  # Let's encrypt TLS automated, not certbot
+        #locations."/".root = "/var/www/test";
+        #locations."/" = {
+        #  proxyWebsockets = true;
+        #  proxyPass = "http://localhost";
+        #};
+      };
+      # Matrix
       "chat.mdf.farm" = {
         forceSSL = true;
         enableACME = true;  # Let's encrypt TLS automated, not certbot
@@ -271,6 +353,8 @@ in
       extraGroups = [ "networkmanager" "wheel" "nextcloud" ];
       openssh.authorizedKeys.keys = ssh-keys.rakarake;
     };
+    users.nginx.extraGroups = [ "turnserver" ];
+    users.matrix-synapse.extraGroups = [ "turnserver" ];
     # Backup user
     users.backup = {
       isNormalUser = true;
