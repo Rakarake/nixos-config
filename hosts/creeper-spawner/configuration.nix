@@ -154,7 +154,6 @@ in
     htop
     btop
     tmux
-    jdk17
     bcachefs-tools
     fastfetch
     #cloudflared
