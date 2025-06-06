@@ -174,7 +174,7 @@ in {
       okteta
       krita
       gimp3
-      fluffychat
+      element-desktop
 
       # Emulators
       fceux

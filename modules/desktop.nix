@@ -183,7 +183,7 @@ in {
         defaultNetwork.settings.dns_enabled = true;
       };
       # Virtualbox
-      virtualbox.host.enable = true;
+      #virtualbox.host.enable = true;
     };
 
     # Wireshark

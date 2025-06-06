@@ -154,19 +154,6 @@ in
     LC_TIME = "sv_SE.UTF-8";
   };
 
-  # Conduit
-  #services.matrix-conduit = {
-  #  enable = true;
-   # settings.global = {
-     # server_name = "127.0.0.1";
-    #  databse_backend = "sqlite";
-   #   port = 8448;
-  #    address = "0.0.0.0";
- #     registation_token = "gabagool";
-#      allow_registration = true;
-#    };
-#  };
-
   # Synapse
   services.postgresql.enable = true;
   services.postgresql.initialScript = pkgs.writeText "synapse-init.sql" ''
