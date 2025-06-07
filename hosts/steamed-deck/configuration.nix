@@ -7,7 +7,7 @@
 
   cfg-global.enable = true;
   cfg-desktop.enable = true;
-  cfg-hyprland.enable = true;
+  cfg-river.enable = true;
   services.xserver.displayManager.gdm.enable = true;
 
   networking.hostName = "steamed-deck";
@@ -16,6 +16,6 @@
   jovian.steam.enable = true;
   jovian.devices.steamdeck.enable = true;
   jovian.steamos.useSteamOSConfig = true;
-  jovian.steam.desktopSession = "Gnome";
+  jovian.steam.desktopSession = "river";
 }
 
