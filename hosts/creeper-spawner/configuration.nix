@@ -230,12 +230,12 @@ in
   };
 
   # Jellyfin
-  nixpkgs.config.packageOverrides = pkgs: {
-    vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
-  };
-  services.jellyfin = {
-    enable = true;
-  };
+  #nixpkgs.config.packageOverrides = pkgs: {
+  #  vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
+  #};
+  #services.jellyfin = {
+  #  enable = true;
+  #};
 
   # Nginx Config
   services.nginx = {
