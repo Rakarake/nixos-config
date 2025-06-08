@@ -17,7 +17,13 @@ in
   ];
   options.home-river = {
     enable = mkEnableOption "river config";
+    # Extra config at the end of the config file
     extraConfig = mkOption {
+      type = types.str;
+      default = "";
+    };
+    # Extra config in the beginning of the config file
+    extraConfigTop = mkOption {
       type = types.str;
       default = "";
     };
@@ -81,6 +87,8 @@ in
       enable = true;
       systemd.enable = true;
       extraConfig = ''
+        ${cfg.extraConfigTop}
+
         # Required to get screensharing to work https://wiki.archlinux.org/title/River#Troubleshooting
         # Apperently the home manager module is just not maintained ☹️
         systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP

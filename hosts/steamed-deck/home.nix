@@ -6,6 +6,11 @@
   home-gnome.enable = true;
   home-river = {
     enable = true;
+    extraConfigTop = let
+      deckMonitor = "eDP-1";
+    in ''
+      wlr-randr --output ${deckMonitor} --transform 270 --pos 1280,0
+    '';
   };
   #home-hyprland = {
   #  enable = true;
