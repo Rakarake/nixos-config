@@ -130,12 +130,27 @@
     xmrig
   ];
 
+  # Put ROCM HIP in known path for some apps to work
+  systemd.tmpfiles.rules = 
+  let
+    rocmEnv = pkgs.symlinkJoin {
+      name = "rocm-combined";
+      paths = with pkgs.rocmPackages; [
+        rocblas
+        hipblas
+        clr
+      ];
+    };
+  in [
+    "L+    /opt/rocm   -    -    -     -    ${rocmEnv}"
+  ];
+
   # Enable Plymouth
-  boot.plymouth = {
-    enable = true;
-    logo = ./kirb.png;
-  };
-  boot.initrd.systemd.enable = true;
+  #boot.plymouth = {
+  #  enable = true;
+  #  logo = ./kirb.png;
+  #};
+  #boot.initrd.systemd.enable = true;
 
   # Guest User
   users.users.guest = {

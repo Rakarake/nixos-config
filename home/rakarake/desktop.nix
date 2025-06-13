@@ -147,7 +147,7 @@ in {
       mullvad-vpn
       fragments
       #varia
-      blender
+      blender-hip  # blender compiled to detect hip/rocm support
       #logseq
       inkscape
       parabolic
