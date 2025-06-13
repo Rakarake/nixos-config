@@ -2,7 +2,7 @@
 with lib;
 let
   cfg = config.home-river;
-  swaylockCommand = "${pkgs.swaylock}/bin/swaylock";
+  swaylockCommand = "${pkgs.swaylock}/bin/swaylock -f";
   raiseVolumeCommand = "amixer set Master 5%+";
   lowerVolumeCommand = "amixer set Master 5%-";
   muteVolumeCommand = "amixer set Master toggle";
