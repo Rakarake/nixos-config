@@ -85,6 +85,9 @@ in {
       enable = true;
     };
 
+    # Rescue kernel panics
+    boot.crashDump.enable = true;
+
     # GPG
     services.pcscd.enable = true;
     programs.gnupg.agent = {
