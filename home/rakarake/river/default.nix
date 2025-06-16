@@ -158,6 +158,8 @@ in
         # Touchapd scroll factor
         riverctl input "*TouchPad*" scroll-factor 0.6
 
+        # Clicking with the touchpad with n number of fingers
+        riverctl input "*TouchPad*" click-method clickfinger
         # Touchpad tap
         riverctl input "*TouchPad*" tap enabled
         riverctl input "*TouchPad*" tap-button-map left-right-middle
