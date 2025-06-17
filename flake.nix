@@ -232,6 +232,13 @@
           system = "x86_64-linux";
         }
         {
+          hostname = "steamed-deck";
+          user = "rakarake";
+          variation = "dark";
+          nixpkgs = nixpkgs-unstable;
+          system = "x86_64-linux";
+        }
+        {
           hostname = "mass-destruction";
           user = "rakarake";
           variation = "default";
