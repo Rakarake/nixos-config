@@ -3,10 +3,10 @@ with lib;
 let
   cfg = config.home-river;
   swaylockCommand = "${pkgs.swaylock}/bin/swaylock -f";
-  raiseVolumeCommand = "amixer set Master 5%+";
-  lowerVolumeCommand = "amixer set Master 5%-";
-  muteVolumeCommand = "amixer set Master toggle";
-  muteMicCommand = "amixer set Capture toggle";
+  raiseVolumeCommand = "wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+"; 
+  lowerVolumeCommand = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-";
+  muteVolumeCommand = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
+  muteMicCommand = "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
   playerNext = "playerctl next";
   playerPrev = "playerctl previous";
   playerPause = "playerctl play-pause";
@@ -50,6 +50,17 @@ in
       cliphist
       wl-clip-persist
     ];
+
+    # Xremap
+    services.xremap = {
+      enable = true;
+      config.modmap = [
+        {
+          name = "Global";
+          remap = { "CapsLock" = "Esc"; };
+        }
+      ];
+    };
 
     # Screenlocker
     programs.swaylock.enable = true;
@@ -158,6 +169,8 @@ in
         # Touchapd scroll factor
         riverctl input "*TouchPad*" scroll-factor 0.6
 
+        # Clicking with the touchpad with n number of fingers
+        riverctl input "*TouchPad*" click-method clickfinger
         # Touchpad tap
         riverctl input "*TouchPad*" tap enabled
         riverctl input "*TouchPad*" tap-button-map left-right-middle

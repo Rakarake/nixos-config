@@ -10,6 +10,9 @@
       deckMonitor = "eDP-1";
     in ''
       wlr-randr --output ${deckMonitor} --transform 270 --pos 1280,0
+      # For some reason, all outputs are DP-x
+      wlr-randr --output DP-1 --right-of ${deckMonitor}
+      wlr-randr --output DP-2 --left-of ${deckMonitor}
     '';
   };
   #home-hyprland = {
