@@ -56,7 +56,6 @@ in {
       wireshark
       libresprite
       qemu
-      comma
       nix-tree
       man-pages
       man-pages-posix

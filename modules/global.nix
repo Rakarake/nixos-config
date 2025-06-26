@@ -11,6 +11,7 @@ in {
       # Make the home manager command available
       pkgs.home-manager
       inputs.agenix.packages."${system}".default
+      comma
     ];
     nixpkgs.overlays = [
       # Replace openssl with libressl
