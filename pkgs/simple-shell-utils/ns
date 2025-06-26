@@ -1,2 +1,8 @@
 # Simple wrapper around "nix shell nixpkgs#"
-NIXPKGS_ALLOW_UNFREE=1 nix shell --impure nixpkgs#$(echo $1)
+for var in "$@"
+do
+    acc="$acc nixpkgs#$var"
+done
+echo $acc
+NIXPKGS_ALLOW_UNFREE=1 nix shell --impure $acc
+
