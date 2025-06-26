@@ -325,7 +325,7 @@ in
     # Extra caching
     configureRedis = true;
     # Mail server for atuomatic "registration emails"
-    extraOptions = {
+    settings = {
       mail_smtpmode = "sendmail";
       mail_sendmailmode = "pipe";
     };
