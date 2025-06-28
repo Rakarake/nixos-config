@@ -78,6 +78,7 @@ in {
       waypipe
       kdePackages.okular
       android-studio
+      davfs2
     ];
 
     # Nh
@@ -336,6 +337,7 @@ in {
         "dialout"
       ];
     };
+    users.groups.davfs2 = {};
 
     # Needed for xremap home-manager config to work
     hardware.uinput.enable = true;
