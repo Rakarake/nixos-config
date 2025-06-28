@@ -1,4 +1,4 @@
-{ lib, ... }: {
+{ lib, pkgs, ... }: {
   # Wallpaper
   home-xdg.wallpaper = lib.mkForce ./wallpaper.png;
 
@@ -13,6 +13,12 @@
       # For some reason, all outputs are DP-x
       wlr-randr --output DP-1 --right-of ${deckMonitor}
       wlr-randr --output DP-2 --left-of ${deckMonitor}
+
+      riverctl map normal Super+Alt V spawn\
+        'wl-screenrec -g "$(slurp)" -f ~/Videos/vibeo.mp4\
+        --audio --audio-device\
+        "alsa_loopback_device.alsa_output.pci-0000_04_00.5-platform-acp5x_mach.0.HiFi__Speaker__sink.monitor"\
+        ; wl-copy --type "text/uri-list" <<< file://$(realpath ~/Videos/vibeo.mp4)'
     '';
   };
   #home-hyprland = {
