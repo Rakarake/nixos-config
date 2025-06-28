@@ -7,10 +7,11 @@ in {
     enable = mkEnableOption "A module which should be enabled everywhare";
   };
   config = mkIf cfg.enable {
-    environment.systemPackages = [
+    environment.systemPackages = with pkgs; [
       # Make the home manager command available
       pkgs.home-manager
       inputs.agenix.packages."${system}".default
+      comma
     ];
     nixpkgs.overlays = [
       # Replace openssl with libressl

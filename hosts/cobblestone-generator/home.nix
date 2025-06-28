@@ -19,14 +19,9 @@
     # Screen recording
     # To file in Videos + clipboard
     riverctl map normal Super+Alt V spawn\
-      '${pkgs.wl-screenrec}/bin/wl-screenrec -g "$(slurp)" -f ~/Videos/vibeo.mp4\
+      'wl-screenrec -g "$(slurp)" -f ~/Videos/vibeo.mp4\
       --audio --audio-device alsa_output.pci-0000_14_00.4.analog-stereo.monitor\
       ; wl-copy --type "text/uri-list" <<< file://$(realpath ~/Videos/vibeo.mp4)'
-
-    # To file in Videos
-    riverctl map normal Super+Alt+Shift V spawn\
-      '${pkgs.wl-screenrec}/bin/wl-screenrec -g "$(slurp)" -f ~/Videos/vibeo.mp4\
-      --audio --audio-device alsa_output.pci-0000_14_00.4.analog-stereo.monitor'
   '';
   #home-gnome.enable = true;
   #home-hyprland = {

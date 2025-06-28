@@ -36,6 +36,7 @@ in
     home-rofi.enable = true;
     home.packages = with pkgs; [
       grim                         # Screenshot utility
+      wl-screenrec                 # Screen recorder
       slurp                        # Screen "area" picker utility
       swaybg                       # Anime wallpapers
       pamixer                      # Used for panel sound control
