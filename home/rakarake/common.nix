@@ -112,7 +112,7 @@ in
         set -g allow-passthrough
 
         # Diable status bar
-        set -g status off
+        #set -g status off
 
         # Proper color mode, https://unix.stackexchange.com/a/734894
         #set -g default-terminal "xterm-256color"
