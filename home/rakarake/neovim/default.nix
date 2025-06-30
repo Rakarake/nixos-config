@@ -52,7 +52,7 @@ in
         nvim-treesitter.withAllGrammars
         plenary-nvim
         telescope-nvim
-        #catppuccin-nvim  # Theme
+        harpoon2
         toggleterm-nvim
         vimwiki
         typst-vim
