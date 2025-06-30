@@ -113,6 +113,11 @@ in
 
         # Diable status bar
         set -g status off
+
+        # Proper color mode, https://unix.stackexchange.com/a/734894
+        #set -g default-terminal "xterm-256color"
+        set-option -g default-terminal "tmux-256color" 
+        set-option -ga terminal-overrides ",xterm-256color:Tc"
       '';
     };
 
