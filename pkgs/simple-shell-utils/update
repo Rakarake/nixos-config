@@ -4,9 +4,12 @@
 # without removing direnv artifacts.
 # Takes the home-manager variation (light/dark/home) as an argument.
 
-cd ~/Projects/nixos-config/
-nix flake update
-nh home switch -c $USER@$HOSTNAME-$1 . \
+cd ~/Projects/nixos-config/ \
+&& nix flake update \
+&& nh home switch -c $USER@$HOSTNAME-$1 . \
 && flatpak update -y \
-&& nh os switch .
+&& nh os switch . \
+&& git add flake.lock \
+&& git commit -m 'flake update' \
+&& git push
 
