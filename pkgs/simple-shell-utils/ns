@@ -1,3 +1,4 @@
+#!/bin/sh
 # Simple wrapper around "nix shell nixpkgs#"
 for var in "$@"
 do

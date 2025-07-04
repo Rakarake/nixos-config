@@ -1,0 +1,12 @@
+#!/bin/sh
+# Script for updating everything.
+# Does a system rebuild, a home manager rebuild, flatpak update and garbage collects the nix store
+# without removing direnv artifacts.
+# Takes the home-manager variation (light/dark/home) as an argument.
+
+cd ~/Projects/nixos-config/
+nix flake update
+nh home switch -c $USER@$HOSTNAME-$1 . \
+&& flatpak update -y \
+&& nh os switch .
+
