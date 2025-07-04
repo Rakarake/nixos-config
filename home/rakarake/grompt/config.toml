@@ -6,14 +6,15 @@ separate_changes = true
 remote_icon = true
 print_error = false
 icon_override = [
-        "https://github.com| ",
-        "git@github.com| ",
-        "https://gitlab.com| |252,109,38",
-        "git@gitlab.com| |252,109,38",
+        "https://github.com|",
+        "git@github.com|",
+        "https://gitlab.com||252,109,38",
+        "git@gitlab.com||252,109,38",
         "git@git.chalmers.se|󰇷|252,109,38",
-        "git@bakery|🪷",
-        "https://codeberg.org| ",
-        "git@codeberg.org| ",
+        "https://git.rakarake.xyz|🪷",
+        "git@git.rakarake.xyz|🪷",
+        "https://codeberg.org|",
+        "git@codeberg.org|",
     ]
 icon_color = true
 commit_arrow = true
