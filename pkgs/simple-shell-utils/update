@@ -2,14 +2,26 @@
 # Script for updating everything.
 # Does a system rebuild, a home manager rebuild, flatpak update and garbage collects the nix store
 # without removing direnv artifacts.
-# Takes the home-manager variation (light/dark/home) as an argument.
+# Also does a nix-store --optimize.
 
-cd ~/Projects/nixos-config/ \
+if ! ([ "$1" = "push" ] || [ "$1" = "pull" ]);
+    then echo "argument 1: wether to push/pull, is needed"; exit 1;
+fi
+if ! ([ "$1" = "light" ] || [ "$1" = "dark" ] || [ "$1" = "home" ]);
+    then echo "argument 2: variation light/dark/home, is needed"; exit 1;
+fi
+
+cd ~/Projects/nixos-config \
+&& git pull \
 && nix flake update \
-&& nh home switch -c $USER@$HOSTNAME-$1 . \
+&& nh home switch -c $USER@$HOSTNAME-$2 . \
 && flatpak update -y \
 && nh os switch . \
-&& git add flake.lock \
-&& git commit -m 'flake update' \
-&& git push
+&& if [ "$1" = "push" ]; then {
+     git add flake.lock \
+     && git commit -m 'flake update' \
+     && git push
+   } fi \
+&& nh clean all --k 3 --K 14d \
+&& nix-store --optimize
 
