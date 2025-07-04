@@ -14,6 +14,7 @@
     ./rofi
     ./dwl
     ./river
+    ./grompt
     inputs.nix-index-database.hmModules.nix-index
     inputs.stylix.homeModules.stylix
     inputs.catppuccin.homeModules.catppuccin

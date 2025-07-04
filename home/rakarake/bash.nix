@@ -11,7 +11,7 @@ in {
     prompt = mkOption {
       type = types.str;
       # Minimal prompt without hostname
-      default = ''\[\033[1;32m\]\W $ \[\033[m\]'';
+      default = ''\[\033[1;32m\]\W\[\033[m\]$(grompt)\[\033[1;32m\] $\[\033[m\] '';
     };
   };
   config = mkIf cfg.enable {

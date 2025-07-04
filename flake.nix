@@ -63,6 +63,12 @@
     hyprland = {
       url = "github:hyprwm/Hyprland";
     };
+
+    # Grompt
+    grompt = {
+      url ="github:loafey/grompt";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
   };
   outputs = { self, nixpkgs-stable, nixpkgs-unstable, home-manager, ... }@inputs:
     let

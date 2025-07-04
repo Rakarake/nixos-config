@@ -47,6 +47,7 @@ in
       nautilus
       networkmanagerapplet         # Log in to your wifi with this cool utility
       emote                        # emoji picker
+      hyprpicker                   # Color picker
       # Clipboard stuff
       cliphist
       wl-clip-persist
@@ -110,6 +111,10 @@ in
         # Emoji picker
         emote &  # Run in background
         riverctl map normal Super E spawn emote
+
+        # Color picker
+        riverctl map normal Super A spawn 'hyprpicker --format=rgb | wl-copy'
+        riverctl map normal Super X spawn 'hyprpicker --format=hex | wl-copy'
 
         # Bar
         waybar &
