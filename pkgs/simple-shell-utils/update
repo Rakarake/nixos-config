@@ -13,7 +13,7 @@ fi
 
 cd ~/Projects/nixos-config \
 && git pull \
-&& nix flake update \
+&& if [ "$1" = "push" ]; then nix flake update; fi \
 && nh home switch -c $USER@$HOSTNAME-$2 . \
 && flatpak update -y \
 && nh os switch . \
