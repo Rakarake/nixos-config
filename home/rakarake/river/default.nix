@@ -51,6 +51,7 @@ in
       # Clipboard stuff
       cliphist
       wl-clip-persist
+      rofi-network-manager         # Simple NetworkManager interface
     ];
 
     # Xremap
@@ -69,9 +70,6 @@ in
 
     # Swaync
     services.swaync.enable = true;
-
-    # Bar
-    home-waybar.enable = true;
 
     # Swayidle
     services.swayidle = {
@@ -116,9 +114,6 @@ in
         riverctl map normal Super A spawn 'hyprpicker --format=rgb | wl-copy'
         riverctl map normal Super X spawn 'hyprpicker --format=hex | wl-copy'
 
-        # Bar
-        waybar &
-
         # NetworkManager applet
         gsettings set org.gnome.nm-applet disable-disconnected-notifications "true"
         gsettings set org.gnome.nm-applet disable-connected-notifications "true"
@@ -132,6 +127,9 @@ in
 
         # Lock screen
         riverctl map normal Super Escape spawn "${swaylockCommand}"
+
+        # Internet please
+        riverctl map normal Super M spawn 'rofi-network-manager'
 
         # Screenshot
         riverctl map normal Super S spawn 'grim -g "$(slurp -d)" - | wl-copy'
