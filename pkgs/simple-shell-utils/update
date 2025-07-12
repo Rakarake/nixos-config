@@ -7,7 +7,7 @@
 if ! ([ "$1" = "push" ] || [ "$1" = "pull" ]);
     then echo "argument 1: wether to push/pull, is needed"; exit 1;
 fi
-if ! ([ "$1" = "light" ] || [ "$1" = "dark" ] || [ "$1" = "home" ]);
+if ! ([ "$2" = "light" ] || [ "$2" = "dark" ] || [ "$2" = "home" ]);
     then echo "argument 2: variation light/dark/home, is needed"; exit 1;
 fi
 
