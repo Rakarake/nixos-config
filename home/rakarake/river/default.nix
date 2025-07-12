@@ -45,13 +45,14 @@ in
       swayidle                     # Idle inhibitor, knows when computer is ueseless
       brightnessctl                # Laptop brighness controls
       nautilus
-      networkmanagerapplet         # Log in to your wifi with this cool utility
+      #networkmanagerapplet         # Log in to your wifi with this cool utility
       emote                        # emoji picker
       hyprpicker                   # Color picker
       # Clipboard stuff
       cliphist
       wl-clip-persist
       rofi-network-manager         # Simple NetworkManager interface
+      creek
     ];
 
     # Xremap
@@ -100,6 +101,14 @@ in
       extraConfig = ''
         ${cfg.extraConfigTop}
 
+        # Status bar
+        ( while date; do sleep 1; done ) | creek ${if config.stylix.enable == true then (
+          "-nb 0x" + config.lib.stylix.colors.base01
+          + " -nf 0x" + config.lib.stylix.colors.base05
+          + " -fb 0x" + config.lib.stylix.colors.base02
+          + " -ff 0x" + config.lib.stylix.colors.base05
+        ) else ""} &
+
         # Required to get screensharing to work https://wiki.archlinux.org/title/River#Troubleshooting
         # Apperently the home manager module is just not maintained ☹️
         systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
@@ -115,9 +124,9 @@ in
         riverctl map normal Super X spawn 'hyprpicker --format=hex | wl-copy'
 
         # NetworkManager applet
-        gsettings set org.gnome.nm-applet disable-disconnected-notifications "true"
-        gsettings set org.gnome.nm-applet disable-connected-notifications "true"
-        nm-applet &
+        #gsettings set org.gnome.nm-applet disable-disconnected-notifications "true"
+        #gsettings set org.gnome.nm-applet disable-connected-notifications "true"
+        #nm-applet &
 
         # Wallpaper
         swaybg -i ${config.home-xdg.wallpaper} &
@@ -322,9 +331,11 @@ in
         done
         
         # Set background and border color
-        riverctl background-color 0x002b36
-        riverctl border-color-focused 0xf5bde6
-        riverctl border-color-unfocused 0x494d64
+        #riverctl background-color 0x002b36
+        ${if config.stylix.enable then "
+          riverctl border-color-focused ${config.lib.stylix.colors.base0E}
+          riverctl border-color-unfocused ${config.lib.stylix.colors.base03}
+        " else ""}
         
         # Set keyboard repeat rate
         riverctl set-repeat 25 600
