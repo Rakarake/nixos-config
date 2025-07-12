@@ -22,6 +22,6 @@ cd ~/Projects/nixos-config \
      && git commit -m 'flake update' \
      && git push
    } fi \
-&& nh clean all --k 3 --K 14d \
+&& nh clean all -k 3 -K 14d \
 && nix-store --optimize
 
