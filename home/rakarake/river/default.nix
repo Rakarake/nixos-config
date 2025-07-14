@@ -103,10 +103,12 @@ in
         ${cfg.extraConfigTop}
 
         # Status bar
-        alias DATE="date \"+%R %F %A vecka %g\""
-        alias VOLUME="wpctl get-volume @DEFAULT_AUDIO_SINK@"
-        alias BATTERY="acpi"
-        ( while (D=$(DATE); B=$(BATTERY); V=$(VOLUME); echo "$V | $B | $D"); do sleep 1; done ) | creek ${if config.stylix.enable == true then (
+        ( while (
+            D=$(date "+%R %F %A vecka %g")
+            B=$(acpi)
+            V=$(wpctl get-volume @DEFAULT_AUDIO_SINK@)
+            echo "$V | $B | $D"
+        ); do sleep 1; done ) | creek ${if config.stylix.enable == true then (
           "-nb 0x" + config.lib.stylix.colors.base01
           + " -nf 0x" + config.lib.stylix.colors.base05
           + " -fb 0x" + config.lib.stylix.colors.base02
