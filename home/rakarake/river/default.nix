@@ -53,6 +53,7 @@ in
       wl-clip-persist
       rofi-network-manager         # Simple NetworkManager interface
       creek
+      acpi
     ];
 
     # Xremap
@@ -102,7 +103,10 @@ in
         ${cfg.extraConfigTop}
 
         # Status bar
-        ( while date; do sleep 1; done ) | creek ${if config.stylix.enable == true then (
+        alias DATE="date \"+%R %F %A vecka %g\""
+        alias VOLUME="wpctl get-volume @DEFAULT_AUDIO_SINK@"
+        alias BATTERY="acpi"
+        ( while (D=$(DATE); B=$(BATTERY); V=$(VOLUME); echo "$V | $B | $D"); do sleep 1; done ) | creek ${if config.stylix.enable == true then (
           "-nb 0x" + config.lib.stylix.colors.base01
           + " -nf 0x" + config.lib.stylix.colors.base05
           + " -fb 0x" + config.lib.stylix.colors.base02
