@@ -104,7 +104,7 @@ in
 
         # Status bar
         ( while (
-            D="⏰ $(date "+%R %F %A vecka %g")"
+            D="$(date "+📅 %F %A vecka %g | ⏰ %R")"
             B="🔋$(acpi | awk -F ',' '{print $2}')"
             V="🔈️ $(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk -F ':' '{print $2}')"
             echo "$V | $B | $D"
