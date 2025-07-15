@@ -47,6 +47,9 @@ in
       ripgrep
       ripgrep-all  # Searches within structured documents (pdf, docx etc)
 
+      # I'm stupid
+      tldr
+
       # My scripts
       cpkgs.amogus
       cpkgs.simple-shell-utils

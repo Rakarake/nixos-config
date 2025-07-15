@@ -104,9 +104,9 @@ in
 
         # Status bar
         ( while (
-            D=$(date "+%R %F %A vecka %g")
-            B=$(acpi)
-            V=$(wpctl get-volume @DEFAULT_AUDIO_SINK@)
+            D="⏰ $(date "+%R %F %A vecka %g")"
+            B="🔋$(acpi | awk -F ',' '{print $2}')"
+            V="🔈️ $(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk -F ':' '{print $2}')"
             echo "$V | $B | $D"
         ); do sleep 1; done ) | creek ${if config.stylix.enable == true then (
           "-nb 0x" + config.lib.stylix.colors.base01
