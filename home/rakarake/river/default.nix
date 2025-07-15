@@ -339,8 +339,8 @@ in
         # Set background and border color
         #riverctl background-color 0x002b36
         ${if config.stylix.enable then "
-          riverctl border-color-focused ${config.lib.stylix.colors.base0E}
-          riverctl border-color-unfocused ${config.lib.stylix.colors.base03}
+          riverctl border-color-focused 0x${config.lib.stylix.colors.base0E}
+          riverctl border-color-unfocused 0x${config.lib.stylix.colors.base03}
         " else ""}
         
         # Set keyboard repeat rate
