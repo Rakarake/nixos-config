@@ -7,7 +7,7 @@ let
     ssh1             =    22;
     wireguard        = 51820;
     minecraft        =  8069;
-    goblainkraft     = 25565;
+    goblainkraft     = 42068;
     openttd          =  3979;
     federation       =  8448;
     synapse          =  8008;
