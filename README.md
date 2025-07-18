@@ -42,9 +42,10 @@ set the 'package channel' to nixos-unstable (not system config).
 2. Manually download server.jar
 3. Run the server manually once (`java -Xmx1024M -Xms1024M -jar minecraft_server.1.21.8.jar nogui`)
 4. Set True in the eula.jar or .txt or whatever it is
-5. I think chown is next for the MC server user
-6. Set up the config in the git
-7. Pull and rebuild (🙏🙏🙏)
+5. Configure the server.config: set correct ports and difficulty etc.
+6. I think chown is next for the MC server user
+7. Set up the config in the git
+8. Pull and rebuild (🙏🙏🙏)
 
 
 ## Troubleshooting
