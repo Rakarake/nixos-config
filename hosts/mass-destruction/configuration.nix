@@ -8,6 +8,7 @@ let
     wireguard        = 51820;
     minecraft        =  8069;
     goblainkraft     = 42068;
+    terrawwebycraft  = 41337;
     openttd          =  3979;
     federation       =  8448;
     synapse          =  8008;
