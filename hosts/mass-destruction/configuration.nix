@@ -78,6 +78,7 @@ in
     ./hardware-configuration.nix
     (minecraftServerTemplate "minecraftserver-kreate" "A not so kreative minekraft server" pkgs.jdk21)
     (minecraftServerTemplate "minecraftserver-goblainkraft" "Sin Bucket in Minecraft" pkgs.jdk21)
+    (minecraftServerTemplate "minecraftserver-terrafirmagreg" "michael" pkgs.jdk21)
     (openttdServerTemplate "openTTDserver-massdestruction" "transporting destruction since 2024")
   ];
 
