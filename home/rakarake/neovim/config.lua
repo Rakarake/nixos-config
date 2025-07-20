@@ -231,6 +231,9 @@ require'lspconfig'.pyright.setup(default)
 -- GDScript
 require'lspconfig'.gdscript.setup(default)
 
+-- GDShader
+vim.lsp.enable('gdshader_lsp')
+
 -- Java
 require'lspconfig'.jdtls.setup(default)
 

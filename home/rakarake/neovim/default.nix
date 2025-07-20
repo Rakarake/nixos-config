@@ -3,6 +3,7 @@
   lib,
   pkgs,
   inputs,
+  outputs,
   ...
 }:
 let
@@ -41,6 +42,7 @@ in
       omnisharp-roslyn                                      # C#
       erlang-ls                                             # Erlang
       pyright                                               # Python
+      outputs.packages.${pkgs.system}.gdshader-lsp          # Godot shading language
     ];
 
     # Neovim config

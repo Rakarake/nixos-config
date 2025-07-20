@@ -32,6 +32,8 @@
   # Linux kernel package
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
+  programs.droidcam.enable = true;
+
   # Enable SSD trimming
   services.fstrim = {
     enable = true;

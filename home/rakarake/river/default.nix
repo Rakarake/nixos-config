@@ -10,6 +10,12 @@ let
   playerNext = "playerctl next";
   playerPrev = "playerctl previous";
   playerPause = "playerctl play-pause";
+  swayidleCommand = ''\
+    ${pkgs.swayidle}/bin/swayidle -w \
+    	timeout 800  '${swaylockCommand}' \
+      timeout 1700 '${pkgs.systemd}/bin/systemctl suspend' \
+    	before-sleep '${swaylockCommand}'
+  '';
 in
 {
   imports = [
@@ -73,17 +79,17 @@ in
     # Swaync
     services.swaync.enable = true;
 
-    # Swayidle
-    services.swayidle = {
-      enable = cfg.useSwayidle;
-      events = [
-        { event = "before-sleep"; command = "${swaylockCommand}"; }
-      ];
-      timeouts = [
-        { timeout = 800; command = "${swaylockCommand}"; }
-        { timeout = 1700; command = "${pkgs.systemd}/bin/systemctl suspend"; }
-      ];
-    };
+    ## Swayidle
+    #services.swayidle = {
+    #  enable = cfg.useSwayidle;
+    #  events = [
+    #    { event = "before-sleep"; command = "${swaylockCommand}"; }
+    #  ];
+    #  timeouts = [
+    #    { timeout = 800; command = "${swaylockCommand}"; }
+    #    { timeout = 1700; command = "${pkgs.systemd}/bin/systemctl suspend"; }
+    #  ];
+    #};
     
     # Dconf settings
     dconf.settings = {
@@ -120,6 +126,9 @@ in
         systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
         dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river
         systemctl --user restart xdg-desktop-portal
+
+        # Swayidle
+        ${if cfg.useSwayidle then "while true; do ${swayidleCommand}; sleep 1; done" else ""}
 
         # Emoji picker
         emote &  # Run in background
