@@ -16,6 +16,15 @@ let
       timeout 1700 '${pkgs.systemd}/bin/systemctl suspend' \
     	before-sleep '${swaylockCommand}'
   '';
+  # Adding pull request that adds bar status to all monitors wiht the -sao flag
+  creekPackage = pkgs.creek.overrideAttrs (finalAttrs: previousAttrs: {
+    src = pkgs.fetchFromGitHub {
+      owner = "Eken-beep";
+      repo = "creek";
+      rev = "af4b9e63a97696b24297e85fac4367677aef6710";
+      hash = "sha256-3dda2p339c0bpAaDNVDTw5uJ7muqkyqY6bsiXDF9Ng0=";
+    };
+  });
 in
 {
   imports = [
@@ -58,7 +67,7 @@ in
       cliphist
       wl-clip-persist
       rofi-network-manager         # Simple NetworkManager interface
-      creek
+      creekPackage
       acpi
     ];
 
@@ -114,7 +123,7 @@ in
             B="🔋$(acpi | awk -F ',' '{print $2}' || true)"
             V="🔈️ $(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk -F ':' '{print $2}' || true)"
             echo "$V | $B | $D"
-        ); do sleep 1; done ) | creek ${if config.stylix.enable == true then (
+        ); do sleep 1; done ) | creek -sao ${if config.stylix.enable == true then (
           "-nb 0x" + config.lib.stylix.colors.base01
           + " -nf 0x" + config.lib.stylix.colors.base05
           + " -fb 0x" + config.lib.stylix.colors.base02
