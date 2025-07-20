@@ -10,6 +10,7 @@ let
     goblainkraft     = 42068;
     terrawwebycraft  = 41337;
     openttd          =  3979;
+    vintagecraft     = 42420;
     federation       =  8448;
     synapse          =  8008;
     http             =    80;
