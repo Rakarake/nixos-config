@@ -175,6 +175,7 @@ in {
       krita
       gimp3
       element-desktop
+      vintagestory
 
       # Emulators
       fceux
@@ -206,6 +207,7 @@ in {
       "olm-3.2.16"               # For nheko matrix client
       "fluffychat-linux-1.26.1"  # Fluffychat
       "electron-27.3.11"
+      "dotnet-runtime-7.0.20"    # Vintage story
     ];
 
     xdg.desktopEntries =

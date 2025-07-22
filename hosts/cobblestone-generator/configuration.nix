@@ -32,7 +32,11 @@
   # Linux kernel package
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
+  # Droidcam
   programs.droidcam.enable = true;
+
+  # Lact GPU
+  services.lact.enable = true;
 
   # Enable SSD trimming
   services.fstrim = {
@@ -130,6 +134,8 @@
     # Monero mining
     p2pool
     xmrig
+
+    lact  # GPU monitor/overclocking
   ];
 
   # Put ROCM HIP in known path for some apps to work
