@@ -47,6 +47,32 @@ let
     };
   };
 
+  vintageStoryServerTemplate = name : description : dotnet-package : {
+    systemd.services.${name} = {
+      enable = true;
+      path = [ pkgs.coreutils pkgs.tmux pkgs.bash pkgs.ncurses pkgs.steam-run dotnet-package ];
+      wantedBy = [ "multi-user.target" ]; 
+      after = [ "network.target" ];
+      description = description;
+      serviceConfig = {
+        User = name;
+        ExecStart = "${pkgs.tmux}/bin/tmux -S tmux.socket new-session -d -s ${name} /bin/sh start.sh";
+        ExecStop = "${pkgs.tmux}/bin/tmux -S tmux.socket kill-session -t ${name}";
+        Type = "forking";
+        Restart = "on-failure";
+        WorkingDirectory=/data/VintageStoryServers/${name};
+      };
+    };
+    users = {
+      groups.${name} = {};
+      users.${name} = {
+        isSystemUser = true;
+        description = "Vintage Story server ${name}";
+        group = name;
+      };
+    };
+  };
+
   # OpenTTD server module template
   # Takes name, figures everything out itself, users, location (/var/<name>)
   openttdServerTemplate = name : description : {
@@ -82,6 +108,11 @@ in
     (minecraftServerTemplate "minecraftserver-goblainkraft" "Sin Bucket in Minecraft" pkgs.jdk21)
     (minecraftServerTemplate "minecraftserver-terrafirmagreg" "michael" pkgs.jdk21)
     (openttdServerTemplate "openTTDserver-massdestruction" "transporting destruction since 2024")
+    (vintageStoryServerTemplate "vintagestoryserver" "amazingular" pkgs.dotnet-runtime_7)
+  ];
+
+  nixpkgs.config.permittedInsecurePackages = [
+    "dotnet-runtime-7.0.20"
   ];
 
   cfg-global.enable = true;
