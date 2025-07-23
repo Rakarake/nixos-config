@@ -137,7 +137,7 @@ in
         systemctl --user restart xdg-desktop-portal
 
         # Swayidle
-        ${if cfg.useSwayidle then "while true; do ${swayidleCommand}; sleep 1; done" else ""}
+        ${if cfg.useSwayidle then "(while true; do (${swayidleCommand}); sleep 1; done) &" else ""}
 
         # Emoji picker
         emote &  # Run in background
