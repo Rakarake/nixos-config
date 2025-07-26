@@ -124,11 +124,12 @@
       in {
         "${user}@${hostname}${if variation != null then "-${variation}" else ""}"
           = home-manager.lib.homeManagerConfiguration {
-          modules = optionalPaths [
+          modules = optionalPaths ([
             ./home/${user}/default.nix
             (if variation != null then ./home/${user}/${variation}.nix else "")
             ./hosts/${hostname}/home.nix
             ./home/${user}/hosts/${hostname}.nix
+          ]) ++ [
             {
               home.username = user;
               home.homeDirectory = "/home/${user}";
@@ -164,9 +165,10 @@
           acc // {
             ${hostname} = nixpkgs.lib.nixosSystem {
               inherit system;
-              modules = optionalPaths [
+              modules = optionalPaths ([
                 ./hosts/${hostname}/configuration.nix
                 ./modules/default.nix
+              ]) ++ [
                 {
                   networking.hostName = hostname;
                 }

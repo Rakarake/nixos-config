@@ -18,7 +18,6 @@ in
 {
   nixpkgs.config.allowUnfree = true;
   imports = [
-    ./common.nix
     ./desktop.nix
     ./server.nix
     ./gnome.nix

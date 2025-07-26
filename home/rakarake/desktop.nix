@@ -8,7 +8,6 @@ in {
   imports = [
     ./xdg.nix
     ./vscode.nix
-    ./common.nix
     ./mpv
   ];
 
@@ -17,7 +16,6 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    home-common.enable = true;
     # Default applications
     home-xdg.enable = true;
 
