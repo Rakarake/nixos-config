@@ -129,6 +129,11 @@
             (if variation != null then ./home/${user}/${variation}.nix else "")
             ./hosts/${hostname}/home.nix
             ./home/${user}/hosts/${hostname}.nix
+            {
+              home.username = user;
+              home.homeDirectory = "/home/${user}";
+              programs.home-manager.enable = true;
+            }
           ];
           pkgs = pkgsFor.${system};
           extraSpecialArgs = args // { inherit system hostname user; };
@@ -137,17 +142,16 @@
 
       # Creates home-manager configurations for all users, for all
       # systems, for all variations (quite a lot of them).
-      makeHomeConfigs = homeConfigs: foldl ( acc: user-dir:
+      makeHomeConfigs = foldl ( acc: user-dir:
           let
             u = user-dir;
             t = homeUserTemplate;
             hs = allHosts;
           in
-          acc // [
-            (map (h: t u null h) hs)
-            (map (h: t u "dark" h) hs)
-            (map (h: t u "light" h) hs)
-          ]
+          acc //
+            (foldl (acc: host: acc // (t u null host)) {} hs) //
+            (foldl (acc: host: acc // (t u "light" host)) {} hs) //
+            (foldl (acc: host: acc // (t u "dark" host)) {} hs)
       ) {} allHomeUsers;
 
       # Creates nixos system configurations from the hosts/ directory,
@@ -162,7 +166,7 @@
               inherit system;
               modules = optionalPaths [
                 ./hosts/${hostname}/configuration.nix
-                ./modules
+                ./modules/default.nix
                 {
                   networking.hostName = hostname;
                 }
