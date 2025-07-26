@@ -75,6 +75,8 @@
     let
       inherit (self) outputs;
 
+      lib = nixpkgs.lib;
+
       # If using nixpkgs-stable, just don't use home manager stuff
       systems = [
         "x86_64-linux"
@@ -104,7 +106,9 @@
       };
 
       # Helper function to create a list of only the provided paths that actually exist.
-      optionalPaths = listOfPaths: foldl (acc: val: acc ++ (nixpkgs.lib.optional (builtins.pathExists val)) val) [] listOfPaths;
+      optionalPaths = listOfPaths: foldl
+        (acc: val: acc ++ (lib.optional (if val != "" then builtins.pathExists val else false)) val)
+        [] listOfPaths;
 
       # All hosts/hostnames with extra info (system for now).
       # List of attr-sets with schema: { hostname = <hostname>; system = <system>; }
@@ -126,7 +130,7 @@
           = home-manager.lib.homeManagerConfiguration {
           modules = optionalPaths ([
             ./home/${user}/default.nix
-            (if variation != null then ./home/${user}/${variation}.nix else "")
+            (lib.optionalString (variation != null) ./home/${user}/${variation}.nix)
             ./hosts/${hostname}/home.nix
             ./home/${user}/hosts/${hostname}.nix
           ]) ++ [
