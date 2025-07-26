@@ -83,7 +83,6 @@
 
       lib = nixpkgs.lib;
 
-      # If using nixpkgs-stable, just don't use home manager stuff
       systems = [
         "x86_64-linux"
         "aarch64-linux"
@@ -105,7 +104,7 @@
       # (b -> a -> b) -> b -> [a] -> b
       foldl = f : acc : xs : if xs == [] then acc else foldl f (f acc (builtins.head xs)) (builtins.tail xs);
 
-      # Stuff accessible in modules
+      # Stuff accessible in nixos/home-manager modules
       args = {
         inherit inputs outputs self;
         ssh-keys = import ./ssh-keys.nix;
