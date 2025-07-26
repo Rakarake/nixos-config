@@ -5,7 +5,6 @@
     inputs.jovian-nixos.nixosModules.default
   ];
 
-  cfg-global.enable = true;
   cfg-desktop.enable = true;
   cfg-river.enable = true;
   services.xserver.displayManager.gdm.enable = true;

@@ -2,7 +2,6 @@
 { pkgs, ssh-keys, ... }: {
   imports = [ ./hardware-configuration.nix ];
 
-  cfg-global.enable = true;
   cfg-desktop.enable = true;
   #cfg-hyprland.enable = true;
   #cfg-gnome.enable = true;

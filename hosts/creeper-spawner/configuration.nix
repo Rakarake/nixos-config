@@ -81,8 +81,6 @@ in
     (minecraftServerTemplate "minecraftserverspruce" "A wooden minecraft server" pkgs.jdk17)
   ];
 
-  cfg-global.enable = true;
-
   # Wireguard
   networking.wg-quick.interfaces = {
     wg0 = {

@@ -74,14 +74,17 @@
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let
       inherit (self) outputs;
+
       # If using nixpkgs-stable, just don't use home manager stuff
       systems = [
         "x86_64-linux"
         "aarch64-linux"
       ];
+
       # Smooth
       forEachSystem = (f: nixpkgs.lib.genAttrs systems (system: f pkgsFor.${system}));
-      # Set of { "system".pkgs }
+
+      # Attr set of pkgs access like this: pkgsFor."x86_64-linux"
       pkgsFor = nixpkgs.lib.genAttrs systems (
         system:
         import nixpkgs {
@@ -90,6 +93,7 @@
         }
       );
 
+      # foldl implementation.
       # (b -> a -> b) -> b -> [a] -> b
       foldl = f : acc : xs : if xs == [] then acc else foldl f (f acc (builtins.head xs)) (builtins.tail xs);
 
@@ -102,135 +106,84 @@
       # Helper function to create a list of only the provided paths that actually exist.
       optionalPaths = listOfPaths: foldl (acc: val: acc ++ (nixpkgs.lib.optional (builtins.pathExists val)) val) [] listOfPaths;
 
-      # Creates a home-manager configs from list
-      # If no variation is specified, "user@system-default" is generated
+      # All hosts/hostnames with extra info (system for now).
+      # List of attr-sets with schema: { hostname = <hostname>; system = <system>; }
+      allHosts = map (hostname: { inherit hostname; } // (import ./hosts/${hostname}/system.nix))
+          (builtins.attrNames (builtins.readDir ./hosts));
+      
+      # List of all home-manager users, that is all directories in home/
+      allHomeUsers = builtins.attrNames (builtins.readDir ./home);
+
+      # Helper function to create a home-manager config.
+      # Takes user, varation (typically "light", "dark", or null)
+      # and host (see allHosts above).
+      homeUserTemplate = user: variation: host:
+      let
+        hostname = host.hostname;
+        system = host.system;
+      in {
+        "${user}@${hostname}${if variation != null then "-${variation}" else ""}"
+          = home-manager.lib.homeManagerConfiguration {
+          modules = optionalPaths [
+            ./home/${user}/default.nix
+            (if variation != null then ./home/${user}/${variation}.nix else "")
+            ./hosts/${hostname}/home.nix
+            ./home/${user}/hosts/${hostname}.nix
+          ];
+          pkgs = pkgsFor.${system};
+          extraSpecialArgs = args // { inherit system hostname user; };
+        };
+      };
+
+      # Creates home-manager configurations for all users, for all
+      # systems, for all variations (quite a lot of them).
       makeHomeConfigs = homeConfigs: foldl ( acc: user-dir:
           let
-            user = user-dir;
-            hostname = **;
-            variation = **;
-            system = ;
-            template = acc // {
-              "${user}@${hostname}-${variation}" = home-manager.lib.homeManagerConfiguration {
-                modules = optionalPaths [
-                  ./home/${user}/default.nix
-                  ./home/${user}/${variation}.nix
-                  ./hosts/${hostname}/home.nix
-                  ./home/${user}/hosts/${hostname}.nix
-                ];
-                pkgs = pkgsFor.${system};
-                extraSpecialArgs = args // { inherit system hostname user; };
-              };
-            };
+            u = user-dir;
+            t = homeUserTemplate;
+            hs = allHosts;
           in
-          acc // [(template "dark") (template "light") (template "")]
-      ) {} (builtins.attrNames (builtins.readDir ./home));
+          acc // [
+            (map (h: t u null h) hs)
+            (map (h: t u "dark" h) hs)
+            (map (h: t u "light" h) hs)
+          ]
+      ) {} allHomeUsers;
 
-      # WIP idea: systems and hm-configs generated from file-folder pairs in
-      # paths
-      # WIP, generates the list of systems from directories
-      # host-dir is the the name of the system/hostname, derived
-      # from the files in ./hosts/
-      newMakeSystemConfigs = foldl ( acc: host-dir:
+      # Creates nixos system configurations from the hosts/ directory,
+      # expects there to be a system.nix file there.
+      makeSystemConfigs = foldl ( acc: host-dir:
           let
             hostname = host-dir;
-            system = import ./hosts/${host-dir}/system.nix;
+            system = (import ./hosts/${host-dir}/system.nix).system;
           in
           acc // {
             ${hostname} = nixpkgs.lib.nixosSystem {
               inherit system;
-              modules = optionalPaths [ ./hosts/${hostname}/configuration.nix ./modules ];
+              modules = optionalPaths [
+                ./hosts/${hostname}/configuration.nix
+                ./modules
+                {
+                  networking.hostName = hostname;
+                }
+              ];
               specialArgs = args // { inherit system hostname; };
             };
           }
-      ) {} (builtins.attrNames (builtins.readDir ./hosts));
+      ) {} allHosts;
     in
     {
       # Expose NixOS and HomeManager modules, just to be nice
       nixosModules = import ./modules;
       homeManagerModules = import ./home;
       packages = forEachSystem (pkgs: import ./pkgs { inherit pkgs; });
-
       functions = {
         inherit foldl;
         inherit makeSystemConfigs;
         inherit makeHomeConfigs;
       };
-
-      nixosConfigurations = newMakeSystemConfigs;
-
-      homeConfigurations = makeHomeConfigs [
-        {
-          hostname = "thinky";
-          user = "rakarake";
-          variation = "dark";
-          nixpkgs = nixpkgs-unstable;
-          system = "x86_64-linux";
-        }
-        {
-          hostname = "thinky";
-          user = "rakarake";
-          variation = "light";
-          nixpkgs = nixpkgs-unstable;
-          system = "x86_64-linux";
-        }
-        {
-          hostname = "thinky";
-          user = "rakarake";
-          variation = "default";
-          nixpkgs = nixpkgs-unstable;
-          system = "x86_64-linux";
-        }
-        {
-          hostname = "cobblestone-generator";
-          user = "rakarake";
-          variation = "dark";
-          nixpkgs = nixpkgs-unstable;
-          system = "x86_64-linux";
-        }
-        {
-          hostname = "cobblestone-generator";
-          user = "rakarake";
-          variation = "light";
-          nixpkgs = nixpkgs-unstable;
-          system = "x86_64-linux";
-        }
-        {
-          hostname = "cobblestone-generator";
-          user = "rakarake";
-          variation = "default";
-          nixpkgs = nixpkgs-unstable;
-          system = "x86_64-linux";
-        }
-        {
-          hostname = "creeper-spawner";
-          user = "rakarake";
-          variation = "default";
-          nixpkgs = nixpkgs-unstable;
-          system = "x86_64-linux";
-        }
-        {
-          hostname = "steamed-deck";
-          user = "rakarake";
-          variation = "light";
-          nixpkgs = nixpkgs-unstable;
-          system = "x86_64-linux";
-        }
-        {
-          hostname = "steamed-deck";
-          user = "rakarake";
-          variation = "dark";
-          nixpkgs = nixpkgs-unstable;
-          system = "x86_64-linux";
-        }
-        {
-          hostname = "mass-destruction";
-          user = "rakarake";
-          variation = "default";
-          nixpkgs = nixpkgs-unstable;
-          system = "x86_64-linux";
-        }
-      ];
+      nixosConfigurations = makeSystemConfigs;
+      homeConfigurations = makeHomeConfigs;
     };
 }
 

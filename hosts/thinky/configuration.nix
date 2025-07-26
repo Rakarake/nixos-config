@@ -4,7 +4,6 @@
   imports = [ ./hardware-configuration.nix ];
 
   # Desktop config
-  cfg-global.enable = true;
   cfg-desktop.enable = true;
   cfg-river.enable = true;
   #cfg-hyprland.enable = true;

@@ -115,8 +115,6 @@ in
     "dotnet-runtime-7.0.20"
   ];
 
-  cfg-global.enable = true;
-
   # Linux kernel version
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
