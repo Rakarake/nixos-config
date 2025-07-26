@@ -6,25 +6,25 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # UwU
     queercat = {
       url = "github:Elsa002/queercat";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # Flimpy: Vscode Extensions
     nix-vscode-extensions = {
       url = "github:nix-community/nix-vscode-extensions";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # Nix pre-baked index
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # Styling / Colorscheme / Font management
@@ -35,13 +35,13 @@
     # Steamdeck related options
     jovian-nixos = {
       url = "github:Jovian-Experiments/Jovian-NixOS";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # Bingbingo server
     bingbingo = {
       url = "github:Rakarake/bingbingo";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     
     # Agenix
@@ -57,7 +57,7 @@
     # Xremap
     xremap = {
       url = "github:xremap/nix-flake";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # Hyprland
@@ -68,7 +68,7 @@
     # Grompt
     grompt = {
       url ="github:loafey/grompt";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
@@ -152,10 +152,10 @@
 
       # Creates nixos system configurations from the hosts/ directory,
       # expects there to be a system.nix file there.
-      makeSystemConfigs = foldl ( acc: host-dir:
+      makeSystemConfigs = foldl ( acc: host:
           let
-            hostname = host-dir;
-            system = (import ./hosts/${host-dir}/system.nix).system;
+            hostname = host.hostname;
+            system = (import ./hosts/${hostname}/system.nix).system;
           in
           acc // {
             ${hostname} = nixpkgs.lib.nixosSystem {
@@ -174,7 +174,7 @@
     in
     {
       # Expose NixOS and HomeManager modules, just to be nice
-      nixosModules = import ./modules;
+      #nixosModules = import ./modules;
       homeManagerModules = import ./home;
       packages = forEachSystem (pkgs: import ./pkgs { inherit pkgs; });
       functions = {
