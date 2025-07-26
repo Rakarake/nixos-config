@@ -1,4 +1,4 @@
-{ system, inputs, pkgs, lib, ssh-keys, config, ... }:
+{ system, inputs, outputs, pkgs, lib, ssh-keys, config, ... }:
 
 let 
   # Open TCP/UDP ports
@@ -45,40 +45,23 @@ let
     #akkoma = "akk.rakarake.xyz";
   };
 
-  # Minecraft server module template
-  # Takes name, figures everything out itself, users, location (/var/<name>)
-  minecraftServerTemplate = name : description : java-package : {
-    systemd.services.${name} = {
-      enable = true;
-      path = [ pkgs.coreutils pkgs.tmux pkgs.bash pkgs.ncurses java-package ];
-      wantedBy = [ "multi-user.target" ]; 
-      after = [ "network.target" ];
-      description = description;
-      serviceConfig = {
-        User = name;
-        ExecStart = "${pkgs.tmux}/bin/tmux -S tmux.socket new-session -d -s ${name} /bin/sh start.sh";
-        ExecStop = "${pkgs.tmux}/bin/tmux -S tmux.socket kill-session -t ${name}";
-        Type = "forking";
-        RestartOnFailure = "on-failure";
-        WorkingDirectory=/var/${name};
-      };
-    };
-    users = {
-      groups.${name} = {};
-      users.${name} = {
-        isSystemUser = true;
-        description = "Minecraft server ${name}";
-        group = name;
-      };
-    };
-  };
 in
 {
   imports = [
     ./hardware-configuration.nix
     inputs.bingbingo.nixosModules.${system}.default
-    (minecraftServerTemplate "minecraftserver1" "A stylish minecraft server" pkgs.jdk21)
-    (minecraftServerTemplate "minecraftserverspruce" "A wooden minecraft server" pkgs.jdk17)
+    (outputs.extra.statefulServerTemplate {
+      name = "minecraftserver1";
+      description = "A stylish minecraft server";
+      packages = [ pkgs.jdk21];
+      path = /var/minecraftserver1;
+    })
+    (outputs.extra.statefulServerTemplate {
+      name = "minecraftserverspruce";
+      description = "A wooden minecraft server";
+      packages = [ pkgs.jdk17 ];
+      path = /var/minecraftserverspruce;
+    })
   ];
 
   # Wireguard

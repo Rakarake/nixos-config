@@ -192,10 +192,11 @@
       #nixosModules = import ./modules;
       homeManagerModules = import ./home;
       packages = forEachSystem (pkgs: import ./pkgs { inherit pkgs; });
-      functions = {
+      extra = {
         inherit foldl;
         inherit makeSystemConfigs;
         inherit makeHomeConfigs;
+        statefulServerTemplate = import ./stateful-server-template.nix;
       };
       nixosConfigurations = makeSystemConfigs;
       homeConfigurations = makeHomeConfigs;
