@@ -7,14 +7,16 @@
 if ! ([ "$1" = "push" ] || [ "$1" = "pull" ]);
     then echo "argument 1: wether to push/pull, is needed"; exit 1;
 fi
-if ! ([ "$2" = "light" ] || [ "$2" = "dark" ] || [ "$2" = "home" ]);
-    then echo "argument 2: variation light/dark/home, is needed"; exit 1;
+if ! ([ "$2" = "light" ] || [ "$2" = "dark" ] || [ -z ${2+x} ]);
+    then echo "illegal argument 2: variation light/dark or no second argument allowed"; exit 1;
 fi
 
 cd ~/Projects/nixos-config \
 && git pull \
 && if [ "$1" = "push" ]; then nix flake update; fi \
-&& nh home switch -c $USER@$HOSTNAME-$2 . \
+&& if [ -z ${2+x} ]; then nh home switch -c $USER@$HOSTNAME .;
+                     else nh home switch -c $USER@$HOSTNAME-$2 .;
+fi \
 && flatpak update -y \
 && nh os switch . \
 && if [ "$1" = "push" ]; then {
