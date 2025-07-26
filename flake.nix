@@ -1,8 +1,9 @@
+# If you want to use another channel of nixpkgs, override nixpkgs input from
+# arguments.
 {
   description = "Super system amazing wow";
   inputs = {
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
@@ -70,7 +71,7 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
   };
-  outputs = { self, nixpkgs-stable, nixpkgs-unstable, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let
       inherit (self) outputs;
       # If using nixpkgs-stable, just don't use home manager stuff
@@ -79,9 +80,9 @@
         "aarch64-linux"
       ];
       # Smooth
-      forEachSystem = nixpkgs: (f: nixpkgs.lib.genAttrs systems (system: f (pkgsFor nixpkgs).${system}));
+      forEachSystem = (f: nixpkgs.lib.genAttrs systems (system: f pkgsFor.${system}));
       # Set of { "system".pkgs }
-      pkgsFor = nixpkgs: nixpkgs.lib.genAttrs systems (
+      pkgsFor = nixpkgs.lib.genAttrs systems (
         system:
         import nixpkgs {
           inherit system;
@@ -98,42 +99,57 @@
         ssh-keys = import ./ssh-keys.nix;
       };
 
-      # Creates nixos configs from list
-      makeSystemConfigs = systemConfigs: (foldl ( acc: { hostname, nixpkgs, system }:
-          acc // {
-            ${hostname} = nixpkgs.lib.nixosSystem {
-              inherit system;
-              modules = [ ./hosts/${hostname}/configuration.nix ./modules ];
-              specialArgs = args // { inherit system hostname; };
-            };
-          }
-      ) {} systemConfigs);
-
       # Helper function to create a list of only the provided paths that actually exist.
-      optionalPaths = nixpkgs: listOfPaths: foldl (acc: val: acc ++ (nixpkgs.lib.optional (builtins.pathExists val)) val) [] listOfPaths;
+      optionalPaths = listOfPaths: foldl (acc: val: acc ++ (nixpkgs.lib.optional (builtins.pathExists val)) val) [] listOfPaths;
 
       # Creates a home-manager configs from list
       # If no variation is specified, "user@system-default" is generated
-      makeHomeConfigs = homeConfigs: foldl ( acc: { hostname, nixpkgs, user, variation ? "default", system }:
+      makeHomeConfigs = homeConfigs: foldl ( acc: user-dir:
+          let
+            user = user-dir;
+            hostname = **;
+            variation = **;
+            system = ;
+            template = acc // {
+              "${user}@${hostname}-${variation}" = home-manager.lib.homeManagerConfiguration {
+                modules = optionalPaths [
+                  ./home/${user}/default.nix
+                  ./home/${user}/${variation}.nix
+                  ./hosts/${hostname}/home.nix
+                  ./home/${user}/hosts/${hostname}.nix
+                ];
+                pkgs = pkgsFor.${system};
+                extraSpecialArgs = args // { inherit system hostname user; };
+              };
+            };
+          in
+          acc // [(template "dark") (template "light") (template "")]
+      ) {} (builtins.attrNames (builtins.readDir ./home));
+
+      # WIP idea: systems and hm-configs generated from file-folder pairs in
+      # paths
+      # WIP, generates the list of systems from directories
+      # host-dir is the the name of the system/hostname, derived
+      # from the files in ./hosts/
+      newMakeSystemConfigs = foldl ( acc: host-dir:
+          let
+            hostname = host-dir;
+            system = import ./hosts/${host-dir}/system.nix;
+          in
           acc // {
-            "${user}@${hostname}-${variation}" = home-manager.lib.homeManagerConfiguration {
-              modules = optionalPaths nixpkgs [
-                ./home/${user}/default.nix
-                ./home/${user}/${variation}.nix
-                ./hosts/${hostname}/home.nix
-                ./home/${user}/hosts/${hostname}.nix
-              ];
-              pkgs = (pkgsFor nixpkgs).${system};
-              extraSpecialArgs = args // { inherit system hostname user; };
+            ${hostname} = nixpkgs.lib.nixosSystem {
+              inherit system;
+              modules = optionalPaths [ ./hosts/${hostname}/configuration.nix ./modules ];
+              specialArgs = args // { inherit system hostname; };
             };
           }
-      ) {} homeConfigs;
+      ) {} (builtins.attrNames (builtins.readDir ./hosts));
     in
     {
       # Expose NixOS and HomeManager modules, just to be nice
       nixosModules = import ./modules;
       homeManagerModules = import ./home;
-      packages = forEachSystem nixpkgs-unstable (pkgs: import ./pkgs { inherit pkgs; });
+      packages = forEachSystem (pkgs: import ./pkgs { inherit pkgs; });
 
       functions = {
         inherit foldl;
@@ -141,44 +157,7 @@
         inherit makeHomeConfigs;
       };
 
-      nixosConfigurations = makeSystemConfigs [
-        # Lappy
-        {
-          hostname = "thinky";
-          system ="x86_64-linux";
-          nixpkgs = nixpkgs-unstable;
-        }
-        # Desky
-        {
-          hostname = "cobblestone-generator";
-          system = "x86_64-linux";
-          nixpkgs = nixpkgs-unstable;
-        }
-        # Server
-        {
-          hostname = "creeper-spawner";
-          system = "x86_64-linux";
-          nixpkgs = nixpkgs-unstable;
-        }
-        # Live configurations for when you wanna put NixOS on a USB-stick
-        {
-          hostname = "live";
-          system = "x86_64-linux";
-          nixpkgs = nixpkgs-unstable;
-        }
-        # MASS DESTRUCTION, oh yeah, baby baby
-        {
-          hostname = "mass-destruction";
-          system = "x86_64-linux";
-          nixpkgs = nixpkgs-unstable;
-        }
-        # We are having steamed decks?
-        {
-          hostname = "steamed-deck";
-          system = "x86_64-linux";
-          nixpkgs = nixpkgs-unstable;
-        }
-      ];
+      nixosConfigurations = newMakeSystemConfigs;
 
       homeConfigurations = makeHomeConfigs [
         {
