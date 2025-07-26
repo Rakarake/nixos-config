@@ -36,7 +36,7 @@ set the 'package channel' to nixos-unstable (not system config).
 `nix-channel --update` to update the channel.
 
 ## Minecraft Servers
-`tmux -S /var/<name-of-server>/tmux.socket attach` to to enter the server console
+`sudo -u <service-user> tmux -S /var/<name-of-server>/tmux.socket attach` to to enter the server console.
 
 if that doesn't work then try:
 `sudo -u SERVERUSER tmux -S /PATH/TO/SOCKET/tmux.socket attach -d`
