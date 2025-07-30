@@ -6,6 +6,7 @@
   # Desktop config
   cfg-desktop.enable = true;
   cfg-river.enable = true;
+  cfg-river.useLoginManager = true;
   #cfg-hyprland.enable = true;
   #cfg-gnome.enable = true;
   #services.xserver.displayManager.gdm.enable = true;

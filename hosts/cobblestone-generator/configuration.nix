@@ -21,6 +21,7 @@
   #};
   cfg-wlroots.enable = true;
   cfg-river.enable = true;
+  cfg-river.useLoginManager = true;
   #xdg.portal.wlr.settings.screencast = {
   #  output_name = "DP-1";
   #  max_fps = 30;
