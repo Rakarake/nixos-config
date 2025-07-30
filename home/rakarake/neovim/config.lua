@@ -252,6 +252,8 @@ require'lspconfig'.tinymist.setup(default)
 -- Erlang
 require'lspconfig'.erlangls.setup(default)
 
+-- Zig
+require'lspconfig'.zls.setup(default)
 
 
 -- Catppuccin theme integrations

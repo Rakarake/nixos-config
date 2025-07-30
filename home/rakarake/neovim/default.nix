@@ -43,6 +43,7 @@ in
       erlang-ls                                             # Erlang
       pyright                                               # Python
       outputs.packages.${pkgs.system}.gdshader-lsp          # Godot shading language
+      zls                                                   # Zig
     ];
 
     # Neovim config
