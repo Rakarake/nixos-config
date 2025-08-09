@@ -13,7 +13,8 @@ let
     NIXOS_OZONE_WL = "1";
   };
   # Custom packages defined in the toplevel flake
-  cpkgs = outputs.packages.${pkgs.system};
+  custom-packages = outputs.packages.${pkgs.system};
+  custom-scripts = outputs.scripts.${pkgs.system};
 in
 {
   nixpkgs.config.allowUnfree = true;
@@ -60,9 +61,10 @@ in
     tldr
 
     # My scripts
-    cpkgs.amogus
-    cpkgs.simple-shell-utils
-  ];
+    custom-packages.amogus
+  ] ++ 
+    builtins.attrValues custom-scripts
+  ;
 
   home-neovim.enable = true;
 

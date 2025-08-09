@@ -100,9 +100,15 @@
         }
       );
 
+      # Create packages from ./pkgs
+      genPkgs = pkgs:
+        pkgs.lib.genAttrs (builtins.attrNames (builtins.readDir ./pkgs)) (pkgName:
+          pkgs.callPackage ./pkgs/${pkgName} { }
+      );
+
       # foldl implementation.
       # (b -> a -> b) -> b -> [a] -> b
-      foldl = f : acc : xs : if xs == [] then acc else foldl f (f acc (builtins.head xs)) (builtins.tail xs);
+      foldl = builtins.foldl'; #f : acc : xs : if xs == [] then acc else foldl f (f acc (builtins.head xs)) (builtins.tail xs);
 
       # Stuff accessible in nixos/home-manager modules
       args = {
@@ -191,7 +197,11 @@
       # Expose NixOS and HomeManager modules, just to be nice
       #nixosModules = import ./modules;
       homeManagerModules = import ./home;
-      packages = forEachSystem (pkgs: import ./pkgs { inherit pkgs; });
+      # Packages and scripts
+      packages = (forEachSystem (pkgs: (genPkgs pkgs) // ((import ./scripts/.) pkgs)));
+      # Only scripts
+      scripts = (forEachSystem (pkgs: ((import ./scripts/.) pkgs)));
+      # Some functions
       extra = {
         inherit foldl;
         inherit makeSystemConfigs;
