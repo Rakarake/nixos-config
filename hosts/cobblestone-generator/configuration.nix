@@ -52,9 +52,6 @@
   #  rocmPackages.clr.icd
   #];
 
-  # Hostname
-  networking.hostName = "cobblestone-generator";  # Define your hostname.
-
   ## Wake on LAN, ty Breadly
   #networking.interfaces.enp4s0.wakeOnLan = {
   #  enable = true;

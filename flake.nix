@@ -185,7 +185,7 @@
                 ./modules/default.nix
               ]) ++ [
                 {
-                  networking.hostName = hostname;
+                  networking.hostName = lib.mkDefault hostname;
                 }
               ];
               specialArgs = args // { inherit system hostname; };

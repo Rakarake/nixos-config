@@ -121,9 +121,6 @@ in
   # Engage the msr crypto moment
   boot.kernelModules = [ "msr" ];
 
-  # Hostname
-  networking.hostName = "mass-destruction";
-
   # Disk mounting wow
   fileSystems."/data" =
     { device = "/dev/sda";

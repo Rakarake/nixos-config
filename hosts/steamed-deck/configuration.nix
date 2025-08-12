@@ -9,8 +9,6 @@
   cfg-river.enable = true;
   services.xserver.displayManager.gdm.enable = true;
 
-  networking.hostName = "steamed-deck";
-
   # This is a steam deck ok?
   jovian.steam.enable = true;
   jovian.devices.steamdeck.enable = true;

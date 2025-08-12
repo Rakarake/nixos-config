@@ -29,9 +29,6 @@
   #  #catppuccin-sddm-corners
   #];
 
-  # Hostname
-  networking.hostName = "thinky";  # Define your hostname.
-
   # Linux kernel package
   boot.kernelPackages = pkgs.linuxPackages_latest;
 

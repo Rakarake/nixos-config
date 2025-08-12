@@ -89,9 +89,6 @@ in
   # Linux kernel version
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  # Hostname
-  networking.hostName = "creeper-spawner";
-
   systemd.services.mount-data = {
     description = "Bcachefs data mount";
     script = "/run/current-system/sw/bin/mount -t bcachefs /dev/sda4:/dev/nvme0n1 /data";
