@@ -179,7 +179,7 @@ in {
       fceux
       dolphin-emu
       #torzu
-      ryujinx
+      ryubing
       (pkgs.retroarch.withCores (cores: with cores; [
         mesen
         bsnes
