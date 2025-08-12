@@ -89,10 +89,10 @@
       ];
 
       # Smooth
-      forEachSystem = (f: nixpkgs.lib.genAttrs systems (system: f pkgsFor.${system}));
+      forEachSystem = (f: lib.genAttrs systems (system: f pkgsFor.${system}));
 
       # Attr set of pkgs access like this: pkgsFor."x86_64-linux"
-      pkgsFor = nixpkgs.lib.genAttrs systems (
+      pkgsFor = lib.genAttrs systems (
         system:
         import nixpkgs {
           inherit system;
@@ -102,7 +102,7 @@
 
       # Create packages from ./pkgs
       genPkgs = pkgs:
-        pkgs.lib.genAttrs (builtins.attrNames (builtins.readDir ./pkgs)) (pkgName:
+        lib.genAttrs (builtins.attrNames (builtins.readDir ./pkgs)) (pkgName:
           pkgs.callPackage ./pkgs/${pkgName} { }
       );
 
@@ -178,7 +178,7 @@
             system = (import ./hosts/${hostname}/system.nix).system;
           in
           acc // {
-            ${hostname} = nixpkgs.lib.nixosSystem {
+            ${hostname} = lib.nixosSystem {
               inherit system;
               modules = optionalPaths ([
                 ./hosts/${hostname}/configuration.nix
