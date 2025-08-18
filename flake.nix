@@ -193,20 +193,21 @@
           }
       ) {} allHosts;
     in
-    {
+    rec {
       # Expose NixOS and HomeManager modules, just to be nice
       #nixosModules = import ./modules;
       homeManagerModules = import ./home;
       # Packages and scripts
-      packages = (forEachSystem (pkgs: (genPkgs pkgs) // ((import ./scripts/.) pkgs)));
+      packages = (forEachSystem (pkgs: (genPkgs pkgs) // ((import ./scripts/.) pkgs extra.writeShellApplicationWithArguments)));
       # Only scripts
-      scripts = (forEachSystem (pkgs: ((import ./scripts/.) pkgs)));
+      scripts = (forEachSystem (pkgs: ((import ./scripts/.) pkgs extra.writeShellApplicationWithArguments)));
       # Some functions
       extra = {
         inherit foldl;
         inherit makeSystemConfigs;
         inherit makeHomeConfigs;
-        statefulServerTemplate = import ./stateful-server-template.nix;
+        statefulServerTemplate = import ./functions/statefulServerTemplate.nix;
+        writeShellApplicationWithArguments = import ./functions/writeShellApplicationWithArguments.nix;
       };
       nixosConfigurations = makeSystemConfigs;
       homeConfigurations = makeHomeConfigs;
