@@ -95,10 +95,24 @@
       pkgsFor = lib.genAttrs systems (
         system:
         import nixpkgs {
-          inherit system;
+          inherit system overlays;
           config.allowUnfree = true;
         }
       );
+
+      overlays = [
+        # SDL2 newer version
+        #(final: prev: {
+        #  SDL2 = prev.SDL2.overrideAttrs (finalAttrs: previousAttrs: {
+        #    src = final.fetchFromGitHub {
+        #      owner = "libsdl-org";
+        #      repo = "sdl2-compat";
+        #      rev = "a5d1e2a0dfd6b6b7d3fd257f3efccbb20e9c30e4";
+        #      hash = "sha256-En6DGRcdOLGljUlBLcHD1E6PYdwMpU1vqq4o3hfOU44=";
+        #    };
+        #  });
+        #})
+      ];
 
       # Create packages from ./pkgs
       genPkgs = pkgs:
@@ -149,6 +163,7 @@
               home.username = user;
               home.homeDirectory = "/home/${user}";
               programs.home-manager.enable = true;
+              nixpkgs.overlays = overlays;
             }
           ];
           pkgs = pkgsFor.${system};
@@ -186,6 +201,7 @@
               ]) ++ [
                 {
                   networking.hostName = lib.mkDefault hostname;
+                  nixpkgs.overlays = overlays;
                 }
               ];
               specialArgs = args // { inherit system hostname; };
