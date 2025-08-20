@@ -202,6 +202,7 @@
                 {
                   networking.hostName = lib.mkDefault hostname;
                   nixpkgs.overlays = overlays;
+                  nixpkgs.hostPlatform = lib.mkDefault system;
                 }
               ];
               specialArgs = args // { inherit system hostname; };

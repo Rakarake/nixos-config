@@ -1,0 +1,6 @@
+{
+  imports = [
+    ../live/configuration.nix
+  ];
+}
+

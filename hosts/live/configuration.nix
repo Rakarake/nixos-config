@@ -5,8 +5,6 @@
     (inputs.nixpkgs-unstable + "/nixos/modules/installer/cd-dvd/installation-cd-minimal-new-kernel-no-zfs.nix")
   ];
 
-  nixpkgs.hostPlatform = "x86_64-linux";
-
   environment.systemPackages = with pkgs; [
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
