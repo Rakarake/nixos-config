@@ -2,7 +2,7 @@
 # text directly.
 { pkgs, name, runtimeInputs, src }:
   let
-    runtimeInputsPathString = builtins.foldl' (acc: dep: acc + "${dep}:") "" runtimeInputs;
+    runtimeInputsPathString = builtins.foldl' (acc: dep: acc + "${dep}/bin:") "" runtimeInputs;
     wrapperText = ''#!${pkgs.bash}/bin/bash
 set -o errexit
 set -o nounset
