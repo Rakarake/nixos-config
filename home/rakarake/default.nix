@@ -71,7 +71,9 @@ in
   # Shell aliases
   home.shellAliases = {
     g = "git";
-    e = "nvim";
+    e = "$EDITOR";
+    # For "NeoVim with Port"
+    nvp = "nvim --listen localhost:15923";
     b = config.home-xdg.browser.bin;
     open = "xdg-open";
     "\":q\"" = "exit";
