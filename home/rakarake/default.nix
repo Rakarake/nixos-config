@@ -36,7 +36,6 @@ in
   ];
   # Follow the rules!
   services.xremap.enable = lib.mkDefault false;
-  home.stateVersion = "23.05";
 
   # Bash config
   home-bash.enable = true;

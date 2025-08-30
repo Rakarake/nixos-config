@@ -164,6 +164,7 @@
               home.homeDirectory = "/home/${user}";
               programs.home-manager.enable = true;
               nixpkgs.overlays = overlays;
+              home.stateVersion = "23.05";
             }
           ];
           pkgs = pkgsFor.${system};
