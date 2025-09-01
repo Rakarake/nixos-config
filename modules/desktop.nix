@@ -52,6 +52,7 @@ in {
       linuxPackages_latest.perf # Performance metrics
       impression    # Boot drive creator
       nix-index     # For working with /nix/store
+      nix-search
       libnotify
       wireshark
       libresprite

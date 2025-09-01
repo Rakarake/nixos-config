@@ -2,7 +2,7 @@
 
   imports = [
     # no-zfs makes it possible to use testing kernels, change to normal install-image if zfs is needed
-    (inputs.nixpkgs-unstable + "/nixos/modules/installer/cd-dvd/installation-cd-minimal-new-kernel-no-zfs.nix")
+    (inputs.nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal-new-kernel-no-zfs.nix")
   ];
 
   environment.systemPackages = with pkgs; [
@@ -32,7 +32,6 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Set your time zone
-  time.timeZone = "Europe/Stockholm";
   services.automatic-timezoned.enable = true;
 
   # Select internationalisation properties
