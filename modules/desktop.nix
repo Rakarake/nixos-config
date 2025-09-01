@@ -81,11 +81,6 @@ in {
       davfs2
     ];
 
-    # Nh
-    programs.nh = {
-      enable = true;
-    };
-
     # Rescue kernel panics
     boot.crashDump.enable = true;
 

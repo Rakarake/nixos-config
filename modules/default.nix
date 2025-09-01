@@ -40,4 +40,6 @@
   };
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+  # This program is sooo good, I want it everywhere
+  programs.nh.enable = true;
 }
