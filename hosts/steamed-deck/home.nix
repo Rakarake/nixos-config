@@ -3,7 +3,7 @@
   home-xdg.wallpaper = lib.mkForce ./wallpaper.png;
 
   home-desktop.enable = true;
-  home-gnome.enable = true;
+  #home-gnome.enable = true;
   home-river = {
     enable = true;
     extraConfigTop = let

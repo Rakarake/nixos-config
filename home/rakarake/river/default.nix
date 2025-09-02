@@ -123,7 +123,7 @@ in
             B="🔋$(acpi | awk -F ',' '{print $2}' || true)"
             V="🔈️ $(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk -F ':' '{print $2 * 100 "%"}' || true)"
             echo "$V | $B | $D"
-        ); do sleep 1; done ) | creek -sao ${if config.stylix.enable == true then (
+        ); do sleep 15; done ) | creek -sao ${if config.stylix.enable == true then (
           "-nb 0x" + config.lib.stylix.colors.base01
           + " -nf 0x" + config.lib.stylix.colors.base05
           + " -fb 0x" + config.lib.stylix.colors.base02
