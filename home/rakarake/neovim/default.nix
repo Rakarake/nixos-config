@@ -75,6 +75,8 @@ in
         oil-nvim
         # Rust
         rustaceanvim
+        # Agda mode
+        cornelis
       ];
       extraLuaConfig = builtins.readFile ./config.lua + ''
 -- C# LSP support
