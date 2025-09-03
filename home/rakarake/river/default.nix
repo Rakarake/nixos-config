@@ -68,6 +68,7 @@ in
       wl-clip-persist
       rofi-network-manager         # Simple NetworkManager interface
       creekPackage
+      sandbar
       acpi
     ];
 
@@ -122,13 +123,18 @@ in
             D="$(date "+📅 %F %A vecka %V | ⏰ %R" || true)"
             B="🔋$(acpi | awk -F ',' '{print $2}' || true)"
             V="🔈️ $(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk -F ':' '{print $2 * 100 "%"}' || true)"
-            echo "$V | $B | $D"
-        ); do sleep 15; done ) | creek -sao ${if config.stylix.enable == true then (
-          "-nb 0x" + config.lib.stylix.colors.base01
-          + " -nf 0x" + config.lib.stylix.colors.base05
-          + " -fb 0x" + config.lib.stylix.colors.base02
-          + " -ff 0x" + config.lib.stylix.colors.base05
-        ) else ""} &
+            echo "all status $V | $B | $D"
+        ); do sleep 15; done ) | sandbar -no-title ${if config.stylix.enable == true then (
+             " -font \"${config.stylix.fonts.sansSerif.name} ${toString config.stylix.fonts.sizes.desktop}\""
+           + " -inactive-bg-color \"#" + config.lib.stylix.colors.base01 + "\""
+           + " -inactive-fg-color \"#" + config.lib.stylix.colors.base05 + "\""
+           + " -active-bg-color   \"#" + config.lib.stylix.colors.base02 + "\""
+           + " -active-fg-color   \"#" + config.lib.stylix.colors.base05 + "\""
+           + " -urgent-fg-color   \"#" + config.lib.stylix.colors.base04 + "\""
+           + " -urgent-bg-color   \"#" + config.lib.stylix.colors.base09 + "\""
+           + " -title-fg-color    \"#" + config.lib.stylix.colors.base05 + "\""
+           + " -title-bg-color    \"#" + config.lib.stylix.colors.base01 + "\""
+         ) else ""} &
 
         # Required to get screensharing to work https://wiki.archlinux.org/title/River#Troubleshooting
         # Apperently the home manager module is just not maintained ☹️
