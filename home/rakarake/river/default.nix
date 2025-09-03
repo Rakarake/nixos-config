@@ -17,14 +17,6 @@ let
     	before-sleep '${swaylockCommand}'
   '';
   # Adding pull request that adds bar status to all monitors wiht the -sao flag
-  creekPackage = pkgs.creek.overrideAttrs (finalAttrs: previousAttrs: {
-    src = pkgs.fetchFromGitHub {
-      owner = "Eken-beep";
-      repo = "creek";
-      rev = "af4b9e63a97696b24297e85fac4367677aef6710";
-      hash = "sha256-3dda2p339c0bpAaDNVDTw5uJ7muqkyqY6bsiXDF9Ng0=";
-    };
-  });
 in
 {
   imports = [
@@ -67,7 +59,6 @@ in
       cliphist
       wl-clip-persist
       rofi-network-manager         # Simple NetworkManager interface
-      creekPackage
       sandbar
       acpi
     ];
@@ -120,9 +111,9 @@ in
 
         # Status bar
         ( while (
-            D="$(date "+📅 %F %A vecka %V | ⏰ %R" || true)"
-            B="🔋$(acpi | awk -F ',' '{print $2}' || true)"
-            V="🔈️ $(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk -F ':' '{print $2 * 100 "%"}' || true)"
+            D="$(date "+   %F %A vecka %V | 󰥔  %R" || true)"
+            B=" 󰁹 $(acpi | awk -F ',' '{print $2}' || true)"
+            V="󰖀 $(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk -F ':' '{print $2 * 100 "%"}' || true)"
             echo "all status $V | $B | $D"
         ); do sleep 15; done ) | sandbar -no-title ${if config.stylix.enable == true then (
              " -font \"${config.stylix.fonts.sansSerif.name} ${toString config.stylix.fonts.sizes.desktop}\""
