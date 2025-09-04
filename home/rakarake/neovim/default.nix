@@ -22,6 +22,7 @@ in
     xdg.configFile."nvim/after/ftplugin/html.lua".source = ./after/ftplugin/html.lua;
     xdg.configFile."nvim/after/ftplugin/rust.lua".source = ./after/ftplugin/rust.lua;
     xdg.configFile."nvim/after/ftplugin/nix.lua".source = ./after/ftplugin/nix.lua;
+    xdg.configFile."nvim/after/ftplugin/agda.lua".source = ./after/ftplugin/agda.lua;
     # Snippets
     xdg.configFile."nvim/snippets/cs.lua".source = ./snippets/cs.lua;
 

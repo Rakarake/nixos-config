@@ -2,6 +2,7 @@
 
 -- Leader key
 vim.g.mapleader = ' '
+vim.g.maplocalleader = '<M-x>'
 
 -- Load filetype specific configurations
 vim.cmd('filetype plugin on')

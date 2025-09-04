@@ -1,0 +1,13 @@
+vim.api.nvim_buf_set_keymap(0, "n", "<leader>al", "<cmd>CornelisLoad<CR>",             { noremap = true, silent = true })
+vim.api.nvim_buf_set_keymap(0, "n", "<leader>ar", "<cmd>CornelisRefine<CR>",           { noremap = true, silent = true })
+vim.api.nvim_buf_set_keymap(0, "n", "<leader>ad", "<cmd>CornelisMakeCase<CR>",         { noremap = true, silent = true })
+vim.api.nvim_buf_set_keymap(0, "n", "<leader>a,", "<cmd>CornelisTypeContext<CR>",      { noremap = true, silent = true })
+vim.api.nvim_buf_set_keymap(0, "n", "<leader>a.", "<cmd>CornelisTypeContextInfer<CR>", { noremap = true, silent = true })
+vim.api.nvim_buf_set_keymap(0, "n", "<leader>an", "<cmd>CornelisSolve<CR>",            { noremap = true, silent = true })
+vim.api.nvim_buf_set_keymap(0, "n", "<leader>aa", "<cmd>CornelisAuto<CR>",             { noremap = true, silent = true })
+vim.api.nvim_buf_set_keymap(0, "n", "gd",         "<cmd>CornelisGoToDefinition<CR>",   { noremap = true, silent = true })
+vim.api.nvim_buf_set_keymap(0, "n", "[d", "<cmd>CornelisPrevGoal<CR>",                 { noremap = true, silent = true })
+vim.api.nvim_buf_set_keymap(0, "n", "]d", "<cmd>CornelisNextGoal<CR>",                 { noremap = true, silent = true })
+vim.api.nvim_buf_set_keymap(0, "n", "<leader>ao", "<cmd>CornelisInc<CR>",              { noremap = true, silent = true })
+vim.api.nvim_buf_set_keymap(0, "n", "<leader>ai", "<cmd>CornelisDec<CR>",              { noremap = true, silent = true })
+
