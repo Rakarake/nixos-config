@@ -24,6 +24,7 @@ in
     ./gnome.nix
     ./hyprland
     ./neovim
+    ./emacs.nix
     ./rofi
     ./dwl
     ./river
