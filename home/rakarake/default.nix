@@ -42,7 +42,12 @@ in
   home-bash.enable = true;
 
   # Btop
-  programs.btop.enable = true;
+  programs.btop = {
+    enable = true;
+    settings = {
+      proc_tree = true;
+    };
+  };
 
   # Session variables
   home.sessionVariables = environmentVariables;

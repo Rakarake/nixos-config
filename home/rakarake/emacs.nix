@@ -1,6 +1,7 @@
-{
+{ pkgs, ... }: {
   programs.emacs = {
     enable = true;
+    package = pkgs.emacs-pgtk;
     extraPackages = epkgs: with epkgs; [
       agda2-mode
     ];

@@ -106,6 +106,7 @@ in
     wayland.windowManager.river = {
       enable = true;
       systemd.enable = true;
+      package = pkgs.river-classic;
       extraConfig = ''
         ${cfg.extraConfigTop}
 
