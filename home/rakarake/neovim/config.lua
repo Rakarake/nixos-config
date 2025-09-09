@@ -30,6 +30,10 @@ vim.keymap.set('n', '<leader>fwg', function() require'telescope.builtin'.live_gr
 require'telescope'.setup()
 -- Enalbe DAP integration
 require'telescope'.load_extension('dap')
+
+-- undotree
+vim.keymap.set('n', '<leader>ut', vim.cmd.UndotreeToggle)
+
 -- Only files visible to git
 vim.keymap.set('n', '<leader>ff', '<cmd>Telescope git_files<cr>')
 -- All files

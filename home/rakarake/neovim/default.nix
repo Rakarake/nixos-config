@@ -59,6 +59,7 @@ in
         harpoon2
         toggleterm-nvim
         vimwiki
+        undotree
         typst-vim
         # LSP
         nvim-lspconfig
