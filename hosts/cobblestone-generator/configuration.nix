@@ -133,7 +133,9 @@
     xmrig
 
     lact  # GPU monitor/overclocking
+    gpu-screen-recorder-gtk
   ];
+  programs.gpu-screen-recorder.enable = true;
 
   # Put ROCM HIP in known path for some apps to work
   systemd.tmpfiles.rules = 
