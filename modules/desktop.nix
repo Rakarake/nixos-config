@@ -78,7 +78,7 @@ in {
       waypipe
       kdePackages.okular
       android-studio
-      davfs2
+      #davfs2
     ];
 
     # Rescue kernel panics
