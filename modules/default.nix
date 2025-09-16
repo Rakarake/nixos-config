@@ -15,6 +15,7 @@
     pkgs.home-manager
     inputs.agenix.packages."${system}".default
     comma
+    podman-compose
   ];
   nixpkgs.overlays = [
     # Replace openssl with libressl
