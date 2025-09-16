@@ -10,4 +10,8 @@ vim.api.nvim_buf_set_keymap(0, "n", "[d", "<cmd>CornelisPrevGoal<CR>",          
 vim.api.nvim_buf_set_keymap(0, "n", "]d", "<cmd>CornelisNextGoal<CR>",                 { noremap = true, silent = true })
 vim.api.nvim_buf_set_keymap(0, "n", "<leader>ao", "<cmd>CornelisInc<CR>",              { noremap = true, silent = true })
 vim.api.nvim_buf_set_keymap(0, "n", "<leader>ai", "<cmd>CornelisDec<CR>",              { noremap = true, silent = true })
+-- Normalize / compute value
+vim.api.nvim_buf_set_keymap(0, "n", "<leader>ano", "<cmd>CornelisNormalize<CR>",       { noremap = true, silent = true })
+-- Make hole from question mark
+vim.api.nvim_buf_set_keymap(0, "n", "<leader>aq", "<cmd>CornelisQuestionToMeta<CR>",   { noremap = true, silent = true })
 
