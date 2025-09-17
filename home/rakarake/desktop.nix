@@ -99,7 +99,10 @@ in {
       #matchBlocks."ssh.rakarake.xyz".proxyCommand = "${pkgs.cloudflared}/bin/cloudflared access ssh --hostname ssh.rakarake.xyz";
     };
 
-
+    # Pdf viewer
+    programs.sioyek = {
+      enable = true;
+    };
 
     # Virt-manager error free
     dconf.settings = {

@@ -73,7 +73,7 @@ in {
     };
     pdf-viewer = mkOption {
       type = types.attrs;
-      default = { package = pkgs.evince; bin = "evince"; desktop = "org.gnome.Evince.desktop"; };
+      default = { package = pkgs.sioyek; bin = "sioyek"; desktop = "sioyek.desktop"; };
     };
     # TODO set up .desktop file for text editor
     text-editor = mkOption {
