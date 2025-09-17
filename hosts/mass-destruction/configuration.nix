@@ -201,7 +201,7 @@ in
       server_name = "chat.mdf.farm";
       serve_server_wellknown = true;
       registration_shared_secret_path = config.age.secrets.hotfreddy.path;
-      auto_join_rooms = "#playwhen:chat.mdf.farm" "#sunkencolumns:chat.mdf.farm" "#Reincarnated-as-a-Monke:chat.mdf.farm" "#NOMEMES:chat.mdf.farm" "#deadlocking:chat.mdf.farm" "#animebrainrot:chat.mdf.farm" "#monkeshipping:chat.mdf.farm" "#Hacking:chat.mdf.farm" "#CoC:chat.mdf.farm" "#lore:chat.mdf.farm" "#bnnuy:chat.mdf.farm" "#monsterhunter:chat.mdf.farm" "#atlyss:chat.mdf.farm" ;
+      auto_join_rooms = "#playwhen:chat.mdf.farm", "#sunkencolumns:chat.mdf.farm", "#Reincarnated-as-a-Monke:chat.mdf.farm", "#NOMEMES:chat.mdf.farm", "#deadlocking:chat.mdf.farm", "#animebrainrot:chat.mdf.farm", "#monkeshipping:chat.mdf.farm", "#Hacking:chat.mdf.farm", "#CoC:chat.mdf.farm", "#lore:chat.mdf.farm", "#bnnuy:chat.mdf.farm", "#monsterhunter:chat.mdf.farm", "#atlyss:chat.mdf.farm" ;
 
       turn_uris = ["turn:${realm}:3478?transport=udp" "turn:${realm}:3478?transport=tcp"];
       turn_shared_secret_path = config.age.secrets.freakyfoxy.path;
