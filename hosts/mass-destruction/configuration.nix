@@ -201,8 +201,8 @@ in
       server_name = "chat.mdf.farm";
       serve_server_wellknown = true;
       registration_shared_secret_path = config.age.secrets.hotfreddy.path;
-      auto_join_rooms = 
-         - #playwhen:chat.mdf.farm
+      auto_join_rooms : 
+          "#playwhen:chat.mdf.farm"
           #sunkencolumns:chat.mdf.farm
          - "#Reincarnated-as-a-Monke:chat.mdf.farm" 
          - "#NOMEMES:chat.mdf.farm" 
