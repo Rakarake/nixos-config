@@ -35,6 +35,9 @@
         justusadam.language-haskell
         ndmitchell.haskell-ghcid
 
+        # Agda
+        banacorn.agda-mode
+
         # Spell checking
         streetsidesoftware.code-spell-checker
 
@@ -237,6 +240,10 @@
         "files.autoSave" = "off";
         "[nix]"."editor.tabSize" = 2;
         #"window.zoomLevel" = 1;
+
+        # Agda
+        "agdaMode.connection.agdaLanguageServer" = false;
+        "agdaMode.connection.commandLineOptions" = "-l standard-library -i .";
       };
     };
   };
