@@ -116,7 +116,7 @@ in
             B=" 󰁹 $(acpi | awk -F ',' '{print $2}' || true)"
             V="󰖀 $(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk -F ':' '{print $2 * 100 "%"}' || true)"
             echo "all status $V | $B | $D"
-        ); do sleep 15; done ) | sandbar -no-title ${if config.stylix.enable == true then (
+        ); do sleep 15; done ) | sandbar ${if config.stylix.enable == true then (
              " -font \"${config.stylix.fonts.sansSerif.name} ${toString config.stylix.fonts.sizes.desktop}\""
            + " -inactive-bg-color \"#" + config.lib.stylix.colors.base01 + "\""
            + " -inactive-fg-color \"#" + config.lib.stylix.colors.base05 + "\""
