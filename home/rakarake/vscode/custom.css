@@ -1,0 +1,39 @@
+/* central command palette */
+.quick-input-widget {
+    transform: translateY(-50%) !important;
+    top: 50% !important;
+    z-index: 100;
+    border: solid 2px #5BCEFA !important;
+    border-radius: 6px !important;
+    box-shadow: none !important;
+}
+
+.monaco-workbench .part.statusbar>.items-container>.statusbar-item.remote-kind {
+    background-color: #F5A9B8 !important;
+}
+
+.statusbar {
+    border-top: solid 1px #4F516F !important;
+    --status-border-top-color: unset !important;
+}
+
+.panel {
+    border-top: solid 1px #4F516F !important;
+}
+
+.breadcrumbs-control {
+    border-bottom: solid 1px #4F516F !important;
+}
+
+/* 
+.sidebar {
+    position: absolute !important;
+    width: 500px !important;
+    height: 500px !important;
+}
+
+.sidebar .content {
+    width: 500px !important;
+    height: 500px !important;
+    background-color: #1E2330 !important;
+} */

@@ -1,0 +1,6 @@
+{
+    "agdaMode.connection.paths": [
+        "/home/rakarake/.nix-profile/bin/agda"
+    ],
+    "editor.minimap.enabled": false
+}

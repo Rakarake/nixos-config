@@ -7,7 +7,7 @@ let
 in {
   imports = [
     ./xdg.nix
-    ./vscode.nix
+    ./vscode
     ./mpv
   ];
 
