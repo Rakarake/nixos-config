@@ -31,6 +31,7 @@ let
     bingbingo          = 8097;
     forgejo            = 8098;
     whiteboard         = 3002;
+    tailscale          = 4896;
   };
 
 
