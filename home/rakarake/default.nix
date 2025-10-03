@@ -65,6 +65,9 @@ in
     # I'm stupid
     tldr
 
+    # The best program ever
+    lazygit
+
     # My scripts
     custom-packages.amogus
   ] ++ 
