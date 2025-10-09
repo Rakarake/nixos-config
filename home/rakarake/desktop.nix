@@ -177,6 +177,7 @@ in {
       gimp3
       element-desktop
       vintagestory
+      obsidian
 
       # Emulators
       fceux
