@@ -2,5 +2,9 @@
     "agdaMode.connection.paths": [
         "/home/rakarake/.nix-profile/bin/agda"
     ],
-    "editor.minimap.enabled": false
+    "editor.minimap.enabled": false,
+    "window.controlsStyle": "hidden",
+    "workbench.sideBar.location": "right",
+    "editor.minimap.autohide": true,
+    "window.menuBarVisibility": "toggle",
 }

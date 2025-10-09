@@ -226,6 +226,7 @@
         inherit makeHomeConfigs;
         statefulServerTemplate = import ./functions/statefulServerTemplate.nix;
         writeShellApplicationWithArguments = import ./functions/writeShellApplicationWithArguments.nix;
+        mutableDotfiles = import ./functions/mutableDotfiles.nix;
       };
       nixosConfigurations = makeSystemConfigs;
       homeConfigurations = makeHomeConfigs;

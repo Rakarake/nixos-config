@@ -1,10 +1,10 @@
-{ pkgs, inputs, self, ... }:
+{ pkgs, inputs, outputs, self, user, ... }:
 let
-  path = pkgs.lib.escapeShellArg "/home/rakarake/Projects/nixos-config/home/rakarake/vscode";
-  dotfiles =
-    pkgs.runCommandLocal "nixos-mutable-file-${builtins.baseNameOf path}" { }
-    "ln -s ${path} $out";
-
+  # Using mutable dotfiles.
+  dotfiles = outputs.extra.mutableDotfiles {
+    inherit pkgs user;
+    location = "vscode";
+  };
   pkgs-ext = import inputs.nixpkgs {
     inherit (pkgs) system;
     config.allowUnfree = true;
