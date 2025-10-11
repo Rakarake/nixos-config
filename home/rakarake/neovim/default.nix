@@ -4,10 +4,15 @@
   pkgs,
   inputs,
   outputs,
+  user,
   ...
 }:
 let
   cfg = config.home-neovim;
+  dotfiles = outputs.extra.mutableDotfiles {
+    inherit pkgs user;
+    location = "neovim";
+  };
 in
 {
   options.home-neovim = {
@@ -15,6 +20,8 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    # Mutable config with extra.lua!
+    xdg.configFile."nvim/lua/extra.lua".source = "${dotfiles}/extra.lua";
     # Make sure undodir exists
     xdg.configFile."nvim/undodir/gamnangstyle".text = "whop\n";
     # Neovim filetype specific configs
@@ -80,7 +87,10 @@ in
         # Agda mode
         cornelis
       ];
-      extraLuaConfig = builtins.readFile ./config.lua + ''
+      extraLuaConfig = ''
+-- We want to import the mutable extra.lua file here
+require("extra")
+
 -- C# LSP support
 require'lspconfig'.omnisharp.setup {
      capabilities = capabilities,
