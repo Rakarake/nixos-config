@@ -178,6 +178,7 @@ in {
       element-desktop
       vintagestory
       obsidian
+      hieroglyphic
 
       # Emulators
       fceux
