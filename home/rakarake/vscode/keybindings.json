@@ -1,6 +1,6 @@
 [
     {
-        "key": "ctrl+space f",
+        "key": "ctrl+space ctrl+f",
         "command": "workbench.action.quickOpen"
     },
     {
