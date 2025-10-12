@@ -7,7 +7,7 @@
     "editor.minimap.autohide": "mouseover",
     "workbench.colorTheme": "Gruvbox Dark Medium",
     "keyboard.dispatch": "keyCode",
-    "window.menuBarVisibility": "compact",
+    "window.menuBarVisibility": "toggle",
     "window.titleBarStyle": "native",
     "workbench.layoutControl.enabled": false,
     "window.commandCenter": false,
@@ -17,5 +17,6 @@
     "vim.normalModeKeyBindingsNonRecursive": [
         { "before": ["u"], "commands": ["undo"] },
         { "before": ["c-r"], "commands": ["redo"] }
-      ],
+    ],
+    "window.menuStyle": "native",
 }
