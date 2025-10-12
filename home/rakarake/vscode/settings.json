@@ -3,10 +3,13 @@
         "/home/rakarake/.nix-profile/bin/agda"
     ],
     "editor.minimap.enabled": false,
-    "window.controlsStyle": "hidden",
     "workbench.sideBar.location": "right",
     "editor.minimap.autohide": "mouseover",
-    "window.menuBarVisibility": "toggle",
     "workbench.colorTheme": "Gruvbox Dark Medium",
     "keyboard.dispatch": "keyCode",
+    "window.menuBarVisibility": "compact",
+    "window.titleBarStyle": "native",
+    "workbench.layoutControl.enabled": false,
+    "window.commandCenter": false,
+    "window.controlsStyle": "hidden",
 }
