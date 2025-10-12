@@ -136,7 +136,6 @@ in {
       obs-studio
       protonup-qt
       baobab
-      vesktop
       helvum
       nicotine-plus
       #ardour
@@ -201,6 +200,9 @@ in {
       skim
       cargo-mommy
     ];
+
+
+    programs.vesktop.enable = true;
 
     ## Enable syncthing service in the background
     #services.syncthing.enable = true;
