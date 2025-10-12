@@ -44,9 +44,9 @@ in
   # Btop
   programs.btop = {
     enable = true;
-    settings = {
-      proc_tree = true;
-    };
+    #settings = {
+    #  proc_tree = true;
+    #};
   };
 
   # Session variables
