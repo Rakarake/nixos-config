@@ -48,7 +48,7 @@ in
       tinymist                                              # Typst
       wgsl-analyzer                                         # WGSL
       omnisharp-roslyn                                      # C#
-      erlang-ls                                             # Erlang
+      erlang-language-platform
       pyright                                               # Python
       outputs.packages.${pkgs.system}.gdshader-lsp          # Godot shading language
       zls                                                   # Zig
@@ -92,7 +92,7 @@ in
 require("extra")
 
 -- C# LSP support
-require'lspconfig'.omnisharp.setup {
+vim.lsp.config('omnisharp', {
      capabilities = capabilities,
      on_attach = on_attach,
      flags = lsp_flags,
@@ -132,7 +132,8 @@ require'lspconfig'.omnisharp.setup {
      -- Only run analyzers against open files when 'enableRoslynAnalyzers' is
      -- true
      analyze_open_documents_only = false,
-}
+})
+vim.lsp.enable('omnisharp')
       '';
     };
   };

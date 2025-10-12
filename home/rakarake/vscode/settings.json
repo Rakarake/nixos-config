@@ -5,6 +5,7 @@
     "editor.minimap.enabled": false,
     "window.controlsStyle": "hidden",
     "workbench.sideBar.location": "right",
-    "editor.minimap.autohide": true,
+    "editor.minimap.autohide": "mouseover",
     "window.menuBarVisibility": "toggle",
+    "workbench.colorTheme": "Catppuccin Macchiato",
 }

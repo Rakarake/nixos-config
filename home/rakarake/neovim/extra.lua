@@ -190,19 +190,30 @@ local default = {
     flags = lsp_flags,
 }
 
+local lsps_with_default_config = {
+    'html',
+    'cssls',
+    'eslint',
+    'ccls',
+    'pyright',
+    'gdscript',
+    'gdshader_lsp',
+    'jdtls',
+    'nil_ls',
+    'gopls',
+    'wgsl_analyzer',
+    'tinymist',
+    'erlangls',
+    'zls',
+    'hls',
+}
+
+for i, lsp in ipairs(lsps_with_default_config) do
+    vim.lsp.config(lsp, default)
+    vim.lsp.enable(lsp)
+end
+
 -- Individual language server setup
--- HTML
-require'lspconfig'.html.setup(default)
-
--- CSS
-require'lspconfig'.cssls.setup(default)
-
--- Javascript
-require'lspconfig'.eslint.setup(default)
-
--- C/C++
-require'lspconfig'.ccls.setup(default)
-
 ---- Rust
 --require'lspconfig'.rust_analyzer.setup {
 --    capabilities = capabilities,
@@ -220,44 +231,6 @@ require'lspconfig'.ccls.setup(default)
 --        },
 --    },
 --}
-
--- Haskell
-require'lspconfig'.hls.setup {
-    capabilities = capabilities,
-    on_attach = on_attach,
-    flags = lsp_flags,
-    filetypes = { 'haskell', 'lhaskell', 'cabal' },
-}
-
--- Python
-require'lspconfig'.pyright.setup(default)
-
--- GDScript
-require'lspconfig'.gdscript.setup(default)
-
--- GDShader
-vim.lsp.enable('gdshader_lsp')
-
--- Java
-require'lspconfig'.jdtls.setup(default)
-
--- Nix
-require'lspconfig'.nil_ls.setup(default)
-
--- Go
-require'lspconfig'.gopls.setup(default)
-
--- WGSL
-require'lspconfig'.wgsl_analyzer.setup(default)
-
--- Typst
-require'lspconfig'.tinymist.setup(default)
-
--- Erlang
-require'lspconfig'.erlangls.setup(default)
-
--- Zig
-require'lspconfig'.zls.setup(default)
 
 
 -- Catppuccin theme integrations
