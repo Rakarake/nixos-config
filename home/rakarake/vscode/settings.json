@@ -5,18 +5,41 @@
     "editor.minimap.enabled": false,
     "workbench.sideBar.location": "right",
     "editor.minimap.autohide": "mouseover",
-    "workbench.colorTheme": "Gruvbox Dark Medium",
+    "workbench.colorTheme": "Base16 Default Dark",
     "keyboard.dispatch": "keyCode",
     "window.menuBarVisibility": "toggle",
     "window.titleBarStyle": "native",
     "workbench.layoutControl.enabled": false,
     "window.commandCenter": false,
     "window.controlsStyle": "hidden",
-    "vim.useSystemClipboard": true,
+
+    // Vim
     // Fix clipboard not working with vim plugin.
+    "vim.useSystemClipboard": true,
+    "vim.leader": "<Space>",
     "vim.normalModeKeyBindingsNonRecursive": [
         { "before": ["u"], "commands": ["undo"] },
-        { "before": ["c-r"], "commands": ["redo"] }
+        { "before": ["c-r"], "commands": ["redo"] },
+        { "before": [ "leader", "e" ], "commands": [ "editor.action.showDefinitionPreviewHover" ] },
+        { "before": [ "leader", "p" ], "commands": [ ":noh" ] },
+        { "before": [ "[", "d" ], "commands": [ "editor.action.marker.prev" ] },
+        { "before": [ "]", "d" ], "commands": [ "editor.action.marker.next" ] },
+        { "before": [ "leader", "d", "f" ], "commands": [ "editor.action.formatDocument" ] },
+        { "before": [ "<leader>", "c", "a" ], "commands": [ "editor.action.quickFix" ] }
     ],
+
+    "vim.visualModeKeyBindings": [
+      // Stay in visual mode while indenting
+      { "before":  [ "<" ], "commands": [ "editor.action.outdentLines" ] },
+      { "before":  [ ">" ], "commands": [ "editor.action.indentLines" ] },
+      // Move selected lines while staying in visual mode
+      { "before":  [ "J" ], "commands": [ "editor.action.moveLinesDownAction" ] },
+      { "before":  [ "K" ], "commands": [ "editor.action.moveLinesUpAction" ] }
+    ],
+
     "window.menuStyle": "native",
+    "base16.generator.activatedThemes": [],
+    "editor.selectionClipboard": false,
+    "vim.hlsearch": true
+    
 }
