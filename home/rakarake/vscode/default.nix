@@ -135,6 +135,9 @@ let
         # Catppuccin
         catppuccin.catppuccin-vsc
 
+        # Gruvbox
+        jdinhlife.gruvbox
+
         # C#
         #ms-dotnettools.csharp
         #ms-dotnettools.vscode-dotnet-runtime

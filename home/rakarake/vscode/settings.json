@@ -7,5 +7,6 @@
     "workbench.sideBar.location": "right",
     "editor.minimap.autohide": "mouseover",
     "window.menuBarVisibility": "toggle",
-    "workbench.colorTheme": "Catppuccin Macchiato",
+    "workbench.colorTheme": "Gruvbox Dark Medium",
+    "keyboard.dispatch": "keyCode",
 }
