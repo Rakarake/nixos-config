@@ -78,3 +78,5 @@ in
     code-pkg
     pkgs.harper
   ];
+}
+
