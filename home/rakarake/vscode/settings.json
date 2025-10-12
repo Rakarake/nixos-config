@@ -40,6 +40,7 @@
     "window.menuStyle": "native",
     "base16.generator.activatedThemes": [],
     "editor.selectionClipboard": false,
-    "vim.hlsearch": true
+    "vim.hlsearch": true,
+    "git.confirmSync": false
     
 }
