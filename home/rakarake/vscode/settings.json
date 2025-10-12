@@ -12,4 +12,10 @@
     "workbench.layoutControl.enabled": false,
     "window.commandCenter": false,
     "window.controlsStyle": "hidden",
+    "vim.useSystemClipboard": true,
+    // Fix clipboard not working with vim plugin.
+    "vim.normalModeKeyBindingsNonRecursive": [
+        { "before": ["u"], "commands": ["undo"] },
+        { "before": ["c-r"], "commands": ["redo"] }
+      ],
 }
