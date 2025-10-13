@@ -21,6 +21,7 @@
         { "before": ["u"], "commands": ["undo"] },
         { "before": ["c-r"], "commands": ["redo"] },
         { "before": [ "leader", "e" ], "commands": [ "editor.action.showDefinitionPreviewHover" ] },
+        { "before": [ "K" ], "commands": [ "editor.action.showDefinitionPreviewHover" ] },
         { "before": [ "leader", "p" ], "commands": [ ":noh" ] },
         { "before": [ "[", "d" ], "commands": [ "editor.action.marker.prev" ] },
         { "before": [ "]", "d" ], "commands": [ "editor.action.marker.next" ] },
