@@ -15,5 +15,6 @@ pkgs: writeShellApplicationWithArguments:
   ns = [ nix ];
   update = [ nix nh flatpak ];
   open-file-in-clipboard = [ xdg-utils wl-clipboard ];
+  update-sandbar = [ pamixer ];
 }))
 
