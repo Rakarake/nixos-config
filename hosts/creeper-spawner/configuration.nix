@@ -23,6 +23,11 @@ let
     prt5               = 8005;
   };
 
+  # Ports only exposed to home/secret networks
+  publicPrivatePorts = {
+    tailscale          = 4896;
+  };
+
   localPorts = {
     graphana           = 2344;
     prometheus         = 9001;
@@ -31,7 +36,6 @@ let
     bingbingo          = 8097;
     forgejo            = 8098;
     whiteboard         = 3002;
-    tailscale          = 4896;
   };
 
 
@@ -118,8 +122,8 @@ in
   };
 
   # Open ports
-  networking.firewall.allowedTCPPorts = lib.attrsets.attrValues publicPorts;
-  networking.firewall.allowedUDPPorts = lib.attrsets.attrValues publicPorts;
+  networking.firewall.allowedTCPPorts = lib.attrsets.attrValues (publicPorts // publicPrivatePorts);
+  networking.firewall.allowedUDPPorts = lib.attrsets.attrValues (publicPorts // publicPrivatePorts);
 
   # Utility programs
   environment.systemPackages = with pkgs; [
