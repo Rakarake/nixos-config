@@ -128,6 +128,23 @@ in
            + " -title-bg-color    \"#" + config.lib.stylix.colors.base01 + "\""
          ) else ""} &
 
+         # Status bar
+         FIFO="$XDG_RUNTIME_DIR/sandbar"
+         [ -e "$FIFO" ] && rm -f "$FIFO"
+         mkfifo "$FIFO"
+         
+         while cat "$FIFO"; do :; done | sandbar ${if config.stylix.enable == true then (
+             " -font \"${config.stylix.fonts.sansSerif.name} ${toString config.stylix.fonts.sizes.desktop}\""
+           + " -inactive-bg-color \"#" + config.lib.stylix.colors.base01 + "\""
+           + " -inactive-fg-color \"#" + config.lib.stylix.colors.base05 + "\""
+           + " -active-bg-color   \"#" + config.lib.stylix.colors.base02 + "\""
+           + " -active-fg-color   \"#" + config.lib.stylix.colors.base05 + "\""
+           + " -urgent-fg-color   \"#" + config.lib.stylix.colors.base04 + "\""
+           + " -urgent-bg-color   \"#" + config.lib.stylix.colors.base09 + "\""
+           + " -title-fg-color    \"#" + config.lib.stylix.colors.base05 + "\""
+           + " -title-bg-color    \"#" + config.lib.stylix.colors.base01 + "\""
+         ) else ""} &
+
         # Required to get screensharing to work https://wiki.archlinux.org/title/River#Troubleshooting
         # Apperently the home manager module is just not maintained ☹️
         systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP

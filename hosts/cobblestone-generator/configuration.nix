@@ -138,19 +138,19 @@
   programs.gpu-screen-recorder.enable = true;
 
   # Put ROCM HIP in known path for some apps to work
-  systemd.tmpfiles.rules = 
-  let
-    rocmEnv = pkgs.symlinkJoin {
-      name = "rocm-combined";
-      paths = with pkgs.rocmPackages; [
-        rocblas
-        hipblas
-        clr
-      ];
-    };
-  in [
-    "L+    /opt/rocm   -    -    -     -    ${rocmEnv}"
-  ];
+  #systemd.tmpfiles.rules = 
+  #let
+  #  rocmEnv = pkgs.symlinkJoin {
+  #    name = "rocm-combined";
+  #    paths = with pkgs.rocmPackages; [
+  #      rocblas
+  #      hipblas
+  #      clr
+  #    ];
+  #  };
+  #in [
+  #  "L+    /opt/rocm   -    -    -     -    ${rocmEnv}"
+  #];
 
   # Enable Plymouth
   #boot.plymouth = {

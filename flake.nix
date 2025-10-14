@@ -32,7 +32,7 @@
     # Styling / Colorscheme / Font management
     stylix = {
       url = "github:danth/stylix";
-      inputs.nixpkgs.follows = "nixpkgs";
+      #inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # Steamdeck related options

@@ -213,6 +213,7 @@ in {
       "fluffychat-linux-1.26.1"  # Fluffychat
       "electron-27.3.11"
       "dotnet-runtime-7.0.20"    # Vintage story
+      "mbedtls-2.28.10"          # I have no idea
     ];
 
     xdg.desktopEntries =
