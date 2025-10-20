@@ -17,6 +17,24 @@ let
     	before-sleep '${swaylockCommand}'
   '';
   # Adding pull request that adds bar status to all monitors wiht the -sao flag
+  run-sandbar = pkgs.writeShellScriptBin "run-sandbar" ''
+    # Status bar
+    FIFO="$XDG_RUNTIME_DIR/sandbar"
+    [ -e "$FIFO" ] && rm -f "$FIFO"
+    mkfifo "$FIFO"
+    
+    while cat "$FIFO"; do :; done | sandbar ${if config.stylix.enable == true then (
+        " -font \"${config.stylix.fonts.sansSerif.name} ${toString config.stylix.fonts.sizes.desktop}\""
+      + " -inactive-bg-color \"#" + config.lib.stylix.colors.base01 + "\""
+      + " -inactive-fg-color \"#" + config.lib.stylix.colors.base05 + "\""
+      + " -active-bg-color   \"#" + config.lib.stylix.colors.base02 + "\""
+      + " -active-fg-color   \"#" + config.lib.stylix.colors.base05 + "\""
+      + " -urgent-fg-color   \"#" + config.lib.stylix.colors.base04 + "\""
+      + " -urgent-bg-color   \"#" + config.lib.stylix.colors.base09 + "\""
+      + " -title-fg-color    \"#" + config.lib.stylix.colors.base05 + "\""
+      + " -title-bg-color    \"#" + config.lib.stylix.colors.base01 + "\""
+    ) else ""}
+  '';
 in
 {
   imports = [
@@ -61,6 +79,8 @@ in
       rofi-network-manager         # Simple NetworkManager interface
       sandbar
       acpi
+      # Custom sandbar command
+      run-sandbar
     ];
 
     # Xremap
@@ -110,23 +130,8 @@ in
       extraConfig = ''
         ${cfg.extraConfigTop}
 
-        # Status bar
-        FIFO="$XDG_RUNTIME_DIR/sandbar"
-        [ -e "$FIFO" ] && rm -f "$FIFO"
-        mkfifo "$FIFO"
+        run-sandbar &
         
-        while cat "$FIFO"; do :; done | sandbar ${if config.stylix.enable == true then (
-            " -font \"${config.stylix.fonts.sansSerif.name} ${toString config.stylix.fonts.sizes.desktop}\""
-          + " -inactive-bg-color \"#" + config.lib.stylix.colors.base01 + "\""
-          + " -inactive-fg-color \"#" + config.lib.stylix.colors.base05 + "\""
-          + " -active-bg-color   \"#" + config.lib.stylix.colors.base02 + "\""
-          + " -active-fg-color   \"#" + config.lib.stylix.colors.base05 + "\""
-          + " -urgent-fg-color   \"#" + config.lib.stylix.colors.base04 + "\""
-          + " -urgent-bg-color   \"#" + config.lib.stylix.colors.base09 + "\""
-          + " -title-fg-color    \"#" + config.lib.stylix.colors.base05 + "\""
-          + " -title-bg-color    \"#" + config.lib.stylix.colors.base01 + "\""
-        ) else ""} &
-
         # Run the update script (located in flake-root/scripts)
         update-sandbar &
 

@@ -54,6 +54,7 @@ let
       twxs.cmake
       tamasfe.even-better-toml
       zhwu95.riscv
+      ms-python.python
 
       # Themes
       catppuccin.catppuccin-vsc
