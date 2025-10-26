@@ -100,9 +100,9 @@ $env.config = {
     # }
 
     cursor_shape: {
-        emacs: line # block, underscore, line, blink_block, blink_underscore, blink_line (line is the default)
-        vi_insert: block # block, underscore, line , blink_block, blink_underscore, blink_line (block is the default)
-        vi_normal: underscore # block, underscore, line, blink_block, blink_underscore, blink_line (underscore is the default)
+        emacs: block # block, underscore, line, blink_block, blink_underscore, blink_line (line is the default)
+        vi_insert: line # block, underscore, line , blink_block, blink_underscore, blink_line (block is the default)
+        vi_normal: block # block, underscore, line, blink_block, blink_underscore, blink_line (underscore is the default)
     }
 
     footer_mode: never # always, never, number_of_rows, auto
@@ -110,7 +110,7 @@ $env.config = {
     buffer_editor: "" # command that will be used to edit the current line buffer with ctrl+o, if unset fallback to $env.EDITOR and $env.VISUAL
     use_ansi_coloring: true
     bracketed_paste: true # enable bracketed paste, currently useless on windows
-    edit_mode: emacs # emacs, vi
+    edit_mode: vi
     render_right_prompt_on_last_line: false # true or false to enable or disable right prompt to be rendered on last line of the prompt.
 
     hooks: {
@@ -658,7 +658,34 @@ $env.config = {
     ]
 }
 
+$env.PROMPT_COMMAND = { prompt }
 $env.DIRENV_LOG_FORMAT = ""
+$env.PROMPT_COMMAND_RIGHT = { randomArt }
+$env.PROMPT_INDICATOR = "$ "
+$env.PROMPT_INDICATOR_VI_NORMAL = "$ "
+$env.PROMPT_INDICATOR_VI_INSERT = "$ "
+
+def prompt [] {
+    return $"(ansi { attr: b })($env.PWD | path basename)(ansi reset) "
+}
+
+def randomArt [] {
+    let art = [
+        "¬‿¬", 
+        "•`_´•",
+        "ʕ·ᴥ·ʔ",
+        "ʕノ•ᴥ•ʔノ",
+        "ʕっ•ᴥ•ʔっ"
+    ]
+    let randomArt = random int (..(($art | length) - 1))
+    let printFun = random int ..10
+    if ($printFun == 0) {
+        return ($art| get $randomArt)
+    } else {
+        return ""
+    }
+}
+
 
 def lsg [arg = "."] { ls $arg -d | sort-by type name -i | grid -c | str trim }
 def :q [] {exit}

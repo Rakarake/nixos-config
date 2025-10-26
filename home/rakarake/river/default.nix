@@ -35,6 +35,7 @@ let
       + " -title-bg-color    \"#" + config.lib.stylix.colors.base01 + "\""
     ) else ""}
   '';
+  monitor-setup = pkgs.writeShellScriptBin "monitor-setup" cfg.monitor-setup;
 in
 {
   imports = [
@@ -55,6 +56,11 @@ in
     useSwayidle = mkOption {
       type = types.bool;
       default = true;
+    };
+    # wl-randr commands
+    monitor-setup = mkOption {
+      type = types.str;
+      default = "";
     };
   };
   config = mkIf cfg.enable {
@@ -81,6 +87,7 @@ in
       acpi
       # Custom sandbar command
       run-sandbar
+      monitor-setup
     ];
 
     # Xremap
@@ -130,6 +137,7 @@ in
       extraConfig = ''
         ${cfg.extraConfigTop}
 
+        monitor-setup &
         run-sandbar &
         
         # Run the update script (located in flake-root/scripts)

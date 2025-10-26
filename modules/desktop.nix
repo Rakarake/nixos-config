@@ -297,6 +297,7 @@ in {
     users.users.rakarake = {
       isNormalUser = true;
       description = "Rakarake";
+      shell = pkgs.nushell;
       extraGroups = [
         "networkmanager"
         # For sudo
