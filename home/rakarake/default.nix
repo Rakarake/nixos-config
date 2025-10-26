@@ -30,6 +30,7 @@ in
     ./river
     ./grompt
     ./bash.nix
+    ./nushell
     inputs.nix-index-database.hmModules.nix-index
     inputs.stylix.homeModules.stylix
     inputs.catppuccin.homeModules.catppuccin
@@ -79,7 +80,7 @@ in
   # Shell aliases
   home.shellAliases = {
     g = "git";
-    e = "$EDITOR";
+    e = config.home-xdg.text-editor.bin;
     # For "NeoVim with Port"
     nvp = "nvim --listen localhost:15923";
     b = config.home-xdg.browser.bin;
@@ -89,7 +90,6 @@ in
     cp = "cp -v";
     mv = "mv -v";
     rm = "rm -v";
-    ncmpcpp = "echo 'trying mpd: ' ; mpd ; ncmpcpp";
     bat = "bat --theme=base16";
     die = "sudo shutdown now";
     ks = "kitten ssh";
