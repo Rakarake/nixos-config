@@ -138,10 +138,10 @@ in
         ${cfg.extraConfigTop}
 
         monitor-setup &
-        run-sandbar &
+        (while true; do run-sandbar; sleep 2; done) &
         
         # Run the update script (located in flake-root/scripts)
-        update-sandbar &
+        (while true; do update-sandbar; sleep 2; done) &
 
         # Required to get screensharing to work https://wiki.archlinux.org/title/River#Troubleshooting
         # Apperently the home manager module is just not maintained ☹️

@@ -62,7 +62,7 @@ in {
       man-pages-posix
       wineWowPackages.waylandFull
       libreoffice-qt
-      onlyoffice-bin
+      onlyoffice-desktopeditors
       hunspell                 # Libreoffice spelling
       hunspellDicts.sv_SE      # Swedish
       hunspellDicts.en_US      # American
@@ -144,7 +144,7 @@ in {
     fonts.packages = with pkgs; [
       noto-fonts
       noto-fonts-cjk-sans
-      noto-fonts-emoji
+      noto-fonts-color-emoji
       liberation_ttf
       fira-code
       fira-code-symbols
@@ -222,10 +222,6 @@ in {
 
     # Enable Android stuff
     programs.adb.enable = true;
-    # Required by CalyxOS installer?
-    services.udev.packages = [
-      pkgs.android-udev-rules
-    ];
 
     # Bootloader
     boot.loader.systemd-boot.enable = true;

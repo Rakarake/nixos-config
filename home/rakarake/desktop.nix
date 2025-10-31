@@ -193,7 +193,7 @@ in {
 
       # Minecraft time
       prismlauncher
-      glfw-wayland-minecraft
+      glfw3-minecraft
       jdk21
 
       # Hacking
