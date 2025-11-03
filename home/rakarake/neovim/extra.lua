@@ -120,8 +120,18 @@ vim.keymap.set('n', '<space>re', vim.lsp.buf.rename, opts)
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
-  -- Enable completion triggered by <c-x><c-o>
-  --vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+  -- Format on save if lsp supports it
+  if client.supports_method("textDocument/formatting") then
+    vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      group = augroup,
+      buffer = bufnr,
+      callback = function()
+        vim.lsp.buf.format()
+      end,
+    })
+  end
 
   -- Mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
@@ -208,6 +218,7 @@ local lsps_with_default_config = {
     'hls',
 }
 
+-- Finally enable LSP:s
 for i, lsp in ipairs(lsps_with_default_config) do
     vim.lsp.config(lsp, default)
     vim.lsp.enable(lsp)
@@ -357,3 +368,23 @@ vim.keymap.set("n", "<C-4>", function() harpoon:list():select(4) end)
 -- Theme / Colorscheme
 --vim.cmd.colorscheme("catppuccin-macchiato")
 --vim.cmd.colorscheme "catppuccin"
+
+-- Let rustaceanvim use keybinds etc
+vim.g.rustaceanvim = {
+  -- Plugin configuration
+  tools = {
+  },
+  -- LSP configuration
+  server = {
+    -- Share on_attach with other LSP:s
+    on_attach = on_attach,
+    default_settings = {
+      -- rust-analyzer language server configuration
+      ['rust-analyzer'] = {
+      },
+    },
+  },
+  -- DAP configuration
+  dap = {
+  },
+}
