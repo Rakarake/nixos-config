@@ -117,6 +117,19 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
 vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
 vim.keymap.set('n', '<space>re', vim.lsp.buf.rename, opts)
 
+-- Turn on/off highlighting
+lsp_is_alive = true
+vim.keymap.set('n', '<leader>ld', function()
+    lsp_is_alive = not lsp_is_alive
+    vim.diagnostic.config({
+        signs=lsp_is_alive,
+        severity_sort = lsp_is_alive,
+        underline=lsp_is_alive,
+        virtual_text=false,
+        virtual_lines=false,
+    })
+end)
+
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
@@ -152,52 +165,18 @@ local on_attach = function(client, bufnr)
   --vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
   --vim.keymap.set('n', '<space>fm', vim.lsp.buf.formatting, bufopts)
 end
-local lsp_flags = {
-  -- This is the default in Nvim 0.7+
-  debounce_text_changes = 150,
-}
 
 -- luasnip setup
 local luasnip = require'luasnip'
-
 require'luasnip.loaders.from_lua'.lazy_load({ paths = "~/.config/nvim/snippets" })
-
--- Enable built in completion
---vim.api.nvim_create_autocmd('LspAttach', {
---  callback = function(ev)
---    local client = vim.lsp.get_client_by_id(ev.data.client_id)
---    if client:supports_method('textDocument/completion') then
---      vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
---    end
---  end,
---})
----- taken from: https://codeberg.org/zacoons/.dotfiles/src/branch/master/.config/nvim/lua/config/lazy.lua
----- see `:h completeopt`
---vim.opt.completeopt="menuone,noselect,popup,fuzzy"
----- map <c-space> to activate completion, (normaly <c-x><c-o>)
---vim.keymap.set("i", "<c-space>", function() vim.lsp.completion.get() end)
----- map <cr> to <c-y> when the popup menu is visible
---vim.keymap.set("i", "<cr>", "pumvisible() ? '<c-y>' : '<cr>'", { expr = true })
-
 
 --Enable (broadcasting) snippet capability for completion
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
--- Built in neovim lsp config, for the peice of mind
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-    virtual_text = false,
-    signs = true,
-    update_in_insert = false,
-    underline = false,
-    border = "single",
-    severity_sort = true,
-})
-
 local default = {
     capabilities = capabilities,
     on_attach = on_attach,
-    flags = lsp_flags,
 }
 
 local lsps_with_default_config = {
@@ -223,38 +202,6 @@ for i, lsp in ipairs(lsps_with_default_config) do
     vim.lsp.config(lsp, default)
     vim.lsp.enable(lsp)
 end
-
--- Individual language server setup
----- Rust
---require'lspconfig'.rust_analyzer.setup {
---    capabilities = capabilities,
---    on_attach = on_attach,
---    flags = lsp_flags,
---    -- Server-specific settings...
---    settings = {
---      ["rust-analyzer"] = {}
---    },
---    commands = {
---        ExpandMacro = {
---            function()
---                vim.lsp.buf_request_all(0, "rust-analyzer/expandMacro", vim.lsp.util.make_position_params(), vim.print)
---            end
---        },
---    },
---}
-
-
--- Catppuccin theme integrations
---require("catppuccin").setup({
---    integrations = {
---        --cmp = true,
---        --gitsigns = true,
---        --nvimtree = true,
---        telescope = true,
---        --notify = false,
---        --mini = false,
---    }
---})
 
 -- DAP (Debug Adapter Protocol)
 vim.keymap.set('n', '<space>db', require'dap'.toggle_breakpoint, opts)
@@ -285,6 +232,50 @@ require'mini.align'.setup()
 require'mini.move'.setup()
 require'mini.surround'.setup()
 require'mini.operators'.setup()
+local miniclue = require('mini.clue')
+miniclue.setup({
+  triggers = {
+    -- Leader triggers
+    { mode = 'n', keys = '<Leader>' },
+    { mode = 'x', keys = '<Leader>' },
+
+    -- Built-in completion
+    { mode = 'i', keys = '<C-x>' },
+
+    -- `g` key
+    { mode = 'n', keys = 'g' },
+    { mode = 'x', keys = 'g' },
+
+    -- Marks
+    { mode = 'n', keys = "'" },
+    { mode = 'n', keys = '`' },
+    { mode = 'x', keys = "'" },
+    { mode = 'x', keys = '`' },
+
+    -- Registers
+    { mode = 'n', keys = '"' },
+    { mode = 'x', keys = '"' },
+    { mode = 'i', keys = '<C-r>' },
+    { mode = 'c', keys = '<C-r>' },
+
+    -- Window commands
+    { mode = 'n', keys = '<C-w>' },
+
+    -- `z` key
+    { mode = 'n', keys = 'z' },
+    { mode = 'x', keys = 'z' },
+  },
+
+  clues = {
+    -- Enhance this by adding descriptions for <Leader> mapping groups
+    miniclue.gen_clues.builtin_completion(),
+    miniclue.gen_clues.g(),
+    miniclue.gen_clues.marks(),
+    miniclue.gen_clues.registers(),
+    miniclue.gen_clues.windows(),
+    miniclue.gen_clues.z(),
+  },
+})
 
 -- Autocompletion engine for LSP and other things
 require'blink.cmp'.setup({
