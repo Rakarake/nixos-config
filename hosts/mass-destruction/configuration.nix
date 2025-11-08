@@ -1,31 +1,43 @@
-{ config, pkgs, lib, ssh-keys, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ssh-keys,
+  ...
+}:
 
-let 
+let
   # Open TCP/UDP ports
   ports = {
-    ssh              =  8022;
-    ssh1             =    22;
-    wireguard        = 51820;
-    minecraft        =  8069;
-    goblainkraft     = 42068;
-    terrawwebycraft  = 41337;
-    openttd          =  3979;
-    vintagecraft     = 42420;
-    federation       =  8448;
-    synapse          =  8008;
-    http             =    80;
-    https            =   443;
-    coturn           =  3478;
-    coturn2          =  5349;
+    ssh = 8022;
+    ssh1 = 22;
+    wireguard = 51820;
+    minecraft = 8069;
+    goblainkraft = 42068;
+    terrawwebycraft = 41337;
+    openttd = 3979;
+    vintagecraft = 42420;
+    federation = 8448;
+    synapse = 8008;
+    http = 80;
+    https = 443;
+    coturn = 3478;
+    coturn2 = 5349;
   };
 
   # Minecraft server module template
   # Takes name, figures everything out itself, users, location (/var/<name>)
-  minecraftServerTemplate = name : description : java-package : {
+  minecraftServerTemplate = name: description: java-package: {
     systemd.services.${name} = {
       enable = true;
-      path = [ pkgs.coreutils pkgs.tmux pkgs.bash pkgs.ncurses java-package ];
-      wantedBy = [ "multi-user.target" ]; 
+      path = [
+        pkgs.coreutils
+        pkgs.tmux
+        pkgs.bash
+        pkgs.ncurses
+        java-package
+      ];
+      wantedBy = [ "multi-user.target" ];
       after = [ "network.target" ];
       description = description;
       serviceConfig = {
@@ -34,11 +46,11 @@ let
         ExecStop = "${pkgs.tmux}/bin/tmux -S tmux.socket kill-session -t ${name}";
         Type = "forking";
         Restart = "on-failure";
-        WorkingDirectory=/data/MCservers/${name};
+        WorkingDirectory = /data/MCservers/${name};
       };
     };
     users = {
-      groups.${name} = {};
+      groups.${name} = { };
       users.${name} = {
         isSystemUser = true;
         description = "Minekraft server ${name}";
@@ -47,11 +59,18 @@ let
     };
   };
 
-  vintageStoryServerTemplate = name : description : dotnet-package : {
+  vintageStoryServerTemplate = name: description: dotnet-package: {
     systemd.services.${name} = {
       enable = true;
-      path = [ pkgs.coreutils pkgs.tmux pkgs.bash pkgs.ncurses pkgs.steam-run dotnet-package ];
-      wantedBy = [ "multi-user.target" ]; 
+      path = [
+        pkgs.coreutils
+        pkgs.tmux
+        pkgs.bash
+        pkgs.ncurses
+        pkgs.steam-run
+        dotnet-package
+      ];
+      wantedBy = [ "multi-user.target" ];
       after = [ "network.target" ];
       description = description;
       serviceConfig = {
@@ -60,11 +79,11 @@ let
         ExecStop = "${pkgs.tmux}/bin/tmux -S tmux.socket kill-session -t ${name}";
         Type = "forking";
         Restart = "on-failure";
-        WorkingDirectory=/data/VintageStoryServers/${name};
+        WorkingDirectory = /data/VintageStoryServers/${name};
       };
     };
     users = {
-      groups.${name} = {};
+      groups.${name} = { };
       users.${name} = {
         isSystemUser = true;
         description = "Vintage Story server ${name}";
@@ -75,11 +94,17 @@ let
 
   # OpenTTD server module template
   # Takes name, figures everything out itself, users, location (/var/<name>)
-  openttdServerTemplate = name : description : {
+  openttdServerTemplate = name: description: {
     systemd.services.${name} = {
       enable = true;
-      path = [ pkgs.coreutils pkgs.tmux pkgs.bash pkgs.ncurses pkgs.openttd];
-      wantedBy = [ "multi-user.target" ]; 
+      path = [
+        pkgs.coreutils
+        pkgs.tmux
+        pkgs.bash
+        pkgs.ncurses
+        pkgs.openttd
+      ];
+      wantedBy = [ "multi-user.target" ];
       after = [ "network.target" ];
       description = description;
       serviceConfig = {
@@ -87,11 +112,11 @@ let
         ExecStart = "${pkgs.tmux}/bin/tmux -S tmux.socket new-session -d -s ${name} openttd -D";
         ExecStop = "${pkgs.tmux}/bin/tmux -S tmux.socket kill-session -t ${name}";
         Type = "forking";
-        WorkingDirectory=/data/OpenTTDservers/${name};
+        WorkingDirectory = /data/OpenTTDservers/${name};
       };
     };
     users = {
-      groups.${name} = {};
+      groups.${name} = { };
       users.${name} = {
         isSystemUser = true;
         description = "OpenTTD server ${name}";
@@ -122,10 +147,10 @@ in
   boot.kernelModules = [ "msr" ];
 
   # Disk mounting wow
-  fileSystems."/data" =
-    { device = "/dev/sda";
-      fsType = "bcachefs";
-    };
+  fileSystems."/data" = {
+    device = "/dev/sda";
+    fsType = "bcachefs";
+  };
 
   # Utility programs
   environment.systemPackages = with pkgs; [
@@ -151,7 +176,10 @@ in
     enable = true;
     settings.PasswordAuthentication = false;
     settings.KbdInteractiveAuthentication = false;
-    ports = [ ports.ssh ports.ssh1];
+    ports = [
+      ports.ssh
+      ports.ssh1
+    ];
   };
 
   # Needed for network discovery
@@ -201,24 +229,26 @@ in
       server_name = "chat.mdf.farm";
       serve_server_wellknown = true;
       registration_shared_secret_path = config.age.secrets.hotfreddy.path;
-      auto_join_rooms = 
-        [
-          "#playwhen:chat.mdf.farm"
-          "#sunkencolumns:chat.mdf.farm"
-          "#Reincarnated-as-a-Monke:chat.mdf.farm" 
-          "#NOMEMES:chat.mdf.farm" 
-          "#deadlocking:chat.mdf.farm" 
-          "#animebrainrot:chat.mdf.farm" 
-          "#monkeshipping:chat.mdf.farm" 
-          "#Hacking:chat.mdf.farm" 
-          "#CoC:chat.mdf.farm" 
-          "#lore:chat.mdf.farm" 
-          "#bnnuy:chat.mdf.farm" 
-          "#monsterhunter:chat.mdf.farm" 
-          "#atlyss:chat.mdf.farm" 
-        ];
+      auto_join_rooms = [
+        "#playwhen:chat.mdf.farm"
+        "#sunkencolumns:chat.mdf.farm"
+        "#Reincarnated-as-a-Monke:chat.mdf.farm"
+        "#NOMEMES:chat.mdf.farm"
+        "#deadlocking:chat.mdf.farm"
+        "#animebrainrot:chat.mdf.farm"
+        "#monkeshipping:chat.mdf.farm"
+        "#Hacking:chat.mdf.farm"
+        "#CoC:chat.mdf.farm"
+        "#lore:chat.mdf.farm"
+        "#bnnuy:chat.mdf.farm"
+        "#monsterhunter:chat.mdf.farm"
+        "#atlyss:chat.mdf.farm"
+      ];
 
-      turn_uris = ["turn:${realm}:3478?transport=udp" "turn:${realm}:3478?transport=tcp"];
+      turn_uris = [
+        "turn:${realm}:3478?transport=udp"
+        "turn:${realm}:3478?transport=tcp"
+      ];
       turn_shared_secret_path = config.age.secrets.freakyfoxy.path;
       turn_user_lifetime = "1h";
 
@@ -231,7 +261,10 @@ in
           x_forwarded = true;
           resources = [
             {
-              names = [ "client" "federation" ];
+              names = [
+                "client"
+                "federation"
+              ];
               compress = false;
             }
           ];
@@ -282,18 +315,21 @@ in
   };
   # open the firewall TODO merge with other firewall settings
   networking.firewall = {
-    interfaces.enp4s0 = let
-      range = with config.services.coturn; lib.singleton {
-        from = min-port;
-        to = max-port;
+    interfaces.enp4s0 =
+      let
+        range =
+          with config.services.coturn;
+          lib.singleton {
+            from = min-port;
+            to = max-port;
+          };
+      in
+      {
+        allowedUDPPortRanges = range;
+        allowedUDPPorts = lib.attrsets.attrValues ports;
+        allowedTCPPortRanges = [ ];
+        allowedTCPPorts = lib.attrsets.attrValues ports;
       };
-    in
-    {
-      allowedUDPPortRanges = range;
-      allowedUDPPorts = lib.attrsets.attrValues ports;
-      allowedTCPPortRanges = [ ];
-      allowedTCPPorts = lib.attrsets.attrValues ports;
-    };
   };
 
   security.acme.certs = {
@@ -304,7 +340,10 @@ in
   };
 
   # not synapse lol
-  age.identityPaths = [ "/home/rakarake/.ssh/id_ed25519" "/home/magarnicle/.ssh/id_ed25519" ]; 
+  age.identityPaths = [
+    "/home/rakarake/.ssh/id_ed25519"
+    "/home/magarnicle/.ssh/id_ed25519"
+  ];
   age.secrets.hotfreddy = {
     file = ../../secrets/hotfreddy.age;
     owner = "matrix-synapse";
@@ -331,7 +370,7 @@ in
       # Coturn
       "voip.mdf.farm" = {
         forceSSL = true;
-        enableACME = true;  # Let's encrypt TLS automated, not certbot
+        enableACME = true; # Let's encrypt TLS automated, not certbot
         #locations."/".root = "/var/www/test";
         #locations."/" = {
         #  proxyWebsockets = true;
@@ -341,7 +380,7 @@ in
       # Matrix
       "chat.mdf.farm" = {
         forceSSL = true;
-        enableACME = true;  # Let's encrypt TLS automated, not certbot
+        enableACME = true; # Let's encrypt TLS automated, not certbot
         locations."/" = {
           proxyWebsockets = true;
           proxyPass = "http://localhost:${toString ports.synapse}";
@@ -350,7 +389,7 @@ in
       # Element, matrix frontend
       "element.mdf.farm" = {
         forceSSL = true;
-        enableACME = true;  # Let's encrypt TLS automated, not certbot
+        enableACME = true; # Let's encrypt TLS automated, not certbot
         locations."/" = {
           root = pkgs.element-web;
         };
@@ -386,13 +425,23 @@ in
     users.magarnicle = {
       isNormalUser = true;
       description = "Magarnicle";
-      extraGroups = [ "networkmanager" "wheel" "nextcloud" ];
+      extraGroups = [
+        "networkmanager"
+        "wheel"
+        "nextcloud"
+        "vintagestoryserver"
+      ];
       openssh.authorizedKeys.keys = ssh-keys.magarnicle;
     };
     users.rakarake = {
       isNormalUser = true;
       description = "Rakarake";
-      extraGroups = [ "networkmanager" "wheel" "nextcloud" ];
+      extraGroups = [
+        "networkmanager"
+        "wheel"
+        "nextcloud"
+        "vintagestoryserver"
+      ];
       openssh.authorizedKeys.keys = ssh-keys.rakarake;
     };
     users.nginx.extraGroups = [ "turnserver" ];
@@ -409,4 +458,3 @@ in
   nixpkgs.config.allowUnfree = true;
   system.stateVersion = "23.05";
 }
-
