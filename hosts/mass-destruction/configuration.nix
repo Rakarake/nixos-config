@@ -108,11 +108,11 @@ in
     (minecraftServerTemplate "minecraftserver-goblainkraft" "Sin Bucket in Minecraft" pkgs.jdk21)
     (minecraftServerTemplate "minecraftserver-terrafirmagreg" "michael" pkgs.jdk21)
     (openttdServerTemplate "openTTDserver-massdestruction" "transporting destruction since 2024")
-    (vintageStoryServerTemplate "vintagestoryserver" "amazingular" pkgs.dotnet-runtime_7)
+    (vintageStoryServerTemplate "vintagestoryserver" "amazingular" pkgs.dotnet-runtime_8)
   ];
 
   nixpkgs.config.permittedInsecurePackages = [
-    "dotnet-runtime-7.0.20"
+    #"dotnet-runtime-7.0.20"
   ];
 
   # Linux kernel version
