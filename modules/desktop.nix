@@ -1,17 +1,26 @@
 # Main "system config", common desktop settings go here
-{ lib, config, pkgs, outputs, inputs, ... }:
-with lib;                      
+{
+  lib,
+  config,
+  pkgs,
+  outputs,
+  inputs,
+  ...
+}:
+with lib;
 let
   cfg = config.cfg-desktop;
   # For fun ports to play with
   # React uses 3000 by default
   #openPorts = [ 1337 1338 1339 3000 ];
-in {
+in
+{
   options.cfg-desktop = {
     enable = mkEnableOption "Common desktop configuration";
   };
 
-  config = mkIf cfg.enable { # System Packages/Programs To search, run:
+  config = mkIf cfg.enable {
+    # System Packages/Programs To search, run:
     # $ nix search wget
     environment.systemPackages = with pkgs; [
       vim
@@ -26,15 +35,15 @@ in {
       htop
       neo-cowsay
       inputs.queercat.defaultPackage.${system}
-      powertop  # Power usage inspector
+      powertop # Power usage inspector
       kitty
       sl
       wl-clipboard
       tree
       unzip
       zip
-      timidity    # MIDI CLI player
-      freepats    # MIDI soundfont
+      timidity # MIDI CLI player
+      freepats # MIDI soundfont
       btrfs-progs
       distrobox
       pandoc
@@ -44,14 +53,14 @@ in {
       tmux
       nextcloud-client
       gnome-software
-      mesa-demos  # Has programs such as glxgears
-      adwaita-icon-theme  # Just to be safe
+      mesa-demos # Has programs such as glxgears
+      adwaita-icon-theme # Just to be safe
       mpv
       vlc
       imv
       linuxPackages_latest.perf # Performance metrics
-      impression    # Boot drive creator
-      nix-index     # For working with /nix/store
+      impression # Boot drive creator
+      nix-index # For working with /nix/store
       nix-search
       libnotify
       wireshark
@@ -63,10 +72,10 @@ in {
       wineWowPackages.waylandFull
       libreoffice-qt
       onlyoffice-desktopeditors
-      hunspell                 # Libreoffice spelling
-      hunspellDicts.sv_SE      # Swedish
-      hunspellDicts.en_US      # American
-      hunspellDicts.en_GB-ise  # English
+      hunspell # Libreoffice spelling
+      hunspellDicts.sv_SE # Swedish
+      hunspellDicts.en_US # American
+      hunspellDicts.en_GB-ise # English
       librewolf
       ungoogled-chromium
       thunderbird
@@ -90,9 +99,9 @@ in {
     # GPG
     services.pcscd.enable = true;
     programs.gnupg.agent = {
-       enable = true;
-       pinentryPackage = pkgs.pinentry-curses;
-       enableSSHSupport = true;
+      enable = true;
+      pinentryPackage = pkgs.pinentry-curses;
+      enableSSHSupport = true;
     };
 
     # Development man-pages for packages
@@ -141,19 +150,22 @@ in {
     #];
 
     # This makes these fonts available for applications
-    fonts.packages = with pkgs; [
-      noto-fonts
-      noto-fonts-cjk-sans
-      noto-fonts-color-emoji
-      liberation_ttf
-      fira-code
-      fira-code-symbols
-      mplus-outline-fonts.githubRelease
-      dina-font
-      proggyfonts
-      orbitron
-      corefonts  # Microsoft fonts
-    ] ++ (builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts));
+    fonts.packages =
+      with pkgs;
+      [
+        noto-fonts
+        noto-fonts-cjk-sans
+        noto-fonts-color-emoji
+        liberation_ttf
+        fira-code
+        fira-code-symbols
+        mplus-outline-fonts.githubRelease
+        dina-font
+        proggyfonts
+        orbitron
+        corefonts # Microsoft fonts
+      ]
+      ++ (builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts));
 
     ## GPG / GnuPG
     #programs.gnupg.agent = {
@@ -195,22 +207,23 @@ in {
       #remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
       #dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
     };
-    hardware.steam-hardware.enable = true;  # To enable steam controller etc.
+    hardware.steam-hardware.enable = true; # To enable steam controller etc.
     nixpkgs.config.packageOverrides = pkgs: {
       steam = pkgs.steam.override {
-        extraPkgs = pkgs: with pkgs; [
-          xorg.libXcursor
-          xorg.libXi
-          xorg.libXinerama
-          xorg.libXScrnSaver
-          libpng
-          libpulseaudio
-          libvorbis
-          stdenv.cc.cc.lib
-          libkrb5
-          keyutils
-          mesa-demos
-        ];
+        extraPkgs =
+          pkgs: with pkgs; [
+            xorg.libXcursor
+            xorg.libXi
+            xorg.libXinerama
+            xorg.libXScrnSaver
+            libpng
+            libpulseaudio
+            libvorbis
+            stdenv.cc.cc.lib
+            libkrb5
+            keyutils
+            mesa-demos
+          ];
       };
     };
     environment.sessionVariables = {
@@ -293,7 +306,6 @@ in {
     users.users.rakarake = {
       isNormalUser = true;
       description = "Rakarake";
-      shell = pkgs.nushell;
       extraGroups = [
         "networkmanager"
         # For sudo
@@ -317,7 +329,7 @@ in {
         "dialout"
       ];
     };
-    users.groups.davfs2 = {};
+    users.groups.davfs2 = { };
 
     # Needed for xremap home-manager config to work
     hardware.uinput.enable = true;
@@ -327,7 +339,7 @@ in {
 
     # Enable the flatpak service
     services.flatpak.enable = true;
-    fonts.fontDir.enable = true;  # Fonts don't work otherwise?
+    fonts.fontDir.enable = true; # Fonts don't work otherwise?
     xdg.portal.enable = true;
 
     # Collect all the garbage automatically!
@@ -368,7 +380,7 @@ in {
         util-linux
         xz
         systemd
-        
+
         # My own additions
         xorg.libXcomposite
         xorg.libXtst
@@ -391,7 +403,7 @@ in {
 
         # Inspired by steam
         # https://github.com/NixOS/nixpkgs/blob/master/pkgs/by-name/st/steam/package.nix#L36-L85
-        networkmanager      
+        networkmanager
         vulkan-loader
         libgbm
         libdrm
@@ -400,7 +412,7 @@ in {
         pciutils
         zenity
         # glibc_multi.bin # Seems to cause issue in ARM
-        
+
         # # Without these it silently fails
         xorg.libXinerama
         xorg.libXcursor
@@ -420,7 +432,7 @@ in {
         ffmpeg
         # Only libraries are needed from those two
         libudev0-shim
-        
+
         # needed to run unity
         gtk3
         icu
@@ -432,7 +444,7 @@ in {
         # it will segfault when opening files if you don’t do:
         # export XDG_DATA_DIRS=/nix/store/0nfsywbk0qml4faa7sk3sdfmbd85b7ra-gsettings-desktop-schemas-43.0/share/gsettings-schemas/gsettings-desktop-schemas-43.0:/nix/store/rkscn1raa3x850zq7jp9q3j5ghcf6zi2-gtk+3-3.24.35/share/gsettings-schemas/gtk+3-3.24.35/:$XDG_DATA_DIRS
         # other issue: (Unity:377230): GLib-GIO-CRITICAL **: 21:09:04.706: g_dbus_proxy_call_sync_internal: assertion 'G_IS_DBUS_PROXY (proxy)' failed
-        
+
         # Verified games requirements
         xorg.libXt
         xorg.libXmu
@@ -443,7 +455,7 @@ in {
         glew110
         libidn
         tbb
-        
+
         # Other things from runtime
         flac
         freeglut
@@ -492,7 +504,6 @@ in {
         fuse
         e2fsprogs
       ];
-    };  
+    };
   };
 }
-
