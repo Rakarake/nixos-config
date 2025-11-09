@@ -184,6 +184,7 @@ in
       element-desktop
       obsidian
       hieroglyphic
+      strawberry
 
       # Emulators
       fceux
