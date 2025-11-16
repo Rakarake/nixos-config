@@ -53,6 +53,9 @@ in
           name = "default";
           isDefault = true;
           extensions.force = true;
+          "xpinstall.signatures.required" = true;
+          "extensions.autoDisableScopes" = 0;
+          "extensions.enabledScopes" = 15;
         };
       };
     };
