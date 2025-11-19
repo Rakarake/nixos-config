@@ -165,7 +165,6 @@ in
       newsflash
       monero-gui
       handbrake
-      alpaca
       tor-browser
       supersonic
       video-trimmer
@@ -181,7 +180,6 @@ in
       okteta
       krita
       gimp3
-      element-desktop
       obsidian
       hieroglyphic
       strawberry
