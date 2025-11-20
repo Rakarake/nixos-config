@@ -230,7 +230,8 @@ in
     enable = true;
     settings = with config.services.coturn; {
       server_name = "chat.mdf.farm";
-      serve_server_wellknown = true;
+      # This is required for our custom ".wellknown"!
+      serve_server_wellknown = false;
       registration_shared_secret_path = config.age.secrets.hotfreddy.path;
       auto_join_rooms = [
         "#playwhen:chat.mdf.farm"
@@ -310,6 +311,10 @@ in
   # restrict access to livekit room creation to a homeserver
   systemd.services.lk-jwt-service.environment.LIVEKIT_FULL_ACCESS_HOMESERVERS = "chat.mdf.farm";
   services.nginx.virtualHosts."chat.mdf.farm".locations = {
+    ".well-known/matrix/client" = {
+      extraConfig = "add_header Content-Type application/json;";
+      return = ''200 '{"m.homeserver": {"base_url": "https://chat.mdf.farm"}, "m.identity_server": {"base_url": "https://vector.im"},"org.matrix.msc3575.proxy": {"url": "https://chat.mdf.farm"},"org.matrix.msc4143.rtc_foci": [{"type": "livekit",    "livekit_service_url": "https://chat.mdf.farm/livekit/jwt"}]}      ' '';
+    };
     "^~ /livekit/jwt/" = {
       priority = 400;
       proxyPass = "http://[::1]:${toString config.services.lk-jwt-service.port}/";
