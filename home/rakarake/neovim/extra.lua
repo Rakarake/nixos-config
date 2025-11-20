@@ -134,17 +134,17 @@ end)
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
 
-  -- Format on save if lsp supports it
-  if client.supports_method("textDocument/formatting") then
-    vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      group = augroup,
-      buffer = bufnr,
-      callback = function()
-        vim.lsp.buf.format()
-      end,
-    })
-  end
+  --=-- Format on save if lsp supports it
+  --=if client.supports_method("textDocument/formatting") then
+  --=  vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+  --=  vim.api.nvim_create_autocmd("BufWritePre", {
+  --=    group = augroup,
+  --=    buffer = bufnr,
+  --=    callback = function()
+  --=      vim.lsp.buf.format()
+  --=    end,
+  --=  })
+  --=end
 
   -- Mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
