@@ -162,7 +162,7 @@ in
     [
       noto-fonts
       noto-fonts-cjk-sans
-      noto-fonts-emoji
+      noto-fonts-color-emoji
       liberation_ttf
       fira-code
       fira-code-symbols
@@ -170,7 +170,7 @@ in
       dina-font
       proggyfonts
       corefonts # Microsoft fonts
-      ubuntu_font_family
+      ubuntu-classic
     ]
     ++ (builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts));
 
@@ -308,7 +308,7 @@ in
   # Nextcloud at "/var/lib/nextcloud"
   services.nextcloud = {
     enable = true;
-    package = pkgs.nextcloud31;
+    package = pkgs.nextcloud32;
     hostName = hostnames.nextcloud;
     database.createLocally = true;
     autoUpdateApps.enable = true;
