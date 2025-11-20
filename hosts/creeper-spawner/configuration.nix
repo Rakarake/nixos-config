@@ -1,43 +1,51 @@
-{ system, inputs, outputs, pkgs, lib, ssh-keys, config, ... }:
+{
+  system,
+  inputs,
+  outputs,
+  pkgs,
+  lib,
+  ssh-keys,
+  config,
+  ...
+}:
 
-let 
+let
   # Open TCP/UDP ports
   publicPorts = {
-    ssh                = 22;
-    http               = 80;
-    https              = 443;
+    ssh = 22;
+    http = 80;
+    https = 443;
 
-    wireguard          = 51820;
-    monero             = 18080;
-    moneroRpc          = 18081;
-    moneroZMQ          = 18083;
-    moeroP2Pool        = 37889;
-    moeroP2PoolMini    = 37888;
+    wireguard = 51820;
+    monero = 18080;
+    moneroRpc = 18081;
+    moneroZMQ = 18083;
+    moeroP2Pool = 37889;
+    moeroP2PoolMini = 37888;
 
-    minecraft          = 25565;
-    minecraft-spruce   = 1337;
+    minecraft = 25565;
+    minecraft-spruce = 1337;
 
-    prt2               = 8002;
-    prt3               = 8003;
-    prt4               = 8004;
-    prt5               = 8005;
+    prt2 = 8002;
+    prt3 = 8003;
+    prt4 = 8004;
+    prt5 = 8005;
   };
 
   # Ports only exposed to home/secret networks
   publicPrivatePorts = {
-    tailscale          = 4896;
+    tailscale = 4896;
   };
 
   localPorts = {
-    graphana           = 2344;
-    prometheus         = 9001;
+    graphana = 2344;
+    prometheus = 9001;
     prometheusNodePort = 9002;
-    jellyfin           = 8096;
-    bingbingo          = 8097;
-    forgejo            = 8098;
-    whiteboard         = 3002;
+    jellyfin = 8096;
+    bingbingo = 8097;
+    forgejo = 8098;
+    whiteboard = 3002;
   };
-
 
   # Hostnames
   hostnames = {
@@ -58,7 +66,7 @@ in
     (outputs.extra.statefulServerTemplate {
       name = "minecraftserver1";
       description = "A stylish minecraft server";
-      packages = [ pkgs.jdk21];
+      packages = [ pkgs.jdk21 ];
       path = /var/minecraftserver1;
     })
     (outputs.extra.statefulServerTemplate {
@@ -149,23 +157,26 @@ in
   ];
 
   # Fonts
-  fonts.packages = with pkgs; [
-    noto-fonts
-    noto-fonts-cjk-sans
-    noto-fonts-emoji
-    liberation_ttf
-    fira-code
-    fira-code-symbols
-    mplus-outline-fonts.githubRelease
-    dina-font
-    proggyfonts
-    corefonts  # Microsoft fonts
-    ubuntu_font_family
-  ] ++ (builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts));
+  fonts.packages =
+    with pkgs;
+    [
+      noto-fonts
+      noto-fonts-cjk-sans
+      noto-fonts-emoji
+      liberation_ttf
+      fira-code
+      fira-code-symbols
+      mplus-outline-fonts.githubRelease
+      dina-font
+      proggyfonts
+      corefonts # Microsoft fonts
+      ubuntu_font_family
+    ]
+    ++ (builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts));
 
   fonts.fontconfig = {
     defaultFonts = {
-      serif = [  "Liberation Serif" ];
+      serif = [ "Liberation Serif" ];
       sansSerif = [ "Ubuntu" ];
       monospace = [ "Ubuntu Mono" ];
     };
@@ -205,9 +216,11 @@ in
     scrapeConfigs = [
       {
         job_name = "creeper-gaming";
-        static_configs = [{
-          targets = [ "127.0.0.1:${toString localPorts.prometheusNodePort}" ];
-        }];
+        static_configs = [
+          {
+            targets = [ "127.0.0.1:${toString localPorts.prometheusNodePort}" ];
+          }
+        ];
       }
     ];
   };
@@ -228,11 +241,11 @@ in
       # Nextcloud
       ${hostnames.nextcloud} = {
         forceSSL = true;
-        enableACME = true;  # Let's encrypt TLS automated, not certbot
+        enableACME = true; # Let's encrypt TLS automated, not certbot
       };
       ${hostnames.whiteboard} = {
         forceSSL = true;
-        enableACME = true;  # Let's encrypt TLS automated, not certbot
+        enableACME = true; # Let's encrypt TLS automated, not certbot
         locations."/" = {
           proxyWebsockets = true;
           proxyPass = "http://localhost:${toString localPorts.whiteboard}";
@@ -318,8 +331,14 @@ in
     #  inherit (config.services.nextcloud.package.packages.apps) richdocuments;
     #};
   };
-  environment.etc.ffmpeg = { source = "${pkgs.ffmpeg}/bin/ffmpeg"; mode = "0555"; };
-  environment.etc.ffprobe = { source = "${pkgs.ffmpeg}/bin/ffprobe"; mode = "0555"; };
+  environment.etc.ffmpeg = {
+    source = "${pkgs.ffmpeg}/bin/ffmpeg";
+    mode = "0555";
+  };
+  environment.etc.ffprobe = {
+    source = "${pkgs.ffmpeg}/bin/ffprobe";
+    mode = "0555";
+  };
 
   # Nextcloud Whiteboard
   services.nextcloud-whiteboard-server = {
@@ -349,10 +368,10 @@ in
     settings = {
       server = {
         DOMAIN = hostnames.forgejo;
-        ROOT_URL = "https://${hostnames.forgejo}/"; 
+        ROOT_URL = "https://${hostnames.forgejo}/";
         HTTP_PORT = localPorts.forgejo;
       };
-      service.DISABLE_REGISTRATION = true; 
+      service.DISABLE_REGISTRATION = true;
       actions = {
         ENABLED = true;
         DEFAULT_ACTIONS_URL = "github";
@@ -361,8 +380,8 @@ in
   };
 
   # Monero, p2pool can be run using this node
-#monerod --rpc-bind-ip 0.0.0.0 --rpc-bind-port 18081 --confirm-external-bind --rpc-login monero:jxtTUdA4mHUOttW6Dqe7 --data-dir=/data/monero --zmq-pub tcp://0.0.0.0:18083 --out-peers 8 --in-peers 16 --add-priority-node=p2pmd.xmrvsbeast.com:18080 --add-priority-node=nodes.hashvault.pro:18080 --disable-dns-checkpoints --enable-dns-blocklist
-  age.identityPaths = [ "/home/rakarake/.ssh/id_ed25519" ]; 
+  #monerod --rpc-bind-ip 0.0.0.0 --rpc-bind-port 18081 --confirm-external-bind --rpc-login monero:jxtTUdA4mHUOttW6Dqe7 --data-dir=/data/monero --zmq-pub tcp://0.0.0.0:18083 --out-peers 8 --in-peers 16 --add-priority-node=p2pmd.xmrvsbeast.com:18080 --add-priority-node=nodes.hashvault.pro:18080 --disable-dns-checkpoints --enable-dns-blocklist
+  age.identityPaths = [ "/home/rakarake/.ssh/id_ed25519" ];
   age.secrets.monero-rpc-login = {
     file = ../../secrets/monero-rpc-login.age;
     owner = "monero";
@@ -370,7 +389,7 @@ in
   };
 
   systemd.services.monero-node = {
-    enable = true;
+    enable = false;
     description = "Monero node 🐖";
     after = [ "network.target" ];
     wantedBy = [ "multi-user.target" ];
@@ -378,10 +397,13 @@ in
       User = "monero";
       ExecStart = "${pkgs.monero-cli}/bin/monerod --non-interactive --config-file ${config.age.secrets.monero-rpc-login.path} --rpc-bind-ip 0.0.0.0 --rpc-bind-port 18081 --confirm-external-bind --data-dir=/data/monero --zmq-pub tcp://0.0.0.0:18083 --out-peers 8 --in-peers 16 --add-priority-node=p2pmd.xmrvsbeast.com:18080 --add-priority-node=nodes.hashvault.pro:18080 --disable-dns-checkpoints --enable-dns-blocklist";
       Restart = "always";
-      SuccessExitStatus = [ 0 1 ];
+      SuccessExitStatus = [
+        0
+        1
+      ];
     };
   };
-  users.groups.monero = {};
+  users.groups.monero = { };
   users.users.monero = {
     isSystemUser = true;
     description = "Monero user";
@@ -410,7 +432,7 @@ in
     wantedBy = [ "timers.target" ];
     timerConfig = {
       OnCalendar = "*-*-* 3:00:00";
-      Persistent = true; 
+      Persistent = true;
       Unit = "backup.service";
     };
   };
@@ -457,11 +479,18 @@ in
   users.users.rakarake = {
     isNormalUser = true;
     description = "Rakarake";
-    extraGroups = [ "networkmanager" "wheel" "wireshark" "nextcloud" "forgejo" "monero" "jellyfin" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "wireshark"
+      "nextcloud"
+      "forgejo"
+      "monero"
+      "jellyfin"
+    ];
     openssh.authorizedKeys.keys = ssh-keys.rakarake;
   };
 
   nixpkgs.config.allowUnfree = true;
   system.stateVersion = "23.05";
 }
-
