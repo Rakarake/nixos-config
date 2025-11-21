@@ -16,6 +16,7 @@
     inputs.agenix.packages."${system}".default
     comma
     podman-compose
+    btrfs-progs
   ];
   nixpkgs.overlays = [
     # Replace openssl with libressl
