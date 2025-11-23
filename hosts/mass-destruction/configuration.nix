@@ -14,6 +14,7 @@ let
     wireguard = 51820;
     minecraft = 8069;
     goblainkraft = 42068;
+    hardkraft = 8070;
     terrawwebycraft = 41337;
     openttd = 3979;
     vintagecraft = 42420;
@@ -135,6 +136,7 @@ in
     (minecraftServerTemplate "minecraftserver-kreate" "A not so kreative minekraft server" pkgs.jdk21)
     (minecraftServerTemplate "minecraftserver-goblainkraft" "Sin Bucket in Minecraft" pkgs.jdk21)
     (minecraftServerTemplate "minecraftserver-terrafirmagreg" "michael" pkgs.jdk21)
+    (minecraftServerTemplate "minecraftserver-hardkraft" "Hard ASF certified gamer mode" pkgs.jdk21)
     (openttdServerTemplate "openTTDserver-massdestruction" "transporting destruction since 2024")
     (vintageStoryServerTemplate "vintagestoryserver" "amazingular" pkgs.dotnet-runtime_8)
   ];
