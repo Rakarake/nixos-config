@@ -102,14 +102,14 @@ in
   # Linux kernel version
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  systemd.services.mount-data = {
-    description = "Bcachefs data mount";
-    script = "/run/current-system/sw/bin/mount -t bcachefs /dev/sda4:/dev/nvme0n1 /data";
-    wantedBy = [ "multi-user.target" ];
-    serviceConfig = {
-      Type = "oneshot";
-    };
-  };
+  #systemd.services.mount-data = {
+  #  description = "Bcachefs data mount";
+  #  script = "/run/current-system/sw/bin/mount -t bcachefs /dev/sda4:/dev/nvme0n1 /data";
+  #  wantedBy = [ "multi-user.target" ];
+  #  serviceConfig = {
+  #    Type = "oneshot";
+  #  };
+  #};
   systemd.services.mount-nextcloud = {
     description = "Nextcloud data mount";
     script = "/run/current-system/sw/bin/mount --bind /data/nextcloud /var/lib/nextcloud";
@@ -126,6 +126,13 @@ in
     wantedBy = [ "nextcloud-setup.service" ];
     serviceConfig = {
       Type = "oneshot";
+    };
+  };
+  fileSystems = {
+    "/data" = {
+      enable = true;
+      fsType = "btrfs";
+      label = "data2";
     };
   };
 

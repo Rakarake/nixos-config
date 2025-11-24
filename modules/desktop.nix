@@ -334,8 +334,9 @@ in
     # Needed for xremap home-manager config to work
     hardware.uinput.enable = true;
 
-    # Mullvad Service
+    ## Mullvad Service
     services.mullvad-vpn.enable = true;
+    services.mullvad-vpn.package = pkgs.mullvad-vpn;
 
     # Enable the flatpak service
     services.flatpak.enable = true;

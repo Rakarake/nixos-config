@@ -151,7 +151,6 @@ in
       superTuxKart
       gamescope
       audacity
-      mullvad-vpn
       fragments
       #varia
       blender-hip # blender compiled to detect hip/rocm support
