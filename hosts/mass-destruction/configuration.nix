@@ -274,6 +274,33 @@ in
           ];
         }
       ];
+
+      # Required for element call
+      experimental_features = {
+        # MSC3266: Room summary API. Used for knocking over federation
+        msc3266_enabled = true;
+        # MSC4222 needed for syncv2 state_after. This allow clients to
+        # correctly track the state of the room.
+        msc4222_enabled = true;
+      };
+
+      # The maximum allowed duration by which sent events can be delayed, as
+      # per MSC4140.
+      max_event_delay_duration = "24h";
+
+      rc_message = {
+        # This needs to match at least e2ee key sharing frequency plus a bit of headroom
+        # Note key sharing events are bursty
+        per_second = 0.5;
+        burst_count = 30;
+      };
+      
+      rc_delayed_event_mgmt = {
+        # This needs to match at least the heart-beat frequency plus a bit of headroom
+        # Currently the heart-beat is every 5 seconds which translates into a rate of 0.2s
+        per_second = 1;
+        burst_count = 20;
+      };
     };
   };
   # Used for matrix-call?
@@ -311,7 +338,7 @@ in
   # restrict access to livekit room creation to a homeserver
   systemd.services.lk-jwt-service.environment.LIVEKIT_FULL_ACCESS_HOMESERVERS = "chat.mdf.farm";
   services.nginx.virtualHosts."chat.mdf.farm".locations = {
-    ".well-known/matrix/client" = {
+    "/.well-known/matrix/client" = {
       extraConfig = "add_header Content-Type application/json;";
       return = ''200 '{"m.homeserver": {"base_url": "https://chat.mdf.farm"}, "m.identity_server": {"base_url": "https://vector.im"},"org.matrix.msc3575.proxy": {"url": "https://chat.mdf.farm"},"org.matrix.msc4143.rtc_foci": [{"type": "livekit",    "livekit_service_url": "https://chat.mdf.farm/livekit/jwt"}]}      ' '';
     };
