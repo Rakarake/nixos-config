@@ -2,6 +2,7 @@
 let 
   # Matrix livekit file
   keyFile = "/run/livekit.key";
+  synapsePort = 8008;
 in
 {
   # Synapse
@@ -46,7 +47,7 @@ in
 
       listeners = [
         {
-          port = ports.synapse;
+          port = synapsePort;
           bind_addresses = [ "::1" ];
           type = "http";
           tls = false;
@@ -100,6 +101,7 @@ in
   };
   services.lk-jwt-service = {
     enable = true;
+    port = 8451;
     # can be on the same virtualHost as synapse
     livekitUrl = "wss://chat.mdf.farm/livekit/sfu";
     inherit keyFile;
@@ -127,10 +129,6 @@ in
   systemd.services.lk-jwt-service.environment.LIVEKIT_FULL_ACCESS_HOMESERVERS = "chat.mdf.farm";
 
   services.nginx.virtualHosts."chat.mdf.farm".locations = {
-    "/.well-known/matrix/client" = {
-      extraConfig = "add_header Content-Type application/json;";
-      return = ''200 '{"m.homeserver": {"base_url": "https://chat.mdf.farm"}, "m.identity_server": {"base_url": "https://vector.im"},"org.matrix.msc3575.proxy": {"url": "https://chat.mdf.farm"},"org.matrix.msc4143.rtc_foci": [{"type": "livekit",    "livekit_service_url": "https://chat.mdf.farm/livekit/jwt"}]}      ' '';
-    };
     "^~ /livekit/jwt/" = {
       priority = 400;
       proxyPass = "http://[::1]:${toString config.services.lk-jwt-service.port}/";
@@ -148,6 +146,10 @@ in
       priority = 400;
       proxyPass = "http://[::1]:${toString config.services.livekit.settings.port}/";
       proxyWebsockets = true;
+    };
+    "^~ /.well-known/matrix/client" = {
+      extraConfig = "add_header Content-Type application/json;";
+      return = ''200 '{"m.homeserver": {"base_url": "https://chat.mdf.farm"}, "m.identity_server": {"base_url": "https://vector.im"},"org.matrix.msc3575.proxy": {"url": "https://chat.mdf.farm"},"org.matrix.msc4143.rtc_foci": [{"type": "livekit",    "livekit_service_url": "https://chat.mdf.farm/livekit/jwt"}]}      ' '';
     };
   };
 
@@ -237,7 +239,7 @@ in
         enableACME = true; # Let's encrypt TLS automated, not certbot
         locations."/" = {
           proxyWebsockets = true;
-          proxyPass = "http://localhost:${toString ports.synapse}";
+          proxyPass = "http://localhost:${toString synapsePort}";
         };
       };
       # Element, matrix frontend
