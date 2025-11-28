@@ -76,6 +76,11 @@
       url ="github:loafey/grompt";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    
+    out-of-your-element = {
+      url = "git+https://cgit.rory.gay/nix/OOYE-module.git";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let

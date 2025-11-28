@@ -1,10 +1,13 @@
-{ pkgs, config, lib, ... }:
+{ pkgs, config, lib, inputs, ... }:
 let 
   # Matrix livekit file
   keyFile = "/run/livekit.key";
   synapsePort = 8008;
 in
 {
+  imports = [
+    inputs.out-of-your-element.modules.default
+  ];
   # Synapse
   services.postgresql.enable = true;
   services.postgresql.initialScript = pkgs.writeText "synapse-init.sql" ''
@@ -20,7 +23,7 @@ in
     settings = with config.services.coturn; {
       server_name = "chat.mdf.farm";
       # This is required for our custom ".wellknown"!
-      serve_server_wellknown = false;
+      serve_server_wellknown = true;
       registration_shared_secret_path = config.age.secrets.hotfreddy.path;
       auto_join_rooms = [
         "#playwhen:chat.mdf.farm"
@@ -129,11 +132,11 @@ in
   systemd.services.lk-jwt-service.environment.LIVEKIT_FULL_ACCESS_HOMESERVERS = "chat.mdf.farm";
 
   services.nginx.virtualHosts."chat.mdf.farm".locations = {
-    "^~ /livekit/jwt/" = {
+    "^~ /livekit/jwt" = {
       priority = 400;
       proxyPass = "http://[::1]:${toString config.services.lk-jwt-service.port}/";
     };
-    "^~ /livekit/sfu/" = {
+    "^~ /livekit/sfu" = {
       extraConfig = ''
         proxy_send_timeout 120;
         proxy_read_timeout 120;
@@ -147,10 +150,10 @@ in
       proxyPass = "http://[::1]:${toString config.services.livekit.settings.port}/";
       proxyWebsockets = true;
     };
-    "^~ /.well-known/matrix/client" = {
-      extraConfig = "add_header Content-Type application/json;";
-      return = ''200 '{"m.homeserver": {"base_url": "https://chat.mdf.farm"}, "m.identity_server": {"base_url": "https://vector.im"},"org.matrix.msc3575.proxy": {"url": "https://chat.mdf.farm"},"org.matrix.msc4143.rtc_foci": [{"type": "livekit",    "livekit_service_url": "https://chat.mdf.farm/livekit/jwt"}]}      ' '';
-    };
+    #"/.well-known/matrix/client" = {
+    #  extraConfig = "add_header Content-Type application/json;";
+    #  return = ''200 '{"m.homeserver": {"base_url": "https://chat.mdf.farm:443"}, "m.identity_server": {"base_url": "https://vector.im"},"org.matrix.msc3575.proxy": {"url": "https://chat.mdf.farm"},"org.matrix.msc4143.rtc_foci": [{"type": "livekit",    "livekit_service_url": "https://chat.mdf.farm/livekit/jwt"}]}      ' '';
+    #};
   };
 
   services.coturn = rec {
@@ -217,6 +220,18 @@ in
     owner = "turnserver";
     group = "turnserver";
   };
+  age.secrets.smojitroppy = {
+    file = ../../secrets/smojitroppy.age;
+    mode = "744";
+    owner = "root";
+    group = "root";
+  };
+  age.secrets.smojitroppy-client = {
+    file = ../../secrets/smojitroppy-client.age;
+    mode = "744";
+    owner = "root";
+    group = "root";
+  };
 
   # Proxy, enable https etc
   services.nginx = {
@@ -253,4 +268,13 @@ in
     };
   };
 
+  services.matrix-ooye = {
+    enable = true;
+    discordTokenPath = config.age.secrets.smojitroppy.path;
+    discordClientSecretPath = config.age.secrets.smojitroppy-client.path;
+    homeserverName = "chat.mdf.farm";
+    homeserver = "https://chat.mdf.farm";
+    enableSynapseIntegration = true;
+    appserviceId = "ooye-gleeby-weeby";
+  };
 }

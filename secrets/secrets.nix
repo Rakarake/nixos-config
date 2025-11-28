@@ -9,4 +9,8 @@ in
   "hotfreddy.age".publicKeys = keys;
   # Coturn static auth secret
   "freakyfoxy.age".publicKeys = keys;
+  # Discord bot auth token
+  "smojitroppy.age".publicKeys = keys;
+  # Smojitroppy client secret
+  "smojitroppy-client.age".publicKeys = keys;
 }

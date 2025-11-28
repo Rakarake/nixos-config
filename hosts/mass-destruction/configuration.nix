@@ -8,6 +8,10 @@
 }:
 
 let
+
+  localPorts = {
+    synapse = 8008;
+  };
   # Open TCP/UDP ports
   ports = {
     ssh = 8022;
@@ -20,7 +24,6 @@ let
     openttd = 3979;
     vintagecraft = 42420;
     federation = 8448;
-    synapse = 8008;
     http = 80;
     https = 443;
     coturn = 3478;
@@ -66,8 +69,11 @@ in
   ];
 
   # open the firewall TODO merge with other firewall settings
-  networking.firewall = {
-    interfaces.enp4s0 =
+
+  #networking.firewall.allowedTCPPorts = lib.attrsets.attrValues (publicPorts // publicPrivatePorts);
+  #networking.firewall.allowedUDPPorts = lib.attrsets.attrValues (publicPorts // publicPrivatePorts);
+
+  networking.firewall =
       let
         range =
           with config.services.coturn;
@@ -79,10 +85,9 @@ in
       {
         allowedUDPPortRanges = range;
         allowedUDPPorts = lib.attrsets.attrValues ports;
-        allowedTCPPortRanges = [ ];
+        #allowedTCPPortRanges = [ ];
         allowedTCPPorts = lib.attrsets.attrValues ports;
       };
-  };
 
   nixpkgs.config.permittedInsecurePackages = [
     #"dotnet-runtime-7.0.20"
