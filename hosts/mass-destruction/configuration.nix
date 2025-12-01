@@ -96,8 +96,8 @@ in
 
   # Disk mounting wow
   fileSystems."/data" = {
-    device = "/dev/sdb";
-    fsType = "bcachefs";
+    device = "/dev/disk/by-uuid/c7af4442-bf3a-4e97-bca8-b4da01271da8";
+    fsType = "btrfs";
     options = ["nofail"];
   };
 
