@@ -98,6 +98,7 @@ in
   fileSystems."/data" = {
     device = "/dev/sdb";
     fsType = "bcachefs";
+    options = ["nofail"];
   };
 
   # Utility programs
