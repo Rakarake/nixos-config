@@ -17,5 +17,6 @@ vim.keymap.set(
   end,
   { silent = true, buffer = bufnr }
 )
-vim.keymap.set("n", "<leader>re", "<cmd>RustLsp expandMacro<cr>", {silent = true})
+vim.keymap.set("n", "<leader>ra", "<cmd>RustLsp expandMacro<cr>", {silent = true})
+vim.keymap.set("n", "<leader>rr", "<cmd>RustAnalyzer restart<cr>", {silent = true})
 
