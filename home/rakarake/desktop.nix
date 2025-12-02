@@ -182,7 +182,6 @@ in
       obsidian
       hieroglyphic
       strawberry
-      element-desktop
 
       # Emulators
       fceux
@@ -209,6 +208,21 @@ in
     ];
 
     programs.vesktop.enable = true;
+    programs.element-desktop = {
+      enable = true;
+      settings = {
+        default_server_config = {
+          "m.homeserver" = {
+              base_url = "https://chat.mdf.farm";
+              server_name = "chat.mdf.farm";
+          };
+          "m.identity_server" = {
+              base_url = "https://vector.im";
+          };
+        };
+      };
+    };
+
 
     ## Enable syncthing service in the background
     #services.syncthing.enable = true;
