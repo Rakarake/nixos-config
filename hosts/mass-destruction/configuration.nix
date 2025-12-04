@@ -66,6 +66,12 @@ in
       packages = [ pkgs.dotnet-runtime_8 ];
       path = /data/VintageStoryServers/${name};
     })
+    (outputs.extra.statefulServerTemplate rec {
+      name = "MDFMTG-server";
+      description = "Shadow Wizard Monke Gang";
+      packages = [ pkgs.jdk8 ];
+      path = /data/XMageServers/${name};
+    })
   ];
 
   # open the firewall TODO merge with other firewall settings
@@ -124,7 +130,6 @@ in
     waypipe
     openttd
     matrix-synapse
-    xmage
   ];
 
   # SSH daemon
