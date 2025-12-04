@@ -20,7 +20,6 @@ let
     minecraft = 8069;
     goblainkraft = 42068;
     hardkraft = 8070;
-    terrawwebycraft = 41337;
     openttd = 3979;
     vintagecraft = 42420;
     federation = 8448;
