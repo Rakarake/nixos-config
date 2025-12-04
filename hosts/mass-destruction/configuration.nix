@@ -123,6 +123,7 @@ in
     waypipe
     openttd
     matrix-synapse
+    xmage
   ];
 
   # SSH daemon
