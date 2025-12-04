@@ -28,6 +28,7 @@ let
     https = 443;
     coturn = 3478;
     coturn2 = 5349;
+    xmage = 17171;
   };
 
 in
