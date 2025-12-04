@@ -117,6 +117,7 @@ in
     btop
     tmux
     jdk21
+    jdk8
     bcachefs-tools
     fastfetch
     ffmpeg
