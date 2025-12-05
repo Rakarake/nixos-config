@@ -69,7 +69,7 @@ in
     (outputs.extra.statefulServerTemplate rec {
       name = "MDFMTG-server";
       description = "Shadow Wizard Monke Gang";
-      packages = [ ];
+      packages = [ jdk8 ];
       path = /data/XMageServers/${name};
     })
   ];
