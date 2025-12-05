@@ -181,6 +181,12 @@ in
     defaults.email = "scolipede2@hotmail.com";
   };
 
+  # XMage networking stuff
+  networking.extraHosts =
+    ''
+      0.0.0.0 wizard.mdf.farm
+    '';
+  
   # Wireguard
   networking.wg-quick.interfaces = {
     wg0 = {
