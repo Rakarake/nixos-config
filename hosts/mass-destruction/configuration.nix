@@ -28,6 +28,7 @@ let
     coturn = 3478;
     coturn2 = 5349;
     xmage = 17171;
+    xmage2 = 17172;
   };
 
 in
