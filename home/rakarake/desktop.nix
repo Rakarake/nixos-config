@@ -103,6 +103,7 @@ in
     # SSH
     programs.ssh = {
       enable = true;
+      enableDefaultConfig = false;
       #matchBlocks."ssh.rakarake.xyz".proxyCommand = "${pkgs.cloudflared}/bin/cloudflared access ssh --hostname ssh.rakarake.xyz";
     };
 

@@ -144,41 +144,34 @@ in
       set-option -ga terminal-overrides ",xterm-256color:Tc"
     '';
   };
-
   # Git config
   programs.git = {
     enable = true;
     lfs.enable = true;
-    userName  = "Rakarake";
-    userEmail = "raka@rakarake.xyz";
-    extraConfig = {
-      core = {
-        editor = "nvim";
-      };
-      color = {
-        ui = "auto";
-      };
+    settings = {
       user = {
-        signingKey = "98CF6C24F40B3531!";
+        username = "Rakarake";
+        email = "raka@rakarake.xyz";
+        signingkey = "98CF6C24F40B3531!";
       };
-      pull = {
-        rebase = false;
+      alias = {
+        a = "add";
+        co = "checkout";
+        b = "branch";
+        c = "commit";
+        s = "status";
+        r = "remote";
+        l = "log";
+        cl = "clone";
+        p = "pull";
+        pr = "pull --rebase";
+        pu = "push";
+        f = "fetch";
+        sh = "show";
       };
-    };
-    aliases = {
-      a = "add";
-      co = "checkout";
-      b = "branch";
-      c = "commit";
-      s = "status";
-      r = "remote";
-      l = "log";
-      cl = "clone";
-      p = "pull";
-      pr = "pull --rebase";
-      pu = "push";
-      f = "fetch";
-      sh = "show";
+      core.editor = "nvim";
+      color.ui = "auto";
+      pull.rebase = true;
     };
   };
 }
