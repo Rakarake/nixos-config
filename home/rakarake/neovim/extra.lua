@@ -84,7 +84,6 @@ vim.keymap.set('n', '<leader>p', '<cmd>nohlsearch<Bar>:echo<cr>')
 local toggleterm_opts = {
     size = vim.o.columns * 0.45,
     direction = 'vertical', 
-    open_mapping = [[<C-P>]],
     hide_numbers = true, -- hide the number column in toggleterm buffers
     shade_filetypes = {},
     shade_terminals = false,
@@ -104,23 +103,31 @@ local toggleterm_opts = {
         end
     },
 }
+
+local Terminal = require("toggleterm.terminal").Terminal
+
 -- Default behaviour.
-require'toggleterm'.setup(toggleterm_opts)
+vim.keymap.set("n", "<C-P>", function()
+  local dir = vim.fn.getcwd()
+  toggleterm_opts["dir"] = dir
+  Terminal:new(toggleterm_opts):toggle()
+end)
+vim.keymap.set("t", "<C-P>", function()
+  Terminal:new(toggleterm_opts):toggle()
+end)
+
 
 -- Open in dir of current file.
-local Terminal = require("toggleterm.terminal").Terminal
-local function terminal_here()
+vim.keymap.set("n", "<leader>th", function()
   local dir = vim.fn.expand("%:p:h")
-  local toggleterm_opts_copy = toggleterm_opts
-  toggleterm_opts_copy["dir"] = dir
-  Terminal:new(toggleterm_opts_copy):toggle()
-end
-vim.keymap.set("n", "<leader>th", terminal_here)
+  toggleterm_opts["dir"] = dir
+  Terminal:new(toggleterm_opts):toggle()
+end)
 
----- Go to left window in terminal mode
---vim.keymap.set('t', '<C-w>h', "<C-\\><C-n><C-w>h",{silent = true})
---vim.keymap.set('t', '<C-n>', "<C-\\><C-n>",{silent = true})
---
+-- Go to left window in terminal mode
+vim.keymap.set('t', '<C-w>h', "<C-\\><C-n><C-w>h",{silent = true})
+vim.keymap.set('t', '<C-n>', "<C-\\><C-n>",{silent = true})
+
 --local toggle_buffer = nil
 --vim.keymap.set('n', '<C-p>', function()
 --    local dir = vim.fn.expand("%:p:h")
