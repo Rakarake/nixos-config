@@ -81,13 +81,13 @@ vim.opt.undofile = true
 vim.keymap.set('n', '<leader>p', '<cmd>nohlsearch<Bar>:echo<cr>')
 
 -- Toggleterm
-local toggleterm = require'toggleterm'.setup {
+local toggleterm_opts = {
     size = vim.o.columns * 0.45,
     direction = 'vertical', 
     open_mapping = [[<C-P>]],
     hide_numbers = true, -- hide the number column in toggleterm buffers
     shade_filetypes = {},
-    shading_factor = 0,
+    shade_terminals = false,
     autochdir = false, -- when neovim changes it current directory the terminal will change it's own when next it's opened
     start_in_insert = true,
     insert_mappings = true, -- whether or not the open mapping applies in insert mode
@@ -104,9 +104,44 @@ local toggleterm = require'toggleterm'.setup {
         end
     },
 }
--- Go to left window in terminal mode
-vim.keymap.set('t', '<C-w>h', "<C-\\><C-n><C-w>h",{silent = true})
-vim.keymap.set('t', '<C-n>', "<C-\\><C-n>",{silent = true})
+-- Default behaviour.
+require'toggleterm'.setup(toggleterm_opts)
+
+-- Open in dir of current file.
+local Terminal = require("toggleterm.terminal").Terminal
+local function terminal_here()
+  local dir = vim.fn.expand("%:p:h")
+  local toggleterm_opts_copy = toggleterm_opts
+  toggleterm_opts_copy["dir"] = dir
+  Terminal:new(toggleterm_opts_copy):toggle()
+end
+vim.keymap.set("n", "<leader>th", terminal_here)
+
+---- Go to left window in terminal mode
+--vim.keymap.set('t', '<C-w>h', "<C-\\><C-n><C-w>h",{silent = true})
+--vim.keymap.set('t', '<C-n>', "<C-\\><C-n>",{silent = true})
+--
+--local toggle_buffer = nil
+--vim.keymap.set('n', '<C-p>', function()
+--    local dir = vim.fn.expand("%:p:h")
+--    vim.cmd(string.format(
+--      "terminal bash -c 'cd %s && exec bash'",
+--      dir
+--    ))
+--    vim.cmd("startinsert")
+--    toggle_buffer = vim.cmd("echo bufnr('%')")
+--end)
+--
+--vim.keymap.set('t', '<C-p>', function()
+--    vim.cmd("bp")
+--end)
+---- No close message when closing terminal buffer
+--vim.api.nvim_create_autocmd("TermClose", {
+--  pattern = "*",
+--  callback = function()
+--    vim.cmd("bd!")
+--  end,
+--})
 
 -- LSP Configuration
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
