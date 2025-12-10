@@ -5,7 +5,7 @@
     "editor.minimap.enabled": false,
     "workbench.sideBar.location": "right",
     "editor.minimap.autohide": "mouseover",
-    "workbench.colorTheme": "Base16 Default Dark",
+    "workbench.colorTheme": "Default Light Modern",
     "keyboard.dispatch": "keyCode",
     "window.menuBarVisibility": "toggle",
     "window.titleBarStyle": "native",
@@ -26,7 +26,8 @@
         { "before": [ "[", "d" ], "commands": [ "editor.action.marker.prev" ] },
         { "before": [ "]", "d" ], "commands": [ "editor.action.marker.next" ] },
         { "before": [ "leader", "d", "f" ], "commands": [ "editor.action.formatDocument" ] },
-        { "before": [ "<leader>", "c", "a" ], "commands": [ "editor.action.quickFix" ] }
+        { "before": [ "<leader>", "c", "a" ], "commands": [ "editor.action.quickFix" ] },
+        { "before": [ "c-f" ], "commands": ["actions.find"] },
     ],
 
     "vim.visualModeKeyBindings": [
