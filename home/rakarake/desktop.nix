@@ -47,6 +47,10 @@ in
         "widget.non-native-theme.scrollbar.size.override" = 25;
         # Middle mouse button scrolling
         "general.autoScroll" = true;
+
+        # Change fingerprint protection.
+        "privacy.fingerprintingProtection" = true;
+        "privacy.fingerprintingProtection.overrides" = "+AllTargets,-CSSPrefersColorScheme";
       };
       profiles = {
         default = {
