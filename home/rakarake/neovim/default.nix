@@ -52,6 +52,7 @@ in
       pyright                                               # Python
       outputs.packages.${pkgs.system}.gdshader-lsp          # Godot shading language
       zls                                                   # Zig
+      glsl_analyzer
     ];
 
     # Neovim config

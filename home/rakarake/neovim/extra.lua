@@ -237,6 +237,7 @@ local lsps_with_default_config = {
     'erlangls',
     'zls',
     'hls',
+    'glsl_analyzer',
 }
 
 -- Finally enable LSP:s
