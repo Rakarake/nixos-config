@@ -82,6 +82,7 @@ vim.keymap.set('n', '<leader>p', '<cmd>nohlsearch<Bar>:echo<cr>')
 
 -- Toggleterm
 local toggleterm_opts = {
+    open_mapping = [[<c-p>]];
     size = vim.o.columns * 0.45,
     direction = 'vertical', 
     hide_numbers = true, -- hide the number column in toggleterm buffers
@@ -104,51 +105,14 @@ local toggleterm_opts = {
     },
 }
 
-local Terminal = require("toggleterm.terminal").Terminal
-
--- Default behaviour.
-vim.keymap.set("n", "<C-P>", function()
-  local dir = vim.fn.getcwd()
-  toggleterm_opts["dir"] = dir
-  Terminal:new(toggleterm_opts):toggle()
-end)
-vim.keymap.set("t", "<C-P>", function()
-  Terminal:new(toggleterm_opts):toggle()
-end)
-
+require("toggleterm").setup(toggleterm_opts)
 
 -- Open in dir of current file.
-vim.keymap.set("n", "<leader>th", function()
-  local dir = vim.fn.expand("%:p:h")
-  toggleterm_opts["dir"] = dir
-  Terminal:new(toggleterm_opts):toggle()
-end)
+vim.keymap.set("n", "<leader>th", ":ToggleTerm size=40 dir=%:p:h<CR>", {silent = true})
 
 -- Go to left window in terminal mode
 vim.keymap.set('t', '<C-w>h', "<C-\\><C-n><C-w>h",{silent = true})
 vim.keymap.set('t', '<C-n>', "<C-\\><C-n>",{silent = true})
-
---local toggle_buffer = nil
---vim.keymap.set('n', '<C-p>', function()
---    local dir = vim.fn.expand("%:p:h")
---    vim.cmd(string.format(
---      "terminal bash -c 'cd %s && exec bash'",
---      dir
---    ))
---    vim.cmd("startinsert")
---    toggle_buffer = vim.cmd("echo bufnr('%')")
---end)
---
---vim.keymap.set('t', '<C-p>', function()
---    vim.cmd("bp")
---end)
----- No close message when closing terminal buffer
---vim.api.nvim_create_autocmd("TermClose", {
---  pattern = "*",
---  callback = function()
---    vim.cmd("bd!")
---  end,
---})
 
 -- LSP Configuration
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
