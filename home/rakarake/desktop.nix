@@ -187,6 +187,7 @@ in
       obsidian
       hieroglyphic
       strawberry
+      gdb
 
       # Emulators
       fceux
