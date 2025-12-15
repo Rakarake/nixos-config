@@ -129,7 +129,7 @@ in
     mouse = true;
     escapeTime = 0;
     # Use Ctrl-A instead of Ctrl-B
-    #prefix = "C-a";
+    prefix = "C-a";
     keyMode = "vi";
     extraConfig = ''
       # Allows for sending images to the parent terminal
