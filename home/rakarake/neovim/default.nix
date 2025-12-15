@@ -37,7 +37,6 @@ in
         plenary-nvim
         telescope-nvim
         harpoon2
-        toggleterm-nvim
         vimwiki
         undotree
         typst-vim
