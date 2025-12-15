@@ -14,7 +14,7 @@ in
 {
   imports = [
     ./xdg.nix
-    ./vscode
+    #./vscode
     ./mpv
   ];
 
@@ -25,9 +25,6 @@ in
   config = lib.mkIf cfg.enable {
     # Default applications
     home-xdg.enable = true;
-
-    # Neovim config
-    home-neovim.enable = true;
 
     # Browser
     programs.librewolf = {

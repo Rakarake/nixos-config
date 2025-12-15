@@ -23,7 +23,9 @@ in
     ./server.nix
     ./gnome.nix
     ./hyprland
+    ./lsp.nix
     ./neovim
+    ./helix
     ./emacs.nix
     ./rofi
     ./dwl
@@ -74,8 +76,6 @@ in
   ] ++ 
     builtins.attrValues custom-scripts
   ;
-
-  home-neovim.enable = true;
 
   # Shell aliases
   home.shellAliases = {

@@ -8,18 +8,12 @@
   ...
 }:
 let
-  cfg = config.home-neovim;
   dotfiles = outputs.extra.mutableDotfiles {
     inherit pkgs user;
     location = "neovim";
   };
 in
 {
-  options.home-neovim = {
-    enable = lib.mkEnableOption "My super duper cool neovim config";
-  };
-
-  config = lib.mkIf cfg.enable {
     # Mutable config with extra.lua!
     xdg.configFile."nvim/lua/extra.lua".source = "${dotfiles}/extra.lua";
     # Make sure undodir exists
@@ -32,28 +26,6 @@ in
     xdg.configFile."nvim/after/ftplugin/agda.lua".source = ./after/ftplugin/agda.lua;
     # Snippets
     xdg.configFile."nvim/snippets/cs.lua".source = ./snippets/cs.lua;
-
-    # LSP packages
-    home.packages = with pkgs; [
-      ripgrep                        # Needed for telescope's grep functionality
-      vscode-langservers-extracted   # HTML / CSS / JSON / ESLint language server
-      ccls                           # A C/C++ language server # C / C++
-      haskell-language-server        # Haskell
-      nil                            # Nix??? 😲
-      rustfmt                        # Rust
-      rust-analyzer                  # Rust language server
-      lua-language-server            # Lua
-      gopls                          # Go
-      (agda.withPackages [ agdaPackages.standard-library ]) # Agda
-      tinymist                                              # Typst
-      wgsl-analyzer                                         # WGSL
-      omnisharp-roslyn                                      # C#
-      erlang-language-platform
-      pyright                                               # Python
-      outputs.packages.${pkgs.system}.gdshader-lsp          # Godot shading language
-      zls                                                   # Zig
-      glsl_analyzer
-    ];
 
     # Neovim config
     programs.neovim = {
@@ -137,5 +109,4 @@ vim.lsp.config('omnisharp', {
 vim.lsp.enable('omnisharp')
       '';
     };
-  };
 }
