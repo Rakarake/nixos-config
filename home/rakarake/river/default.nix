@@ -263,8 +263,7 @@ in
         riverctl map normal Super D spawn 'rofi -show combi -modes combi -combi-modes "window,drun,run"'
         riverctl map normal Super+Shift D spawn "rofi -show run"
         riverctl map normal Super P spawn '
-          dir=$(ls ~/Projects/ | rofi -dmenu)
-          foot sh -c "cd ~/Projects/$dir && tmux attach -t $dir || tmux new -s $dir"
+          dir=$(ls ~/Projects/ | rofi -dmenu) && foot sh -c "cd ~/Projects/$dir && tmux attach -t $dir || tmux new -s $dir"
         '
         # Super+J and Super+K to focus the next/previous view in the layout stack
         riverctl map normal Super J focus-view next
