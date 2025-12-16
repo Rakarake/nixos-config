@@ -138,6 +138,9 @@ in
       # Diable status bar
       #set -g status off
 
+      # Switch to last window
+      bind-key C-a last-window
+
       # Proper color mode, https://unix.stackexchange.com/a/734894
       #set -g default-terminal "xterm-256color"
       set-option -g default-terminal "tmux-256color" 
