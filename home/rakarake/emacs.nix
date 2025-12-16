@@ -3,8 +3,6 @@
     enable = true;
     package = pkgs.emacs-pgtk;
     extraPackages = epkgs: with epkgs; [
-      evil
-      evil-collection
       ivy
       eat
 
@@ -24,12 +22,7 @@
 
       ; Normal? copy-paste
       (setq x-select-enable-clipboard t)
-      (setq evil-want-yank-to-clipboard t)
-      (setq evil-want-C-y-to-clipboard t)
 
-      ; Evil mode
-      (evil-mode 1)
-      
       ; Ivy mode: completion
       (ivy-mode 1)
     '';
