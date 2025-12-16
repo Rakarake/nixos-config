@@ -426,6 +426,9 @@ in
         riverctl default-layout rivertile
         rivertile -view-padding 0 -outer-padding 0 &
 
+        # Disable Primary clipboard in wayland apps
+        wl-paste -p --watch wl-copy -cp &
+
         # Application Autostart
         nextcloud &
 
