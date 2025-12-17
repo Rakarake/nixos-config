@@ -46,8 +46,9 @@ in
         "general.autoScroll" = true;
 
         # Change fingerprint protection.
-        "privacy.fingerprintingProtection" = true;
-        "privacy.fingerprintingProtection.overrides" = "+AllTargets,-CSSPrefersColorScheme";
+        #"privacy.fingerprintingProtection" = false;
+        "privacy.resistFingerprinting" = false;
+        #"privacy.fingerprintingProtection.overrides" = "+AllTargets,-CSSPrefersColorScheme";
       };
       profiles = {
         default = {

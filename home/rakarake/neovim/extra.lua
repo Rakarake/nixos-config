@@ -48,6 +48,9 @@ vim.keymap.set('n', '<leader>bp', '<cmd>bprevious<cr>')
 vim.keymap.set('n', '<leader>bd', '<cmd>bdelete<cr>')
 vim.keymap.set('n', '<leader>bf', '<cmd>e %:h<cr>', {silent = true})
 
+-- Tmux
+vim.keymap.set('n', '<leader>ow', '<cmd>!tmux new-window -c "%:p:h"<cr><cr>', {silent = true})
+
 -- Insert a tab with Shift-Tab in insert mode
 vim.keymap.set('i', '<S-Tab>', '<C-V><Tab>')
 

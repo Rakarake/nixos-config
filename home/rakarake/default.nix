@@ -141,6 +141,10 @@ in
       # Switch to last window
       bind-key C-a last-window
 
+      # Easier previous/next window
+      bind-key C-p previous-window
+      bind-key C-n next-window
+
       # Proper color mode, https://unix.stackexchange.com/a/734894
       #set -g default-terminal "xterm-256color"
       set-option -g default-terminal "tmux-256color" 
