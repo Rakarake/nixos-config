@@ -22,8 +22,8 @@ vim.filetype.add({extension = {wgsl = "wgsl"}})
 vim.g.vimwiki_list = {{path = '~/Notes/', syntax = 'markdown', ext = '.md'}}
 vim.g.vimwiki_global_ext = 0
 -- use telescope to find vimwiki pages
-vim.keymap.set('n', '<leader>fww', function() require'telescope.builtin'.find_files({ cwd = '~/Notes/', prompt_title = 'vimwiki' }) end)
-vim.keymap.set('n', '<leader>fwg', function() require'telescope.builtin'.live_grep({ cwd = '~/Notes/', prompt_title = 'vimwiki' }) end)
+--vim.keymap.set('n', '<leader>fww', function() require'telescope.builtin'.find_files({ cwd = '~/Notes/', prompt_title = 'vimwiki' }) end)
+--vim.keymap.set('n', '<leader>fwg', function() require'telescope.builtin'.live_grep({ cwd = '~/Notes/', prompt_title = 'vimwiki' }) end)
 
 -- Telescope
 require'telescope'.setup()
