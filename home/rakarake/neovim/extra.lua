@@ -43,8 +43,8 @@ vim.keymap.set('n', '<leader>fh', '<cmd>Telescope help_tags<cr>')
 
 
 -- Buffers
-vim.keymap.set('n', '<leader>bn', '<cmd>bnext<cr>')
-vim.keymap.set('n', '<leader>bp', '<cmd>bprevious<cr>')
+vim.keymap.set('n', '<C-l>', '<cmd>bnext<cr>')
+vim.keymap.set('n', '<C-h>', '<cmd>bprevious<cr>')
 vim.keymap.set('n', '<leader>bd', '<cmd>bdelete<cr>')
 vim.keymap.set('n', '<leader>bf', '<cmd>e %:h<cr>', {silent = true})
 
@@ -327,10 +327,10 @@ harpoon:setup()
 vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end)
 vim.keymap.set("n", "<leader>y", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
 
-vim.keymap.set("n", "<C-1>", function() harpoon:list():select(1) end)
-vim.keymap.set("n", "<C-2>", function() harpoon:list():select(2) end)
-vim.keymap.set("n", "<C-3>", function() harpoon:list():select(3) end)
-vim.keymap.set("n", "<C-4>", function() harpoon:list():select(4) end)
+vim.keymap.set("n", "<leader>1", function() harpoon:list():select(1) end)
+vim.keymap.set("n", "<leader>2", function() harpoon:list():select(2) end)
+vim.keymap.set("n", "<leader>3", function() harpoon:list():select(3) end)
+vim.keymap.set("n", "<leader>4", function() harpoon:list():select(4) end)
 
 -- Theme / Colorscheme
 --vim.cmd.colorscheme("catppuccin-macchiato")
