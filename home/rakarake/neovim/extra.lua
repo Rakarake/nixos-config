@@ -14,6 +14,10 @@ require'nvim-treesitter.configs'.setup {
     additional_vim_regex_highlighting = false,
   },
 }
+vim.keymap.set('n', '<C-h>', '<cmd>Treewalker Left<cr>')
+vim.keymap.set('n', '<C-l>', '<cmd>Treewalker Right<cr>')
+vim.keymap.set('n', '<C-k>', '<cmd>Treewalker Up<cr>')
+vim.keymap.set('n', '<C-j>', '<cmd>Treewalker Down<cr>')
 
 -- Add WGSL filetype
 vim.filetype.add({extension = {wgsl = "wgsl"}})
@@ -45,10 +49,10 @@ vim.keymap.set('n', '<leader>fw', '<cmd>Telescope lsp_dynamic_workspace_symbols<
 
 
 -- Buffers
-vim.keymap.set('n', '<C-l>', '<cmd>bnext<cr>')
-vim.keymap.set('n', '<C-h>', '<cmd>bprevious<cr>')
+vim.keymap.set('n', '<leader>bn', '<cmd>bnext<cr>')
+vim.keymap.set('n', '<leader>bp', '<cmd>bprevious<cr>')
 vim.keymap.set('n', '<leader>bd', '<cmd>bdelete<cr>')
-vim.keymap.set('n', '<leader>bf', '<cmd>e %:h<cr>', {silent = true})
+vim.keymap.set('n', '<leader>od', '<cmd>e %:h<cr>', {silent = true})
 
 -- Tmux
 vim.keymap.set('n', '<leader>ow', '<cmd>!tmux new-window -c "%:p:h"<cr><cr>', {silent = true})
@@ -283,7 +287,6 @@ require'oil'.setup({
     ["<BS>"] = { "actions.parent", mode = "n" },
   }
 })
-vim.keymap.set('n', '<space>od', require"oil".open, opts)
 
 -- Hex editor
 vim.keymap.set("n", "<leader>hr", "<cmd>%! xxd<CR><cmd>set filetype=xxd<CR>")

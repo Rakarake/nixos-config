@@ -34,6 +34,7 @@ in
       plugins = with pkgs.vimPlugins; [
         nvim-lspconfig
         nvim-treesitter.withAllGrammars
+        treewalker-nvim
         plenary-nvim
         telescope-nvim
         harpoon2
