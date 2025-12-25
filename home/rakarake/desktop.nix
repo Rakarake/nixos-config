@@ -186,6 +186,7 @@ in
       hieroglyphic
       strawberry
       gdb
+      zeal
 
       # Emulators
       fceux

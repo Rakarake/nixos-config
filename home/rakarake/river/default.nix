@@ -168,6 +168,8 @@ in
       extraConfig = ''
         ${cfg.extraConfigTop}
 
+        riverctl map normal Super Y spawn "$BROWSER"
+
         monitor-setup &
         (while true; do run-sandbar; sleep 2; done) &
 
