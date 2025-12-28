@@ -227,7 +227,7 @@ in
         wl-paste --type text --watch cliphist store &
 
         # Access clipboard manager
-        riverctl map normal Super C spawn "cliphist list | rofi -dmenu | cliphist decode | wl-copy"
+        riverctl map normal Super C spawn "cliphist list | rofi -dmenu -p 'Clipboard history: ' | cliphist decode | wl-copy"
 
         # Clear clipboard manager
         riverctl map normal Super+Shift C spawn "cliphist wipe"
@@ -265,10 +265,10 @@ in
         riverctl map normal Super D spawn 'rofi -show combi -modes combi -combi-modes "window,drun,run"'
         riverctl map normal Super+Shift D spawn "rofi -show run"
         riverctl map normal Super P spawn '
-          dir=$(ls ~/Projects/ | rofi -dmenu) && foot sh -c "cd ~/Projects/$dir && tmux attach -t $dir || tmux new -s $dir"
+          dir=$(ls ~/Projects/ | rofi -dmenu -p "Choose project: ") && foot sh -c "cd ~/Projects/$dir && tmux attach -t $dir || tmux new -s $dir"
         '
         riverctl map normal Super U spawn '
-          output=$(rofi -dmenu -p "calc: " | bc -l)
+          output=$(rofi -dmenu -p "Calculator: " | bc -l)
           printf $output | wl-copy
         '
         riverctl map normal Super O spawn '
