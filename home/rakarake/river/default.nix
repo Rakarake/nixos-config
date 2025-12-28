@@ -267,6 +267,10 @@ in
         riverctl map normal Super P spawn '
           dir=$(ls ~/Projects/ | rofi -dmenu) && foot sh -c "cd ~/Projects/$dir && tmux attach -t $dir || tmux new -s $dir"
         '
+        riverctl map normal Super U spawn '
+          output=$(rofi -dmenu -p "calc " | bc -l)
+          printf $output | wl-copy
+        '
         # Super+J and Super+K to focus the next/previous view in the layout stack
         riverctl map normal Super J focus-view next
         riverctl map normal Super K focus-view previous
