@@ -268,8 +268,12 @@ in
           dir=$(ls ~/Projects/ | rofi -dmenu) && foot sh -c "cd ~/Projects/$dir && tmux attach -t $dir || tmux new -s $dir"
         '
         riverctl map normal Super U spawn '
-          output=$(rofi -dmenu -p "calc " | bc -l)
+          output=$(rofi -dmenu -p "calc: " | bc -l)
           printf $output | wl-copy
+        '
+        riverctl map normal Super O spawn '
+          to_kill=$(ps --user $(id --user) -o "pid,comm" | rofi -dmenu -i -p "KILL: " | awk "{print \$1;}")
+          kill $to_kill
         '
         # Super+J and Super+K to focus the next/previous view in the layout stack
         riverctl map normal Super J focus-view next
