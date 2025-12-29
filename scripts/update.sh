@@ -13,7 +13,7 @@ if ! ([ "$2" = "light" ] || [ "$2" = "dark" ] || [ "$2" = "" ]);
 fi
 
 cd ~/Projects/nixos-config \
-&& git pull \
+&& git pull --no-rebase \
 && if [ "$1" = "push" ] && ! [ "$3" = "stealthy" ]; then nix flake update; fi \
 && if [ "$2" == "" ]; then nh home switch -c $USER@$HOSTNAME .;
                       else nh home switch -c $USER@$HOSTNAME-$2 .;
