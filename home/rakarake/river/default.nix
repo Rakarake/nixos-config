@@ -262,7 +262,7 @@ in
         riverctl map normal Super F spawn "${config.home-xdg.file-manager.bin}"
         riverctl map normal Super Q close
         riverctl map normal Super+Shift+Alt E exit
-        riverctl map normal Super D spawn 'rofi -show combi -modes combi -combi-modes "window,drun,run"'
+        riverctl map normal Super D spawn 'rofi -show drun'
         riverctl map normal Super+Shift D spawn "rofi -show run"
         riverctl map normal Super P spawn '
           dir=$(ls ~/Projects/ | rofi -dmenu -p "Choose project: ") && foot sh -c "cd ~/Projects/$dir && tmux attach -t $dir || tmux new -s $dir"
@@ -270,6 +270,9 @@ in
         riverctl map normal Super U spawn '
           output=$(rofi -dmenu -p "Calculator: " | bc -l)
           printf $output | wl-copy
+        '
+        riverctl map normal Super+Shift M spawn '
+          TMP=$(mktemp); grim -g "$(slurp)" - > $TMP; imv -u nearest_neighbour $TMP; rm $TMP
         '
         riverctl map normal Super O spawn '
           to_kill=$(ps --user $(id --user) -o "pid,comm" | rofi -dmenu -i -p "KILL: " | awk "{print \$1;}")
