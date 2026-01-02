@@ -32,6 +32,7 @@ in
     ./river
     ./grompt
     ./bash.nix
+    ./zsh
     ./nushell
     inputs.nix-index-database.hmModules.nix-index
     inputs.stylix.homeModules.stylix
