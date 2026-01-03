@@ -187,6 +187,7 @@ in
       strawberry
       gdb
       zeal
+      renderdoc
 
       # Emulators
       fceux
