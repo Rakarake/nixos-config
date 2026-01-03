@@ -86,8 +86,8 @@ in
     nvp = "nvim --listen localhost:15923";
     b = config.home-xdg.browser.bin;
     open = "xdg-open";
-    "\":q\"" = "exit";
-    "\"..\"" = "cd ..";
+    ":q" = "exit";
+    ".." = "cd ..";
     cp = "cp -v";
     mv = "mv -v";
     rm = "rm -v";
