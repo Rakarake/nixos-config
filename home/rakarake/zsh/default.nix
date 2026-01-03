@@ -24,5 +24,11 @@
       MODE_CURSOR_VISUAL="$MODE_CURSOR_VICMD steady bar";
       MODE_CURSOR_VLINE="$MODE_CURSOR_VISUAL";
     };
+    profileExtra = ''
+      # :q to exit
+      :q() {
+        exit
+      }
+    '';
   };
 }
