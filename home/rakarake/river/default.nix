@@ -120,23 +120,31 @@ in
     ];
 
     # Xremap
-    services.xremap = {
-      enable = true;
-      config.modmap = [
-        {
-          name = "Global";
-          remap = {
-            "CapsLock" = "Esc";
-          };
-        }
-      ];
-    };
+    #services.xremap = {
+    #  enable = true;
+    #  config.modmap = [
+    #    {
+    #      name = "Global";
+    #      remap = {
+    #        "CapsLock" = "Esc";
+    #      };
+    #    }
+    #  ];
+    #};
 
     # Screenlocker
     programs.swaylock.enable = true;
 
-    # Swaync
-    services.swaync.enable = true;
+    # Notifications
+    #services.swaync.enable = true;
+    services.fnott = {
+      enable = true;
+      settings = {
+        main = {
+          max-timeout = 4;
+        };
+      };
+    };
 
     ## Swayidle
     #services.swayidle = {
@@ -202,7 +210,10 @@ in
         swaybg -i ${config.home-xdg.wallpaper} &
 
         # Open notifications
-        riverctl map normal Super N spawn "swaync-client -t -sw"
+        #riverctl map normal Super N spawn "swaync-client -t -sw"
+        riverctl map normal Super N spawn "fnottctl dismiss"
+        riverctl map normal Super+Shift N spawn "fnottctl pause"
+        riverctl map normal Super+Shift+Alt N spawn "fnottctl unpause"
 
         # Lock screen
         riverctl map normal Super Escape spawn "${swaylockCommand}"
@@ -269,6 +280,7 @@ in
         '
         riverctl map normal Super U spawn '
           output=$(rofi -dmenu -p "Calculator: " | bc -l)
+          notify-send $output
           printf $output | wl-copy
         '
         riverctl map normal Super+Shift M spawn '

@@ -37,10 +37,10 @@ in
     inputs.nix-index-database.hmModules.nix-index
     inputs.stylix.homeModules.stylix
     inputs.catppuccin.homeModules.catppuccin
-    inputs.xremap.homeManagerModules.default
+    #inputs.xremap.homeManagerModules.default
   ];
   # Follow the rules!
-  services.xremap.enable = lib.mkDefault false;
+  #services.xremap.enable = lib.mkDefault false;
 
   # Bash config
   home-bash.enable = true;

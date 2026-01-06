@@ -39,15 +39,15 @@ in {
     home-rofi.enable = true;
 
     # Xremap
-    services.xremap = {
-      enable = true;
-      config.modmap = [
-        {
-          name = "Global";
-          remap = { "CapsLock" = "Esc"; };
-        }
-      ];
-    };
+    #services.xremap = {
+    #  enable = true;
+    #  config.modmap = [
+    #    {
+    #      name = "Global";
+    #      remap = { "CapsLock" = "Esc"; };
+    #    }
+    #  ];
+    #};
 
     # Packages needed by the Hyprland configuration
     home.packages = with pkgs; [
