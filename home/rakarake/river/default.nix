@@ -213,7 +213,7 @@ in
         #riverctl map normal Super N spawn "swaync-client -t -sw"
         riverctl map normal Super N spawn "fnottctl dismiss"
         riverctl map normal Super+Shift N spawn "fnottctl pause"
-        riverctl map normal Super+Shift+Alt N spawn "fnottctl unpause"
+        riverctl map normal Super+Shift B spawn "fnottctl unpause"
 
         # Lock screen
         riverctl map normal Super Escape spawn "${swaylockCommand}"
