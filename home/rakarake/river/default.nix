@@ -141,7 +141,7 @@ in
       enable = true;
       settings = {
         main = {
-          max-timeout = 4;
+          max-timeout = 6;
         };
       };
     };
