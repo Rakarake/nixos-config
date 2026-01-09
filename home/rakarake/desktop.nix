@@ -188,6 +188,7 @@ in
       gdb
       zeal
       renderdoc
+      qbittorrent
 
       # Emulators
       fceux

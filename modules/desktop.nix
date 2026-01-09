@@ -496,6 +496,10 @@ in
         freetype
         dbus
         alsa-lib
+        alsa-plugins
+        alsa-topology-conf
+        alsa-ucm-conf
+        alsa-utils
         expat
         # for blender
         libxkbcommon

@@ -3,6 +3,9 @@
 -- Leader key
 vim.g.mapleader = ' '
 
+-- Disable right click menu
+vim.cmd('set mousemodel=extend')
+
 -- Load filetype specific configurations
 vim.cmd('filetype plugin on')
 vim.cmd('filetype indent plugin on')
