@@ -455,6 +455,30 @@ in
     };
   };
 
+  # Automatic backups
+  systemd.timers."weekly-notice" = {
+    wantedBy = [ "timers.target" ];
+    timerConfig = {
+      OnCalendar = "Sunday 10:00:00";
+      Persistent = true;
+      Unit = "weekly-notice.service";
+    };
+  };
+  systemd.services."weekly-notice" = {
+    path = [ pkgs.curl ];
+    script = config.age.secrets.weekly-notice.path;
+    serviceConfig = {
+      Type = "oneshot";
+      User = "rakarake";
+    };
+  };
+  age.secrets.weekly-notice = {
+    file = ../../secrets/weekly-notice.age;
+    mode = "700";
+    owner = "rakarake";
+    group = "users";
+  };
+
   # Bootloader
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;

@@ -13,4 +13,6 @@ in
   "smojitroppy.age".publicKeys = keys;
   # Smojitroppy client secret
   "smojitroppy-client.age".publicKeys = keys;
+  # Weekly script containing secrets
+  "weekly-notice.age".publicKeys = keys;
 }
