@@ -465,7 +465,7 @@ in
     };
   };
   systemd.services."weekly-notice" = {
-    path = [ pkgs.curl ];
+    path = [ pkgs.curl pkgs.bc ];
     script = config.age.secrets.weekly-notice.path;
     serviceConfig = {
       Type = "oneshot";
