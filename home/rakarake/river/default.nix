@@ -275,6 +275,7 @@ in
         riverctl map normal Super+Shift+Alt E exit
         riverctl map normal Super D spawn 'rofi -show drun'
         riverctl map normal Super+Shift D spawn "rofi -show run"
+        riverctl map normal Super+Control+Shift D spawn "rofi -show run | wl-copy"
         riverctl map normal Super P spawn '
           dir=$(ls ~/Projects/ | rofi -dmenu -p "Choose project: ") && foot sh -c "cd ~/Projects/$dir && tmux attach -t $dir || tmux new -s $dir"
         '
