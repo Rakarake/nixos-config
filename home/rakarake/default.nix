@@ -92,14 +92,10 @@ in
     mv = "mv -v";
     rm = "rm -v";
     bat = "bat --theme=base16";
-    die = "sudo shutdown now";
     ks = "kitten ssh";
 
     # Swag
     uwu = "${pkgs.fastfetch}/bin/fastfetch --logo ${self}/home/rakarake/sillyascii";
-    
-    # Projects
-    p = "cd ~/Projects";
     
     # Open new terminal in directory
     gg = "gnome-terminal . &";
@@ -115,7 +111,6 @@ in
     codiw = "NIXOS_OZONE_WL=1 codium";
     
     # Nix Fast
-    n = "cd ~/Projects/nixos-config";
     nd = "nix develop";
     rebuild = "${pkgs.nh}/bin/nh os switch .";
     rebuildboot = "${pkgs.nh}/bin/nh os boot .";
