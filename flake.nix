@@ -77,8 +77,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     
+    # Discord to matrix bridge
     out-of-your-element = {
       url = "git+https://cgit.rory.gay/nix/OOYE-module.git";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    
+    # NetworkManager GUI
+    nmrs = {
+      url = "github:cachebag/nmrs";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

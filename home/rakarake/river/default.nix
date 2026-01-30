@@ -2,6 +2,8 @@
   lib,
   config,
   pkgs,
+  inputs,
+  system,
   ...
 }:
 with lib;
@@ -114,6 +116,8 @@ in
       rofi-network-manager # Simple NetworkManager interface
       sandbar
       acpi
+      inputs.nmrs.packages.${system}.default
+
       # Custom sandbar command
       run-sandbar
       monitor-setup
