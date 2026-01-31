@@ -7,15 +7,9 @@
   user,
   ...
 }:
-let
-  dotfiles = outputs.extra.mutableDotfiles {
-    inherit pkgs user;
-    location = "neovim";
-  };
-in
 {
     # Mutable config with extra.lua!
-    xdg.configFile."nvim/lua/extra.lua".source = "${dotfiles}/extra.lua";
+    xdg.configFile."nvim/lua/extra.lua".source = config.lib.file.mkOutOfStoreSymlink ./extra.lua;
     # Make sure undodir exists
     xdg.configFile."nvim/undodir/gamnangstyle".text = "whop\n";
     # Neovim filetype specific configs

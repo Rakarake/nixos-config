@@ -329,6 +329,9 @@ in
 
         # RTS LAB
         "dialout"
+
+        # Magic docker user.
+        "docker"
       ];
     };
     users.groups.davfs2 = { };
