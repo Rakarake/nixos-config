@@ -63,11 +63,17 @@ in
   imports = [
     ./hardware-configuration.nix
     inputs.bingbingo.nixosModules.${system}.default
-    (outputs.extra.statefulServerTemplate {
-      name = "minecraftserver1";
-      description = "A stylish minecraft server";
-      packages = [ pkgs.jdk21 ];
-      path = /var/minecraftserver1;
+    #(outputs.extra.statefulServerTemplate {
+    #  name = "minecraftserver1";
+    #  description = "A stylish minecraft server";
+    #  packages = [ pkgs.jdk21 ];
+    #  path = /var/minecraftserver1;
+    #})
+    (outputs.extra.statefulServerTemplate rec {
+      name = "rfu";
+      description = "lelz";
+      packages = [ pkgs.dotnet-runtime_8 ];
+      path = /var/${name};
     })
     (outputs.extra.statefulServerTemplate {
       name = "minecraftserverspruce";
