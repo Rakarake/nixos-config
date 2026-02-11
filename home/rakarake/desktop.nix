@@ -189,6 +189,7 @@ in
       zeal
       renderdoc
       qbittorrent
+      gnome-frog
 
       # Emulators
       fceux

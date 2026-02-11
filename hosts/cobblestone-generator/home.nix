@@ -1,5 +1,9 @@
+{ pkgs, ... }:
 {
   home-desktop.enable = true;
+  home.packages = with pkgs; [
+    deadlock-mod-manager
+  ];
   home-river = let
     mainMonitor = "DP-1";
     leftMonitor = "DP-2";
@@ -22,6 +26,14 @@
       # To file in Videos + clipboard
       riverctl map normal Super+Alt V spawn\
         'wl-screenrec -g "$(slurp)" -f ~/Videos/vibeo.mp4\
+        --audio --audio-device alsa_output.pci-0000_14_00.4.analog-stereo.monitor\
+        ; wl-copy --type "text/uri-list" <<< file://$(realpath ~/Videos/vibeo.mp4)'
+      riverctl map normal Super+Alt T spawn\
+        'wl-screenrec -o "${mainMonitor}" -f ~/Videos/vibeo.mp4\
+        --audio --audio-device alsa_output.pci-0000_14_00.4.analog-stereo.monitor\
+        ; wl-copy --type "text/uri-list" <<< file://$(realpath ~/Videos/vibeo.mp4)'
+      riverctl map normal Super+Alt R spawn\
+        'wl-screenrec -o "${leftMonitor}" -f ~/Videos/vibeo.mp4\
         --audio --audio-device alsa_output.pci-0000_14_00.4.analog-stereo.monitor\
         ; wl-copy --type "text/uri-list" <<< file://$(realpath ~/Videos/vibeo.mp4)'
     '';

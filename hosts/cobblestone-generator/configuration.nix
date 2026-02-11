@@ -121,8 +121,6 @@
 
   # Desktop specific packages
   environment.systemPackages = with pkgs; [
-    corectrl  # We like big graphics
-
     # SDDM theme
     #catppuccin-sddm-corners
 
