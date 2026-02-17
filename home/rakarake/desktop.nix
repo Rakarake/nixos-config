@@ -143,7 +143,6 @@ in
       steam-run
       appimage-run
       steamtinkerlaunch
-      obs-studio
       protonup-qt
       baobab
       helvum

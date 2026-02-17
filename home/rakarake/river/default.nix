@@ -250,6 +250,12 @@ in
         # Open file in clipboard
         riverctl map normal Super+Shift O spawn open-file-in-clipboard
 
+        # Setup srcpy for camera device /dev/vidoX
+        riverctl map normal Super+Control+Shift V spawn '
+          d=$(rofi -dmenu -p "Choose Camera Device")
+          scrcpy --no-window --video-source=camera --camera-size=1920x1080 --camera-facing=front --v4l2-sink=/dev/video$d --no-playback
+        '
+
         # Other stuff
         riverctl rule-add ssd                    # Serverside decorations only
         riverctl set-cursor-warp on-focus-change # Cursor follows focus

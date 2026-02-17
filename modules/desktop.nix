@@ -58,7 +58,7 @@ in
       mpv
       vlc
       imv
-      linuxPackages_latest.perf # Performance metrics
+      perf # Performance metrics
       impression # Boot drive creator
       nix-index # For working with /nix/store
       nix-search
@@ -88,7 +88,7 @@ in
       kdePackages.okular
       android-studio
       #davfs2
-      srcpy
+      scrcpy
     ];
 
     # Rescue kernel panics
@@ -107,6 +107,12 @@ in
 
     # Development man-pages for packages
     documentation.dev.enable = true;
+
+    programs.obs-studio = {
+      enable = true;
+      # v4l2 kernel modules
+      enableVirtualCamera = true;
+    };
 
     # Fwupd, firmware updater
     # fwupdmgr get-devices - to get devices
