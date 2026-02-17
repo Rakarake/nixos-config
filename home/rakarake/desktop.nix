@@ -190,6 +190,7 @@ in
       renderdoc
       qbittorrent
       gnome-frog
+      discord
 
       # Emulators
       fceux

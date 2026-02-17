@@ -88,6 +88,7 @@ in
       kdePackages.okular
       android-studio
       #davfs2
+      srcpy
     ];
 
     # Rescue kernel panics
