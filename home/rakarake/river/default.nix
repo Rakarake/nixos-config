@@ -253,7 +253,7 @@ in
         # Setup srcpy for camera device /dev/vidoX
         riverctl map normal Super+Control+Shift V spawn '
           d=$(rofi -dmenu -p "Choose Camera Device")
-          scrcpy --no-window --video-source=camera --camera-size=1920x1080 --camera-facing=front --v4l2-sink=/dev/video$d --no-playback
+          scrcpy --no-window --video-source=camera --camera-size=1920x1080 --camera-facing=back --v4l2-sink=/dev/video$d --no-playback
         '
 
         # Other stuff
