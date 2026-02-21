@@ -202,8 +202,8 @@ in
         riverctl map normal Super E spawn emote
 
         # Color picker
-        riverctl map normal Super A spawn 'hyprpicker --format=rgb | wl-copy'
-        riverctl map normal Super X spawn 'hyprpicker --format=hex | wl-copy'
+        riverctl map normal Super+Alt A spawn 'hyprpicker --format=rgb | wl-copy'
+        riverctl map normal Super+Alt X spawn 'hyprpicker --format=hex | wl-copy'
 
         # NetworkManager applet
         #gsettings set org.gnome.nm-applet disable-disconnected-notifications "true"
@@ -310,16 +310,16 @@ in
         riverctl map normal Super+Shift J swap next
         riverctl map normal Super+Shift K swap previous
 
-        # Super+Period and Super+Comma to focus the next/previous output
-        riverctl map normal Super Period focus-output next
-        riverctl map normal Super Comma focus-output previous
+        # Focus the next/previous output
+        riverctl map normal Super Z focus-output next
+        riverctl map normal Super X focus-output previous
 
-        # Super+Shift+{Period,Comma} to send the focused view to the next/previous output
-        riverctl map normal Super+Shift Period send-to-output next
-        riverctl map normal Super+Shift Comma send-to-output previous
+        # Send the focused view to the next/previous output
+        riverctl map normal Super+Alt Z send-to-output next
+        riverctl map normal Super+Alt X send-to-output previous
 
         # Super+Return to bump the focused view to the top of the layout stack
-        riverctl map normal Super Z zoom
+        #riverctl map normal Super+Alt Z zoom
 
         # Super+H and Super+L to decrease/increase the main ratio of rivertile(1)
         riverctl map normal Super H send-layout-cmd rivertile "main-ratio -0.05"

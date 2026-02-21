@@ -13,7 +13,7 @@
     monitor-setup = ''
       # Monitor setup
       wlr-randr --output ${mainMonitor} --mode 1920x1080@144.001007 --pos 1920,0
-      wlr-randr --output ${leftMonitor} --mode 1920x1080@143.854996 --pos 0,0
+      wlr-randr --output ${leftMonitor} --mode 1920x1080@143.854996 --pos -500,0
     '';
     extraConfig = ''
       # Monitor screenshots
