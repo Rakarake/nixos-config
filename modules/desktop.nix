@@ -94,9 +94,6 @@ in
     # Rescue kernel panics
     boot.crashDump.enable = true;
 
-    # Droidcam
-    programs.droidcam.enable = true;
-
     # GPG
     services.pcscd.enable = true;
     programs.gnupg.agent = {
