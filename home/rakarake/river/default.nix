@@ -203,7 +203,7 @@ in
 
         # Color picker
         riverctl map normal Super+Alt A spawn 'hyprpicker --format=rgb | wl-copy'
-        riverctl map normal Super+Alt X spawn 'hyprpicker --format=hex | wl-copy'
+        riverctl map normal Super+Alt+Control A spawn 'hyprpicker --format=hex | wl-copy'
 
         # NetworkManager applet
         #gsettings set org.gnome.nm-applet disable-disconnected-notifications "true"
