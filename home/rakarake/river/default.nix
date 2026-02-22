@@ -115,6 +115,7 @@ in
       wl-clip-persist
       rofi-network-manager # Simple NetworkManager interface
       sandbar
+      tray-tui
       acpi
       inputs.nmrs.packages.${system}.default
 
@@ -200,6 +201,9 @@ in
         # Emoji picker
         emote &  # Run in background
         riverctl map normal Super E spawn emote
+
+        # System tray tui
+        riverctl map normal Super+Alt T spawn "foot tray-tui"
 
         # Color picker
         riverctl map normal Super+Alt A spawn 'hyprpicker --format=rgb | wl-copy'
