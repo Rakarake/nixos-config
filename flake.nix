@@ -88,6 +88,11 @@
       url = "github:cachebag/nmrs";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    eden = {
+      url = "github:Grantimatter/eden-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let

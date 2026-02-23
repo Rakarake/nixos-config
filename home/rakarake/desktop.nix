@@ -257,6 +257,11 @@ in
           exec = ''${name} -platform "wayland;xcb"'';
           icon = name;
         };
+        qtX11App = name: {
+          name = "${name} X11";
+          exec = ''${name} -platform "xcb"'';
+          icon = name;
+        };
         # Takes a list of executable names and makes wayland desktop entries for them
         makeElectronWaylandApps =
           appNames:
@@ -272,6 +277,14 @@ in
             map (name: {
               name = "${name}Wayland";
               value = qtWaylandApp name;
+            }) appNames
+          ));
+        makeQTX11Apps =
+          appNames:
+          (lib.listToAttrs (
+            map (name: {
+              name = "${name}X11";
+              value = qtX11App name;
             }) appNames
           ));
       in
@@ -295,6 +308,9 @@ in
       ])
       // (makeQTWaylandApps [
         "monero-wallet-gui"
+      ])
+      // (makeQTX11Apps [
+        "eden"
       ]);
   };
 }
