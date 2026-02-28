@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, absoluteFlakePath, ... }:
 {
   home-desktop.enable = true;
   home.packages = with pkgs; [
@@ -21,6 +21,9 @@
       riverctl map normal Super+Shift R spawn "grim -o ${leftMonitor}"
       riverctl map normal Super T       spawn "grim -o ${mainMonitor} - | wl-copy"
       riverctl map normal Super+Shift T spawn "grim -o ${mainMonitor}"
+
+      # Sick live wallpaper
+      glonkers --layer ${absoluteFlakePath}/hosts/cobblestone-generator/balatro.glsl
 
       # Screen recording
       # To file in Videos + clipboard

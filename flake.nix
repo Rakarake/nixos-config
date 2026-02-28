@@ -93,6 +93,12 @@
       url = "github:Grantimatter/eden-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Wallpaper engine thinymajingy
+    glonkers = {
+      url = "git+https://git.rakarake.xyz/Rakarake/glonkers";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let
@@ -167,6 +173,7 @@
       let
         hostname = host.hostname;
         system = host.system;
+        absoluteFlakePath = "/home/${user}/Projects/nixos-config";
       in {
         "${user}@${hostname}${if variation != null then "-${variation}" else ""}"
           = home-manager.lib.homeManagerConfiguration {
@@ -185,7 +192,7 @@
             }
           ];
           pkgs = pkgsFor.${system};
-          extraSpecialArgs = args // { inherit system hostname user; };
+          extraSpecialArgs = args // { inherit system hostname user absoluteFlakePath; };
         };
       };
 

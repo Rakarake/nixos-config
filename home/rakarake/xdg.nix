@@ -23,16 +23,16 @@ let
     "handler/mailto" = cfg.mail-client.desktop;
 
     # Multimedia
-    "audio/*"         = cfg.audio-player.desktop;
-    "audio/flac"      = cfg.audio-player.desktop;
-    "audio/mp3"       = cfg.audio-player.desktop;
-    "video/*"         = cfg.video-player.desktop;
-    "video/mp4"       = cfg.video-player.desktop;
-    "video/mkv"       = cfg.video-player.desktop;
-    "image/*"         = cfg.image-viewer.desktop;
-    "image/png"       = cfg.image-viewer.desktop;
-    "image/jpg"       = cfg.image-viewer.desktop;
-    "application/pdf" = cfg.pdf-viewer.desktop;
+    "audio/flac"       = cfg.audio-player.desktop;
+    "audio/mp3"        = cfg.audio-player.desktop;
+    "video/mp4"        = cfg.video-player.desktop;
+    "video/x-matroska" = cfg.video-player.desktop;
+    "video/webm"       = cfg.video-player.desktop;
+    "image/png"        = cfg.image-viewer.desktop;
+    "image/jpeg"       = cfg.image-viewer.desktop;
+    "image/webp"       = cfg.image-viewer.desktop;
+    "image/gif"        = cfg.image-viewer.desktop;
+    "application/pdf"  = cfg.pdf-viewer.desktop;
 
     # File manager
     "inode/directory" = cfg.file-manager.desktop;
@@ -49,7 +49,7 @@ in {
     };
     file-manager = mkOption {
       type = types.attrs;
-      default = { package = pkgs.nautilus; bin = "nautilus"; desktop = "nautilus.desktop"; };
+      default = { package = pkgs.kdePackages.dolphin; bin = "dolphin"; desktop = "dolphin.desktop"; };
     };
     browser = mkOption {
       type = types.attrs;

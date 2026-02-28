@@ -20,6 +20,9 @@
       security.pam.services.swaylock = {};
       security.pam.services.polkit_gnome = {};
 
+      # If you want to use dolphin
+      environment.etc."/xdg/menus/applications.menu".text = builtins.readFile "${pkgs.kdePackages.plasma-workspace}/etc/xdg/menus/plasma-applications.menu";
+
       # Bluetooth
       hardware.bluetooth.enable = true;
       services.blueman.enable = true;

@@ -32,7 +32,9 @@
   #  chooser_cmd = "${pkgs.slurp}/bin/slurp -f %o -or";
   #};
 
-  programs.eden.enable = true;
+  programs.eden = {
+    enable = true;
+  };
 
   # Linux kernel package
   boot.kernelPackages = pkgs.linuxPackages_latest;

@@ -4,6 +4,7 @@
   pkgs,
   inputs,
   system,
+  user,
   ...
 }:
 with lib;
@@ -106,7 +107,7 @@ in
       playerctl # MPRIS global player controller
       swayidle # Idle inhibitor, knows when computer is ueseless
       brightnessctl # Laptop brighness controls
-      nautilus
+      kdePackages.dolphin
       #networkmanagerapplet         # Log in to your wifi with this cool utility
       emote # emoji picker
       hyprpicker # Color picker
@@ -118,11 +119,14 @@ in
       tray-tui
       acpi
       inputs.nmrs.packages.${system}.default
+      inputs.glonkers.defaultPackage.${system}
 
       # Custom sandbar command
       run-sandbar
       monitor-setup
     ];
+
+    xdg.configFile."kdeglobals".source = config.lib.file.mkOutOfStoreSymlink /home/${user}/Projects/nixos-config/home/${user}/kdeglobals;
 
     # Xremap
     #services.xremap = {
