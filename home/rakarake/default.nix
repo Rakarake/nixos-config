@@ -28,7 +28,6 @@ in
     ./helix
     ./emacs.nix
     ./rofi
-    ./dwl
     ./river
     ./grompt
     ./bash.nix

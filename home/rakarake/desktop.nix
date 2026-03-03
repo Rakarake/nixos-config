@@ -190,6 +190,7 @@ in
       qbittorrent
       gnome-frog
       discord
+      kdePackages.kate
 
       # Emulators
       fceux
