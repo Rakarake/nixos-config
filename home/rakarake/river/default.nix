@@ -118,7 +118,7 @@ in
       sandbar
       tray-tui
       acpi
-      inputs.nmrs.packages.${system}.default
+      #inputs.nmrs.packages.${system}.default
       inputs.glonkers.defaultPackage.${system}
 
       # Custom sandbar command
@@ -271,7 +271,8 @@ in
         riverctl hide-cursor timeout 10000
 
         # Keyboard options
-        riverctl keyboard-layout -variant "us" -options "grp:win_space_toggle,caps:escape" "se"
+        riverctl map normal Super Space keyboard-layout -variant "us" -options "caps:escape" "se"
+        riverctl map normal Super+Shift Space keyboard-layout -options "caps:escape" "se"
 
         # Touchpad naturall scrolling
         # NOTE: the device using glob might look different on 
