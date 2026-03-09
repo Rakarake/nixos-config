@@ -22,6 +22,7 @@ in
     enable = true;
     settings = with config.services.coturn; {
       server_name = "chat.mdf.farm";
+      max_upload_size = "2G";
       # This is required for our custom ".wellknown"!
       serve_server_wellknown = true;
       registration_shared_secret_path = config.age.secrets.hotfreddy.path;
