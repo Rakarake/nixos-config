@@ -299,6 +299,10 @@ in
         riverctl map normal Super P spawn '
           dir=$(ls ~/Projects/ | rofi -dmenu -p "Choose project: ") && foot sh -c "cd ~/Projects/$dir && tmux attach -t $dir || tmux new -s $dir"
         '
+        # notes
+        riverctl map normal Super+Shift P spawn '
+          foot sh -c "cd ~/Notes/ && tmux attach -t notes || tmux new -s notes $EDITOR"
+        '
         riverctl map normal Super U spawn '
           output=$(rofi -dmenu -p "Calculator: " | bc -l)
           notify-send $output
