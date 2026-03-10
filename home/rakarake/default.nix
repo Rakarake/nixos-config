@@ -67,6 +67,7 @@ in
 
     # I'm stupid
     tldr
+    wikiman
 
     # The best program ever
     lazygit

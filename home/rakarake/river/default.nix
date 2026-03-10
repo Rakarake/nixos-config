@@ -271,6 +271,7 @@ in
         riverctl hide-cursor timeout 10000
 
         # Keyboard options
+        riverctl keyboard-layout -variant "us" -options "caps:escape" "se"
         riverctl map normal Super Space keyboard-layout -variant "us" -options "caps:escape" "se"
         riverctl map normal Super+Shift Space keyboard-layout -options "caps:escape" "se"
 
