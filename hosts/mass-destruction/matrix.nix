@@ -105,7 +105,7 @@ in
   };
   services.lk-jwt-service = {
     enable = true;
-    port = 8451;
+    #port = 8451;
     # can be on the same virtualHost as synapse
     livekitUrl = "wss://chat.mdf.farm/livekit/sfu";
     inherit keyFile;
@@ -135,7 +135,7 @@ in
   services.nginx.virtualHosts."chat.mdf.farm".locations = {
     "^~ /livekit/jwt" = {
       priority = 400;
-      proxyPass = "http://[::1]:${toString config.services.lk-jwt-service.port}/";
+      proxyPass = "http://localhost:${toString config.services.lk-jwt-service.port}/";
     };
     "^~ /livekit/sfu" = {
       extraConfig = ''
@@ -148,12 +148,12 @@ in
         proxy_set_header Connection "upgrade";
       '';
       priority = 400;
-      proxyPass = "http://[::1]:${toString config.services.livekit.settings.port}/";
+      proxyPass = "http://localhost:${toString config.services.livekit.settings.port}/";
       proxyWebsockets = true;
     };
-    #"/.well-known/matrix/client" = {
+    #"~ /.well-known/matrix/client" = {
     #  extraConfig = "add_header Content-Type application/json;";
-    #  return = ''200 '{"m.homeserver": {"base_url": "https://chat.mdf.farm:443"}, "m.identity_server": {"base_url": "https://vector.im"},"org.matrix.msc3575.proxy": {"url": "https://chat.mdf.farm"},"org.matrix.msc4143.rtc_foci": [{"type": "livekit",    "livekit_service_url": "https://chat.mdf.farm/livekit/jwt"}]}      ' '';
+    #  # TODO
     #};
   };
 

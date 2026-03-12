@@ -49,7 +49,6 @@ in
       pandoc
       pwvucontrol
       gparted
-      gamemode
       tmux
       nextcloud-client
       gnome-software
@@ -90,6 +89,27 @@ in
       #davfs2
       scrcpy
     ];
+
+    programs.gamemode = {
+      enable = true;
+      settings = {
+        general = {
+          renice = 10;
+        };
+      
+        # Warning: GPU optimisations have the potential to damage hardware
+        #gpu = {
+        #  apply_gpu_optimisations = "accept-responsibility";
+        #  gpu_device = 0;
+        #  amd_performance_level = "high";
+        #};
+      
+        custom = {
+          start = "${pkgs.libnotify}/bin/notify-send 'GameMode started'";
+          end = "${pkgs.libnotify}/bin/notify-send 'GameMode ended'";
+        };
+      };
+    };
 
     # Rescue kernel panics
     boot.crashDump.enable = true;
@@ -214,6 +234,11 @@ in
     hardware.steam-hardware.enable = true; # To enable steam controller etc.
     nixpkgs.config.packageOverrides = pkgs: {
       steam = pkgs.steam.override {
+        extraEnv = {
+          MANGOHUD = "1";
+          GAMEMODERUN = "1";
+          LD_PRELOAD="$LD_PRELOAD:${pkgs.gamemode.lib}/lib/libgamemodeauto.so.0";
+        };
         extraPkgs =
           pkgs: with pkgs; [
             xorg.libXcursor
@@ -336,6 +361,9 @@ in
 
         # Magic docker user.
         "docker"
+
+        # For gamemode to be able to renice.
+        "gamemode"
       ];
     };
     users.groups.davfs2 = { };
