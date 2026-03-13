@@ -10,7 +10,7 @@ let
     "org.matrix.msc3575.proxy" = { "url" = "https://chat.mdf.farm"; };
     "org.matrix.msc4143.rtc_foci" = [
       {
-        "type" = "livekit"; "livekit_service_url" = "https://chat.mdf.farm/livekit/jwt";
+        "type" = "livekit"; "livekit_service_url" = "https://voip.mdf.farm/jwt";
       }
     ];
   };
@@ -157,7 +157,7 @@ in
     enable = true;
     #port = 8451;
     # can be on the same virtualHost as synapse
-    livekitUrl = "wss://chat.mdf.farm/livekit/sfu";
+    livekitUrl = "wss://voip.mdf.farm/sfu";
     inherit keyFile;
   };
   # generate the key when needed
@@ -181,12 +181,12 @@ in
   };
   # restrict access to livekit room creation to a homeserver
   systemd.services.lk-jwt-service.environment.LIVEKIT_FULL_ACCESS_HOMESERVERS = "chat.mdf.farm";
-  services.nginx.virtualHosts."chat.mdf.farm".locations = {
-    "^~ /livekit/jwt/" = {
+  services.nginx.virtualHosts."voip.mdf.farm".locations = {
+    "^~ /jwt/" = {
       priority = 400;
       proxyPass = "http://localhost:${toString config.services.lk-jwt-service.port}/";
     };
-    "^~ /livekit/sfu/" = {
+    "^~ /sfu/" = {
       extraConfig = ''
         proxy_send_timeout 120;
         proxy_read_timeout 120;
@@ -200,6 +200,8 @@ in
       proxyPass = "http://localhost:${toString config.services.livekit.settings.port}/";
       proxyWebsockets = true;
     };
+  };
+  services.nginx.virtualHosts."chat.mdf.farm".locations = {
     "= /.well-known/matrix/client" = {
       extraConfig = mkWellKnown wellKnownClient;
       priority = 400;
