@@ -3,6 +3,7 @@ let
   # Matrix livekit file
   keyFile = "/run/livekit.key";
   synapsePort = 8008;
+  turnSecret = "depressedfoxy";
 in
 {
   imports = [
@@ -20,7 +21,7 @@ in
 
   services.matrix-synapse = {
     enable = true;
-    settings = with config.services.coturn; {
+    settings = {
       server_name = "chat.mdf.farm";
       max_upload_size = "2G";
       # This is required for our custom ".wellknown"!
@@ -42,11 +43,11 @@ in
         "#atlyss:chat.mdf.farm"
       ];
 
-      turn_uris = [
+      turn_uris = with config.services.coturn; [
         "turn:${realm}:3478?transport=udp"
         "turn:${realm}:3478?transport=tcp"
       ];
-      turn_shared_secret_path = config.age.secrets.freakyfoxy.path;
+      turn_shared_secret = turnSecret;
       turn_user_lifetime = "1h";
 
       listeners = [
@@ -99,8 +100,31 @@ in
   # Used for matrix-call?
   services.livekit = {
     enable = true;
+    # Requires open ports 50000-51000
     openFirewall = true;
-    settings.room.auto_create = false;
+    settings = {
+      room.auto_create = false;
+      rtc.turn_servers = [
+        #{
+        #  host = "voip.mdf.farm";
+        #  port = 3478;
+        #  protocol = "tcp";
+        #  secret = turnSecret;
+        #}
+        {
+          host = "voip.mdf.farm";
+          port = 5349;
+          protocol = "tls";
+          secret = turnSecret;
+        }
+        #{
+        #  host = "voip.mdf.farm";
+        #  port = 4378;
+        #  protocol = "udp";
+        #  secret = turnSecret;
+        #}
+      ];
+    };
     inherit keyFile;
   };
   services.lk-jwt-service = {
@@ -151,10 +175,22 @@ in
       proxyPass = "http://localhost:${toString config.services.livekit.settings.port}/";
       proxyWebsockets = true;
     };
-    #"~ /.well-known/matrix/client" = {
-    #  extraConfig = "add_header Content-Type application/json;";
-    #  # TODO
-    #};
+    "~ /.well-known/matrix" = {
+      extraConfig = "
+        default_type application/json;
+        add_header Access-Control-Allow-Origin *;
+      ";
+      alias = pkgs.writeText "client" (builtins.toJSON {
+        "m.homeserver" = { "base_url" = "https://chat.mdf.farm"; };
+        "org.matrix.msc3575.proxy" = { "url" = "https://chat.mdf.farm"; };
+        "org.matrix.msc4143.rtc_foci" = [
+          {
+            "type" = "livekit"; "livekit_service_url" = "https://chat.mdf.farm/livekit/jwt";
+          }
+        ];
+      });
+      #root = wellKnown;
+    };
   };
 
   services.coturn = rec {
@@ -164,7 +200,7 @@ in
     min-port = 49000;
     max-port = 50000;
     use-auth-secret = true;
-    static-auth-secret-file = config.age.secrets.freakyfoxy.path;
+    static-auth-secret = turnSecret;
     realm = "voip.mdf.farm";
     cert = "${config.security.acme.certs.${realm}.directory}/full.pem";
     pkey = "${config.security.acme.certs.${realm}.directory}/key.pem";
@@ -263,6 +299,9 @@ in
         forceSSL = true;
         enableACME = true; # Let's encrypt TLS automated, not certbot
         locations."/" = {
+          extraConfig = "
+            add_header Access-Control-Allow-Origin *;
+          ";
           root = pkgs.element-web;
         };
       };

@@ -80,21 +80,20 @@ in
   #networking.firewall.allowedTCPPorts = lib.attrsets.attrValues (publicPorts // publicPrivatePorts);
   #networking.firewall.allowedUDPPorts = lib.attrsets.attrValues (publicPorts // publicPrivatePorts);
 
-  networking.firewall =
-      let
-        range =
-          with config.services.coturn;
-          lib.singleton {
-            from = min-port;
-            to = max-port;
-          };
-      in
-      {
-        allowedUDPPortRanges = range;
-        allowedUDPPorts = lib.attrsets.attrValues ports;
-        #allowedTCPPortRanges = [ ];
-        allowedTCPPorts = lib.attrsets.attrValues ports;
+  networking.firewall = {
+    interfaces.enp4s0 = let
+      range = with config.services.coturn; lib.singleton {
+        from = min-port;
+        to = max-port;
       };
+    in
+    {
+      allowedUDPPortRanges = range;
+      allowedUDPPorts = lib.attrsets.attrValues ports;
+      allowedTCPPortRanges = [ ];
+      allowedTCPPorts = lib.attrsets.attrValues ports;
+    };
+  };
 
   nixpkgs.config.permittedInsecurePackages = [
     #"dotnet-runtime-7.0.20"
