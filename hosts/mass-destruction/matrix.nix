@@ -4,6 +4,24 @@ let
   keyFile = "/run/livekit.key";
   synapsePort = 8008;
   turnSecret = "depressedfoxy";
+  wellKnownClient = {
+    "m.homeserver" = { "base_url" = "https://chat.mdf.farm"; };
+    "m.identity_server" = {};
+    "org.matrix.msc3575.proxy" = { "url" = "https://chat.mdf.farm"; };
+    "org.matrix.msc4143.rtc_foci" = [
+      {
+        "type" = "livekit"; "livekit_service_url" = "https://chat.mdf.farm/livekit/jwt";
+      }
+    ];
+  };
+  wellKnownServer = {
+    "m.server" = "chat.mdf.farm:443";
+  };
+  mkWellKnown = data: ''
+    default_type application/json;
+    add_header Access-Control-Allow-Origin *;
+    return 200 '${builtins.toJSON data}';
+  '';
 in
 {
   imports = [
@@ -155,7 +173,6 @@ in
   };
   # restrict access to livekit room creation to a homeserver
   systemd.services.lk-jwt-service.environment.LIVEKIT_FULL_ACCESS_HOMESERVERS = "chat.mdf.farm";
-
   services.nginx.virtualHosts."chat.mdf.farm".locations = {
     "^~ /livekit/jwt" = {
       priority = 400;
@@ -175,21 +192,13 @@ in
       proxyPass = "http://localhost:${toString config.services.livekit.settings.port}/";
       proxyWebsockets = true;
     };
-    "~ /.well-known/matrix" = {
-      extraConfig = "
-        default_type application/json;
-        add_header Access-Control-Allow-Origin *;
-      ";
-      alias = pkgs.writeText "client" (builtins.toJSON {
-        "m.homeserver" = { "base_url" = "https://chat.mdf.farm"; };
-        "org.matrix.msc3575.proxy" = { "url" = "https://chat.mdf.farm"; };
-        "org.matrix.msc4143.rtc_foci" = [
-          {
-            "type" = "livekit"; "livekit_service_url" = "https://chat.mdf.farm/livekit/jwt";
-          }
-        ];
-      });
-      #root = wellKnown;
+    "= /.well-known/matri/client" = {
+      extraConfig = mkWellKnown wellKnownClient;
+      priority = 400;
+    };
+    "= /.well-known/matri/server" = {
+      extraConfig = mkWellKnown wellKnownServer;
+      priority = 400;
     };
   };
 
