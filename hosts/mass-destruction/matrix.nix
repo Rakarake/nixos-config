@@ -1,3 +1,6 @@
+# This configuration uses the built-in turn server in livekit to get
+# element-call to work.
+
 { pkgs, config, lib, inputs, ... }:
 let 
   # Matrix livekit file
@@ -61,13 +64,6 @@ in
         "#atlyss:chat.mdf.farm"
       ];
 
-      #turn_uris = with config.services.coturn; [
-      #  "turn:${realm}:3478?transport=udp"
-      #  "turn:${realm}:3478?transport=tcp"
-      #];
-      #turn_shared_secret = turnSecret;
-      #turn_user_lifetime = "1h";
-
       listeners = [
         {
           port = synapsePort;
@@ -129,27 +125,6 @@ in
         relay_range_end = 50000;
         domain = "voip.mdf.farm";
       };
-      #rtc.turn_servers = [
-      #  #{
-      #  #  host = "voip.mdf.farm";
-      #  #  port = 3478;
-      #  #  protocol = "tcp";
-      #  #  credential = turnSecret;
-      #  #}
-      #  #{
-      #  #  host = "voip.mdf.farm";
-      #  #  port = 5349;
-      #  #  protocol = "tls";
-      #  #  #username = "livekit";
-      #  #  credential = turnSecret;
-      #  #}
-      #  #{
-      #  #  host = "voip.mdf.farm";
-      #  #  port = 3478; #$4378;
-      #  #  protocol = "udp";
-      #  #  credential = turnSecret;
-      #  #}
-      #];
     };
     inherit keyFile;
   };
@@ -212,54 +187,6 @@ in
     };
   };
 
-  services.coturn = rec {
-    enable = false;
-    no-cli = true;
-    no-tcp-relay = true;
-    min-port = 49000;
-    max-port = 50000;
-    use-auth-secret = true;
-    static-auth-secret = turnSecret;
-    realm = "voip.mdf.farm";
-    cert = "${config.security.acme.certs.${realm}.directory}/full.pem";
-    pkey = "${config.security.acme.certs.${realm}.directory}/key.pem";
-    extraConfig = ''
-      # for debugging
-      verbose
-      # ban private IP ranges
-      no-multicast-peers
-      denied-peer-ip=0.0.0.0-0.255.255.255
-      denied-peer-ip=10.0.0.0-10.255.255.255
-      denied-peer-ip=100.64.0.0-100.127.255.255
-      denied-peer-ip=127.0.0.0-127.255.255.255
-      denied-peer-ip=169.254.0.0-169.254.255.255
-      denied-peer-ip=172.16.0.0-172.31.255.255
-      denied-peer-ip=192.0.0.0-192.0.0.255
-      denied-peer-ip=192.0.2.0-192.0.2.255
-      denied-peer-ip=192.88.99.0-192.88.99.255
-      denied-peer-ip=192.168.0.0-192.168.255.255
-      denied-peer-ip=198.18.0.0-198.19.255.255
-      denied-peer-ip=198.51.100.0-198.51.100.255
-      denied-peer-ip=203.0.113.0-203.0.113.255
-      denied-peer-ip=240.0.0.0-255.255.255.255
-      denied-peer-ip=::1
-      denied-peer-ip=64:ff9b::-64:ff9b::ffff:ffff
-      denied-peer-ip=::ffff:0.0.0.0-::ffff:255.255.255.255
-      denied-peer-ip=100::-100::ffff:ffff:ffff:ffff
-      denied-peer-ip=2001::-2001:1ff:ffff:ffff:ffff:ffff:ffff:ffff
-      denied-peer-ip=2002::-2002:ffff:ffff:ffff:ffff:ffff:ffff:ffff
-      denied-peer-ip=fc00::-fdff:ffff:ffff:ffff:ffff:ffff:ffff:ffff
-      denied-peer-ip=fe80::-febf:ffff:ffff:ffff:ffff:ffff:ffff:ffff
-    '';
-  };
-
-  #security.acme.certs = {
-  #  "voip.mdf.farm" = {
-  #    group = "turnserver";
-  #    postRun = "systemctl reload nginx.service; systemctl restart coturn.service";
-  #  };
-  #};
-
   # not synapse lol
   age.identityPaths = [
     "/home/rakarake/.ssh/id_ed25519"
@@ -270,12 +197,6 @@ in
     owner = "matrix-synapse";
     group = "matrix-synapse";
   };
-  #age.secrets.freakyfoxy = {
-  #  file = ../../secrets/freakyfoxy.age;
-  #  mode = "770";
-  #  owner = "turnserver";
-  #  group = "turnserver";
-  #};
   age.secrets.smojitroppy = {
     file = ../../secrets/smojitroppy.age;
     mode = "744";
@@ -294,15 +215,10 @@ in
     enable = true;
     recommendedProxySettings = true;
     virtualHosts = {
-      # Coturn
+      # Livekit + livekit's built in TURN server
       "voip.mdf.farm" = {
         forceSSL = true;
         enableACME = true; # Let's encrypt TLS automated, not certbot
-        #locations."/".root = "/var/www/test";
-        #locations."/" = {
-        #  proxyWebsockets = true;
-        #  proxyPass = "http://localhost";
-        #};
       };
       # Matrix
       "chat.mdf.farm" = {
