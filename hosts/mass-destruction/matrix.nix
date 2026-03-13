@@ -192,11 +192,11 @@ in
       proxyPass = "http://localhost:${toString config.services.livekit.settings.port}/";
       proxyWebsockets = true;
     };
-    "= /.well-known/matri/client" = {
+    "= /.well-known/matrix/client" = {
       extraConfig = mkWellKnown wellKnownClient;
       priority = 400;
     };
-    "= /.well-known/matri/server" = {
+    "= /.well-known/matrix/server" = {
       extraConfig = mkWellKnown wellKnownServer;
       priority = 400;
     };
