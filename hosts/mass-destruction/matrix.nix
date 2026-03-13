@@ -61,12 +61,12 @@ in
         "#atlyss:chat.mdf.farm"
       ];
 
-      turn_uris = with config.services.coturn; [
-        "turn:${realm}:3478?transport=udp"
-        "turn:${realm}:3478?transport=tcp"
-      ];
-      turn_shared_secret = turnSecret;
-      turn_user_lifetime = "1h";
+      #turn_uris = with config.services.coturn; [
+      #  "turn:${realm}:3478?transport=udp"
+      #  "turn:${realm}:3478?transport=tcp"
+      #];
+      #turn_shared_secret = turnSecret;
+      #turn_user_lifetime = "1h";
 
       listeners = [
         {
@@ -122,26 +122,34 @@ in
     openFirewall = true;
     settings = {
       room.auto_create = false;
-      rtc.turn_servers = [
-        #{
-        #  host = "voip.mdf.farm";
-        #  port = 3478;
-        #  protocol = "tcp";
-        #  secret = turnSecret;
-        #}
-        {
-          host = "voip.mdf.farm";
-          port = 5349;
-          protocol = "tls";
-          secret = turnSecret;
-        }
-        #{
-        #  host = "voip.mdf.farm";
-        #  port = 4378;
-        #  protocol = "udp";
-        #  secret = turnSecret;
-        #}
-      ];
+      turn = {
+        enabled = true;
+        udp_port = 3478;
+        relay_range_start = 49000;
+        relay_range_end = 50000;
+        domain = "voip.mdf.farm";
+      };
+      #rtc.turn_servers = [
+      #  #{
+      #  #  host = "voip.mdf.farm";
+      #  #  port = 3478;
+      #  #  protocol = "tcp";
+      #  #  credential = turnSecret;
+      #  #}
+      #  #{
+      #  #  host = "voip.mdf.farm";
+      #  #  port = 5349;
+      #  #  protocol = "tls";
+      #  #  #username = "livekit";
+      #  #  credential = turnSecret;
+      #  #}
+      #  #{
+      #  #  host = "voip.mdf.farm";
+      #  #  port = 3478; #$4378;
+      #  #  protocol = "udp";
+      #  #  credential = turnSecret;
+      #  #}
+      #];
     };
     inherit keyFile;
   };
@@ -174,11 +182,11 @@ in
   # restrict access to livekit room creation to a homeserver
   systemd.services.lk-jwt-service.environment.LIVEKIT_FULL_ACCESS_HOMESERVERS = "chat.mdf.farm";
   services.nginx.virtualHosts."chat.mdf.farm".locations = {
-    "^~ /livekit/jwt" = {
+    "^~ /livekit/jwt/" = {
       priority = 400;
       proxyPass = "http://localhost:${toString config.services.lk-jwt-service.port}/";
     };
-    "^~ /livekit/sfu" = {
+    "^~ /livekit/sfu/" = {
       extraConfig = ''
         proxy_send_timeout 120;
         proxy_read_timeout 120;
@@ -203,7 +211,7 @@ in
   };
 
   services.coturn = rec {
-    enable = true;
+    enable = false;
     no-cli = true;
     no-tcp-relay = true;
     min-port = 49000;
@@ -243,12 +251,12 @@ in
     '';
   };
 
-  security.acme.certs = {
-    "voip.mdf.farm" = {
-      group = "turnserver";
-      postRun = "systemctl reload nginx.service; systemctl restart coturn.service";
-    };
-  };
+  #security.acme.certs = {
+  #  "voip.mdf.farm" = {
+  #    group = "turnserver";
+  #    postRun = "systemctl reload nginx.service; systemctl restart coturn.service";
+  #  };
+  #};
 
   # not synapse lol
   age.identityPaths = [
@@ -260,12 +268,12 @@ in
     owner = "matrix-synapse";
     group = "matrix-synapse";
   };
-  age.secrets.freakyfoxy = {
-    file = ../../secrets/freakyfoxy.age;
-    mode = "770";
-    owner = "turnserver";
-    group = "turnserver";
-  };
+  #age.secrets.freakyfoxy = {
+  #  file = ../../secrets/freakyfoxy.age;
+  #  mode = "770";
+  #  owner = "turnserver";
+  #  group = "turnserver";
+  #};
   age.secrets.smojitroppy = {
     file = ../../secrets/smojitroppy.age;
     mode = "744";
