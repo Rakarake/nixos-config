@@ -9,7 +9,6 @@ let
   turnSecret = "depressedfoxy";
   wellKnownClient = {
     "m.homeserver" = { "base_url" = "https://chat.mdf.farm"; };
-    "m.identity_server" = {};
     "org.matrix.msc3575.proxy" = { "url" = "https://chat.mdf.farm"; };
     "org.matrix.msc4143.rtc_foci" = [
       {
