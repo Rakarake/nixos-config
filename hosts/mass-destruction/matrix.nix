@@ -43,7 +43,7 @@ in
     enable = true;
     settings = {
       server_name = "chat.mdf.farm";
-      max_upload_size = "2G";
+      max_upload_size = "600M";
       # This is required for our custom ".wellknown"!
       serve_server_wellknown = true;
       registration_shared_secret_path = config.age.secrets.hotfreddy.path;
