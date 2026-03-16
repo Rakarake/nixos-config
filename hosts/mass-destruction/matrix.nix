@@ -239,6 +239,16 @@ in
           root = pkgs.element-web;
         };
       };
+      "cinny.mdf.farm" = {
+        forceSSL = true;
+        enableACME = true; # Let's encrypt TLS automated, not certbot
+        locations."/" = {
+          extraConfig = "
+            add_header Access-Control-Allow-Origin *;
+          ";
+          root = pkgs.cinny;
+        };
+      };
     };
   };
 
