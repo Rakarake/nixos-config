@@ -247,10 +247,39 @@ in
             add_header Access-Control-Allow-Origin *;
           ";
           root = pkgs.cinny;
+          #root = let
+          #  cinny-unwrapped = pkgs.cinny-unwrapped.overrideAttrs (old: rec {
+          #    version = "4.11.1";
+          #    src = pkgs.fetchFromGitHub {
+          #      owner = "cinnyapp";
+          #      repo = "cinny";
+          #      tag = "v${version}";
+          #      hash = "sha256-dwI3zNey/ukF3t2fhH/ePf4o4iBDwZyLWMYebPgXmWU=";
+          #    };
+          #    npmDepsHash = lib.fakeHash;
+          #  });
+          #in pkgs.cinny.override { inherit cinny-unwrapped; };
         };
       };
     };
   };
+
+  nixpkgs.overlays = [ (final: prev: {
+    cinny-unwrapped = prev.cinny-unwrapped.overrideAttrs (old: rec {
+      version = "4.11.1";
+      src = prev.fetchFromGitHub {
+        owner = "cinnyapp";
+        repo = "cinny";
+        tag = "v${version}";
+        hash = "sha256-dwI3zNey/ukF3t2fhH/ePf4o4iBDwZyLWMYebPgXmWU=";
+      };
+      npmDepsHash = "sha256-27WFjb08p09aJRi0S2PvYq3bivEuG5+z2QhFahTSj4Q=";
+      npmDeps = prev.fetchNpmDeps {
+        inherit src;
+        hash = npmDepsHash;
+      };
+    });
+  } ) ];
 
   services.matrix-ooye = {
     enable = true;
