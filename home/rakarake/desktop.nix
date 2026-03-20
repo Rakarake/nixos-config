@@ -193,7 +193,7 @@ in
       kdePackages.kate
 
       # Emulators
-      fceux
+      #fceux
       dolphin-emu
       #torzu
       ryubing
