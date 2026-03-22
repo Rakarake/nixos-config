@@ -121,6 +121,7 @@ in
       acpi
       #inputs.nmrs.packages.${system}.default
       inputs.glonkers.defaultPackage.${system}
+      lswt  # Gets app-id:s and titles of windows
 
       # Custom sandbar command
       run-sandbar
@@ -488,6 +489,10 @@ in
 
         # Application Autostart
         nextcloud &
+
+        riverctl rule-add -app-id com.github.wwmm.easyeffects tags 1
+        riverctl rule-add -app-id discord tags 1
+        riverctl rule-add -app-id librewolf tags 10
 
         # Extra config
         ${cfg.extraConfig}
