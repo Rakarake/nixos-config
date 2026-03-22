@@ -487,12 +487,15 @@ in
         riverctl default-layout rivertile
         rivertile -view-padding 0 -outer-padding 0 &
 
-        # Application Autostart
-        nextcloud &
-
         riverctl rule-add -app-id com.github.wwmm.easyeffects tags 1
         riverctl rule-add -app-id discord tags 1
         riverctl rule-add -app-id librewolf tags 10
+        riverctl rule-add -app-id firefox tags 10
+
+        # Application Autostart
+        discord &
+        nextcloud &
+        $BROWSER &
 
         # Extra config
         ${cfg.extraConfig}
