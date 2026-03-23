@@ -236,8 +236,6 @@ in
       steam = pkgs.steam.override {
         extraEnv = {
           MANGOHUD = "1";
-          GAMEMODERUN = "1";
-          LD_PRELOAD="$LD_PRELOAD:${pkgs.gamemode.lib}/lib/libgamemodeauto.so.0";
         };
         extraPkgs =
           pkgs: with pkgs; [
