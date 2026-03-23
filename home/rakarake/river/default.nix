@@ -275,6 +275,9 @@ in
           scrcpy --no-window --video-source=camera --camera-size=1920x1080 --camera-facing=back --v4l2-sink=/dev/video$d --no-playback
         '
 
+        # Choose audio device
+        riverctl map normal Super+Alt D spawn 'sink=$(pactl list sinks short | awk "{print \$2}" | rofi -p "Choose Audio Sink: " -dmenu); pactl set-default-sink $sink'
+
         # Other stuff
         riverctl rule-add ssd                    # Serverside decorations only
         riverctl set-cursor-warp on-focus-change # Cursor follows focus
