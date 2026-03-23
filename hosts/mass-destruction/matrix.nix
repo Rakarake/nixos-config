@@ -43,7 +43,7 @@ in
     enable = true;
     settings = {
       server_name = "chat.mdf.farm";
-      max_upload_size = "600M";
+      max_upload_size = "2G";
       # This is required for our custom ".wellknown"!
       serve_server_wellknown = true;
       registration_shared_secret_path = config.age.secrets.hotfreddy.path;
@@ -224,6 +224,9 @@ in
         forceSSL = true;
         enableACME = true; # Let's encrypt TLS automated, not certbot
         locations."/" = {
+          extraConfig = ''
+            client_max_body_size 2G;
+          '';
           proxyWebsockets = true;
           proxyPass = "http://localhost:${toString synapsePort}";
         };
