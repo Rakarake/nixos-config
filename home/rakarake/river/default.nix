@@ -104,6 +104,7 @@ in
       swaybg # Anime wallpapers
       pamixer # Used for panel sound control
       alsa-utils # keyboard volume control
+      pulseaudio # for pactl command
       playerctl # MPRIS global player controller
       swayidle # Idle inhibitor, knows when computer is ueseless
       brightnessctl # Laptop brighness controls
@@ -120,6 +121,7 @@ in
       acpi
       #inputs.nmrs.packages.${system}.default
       inputs.glonkers.defaultPackage.${system}
+      lswt  # Gets app-id:s and titles of windows
 
       # Custom sandbar command
       run-sandbar
@@ -207,7 +209,7 @@ in
         riverctl map normal Super E spawn emote
 
         # System tray tui
-        riverctl map normal Super+Alt T spawn "foot tray-tui"
+        riverctl map normal Super+Alt Y spawn "foot tray-tui"
 
         # Color picker
         riverctl map normal Super+Alt A spawn 'hyprpicker --format=rgb | wl-copy'
@@ -240,6 +242,15 @@ in
         riverctl map normal Super R       spawn grim - | wl-copy
         riverctl map normal Super+Shift R spawn grim
 
+        # Screen recording
+        # To file in Videos + clipboard
+        riverctl map normal Super+Alt V spawn\
+          'wl-screenrec -g "$(slurp)" --max-fps 60 --audio --audio-device "$(pactl get-default-sink).monitor"\
+          ; wl-copy --type "text/uri-list" <<< file://$(realpath ~/screenrecord.mp4)'
+        riverctl map normal Super+Alt+Shift V spawn\
+          'wl-screenrec -o "$(rofi -dmenu -p "Reccord which screen? ")" --max-fps 60 --audio --audio-device "$(pactl get-default-sink).monitor"\
+          ; wl-copy --type "text/uri-list" <<< file://$(realpath ~/screenrecord.mp4)'
+
         # Stop screen recording
         riverctl map normal Super+Alt B spawn "pkill --signal SIGINT wl-screenrec"
 
@@ -263,6 +274,9 @@ in
           d=$(rofi -dmenu -p "Choose Camera Device")
           scrcpy --no-window --video-source=camera --camera-size=1920x1080 --camera-facing=back --v4l2-sink=/dev/video$d --no-playback
         '
+
+        # Choose audio device
+        riverctl map normal Super+Alt D spawn 'sink=$(pactl list sinks short | awk "{print \$2}" | rofi -p "Choose Audio Sink: " -dmenu); pactl set-default-sink $sink'
 
         # Other stuff
         riverctl rule-add ssd                    # Serverside decorations only
@@ -476,8 +490,15 @@ in
         riverctl default-layout rivertile
         rivertile -view-padding 0 -outer-padding 0 &
 
+        riverctl rule-add -app-id com.github.wwmm.easyeffects tags 1
+        riverctl rule-add -app-id discord tags 1
+        riverctl rule-add -app-id librewolf tags 10
+        riverctl rule-add -app-id firefox tags 10
+
         # Application Autostart
+        discord &
         nextcloud &
+        $BROWSER &
 
         # Extra config
         ${cfg.extraConfig}
