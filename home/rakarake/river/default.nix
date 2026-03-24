@@ -492,13 +492,14 @@ in
 
         riverctl rule-add -app-id com.github.wwmm.easyeffects tags 1
         riverctl rule-add -app-id discord tags 1
-        riverctl rule-add -app-id librewolf tags 10
-        riverctl rule-add -app-id firefox tags 10
+        riverctl rule-add -app-id librewolf tags 2
+        riverctl rule-add -app-id firefox tags 2
 
         # Application Autostart
-        discord &
+        easyeffects &
         nextcloud &
         $BROWSER &
+        discord &
 
         # Extra config
         ${cfg.extraConfig}
