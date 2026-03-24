@@ -80,16 +80,6 @@ in
   #networking.firewall.allowedTCPPorts = lib.attrsets.attrValues (publicPorts // publicPrivatePorts);
   #networking.firewall.allowedUDPPorts = lib.attrsets.attrValues (publicPorts // publicPrivatePorts);
 
-# set static ip - i don't know what im doing
-  networking = {
-    interfaces.enp4s0 = {
-      ipv4.addresses = [{
-        address = "192.168.1.204";
-        prefixLength = 24;
-    }];
-  };
-};
-
   networking.firewall = {
     interfaces.enp4s0 = let
       range = with config.services.coturn; lib.singleton {
