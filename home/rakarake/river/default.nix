@@ -490,6 +490,7 @@ in
         riverctl default-layout rivertile
         rivertile -view-padding 0 -outer-padding 0 &
 
+        # Use lswt to get app-id:s
         riverctl rule-add -app-id com.github.wwmm.easyeffects tags 1
         riverctl rule-add -app-id discord tags 1
         riverctl rule-add -app-id librewolf tags 2

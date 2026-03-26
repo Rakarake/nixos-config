@@ -73,7 +73,8 @@ in {
     };
     pdf-viewer = mkOption {
       type = types.attrs;
-      default = { package = pkgs.sioyek; bin = "sioyek"; desktop = "sioyek.desktop"; };
+      #default = { package = pkgs.sioyek; bin = "sioyek"; desktop = "sioyek.desktop"; };
+      default = { package = pkgs.zathura; bin = "zathura"; desktop = "org.pwmt.zathura.desktop"; };
     };
     # TODO set up .desktop file for text editor
     text-editor = mkOption {

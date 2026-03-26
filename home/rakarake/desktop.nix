@@ -110,8 +110,14 @@ in
     };
 
     # Pdf viewer
-    programs.sioyek = {
+    #programs.sioyek = {
+    #  enable = true;
+    #};
+    programs.zathura = {
       enable = true;
+      options = {
+        selection-clipboard = "clipboard";
+      };
     };
 
     # Virt-manager error free
@@ -140,6 +146,7 @@ in
 
     # User specific packages
     home.packages = with pkgs; [
+      zathuraPkgs.zathura_pdf_mupdf
       steam-run
       appimage-run
       steamtinkerlaunch
