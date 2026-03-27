@@ -208,6 +208,17 @@ in
     };
   };
 
+  services.nginx.virtualHosts."mdf.farm" = {
+    forceSSL = true;
+    enableACME = true; # Let's encrypt TLS automated, not certbot
+    locations = {
+      # Website + Blog
+      "/" = {
+        root = "/data/website";
+      };
+    };
+  };
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users = {
     motd = "The battleground is right here.";
@@ -233,6 +244,10 @@ in
       ];
       openssh.authorizedKeys.keys = ssh-keys.rakarake;
     };
+
+    # Special group for the website.
+    groups.website = {};
+
     users.nginx.extraGroups = [ "turnserver" ];
     users.matrix-synapse.extraGroups = [ "turnserver" ];
     # Backup user
