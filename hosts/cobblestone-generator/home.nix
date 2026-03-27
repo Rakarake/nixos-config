@@ -23,7 +23,7 @@
       riverctl map normal Super+Shift T spawn "grim -o ${mainMonitor}"
 
       # Sick live wallpaper
-      glonkers --layer ${absoluteFlakePath}/hosts/cobblestone-generator/balatro.glsl
+      #glonkers --layer ${absoluteFlakePath}/hosts/cobblestone-generator/balatro.glsl
     '';
   };
   #home-gnome.enable = true;
