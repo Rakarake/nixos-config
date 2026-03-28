@@ -198,6 +198,7 @@ in
       gnome-frog
       discord
       kdePackages.kate
+      rssguard
 
       # Emulators
       #fceux
