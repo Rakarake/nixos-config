@@ -208,12 +208,23 @@ in
     };
   };
 
+  age.secrets.mdf-login = {
+    file = ../../secrets/mdf-login.age;
+    owner = "nginx";
+    group = "nginx";
+  };
   services.nginx.virtualHosts."mdf.farm" = {
     forceSSL = true;
     enableACME = true; # Let's encrypt TLS automated, not certbot
     locations = {
       # Website + Blog
       "/" = {
+        extraConfig = ''
+          limit_except GET HEAD {
+            auth_basic "Restricted";
+            auth_basic_user_file ${config.age.secrets.mdf-login.path};
+          }
+        '';
         root = "/data/website";
       };
     };

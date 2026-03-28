@@ -15,4 +15,6 @@ in
   "smojitroppy-client.age".publicKeys = keys;
   # Weekly script containing secrets
   "weekly-notice.age".publicKeys = keys;
+  # MDF website http basic auth logins
+  "mdf-login.age".publicKeys = keys;
 }
