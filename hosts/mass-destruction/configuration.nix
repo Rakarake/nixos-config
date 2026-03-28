@@ -1,5 +1,7 @@
 {
   config,
+  inputs,
+  system,
   pkgs,
   lib,
   ssh-keys,
@@ -36,6 +38,7 @@ in
   imports = [
     ./hardware-configuration.nix
     ./matrix.nix
+    (inputs.mdf-bouncer.nixosModules.${system}.default)
 
     (outputs.extra.statefulServerTemplate rec {
       name = "minecraftserver-kreate";
@@ -213,19 +216,25 @@ in
     owner = "nginx";
     group = "nginx";
   };
+  services.mdf-bouncer = {
+    enable = true;
+    root = "/data/website";
+    subPath = "api";
+  };
   services.nginx.virtualHosts."mdf.farm" = {
     forceSSL = true;
     enableACME = true; # Let's encrypt TLS automated, not certbot
     locations = {
       # Website + Blog
       "/" = {
-        extraConfig = ''
-          limit_except GET HEAD {
-            auth_basic "Restricted";
-            auth_basic_user_file ${config.age.secrets.mdf-login.path};
-          }
-        '';
         root = "/data/website";
+      };
+      "/api" = {
+        proxyPass = "http://localhost:3236";
+        extraConfig = ''
+          auth_basic "Restricted";
+          auth_basic_user_file ${config.age.secrets.mdf-login.path};
+        '';
       };
     };
   };

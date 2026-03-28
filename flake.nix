@@ -99,6 +99,10 @@
       url = "git+https://git.rakarake.xyz/Rakarake/glonkers";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    mdf-bouncer = {
+      url = "git+https://codeberg.org/Rakarake/mdf-bouncer";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let
