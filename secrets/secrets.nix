@@ -15,6 +15,7 @@ in
   "smojitroppy-client.age".publicKeys = keys;
   # Weekly script containing secrets
   "weekly-notice.age".publicKeys = keys;
-  # MDF website http basic auth logins
+  # MDF website http basic auth logins, use `htpasswd .htpasswd User` use -c
+  # to create new file.
   "mdf-login.age".publicKeys = keys;
 }
