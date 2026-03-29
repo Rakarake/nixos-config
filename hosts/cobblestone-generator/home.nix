@@ -22,6 +22,10 @@
       riverctl map normal Super T       spawn "grim -o ${mainMonitor} - | wl-copy"
       riverctl map normal Super+Shift T spawn "grim -o ${mainMonitor}"
 
+      # Default app locations
+      riverctl rule-add -app-id com.github.wwmm.easyeffects output ${leftMonitor}
+      riverctl rule-add -app-id discord output ${leftMonitor}
+
       # Sick live wallpaper
       #glonkers --layer ${absoluteFlakePath}/hosts/cobblestone-generator/balatro.glsl
     '';
