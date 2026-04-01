@@ -199,6 +199,7 @@ in
       discord
       kdePackages.kate
       rssguard
+      kdePackages.kdenlive
 
       # Emulators
       #fceux
