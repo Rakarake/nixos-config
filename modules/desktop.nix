@@ -88,6 +88,7 @@ in
       android-studio
       #davfs2
       scrcpy
+      exfat
     ];
 
     programs.gamemode = {
