@@ -501,6 +501,7 @@ in
         nextcloud &
         $BROWSER &
         discord &
+        riverctl set-focused-tags 4
 
         # Extra config
         ${cfg.extraConfig}
