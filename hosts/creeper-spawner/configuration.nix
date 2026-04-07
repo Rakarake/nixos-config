@@ -321,7 +321,7 @@ in
   # Nextcloud at "/var/lib/nextcloud"
   services.nextcloud = {
     enable = true;
-    package = pkgs.nextcloud32;
+    package = pkgs.nextcloud33;
     hostName = hostnames.nextcloud;
     database.createLocally = true;
     autoUpdateApps.enable = true;
