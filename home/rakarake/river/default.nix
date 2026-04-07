@@ -501,10 +501,12 @@ in
         nextcloud &
         $BROWSER &
         discord &
-        riverctl set-focused-tags 4
 
         # Extra config
         ${cfg.extraConfig}
+        
+        # Be on the third tag on startup
+        riverctl set-focused-tags 4
       '';
     };
   };

@@ -27,6 +27,7 @@
       riverctl rule-add -app-id discord output ${leftMonitor}
       riverctl rule-add -app-id librewolf output ${mainMonitor}
       riverctl rule-add -app-id firefox output ${mainMonitor}
+      riverctl focus-output ${mainMonitor}
 
       # Sick live wallpaper
       #glonkers --layer ${absoluteFlakePath}/hosts/cobblestone-generator/balatro.glsl
