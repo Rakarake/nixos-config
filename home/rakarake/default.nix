@@ -85,7 +85,7 @@ in
     # For "NeoVim with Port"
     nvp = "nvim --listen localhost:15923";
     b = config.home-xdg.browser.bin;
-    f = config.home-xdg.file-manager.bin;
+    f = "${config.home-xdg.file-manager.bin} & disown";
     open = "xdg-open";
     ":q" = "exit";
     ".." = "cd ..";

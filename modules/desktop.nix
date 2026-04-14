@@ -325,6 +325,16 @@ in
 
       #media-session.enable = true;
       wireplumber.enable = true;
+
+      # Bigger buffers for less crackling
+      extraConfig.pipewire."99-latency" = {
+        "context.properties" = {
+          "default.clock.rate" = 48000;
+          "default.clock.quantum" = 512;
+          "default.clock.min-quantum" = 256;
+          "default.clock.max-quantum" = 1024;
+        };
+      };
     };
 
     # Enable touchpad support (enabled default in most desktopManager).
