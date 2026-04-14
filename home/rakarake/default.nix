@@ -33,6 +33,7 @@ in
     ./bash.nix
     ./zsh
     ./nushell
+    inputs.agenix.homeManagerModules.default
     inputs.nix-index-database.hmModules.nix-index
     inputs.stylix.homeModules.stylix
     inputs.catppuccin.homeModules.catppuccin

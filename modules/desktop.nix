@@ -89,6 +89,7 @@ in
       #davfs2
       scrcpy
       exfat
+      rclone
     ];
 
     programs.gamemode = {
@@ -388,6 +389,9 @@ in
     services.flatpak.enable = true;
     fonts.fontDir.enable = true; # Fonts don't work otherwise?
     xdg.portal.enable = true;
+
+    # Required for rclone to mount with systemd?
+    programs.fuse.userAllowOther = true;
 
     # Collect all the garbage automatically!
     #nix.gc = {

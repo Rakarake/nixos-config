@@ -18,4 +18,6 @@ in
   # MDF website http basic auth logins, use `htpasswd .htpasswd User` use -c
   # to create new file.
   "mdf-login.age".publicKeys = keys;
+  # Nextcloud webdav login
+  "rakarake-rclone-webdav.age".publicKeys = keys;
 }

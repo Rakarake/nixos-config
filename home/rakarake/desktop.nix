@@ -4,6 +4,7 @@
 {
   lib,
   config,
+  user,
   pkgs,
   outputs,
   ...
@@ -241,6 +242,66 @@ in
       };
     };
 
+    age.secrets.rakarake-rclone-webdav = {
+      file = ../../secrets/rakarake-rclone-webdav.age;
+      mode = "600";
+    };
+
+    # Rclone webdav nextcloud mount
+    programs.rclone = {
+      enable = true;
+      remotes."nextcloud" = {
+        secrets = {
+          pass = config.age.secrets.rakarake-rclone-webdav.path;
+        };
+        config = {
+          type = "webdav";
+          url = "https://nextcloud.rakarake.xyz/remote.php/dav/files/Rakarake";
+          vendor = "nextcloud";
+          user = "Rakarake";
+
+        };
+        mounts = {
+          # The root
+          "" = {
+            enable = true;
+            mountPoint = "/home/${user}/Nextcloud";
+            options = {
+              vfs-cache-mode = "writes";
+              allow-other = true;
+              poll-interval = "2m";
+            };
+          };
+        };
+      };
+    };
+
+    # Nextcloud webdav rclone mount
+    #systemd.user.mounts."home-${user}-Nextcloud" = {
+    #  Unit = {
+    #    Description = "Rclone Nextcloud mount";
+    #  };
+    #  Mount = {
+    #    What = "nextcloud:";  # name from rclone config
+    #    Where = "/home/${user}/Nextcloud";
+    #    Type = "fuse.rclone";
+    #    Options = "rw,_netdev,allow_other,args2env,vfs-cache-mode=writes";
+    #  };
+    #  Install = {
+    #    WantedBy = [ "default.target" ];
+    #  };
+    #};
+    #systemd.user.automounts."home-${user}-Nextcloud" = {
+    #  Unit = {
+    #    Description = "Automount Nextcloud";
+    #  };
+    #  Automount = {
+    #    Where = "/home/${user}/Nextcloud";
+    #  };
+    #  Install = {
+    #    WantedBy = [ "default.target" ];
+    #  };
+    #};
 
     ## Enable syncthing service in the background
     #services.syncthing.enable = true;
