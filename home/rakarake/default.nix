@@ -36,7 +36,7 @@ in
     inputs.agenix.homeManagerModules.default
     inputs.nix-index-database.hmModules.nix-index
     inputs.stylix.homeModules.stylix
-    inputs.catppuccin.homeModules.catppuccin
+    #inputs.catppuccin.homeModules.catppuccin
     #inputs.xremap.homeManagerModules.default
   ];
   # Follow the rules!

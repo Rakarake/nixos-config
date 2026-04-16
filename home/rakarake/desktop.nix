@@ -202,7 +202,7 @@ in
       kdePackages.kate
       rssguard
       kdePackages.kdenlive
-      pkgs-unstable.aichat
+      #pkgs-unstable.aichat
 
       # Emulators
       #fceux
@@ -243,8 +243,6 @@ in
         };
       };
     };
-
-    #services.ollama.enable = true;
 
     age.secrets.rakarake-rclone-webdav = {
       file = ../../secrets/rakarake-rclone-webdav.age;
