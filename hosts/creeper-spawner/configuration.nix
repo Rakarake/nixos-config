@@ -341,7 +341,7 @@ in
     phpOptions = {
       # Bigger cache, nextcloud admin page complains without this
       "opcache.interned_strings_buffer" = "23";
-      "ratelimit.protection.enabled" = false;
+      "ratelimit.protection.enabled" = "false";
     };
     #extraApps = {
     #  inherit (config.services.nextcloud.package.packages.apps) richdocuments;
