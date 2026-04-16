@@ -202,7 +202,7 @@ in
       kdePackages.kate
       rssguard
       kdePackages.kdenlive
-      #pkgs-unstable.aichat
+      pkgs-unstable.aichat
 
       # Emulators
       #fceux
