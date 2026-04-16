@@ -1,5 +1,5 @@
 # Desktop PC
-{ pkgs, ssh-keys, inputs, ... }: {
+{ pkgs, ssh-keys, inputs, pkgs-unstable, ... }: {
   imports = [
     ./hardware-configuration.nix
     inputs.eden.nixosModules.default
@@ -139,6 +139,8 @@
 
     lact  # GPU monitor/overclocking
     gpu-screen-recorder-gtk
+
+    pkgs-unstable.ollama-rocm
   ];
   programs.gpu-screen-recorder.enable = true;
 
