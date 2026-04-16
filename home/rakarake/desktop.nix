@@ -267,13 +267,20 @@ in
         };
         mounts = {
           # The root
-          "" = {
+          "/" = {
             enable = true;
             mountPoint = "/home/${user}/Nextcloud";
             options = {
               vfs-cache-mode = "writes";
               allow-other = true;
-              poll-interval = "2m";
+
+              # Options to reduce excessive calls?
+              tpslimit = 2;
+              tpslimit-burst = 2;
+              checkers = 4;
+              transfers = 2;
+              dir-cache-time = "12h";
+              poll-interval = 0;
             };
           };
         };
