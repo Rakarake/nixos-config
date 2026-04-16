@@ -33,7 +33,7 @@
       #glonkers --layer ${absoluteFlakePath}/hosts/cobblestone-generator/balatro.glsl
 
       # Local AI slopbot
-      ollama serve &
+      OLLAMA_KEEP_ALIVE=5m ollama serve &
     '';
   };
   #home-gnome.enable = true;
