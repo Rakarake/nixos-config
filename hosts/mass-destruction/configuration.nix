@@ -218,8 +218,9 @@ in
   };
   services.mdf-bouncer = {
     enable = true;
-    root = "/data/website";
-    subPath = "api";
+    dstPath = "/data/website";
+    srcPath = "/data/website-source";
+    subPath = "api/";
   };
   services.nginx.virtualHosts."mdf.farm" = {
     forceSSL = true;
