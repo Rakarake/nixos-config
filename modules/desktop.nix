@@ -89,6 +89,7 @@ in
       #davfs2
       scrcpy
       exfat
+      rclone
     ];
 
     programs.gamemode = {
@@ -325,6 +326,16 @@ in
 
       #media-session.enable = true;
       wireplumber.enable = true;
+
+      # Bigger buffers for less crackling
+      extraConfig.pipewire."99-latency" = {
+        "context.properties" = {
+          "default.clock.rate" = 48000;
+          "default.clock.quantum" = 512;
+          "default.clock.min-quantum" = 256;
+          "default.clock.max-quantum" = 1024;
+        };
+      };
     };
 
     # Enable touchpad support (enabled default in most desktopManager).
@@ -378,6 +389,9 @@ in
     services.flatpak.enable = true;
     fonts.fontDir.enable = true; # Fonts don't work otherwise?
     xdg.portal.enable = true;
+
+    # Required for rclone to mount with systemd?
+    programs.fuse.userAllowOther = true;
 
     # Collect all the garbage automatically!
     #nix.gc = {

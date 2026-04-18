@@ -4,6 +4,7 @@
   description = "Super system amazing wow";
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
+    nixpkgs-unsable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     # Home manager
     home-manager = {
@@ -104,7 +105,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unsable, home-manager, ... }@inputs:
     let
       inherit (self) outputs;
 
@@ -122,6 +123,13 @@
       pkgsFor = lib.genAttrs systems (
         system:
         import nixpkgs {
+          inherit system overlays;
+          config.allowUnfree = true;
+        }
+      );
+      pkgsUnstableFor = lib.genAttrs systems (
+        system:
+        import nixpkgs-unsable {
           inherit system overlays;
           config.allowUnfree = true;
         }
@@ -196,7 +204,7 @@
             }
           ];
           pkgs = pkgsFor.${system};
-          extraSpecialArgs = args // { inherit system hostname user absoluteFlakePath; };
+          extraSpecialArgs = args // { inherit system hostname user absoluteFlakePath; pkgs-unstable = pkgsUnstableFor.${system}; };
         };
       };
 
@@ -234,7 +242,7 @@
                   nixpkgs.hostPlatform = lib.mkDefault system;
                 }
               ];
-              specialArgs = args // { inherit system hostname; };
+              specialArgs = args // { inherit system hostname; pkgs-unstable = pkgsUnstableFor.${system}; };
             };
           }
       ) {} allHosts;

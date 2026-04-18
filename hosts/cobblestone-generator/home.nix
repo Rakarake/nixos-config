@@ -31,6 +31,9 @@
 
       # Sick live wallpaper
       #glonkers --layer ${absoluteFlakePath}/hosts/cobblestone-generator/balatro.glsl
+
+      # Local AI slopbot
+      OLLAMA_KEEP_ALIVE=5m ollama serve &
     '';
   };
   #home-gnome.enable = true;

@@ -33,9 +33,10 @@ in
     ./bash.nix
     ./zsh
     ./nushell
+    inputs.agenix.homeManagerModules.default
     inputs.nix-index-database.hmModules.nix-index
     inputs.stylix.homeModules.stylix
-    inputs.catppuccin.homeModules.catppuccin
+    #inputs.catppuccin.homeModules.catppuccin
     #inputs.xremap.homeManagerModules.default
   ];
   # Follow the rules!
@@ -85,7 +86,7 @@ in
     # For "NeoVim with Port"
     nvp = "nvim --listen localhost:15923";
     b = config.home-xdg.browser.bin;
-    f = config.home-xdg.file-manager.bin;
+    f = "${config.home-xdg.file-manager.bin} & disown";
     open = "xdg-open";
     ":q" = "exit";
     ".." = "cd ..";

@@ -4,7 +4,9 @@
 {
   lib,
   config,
+  user,
   pkgs,
+  pkgs-unstable,
   outputs,
   ...
 }:
@@ -151,7 +153,7 @@ in
       appimage-run
       steamtinkerlaunch
       protonup-qt
-      baobab
+      kdePackages.filelight
       helvum
       nicotine-plus
       #ardour
@@ -200,6 +202,10 @@ in
       kdePackages.kate
       rssguard
       kdePackages.kdenlive
+      pkgs-unstable.aichat
+      poppler-utils  # Needed for pdf RAG
+      pkgs-unstable.opencode
+      pkgs-unstable.yt-dlp
 
       # Emulators
       #fceux
@@ -241,6 +247,83 @@ in
       };
     };
 
+    age.secrets.rakarake-rclone-webdav = {
+      file = ../../secrets/rakarake-rclone-webdav.age;
+      mode = "600";
+    };
+
+    # Rclone webdav nextcloud mount
+    #programs.rclone = {
+    #  enable = true;
+    #  remotes."nextcloud" = {
+    #    secrets = {
+    #      pass = config.age.secrets.rakarake-rclone-webdav.path;
+    #    };
+    #    config = {
+    #      type = "webdav";
+    #      url = "https://nextcloud.rakarake.xyz/remote.php/dav/files/Rakarake";
+    #      vendor = "nextcloud";
+    #      user = "Rakarake";
+
+    #    };
+    #    mounts = {
+    #      # The root
+    #      "/" = {
+    #        enable = true;
+    #        mountPoint = "/home/${user}/Nextcloud";
+    #        options = {
+    #          vfs-cache-mode = "full";
+    #          vfs-cache-max-age = "1h";
+    #          vfs-cache-max-size = "1G";
+    #          buffer-size = "16M";
+    #          dir-cache-time = "72h";
+    #          umask = "002";
+    #          uid = 1000;
+    #          gid = 1000;
+    #          daemon-timeout = 3;
+
+    #          #vfs-cache-mode = "writes";
+    #          #allow-other = true;
+
+    #          ## Options to reduce excessive calls?
+    #          #tpslimit = 2;
+    #          #tpslimit-burst = 2;
+    #          #checkers = 4;
+    #          #transfers = 2;
+    #          #dir-cache-time = "12h";
+    #          #poll-interval = 0;
+    #        };
+    #      };
+    #    };
+    #  };
+    #};
+
+    # Nextcloud webdav rclone mount
+    #systemd.user.mounts."home-${user}-Nextcloud" = {
+    #  Unit = {
+    #    Description = "Rclone Nextcloud mount";
+    #  };
+    #  Mount = {
+    #    What = "nextcloud:";  # name from rclone config
+    #    Where = "/home/${user}/Nextcloud";
+    #    Type = "fuse.rclone";
+    #    Options = "rw,_netdev,allow_other,args2env,vfs-cache-mode=writes";
+    #  };
+    #  Install = {
+    #    WantedBy = [ "default.target" ];
+    #  };
+    #};
+    #systemd.user.automounts."home-${user}-Nextcloud" = {
+    #  Unit = {
+    #    Description = "Automount Nextcloud";
+    #  };
+    #  Automount = {
+    #    Where = "/home/${user}/Nextcloud";
+    #  };
+    #  Install = {
+    #    WantedBy = [ "default.target" ];
+    #  };
+    #};
 
     ## Enable syncthing service in the background
     #services.syncthing.enable = true;
