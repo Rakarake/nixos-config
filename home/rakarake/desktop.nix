@@ -206,6 +206,7 @@ in
       poppler-utils  # Needed for pdf RAG
       pkgs-unstable.opencode
       pkgs-unstable.yt-dlp
+      pkgs-unstable.grayjay
 
       # Emulators
       #fceux

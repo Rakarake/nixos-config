@@ -10,6 +10,7 @@
       mpris
       thumbfast
       modernx
+      webtorrent-mpv-hook
     ];
   };
 }
