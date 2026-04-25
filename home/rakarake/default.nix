@@ -53,6 +53,8 @@ in
     #};
   };
 
+  programs.bat.enable = true;
+
   # Session variables
   home.sessionVariables = environmentVariables;
   systemd.user.sessionVariables = environmentVariables;
@@ -93,7 +95,6 @@ in
     cp = "cp -v";
     mv = "mv -v";
     rm = "rm -v";
-    bat = "bat --theme=base16";
     ks = "kitten ssh";
 
     # Swag

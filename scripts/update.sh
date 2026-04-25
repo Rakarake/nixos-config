@@ -20,7 +20,7 @@ cd ~/Projects/nixos-config \
 fi \
 && flatpak update -y \
 && nh os switch . \
-&& nh clean all -k 3 -K 14d \
+&& nh clean all -k 2 -K 14d \
 && nix-store --optimize \
 && if [ "$1" = "push" ]; then {
      git add flake.lock \
