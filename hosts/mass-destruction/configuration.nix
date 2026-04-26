@@ -49,7 +49,7 @@ in
     (outputs.extra.statefulServerTemplate rec {
       name = "minecraftserver-goblainkraft";
       description = "Sin Bucket in Minecraft";
-      packages = [ pkgs.jdk21 ];
+      packages = [ pkgs.jdk25 ];
       path = /data/MCservers/${name};
     })
     (outputs.extra.statefulServerTemplate rec {
@@ -126,6 +126,7 @@ in
     btop
     tmux
     jdk21
+    jdk25
     jdk8
     bcachefs-tools
     fastfetch
