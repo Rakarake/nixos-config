@@ -20,7 +20,6 @@ let
     ssh1 = 22;
     wireguard = 51820;
     minecraft = 8069;
-    goblainkraft = 42068;
     hardkraft = 8070;
     openttd = 3979;
     vintagecraft = 42420;
@@ -44,12 +43,6 @@ in
       name = "minecraftserver-kreate";
       description = "A not so kreative minekraft server";
       packages = [ pkgs.jdk21 ];
-      path = /data/MCservers/${name};
-    })
-    (outputs.extra.statefulServerTemplate rec {
-      name = "minecraftserver-goblainkraft";
-      description = "Sin Bucket in Minecraft";
-      packages = [ pkgs.jdk25 ];
       path = /data/MCservers/${name};
     })
     (outputs.extra.statefulServerTemplate rec {
