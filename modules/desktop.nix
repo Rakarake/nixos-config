@@ -558,6 +558,9 @@ in
         # Appimages need fuse, e.g. https://musescore.org/fr/download/musescore-x86_64.AppImage
         fuse
         e2fsprogs
+
+        libsm
+        harfbuzz
       ];
     };
   };

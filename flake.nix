@@ -85,10 +85,10 @@
     };
     
     # NetworkManager GUI
-    nmrs = {
-      url = "github:cachebag/nmrs";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    #nmrs = {
+    #  url = "github:cachebag/nmrs";
+    #  inputs.nixpkgs.follows = "nixpkgs";
+    #};
 
     eden = {
       url = "github:Grantimatter/eden-flake";

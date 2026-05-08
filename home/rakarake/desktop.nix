@@ -203,7 +203,7 @@ in
       rssguard
       kdePackages.kdenlive
       pkgs-unstable.aichat
-      poppler-utils  # Needed for pdf RAG
+      poppler-utils # Needed for pdf RAG
       pkgs-unstable.opencode
       pkgs-unstable.yt-dlp
       pkgs-unstable.grayjay
@@ -238,11 +238,11 @@ in
       settings = {
         default_server_config = {
           "m.homeserver" = {
-              base_url = "https://chat.mdf.farm";
-              server_name = "chat.mdf.farm";
+            base_url = "https://chat.mdf.farm";
+            server_name = "chat.mdf.farm";
           };
           "m.identity_server" = {
-              base_url = "https://vector.im";
+            base_url = "https://vector.im";
           };
         };
       };
