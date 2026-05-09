@@ -90,6 +90,8 @@ in
       scrcpy
       exfat
       rclone
+      # Needed for gsettings programs to work, probably, maybe
+      gsettings-desktop-schemas
     ];
 
     programs.gamemode = {
