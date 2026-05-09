@@ -348,7 +348,7 @@ in
     users.users.rakarake = {
       isNormalUser = true;
       description = "Rakarake";
-      shell = pkgs.zsh;
+      #shell = pkgs.zsh;
       extraGroups = [
         "networkmanager"
         # For sudo
