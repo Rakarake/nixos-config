@@ -493,7 +493,7 @@ in
         # Use lswt to get app-id:s
         riverctl rule-add -app-id com.github.wwmm.easyeffects tags 1
         riverctl rule-add -app-id vesktop tags 1
-        riverctl rule-add -app-id librewolf tags 2
+        #riverctl rule-add -app-id librewolf tags 2
         riverctl rule-add -app-id firefox tags 2
 
         # Application Autostart

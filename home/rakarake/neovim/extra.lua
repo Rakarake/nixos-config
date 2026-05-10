@@ -363,3 +363,5 @@ vim.g.rustaceanvim = {
   dap = {
   },
 }
+vim.keymap.set("n", "<leader>rd", function() vim.cmd.RustLsp('openDocs') end)
+
