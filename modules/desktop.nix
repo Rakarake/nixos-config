@@ -344,7 +344,7 @@ in
     # services.xserver.libinput.enable = true;
 
     # Define a user account. Don't forget to set a password with ‘passwd’.
-    programs.zsh.enable = true;
+    #programs.zsh.enable = true;
     users.users.rakarake = {
       isNormalUser = true;
       description = "Rakarake";
