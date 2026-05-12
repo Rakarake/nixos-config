@@ -26,7 +26,7 @@
       riverctl rule-add -app-id com.github.wwmm.easyeffects output ${leftMonitor}
       riverctl rule-add -app-id discord output ${leftMonitor}
       #riverctl rule-add -app-id librewolf output ${mainMonitor}
-      riverctl rule-add -app-id firefox output ${mainMonitor}
+      #riverctl rule-add -app-id firefox output ${mainMonitor}
       riverctl focus-output ${mainMonitor}
 
       # Sick live wallpaper
