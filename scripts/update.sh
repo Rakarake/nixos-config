@@ -19,10 +19,10 @@ cd ~/Projects/nixos-config \
                       else nh home switch -c $USER@$HOSTNAME-$2 .;
 fi \
 && flatpak update -y \
-&& nh os switch . \
+&& pkexec nh os switch ~/Projects/nixos-config \
 && if [ "$1" = "push" ]; then {
      git add flake.lock \
      && git commit -m 'flake update' \
      && git push
-   } fi
+   } fi || notify-send "update FAILED!"
 
