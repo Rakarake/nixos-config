@@ -68,6 +68,10 @@ let
     }
   '';
   monitor-setup = pkgs.writeShellScriptBin "monitor-setup" cfg.monitor-setup;
+  collect-garbage = pkgs.writeShellScriptBin "collect-garbage" ''
+    pkexec nh clean all -K 7d \
+    && nix-store --optimize \
+  '';
 in
 {
   imports = [
@@ -123,9 +127,10 @@ in
       inputs.glonkers.defaultPackage.${system}
       lswt  # Gets app-id:s and titles of windows
 
-      # Custom sandbar command
+      # Custom scripts
       run-sandbar
       monitor-setup
+      collect-garbage
     ];
 
     xdg.configFile."kdeglobals".source = config.lib.file.mkOutOfStoreSymlink /home/${user}/Projects/nixos-config/home/${user}/kdeglobals;
@@ -417,6 +422,7 @@ in
         riverctl map normal Super+Alt+Shift S spawn "systemctl poweroff"
         riverctl map normal Super+Alt+Shift R spawn "systemctl reboot"
         riverctl map normal Super+Alt+Shift N spawn "systemctl suspend"
+        riverctl map normal Super+Alt+Shift G spawn "collect-garbage"
 
         # Super+{Up,Right,Down,Left} to change layout orientation
         riverctl map normal Super Up    send-layout-cmd rivertile "main-location top"
