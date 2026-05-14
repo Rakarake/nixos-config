@@ -184,7 +184,6 @@ in
       resources
       file-roller
       rclone
-      gnome-calculator
       gnome-clocks
       gnupg1
       okteta
