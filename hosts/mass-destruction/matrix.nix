@@ -90,7 +90,7 @@ in
         # correctly track the state of the room.
         msc4222_enabled = true;
         # disavle thing for science
-        msc3916_authenticated_media_enabled = false; 
+        msc3916_authenticated_media_enabled = true; 
       };
 
       # The maximum allowed duration by which sent events can be delayed, as
@@ -225,21 +225,17 @@ in
       "chat.mdf.farm" = {
         forceSSL = true;
         enableACME = true; # Let's encrypt TLS automated, not certbot
-        locations = {
-          "/_matrix/client" = {
-            proxyPass = "http://localhost:${toString synapsePort}";
-            proxyWebsockets = true;
-          };
-        
-          "/_matrix/media" = {
-            proxyPass = "http://localhost:${toString synapsePort}";
-            proxyWebsockets = true;
-          };
-        
-          "/_matrix" = {
-            proxyPass = "http://localhost:${toString synapsePort}";
-            proxyWebsockets = true;
-          };
+        locations."/_matrix" = {
+          proxyPass = "http://localhost:${toString synapsePort}";
+          proxyWebsockets = true;
+      
+          extraConfig = ''
+            client_max_body_size 2G;
+      
+            proxy_set_header Host $host;
+            proxy_set_header X-Forwarded-For $remote_addr;
+            proxy_set_header X-Forwarded-Proto $scheme;
+          '';
         };
       };
       # Element, matrix frontend
