@@ -225,12 +225,21 @@ in
       "chat.mdf.farm" = {
         forceSSL = true;
         enableACME = true; # Let's encrypt TLS automated, not certbot
-        locations."/_matrix" = {
-          extraConfig = ''
-            client_max_body_size 2G;
-          '';
-          proxyWebsockets = true;
-          proxyPass = "http://localhost:${toString synapsePort}";
+        locations = {
+          "/_matrix/client" = {
+            proxyPass = "http://localhost:${toString synapsePort}";
+            proxyWebsockets = true;
+          };
+        
+          "/_matrix/media" = {
+            proxyPass = "http://localhost:${toString synapsePort}";
+            proxyWebsockets = true;
+          };
+        
+          "/_matrix" = {
+            proxyPass = "http://localhost:${toString synapsePort}";
+            proxyWebsockets = true;
+          };
         };
       };
       # Element, matrix frontend
