@@ -66,7 +66,7 @@ in
       listeners = [
         {
           port = synapsePort;
-          bind_addresses = [ "::1" ];
+          bind_addresses = [ "127.0.0.1" "::1" ];
           type = "http";
           tls = false;
           x_forwarded = true;
