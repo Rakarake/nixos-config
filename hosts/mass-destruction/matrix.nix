@@ -9,7 +9,6 @@ let
   turnSecret = "depressedfoxy";
   wellKnownClient = {
     "m.homeserver" = { "base_url" = "https://chat.mdf.farm"; };
-    "org.matrix.msc3575.proxy" = { "url" = "https://chat.mdf.farm"; };
     "org.matrix.msc4143.rtc_foci" = [
       {
         "type" = "livekit"; "livekit_service_url" = "https://voip.mdf.farm/jwt";
@@ -90,8 +89,6 @@ in
         # MSC4222 needed for syncv2 state_after. This allow clients to
         # correctly track the state of the room.
         msc4222_enabled = true;
-        # pfp media thing test real
-        msc3916_authenticated_media_enabled = true;
       };
 
       # The maximum allowed duration by which sent events can be delayed, as
@@ -226,7 +223,7 @@ in
       "chat.mdf.farm" = {
         forceSSL = true;
         enableACME = true; # Let's encrypt TLS automated, not certbot
-        locations."/" = {
+        locations."/_matrix" = {
           extraConfig = ''
             client_max_body_size 2G;
           '';
