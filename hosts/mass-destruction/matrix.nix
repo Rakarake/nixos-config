@@ -75,7 +75,6 @@ in
               names = [
                 "client"
                 "federation"
-                "media"
               ];
               compress = false;
             }
