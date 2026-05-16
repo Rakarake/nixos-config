@@ -162,7 +162,8 @@ in
       priority = 400;
       proxyPass = "http://localhost:${toString config.services.lk-jwt-service.port}/";
     };
-    locations."/" = {
+
+    "/" = {
       proxyPass = "http://localhost:${toString config.services.livekit.settings.port}";
       proxyWebsockets = true;
 
@@ -181,16 +182,6 @@ in
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection "upgrade";
       '';
-    };
-  };
-  services.nginx.virtualHosts."chat.mdf.farm".locations = {
-    "= /.well-known/matrix/client" = {
-      extraConfig = mkWellKnown wellKnownClient;
-      priority = 400;
-    };
-    "= /.well-known/matrix/server" = {
-      extraConfig = mkWellKnown wellKnownServer;
-      priority = 400;
     };
   };
 
