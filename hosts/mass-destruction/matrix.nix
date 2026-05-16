@@ -121,7 +121,7 @@ in
       room.auto_create = false;
       turn = {
         enabled = true;
-        tcp_port = 3478;
+        udp_port = 3478;
         relay_range_start = 49000;
         relay_range_end = 50000;
         domain = "voip.mdf.farm";
