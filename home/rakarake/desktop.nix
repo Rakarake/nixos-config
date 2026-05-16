@@ -164,7 +164,8 @@ in
       audacity
       fragments
       #varia
-      blender-hip # blender compiled to detect hip/rocm support
+      pkgsRocm.blender
+      #(pkgs-unstable.rocmPackages.blender # blender compiled to detect hip/rocm support
       #logseq
       inkscape
       parabolic
@@ -206,6 +207,7 @@ in
       pkgs-unstable.opencode
       pkgs-unstable.yt-dlp
       pkgs-unstable.grayjay
+      pkgs-unstable.komikku
 
       # Emulators
       #fceux
