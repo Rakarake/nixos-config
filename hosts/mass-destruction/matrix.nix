@@ -173,7 +173,7 @@ in
         proxy_set_header Connection "upgrade";
       '';
       priority = 400;
-      proxyPass = "http://localhost:${toString config.services.livekit.settings.port}";
+      proxyPass = "http://localhost:${toString config.services.livekit.settings.port}/";
       proxyWebsockets = true;
     };
   };
