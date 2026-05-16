@@ -164,8 +164,8 @@ in
     };
     "^~ /sfu/" = {
       extraConfig = ''
-        proxy_send_timeout 120;
-        proxy_read_timeout 120;
+        proxy_send_timeout 86400;
+        proxy_read_timeout 86400;
         proxy_buffering off;
 
         proxy_set_header Accept-Encoding gzip;
