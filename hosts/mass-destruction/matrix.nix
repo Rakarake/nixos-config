@@ -133,7 +133,7 @@ in
     enable = true;
     #port = 8451;
     # can be on the same virtualHost as synapse
-    livekitUrl = "wss://voip.mdf.farm/sfu";
+    livekitUrl = "wss://voip.mdf.farm";
     inherit keyFile;
   };
   # generate the key when needed
@@ -162,19 +162,25 @@ in
       priority = 400;
       proxyPass = "http://localhost:${toString config.services.lk-jwt-service.port}/";
     };
-    "^~ /sfu/" = {
+    "/" = {
+      proxyPass = "http://localhost:${toString config.services.livekit.settings.port}";
+      proxyWebsockets = true;
+
       extraConfig = ''
-        proxy_send_timeout 120;
-        proxy_read_timeout 120;
+        proxy_http_version 1.1;
+
+        proxy_read_timeout 86400;
+        proxy_send_timeout 86400;
+
         proxy_buffering off;
 
-        proxy_set_header Accept-Encoding gzip;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection "upgrade";
       '';
-      priority = 400;
-      proxyPass = "http://localhost:${toString config.services.livekit.settings.port}/";
-      proxyWebsockets = true;
     };
   };
   services.nginx.virtualHosts."chat.mdf.farm".locations = {
