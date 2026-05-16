@@ -231,7 +231,8 @@ in
       
           extraConfig = ''
             client_max_body_size 2G;
-      
+            proxy_send_timeout 86400;
+            proxy_read_timeout 86400;
             proxy_set_header Host $host;
             proxy_set_header X-Forwarded-For $remote_addr;
             proxy_set_header X-Forwarded-Proto $scheme;
