@@ -38,7 +38,7 @@ in
       LC_CTYPE = "C";
   '';
 
-  matrix.nix`**: Add `networking.firewall.allowedUDPPortRanges = [ { from = 49000; to = 50000; } ];
+  networking.firewall.allowedUDPPortRanges = [ { from = 49000; to = 50000; } ];
 
   services.matrix-synapse = {
     enable = true;
