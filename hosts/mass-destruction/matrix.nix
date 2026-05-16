@@ -38,6 +38,8 @@ in
       LC_CTYPE = "C";
   '';
 
+  networking.firewall.allowedUDPPortRanges = [ { from = 49000; to = 50000; } ];
+
   services.matrix-synapse = {
     enable = true;
     settings = {
