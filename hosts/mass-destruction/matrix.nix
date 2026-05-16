@@ -162,12 +162,10 @@ in
       priority = 400;
       proxyPass = "http://localhost:${toString config.services.lk-jwt-service.port}/";
     };
-    "/sfu/" = {
+    "^~ /sfu/" = {
       extraConfig = ''
-        rewrite ^/sfu/(.*) /$1 break;
-
-        proxy_send_timeout 86400;
-        proxy_read_timeout 86400;
+        proxy_send_timeout 120;
+        proxy_read_timeout 120;
         proxy_buffering off;
 
         proxy_set_header Accept-Encoding gzip;
@@ -233,11 +231,6 @@ in
       
           extraConfig = ''
             client_max_body_size 2G;
-
-            proxy_send_timeout 120;
-            proxy_read_timeout 120;
-            proxy_buffering off;
-            proxy_request_buffering off;
 
             proxy_set_header Host $host;
             proxy_set_header X-Forwarded-For $remote_addr;
