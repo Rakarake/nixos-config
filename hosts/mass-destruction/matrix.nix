@@ -168,8 +168,6 @@ in
       proxyWebsockets = true;
 
       extraConfig = ''
-        proxy_http_version 1.1;
-
         proxy_read_timeout 86400;
         proxy_send_timeout 86400;
 
