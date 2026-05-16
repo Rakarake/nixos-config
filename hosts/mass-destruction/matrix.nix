@@ -133,7 +133,7 @@ in
     enable = true;
     #port = 8451;
     # can be on the same virtualHost as synapse
-    livekitUrl = "wss://voip.mdf.farm/";
+    livekitUrl = "wss://voip.mdf.farm/sfu";
     inherit keyFile;
   };
   # generate the key when needed
@@ -158,53 +158,25 @@ in
   # restrict access to livekit room creation to a homeserver
   systemd.services.lk-jwt-service.environment.LIVEKIT_FULL_ACCESS_HOMESERVERS = "chat.mdf.farm";
   services.nginx.virtualHosts."voip.mdf.farm".locations = {
-  # JWT service (keep)
-  "^~ /jwt/" = {
-    priority = 100;
-    proxyPass = "http://localhost:${toString config.services.lk-jwt-service.port}/";
+    "^~ /jwt/" = {
+      priority = 400;
+      proxyPass = "http://localhost:${toString config.services.lk-jwt-service.port}/";
+    };
+    "^~ /sfu/" = {
+      extraConfig = ''
+        proxy_send_timeout 120;
+        proxy_read_timeout 120;
+        proxy_buffering off;
+
+        proxy_set_header Accept-Encoding gzip;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+      '';
+      priority = 400;
+      proxyPass = "http://localhost:${toString config.services.livekit.settings.port}/";
+      proxyWebsockets = true;
+    };
   };
-
-  # LiveKit signaling
-  "^~ /rtc" = {
-    priority = 200;
-    proxyPass = "http://localhost:${toString config.services.livekit.settings.port}/rtc";
-    proxyWebsockets = true;
-
-    extraConfig = ''
-      proxy_http_version 1.1;
-
-      proxy_set_header Upgrade $http_upgrade;
-      proxy_set_header Connection "upgrade";
-      proxy_set_header Host $host;
-
-      proxy_read_timeout 3600;
-      proxy_send_timeout 3600;
-      proxy_connect_timeout 3600;
-
-      proxy_buffering off;
-    '';
-  };
-
-  "^~ /twirp" = {
-    priority = 200;
-    proxyPass = "http://localhost:${toString config.services.livekit.settings.port}/twirp";
-    proxyWebsockets = true;
-
-    extraConfig = ''
-      proxy_http_version 1.1;
-
-      proxy_set_header Upgrade $http_upgrade;
-      proxy_set_header Connection "upgrade";
-      proxy_set_header Host $host;
-
-      proxy_read_timeout 3600;
-      proxy_send_timeout 3600;
-      proxy_connect_timeout 3600;
-
-      proxy_buffering off;
-    '';
-  };
-};
   services.nginx.virtualHosts."chat.mdf.farm".locations = {
     "= /.well-known/matrix/client" = {
       extraConfig = mkWellKnown wellKnownClient;
