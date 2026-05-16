@@ -188,29 +188,6 @@ in
     };
   };
 
-      "^~ /_matrix" = {
-      priority = 400;
-      proxyPass = "http://localhost:${toString config.services.matrix-synapse.port}/";
-
-      # These are the magic lines that fix the 0.19.1 timeout
-      proxy_buffering off;
-      proxy_request_buffering off;
-      proxy_http_version 1.1;
-      proxy_set_header Upgrade $http_upgrade;
-      proxy_set_header Connection "upgrade";
-
-      # Prevent Nginx from killing the connection during long calls
-      proxy_read_timeout 86400s;
-      proxy_send_timeout 86400s;
-
-      # Standard Proxy Headers
-      proxy_set_header Host $host;
-      proxy_set_header X-Real-IP $remote_addr;
-      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-      proxy_set_header X-Forwarded-Proto $scheme;
-    };
-
-
   # not synapse lol
   age.identityPaths = [
     "/home/rakarake/.ssh/id_ed25519"
@@ -254,7 +231,6 @@ in
       
           extraConfig = ''
             client_max_body_size 2G;
-
             proxy_set_header Host $host;
             proxy_set_header X-Forwarded-For $remote_addr;
             proxy_set_header X-Forwarded-Proto $scheme;
