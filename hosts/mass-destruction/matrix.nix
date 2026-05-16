@@ -158,11 +158,11 @@ in
   # restrict access to livekit room creation to a homeserver
   systemd.services.lk-jwt-service.environment.LIVEKIT_FULL_ACCESS_HOMESERVERS = "chat.mdf.farm";
   services.nginx.virtualHosts."voip.mdf.farm".locations = {
-    "^~ /jwt/" = {
+    "^~ /jwt" = {
       priority = 400;
       proxyPass = "http://localhost:${toString config.services.lk-jwt-service.port}/";
     };
-    "^~ /sfu/" = {
+    "^~ /sfu" = {
       extraConfig = ''
         proxy_send_timeout 120;
         proxy_read_timeout 120;
