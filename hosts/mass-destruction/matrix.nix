@@ -168,6 +168,8 @@ in
         proxy_read_timeout 120;
         proxy_buffering off;
 
+        proxy_redirect off;
+
         proxy_set_header Accept-Encoding gzip;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection "upgrade";
