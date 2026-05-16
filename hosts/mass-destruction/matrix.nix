@@ -1,7 +1,7 @@
 # This configuration uses the built-in turn server in livekit to get
 # element-call to work.
 
-{ pkgs, config, lib, inputs, ... }:
+{ pkgs, config, lib, inputs, pkgs-unstable, ... }:
 let 
   # Matrix livekit file
   keyFile = "/run/livekit.key";
@@ -91,6 +91,9 @@ in
         msc4222_enabled = true;
         # disable thing for science
         msc3916_authenticated_media_enabled = true; 
+        # according to slop
+        msc4354_enabled = true;
+        msc4155_enabled = false;
       };
 
       # The maximum allowed duration by which sent events can be delayed, as
@@ -115,6 +118,7 @@ in
   # Used for matrix-call?
   services.livekit = {
     enable = true;
+    package = pkgs-unstable.livekit;
     # Requires open ports 50000-51000
     openFirewall = true;
     settings = {
