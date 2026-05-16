@@ -164,6 +164,8 @@ in
     };
     "/sfu/" = {
       extraConfig = ''
+        rewrite ^/sfu/(.*) /$1 break;
+
         proxy_send_timeout 86400;
         proxy_read_timeout 86400;
         proxy_buffering off;
