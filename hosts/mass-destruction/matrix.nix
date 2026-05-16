@@ -158,31 +158,53 @@ in
   # restrict access to livekit room creation to a homeserver
   systemd.services.lk-jwt-service.environment.LIVEKIT_FULL_ACCESS_HOMESERVERS = "chat.mdf.farm";
   services.nginx.virtualHosts."voip.mdf.farm".locations = {
-    "^~ /jwt/" = {
-      priority = 400;
-      proxyPass = "http://localhost:${toString config.services.lk-jwt-service.port}/";
-    };
-    "~ ^/.*$" = {
-      priority = 400;
-      proxyPass = "http://localhost:${toString config.services.livekit.settings.port}/";
-      proxyWebsockets = true;
-    
-      extraConfig = ''
-        proxy_http_version 1.1;
-    
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection "upgrade";
-    
-        proxy_set_header Host $host;
-    
-        proxy_read_timeout 3600;
-        proxy_send_timeout 3600;
-        proxy_connect_timeout 3600;
-    
-        proxy_buffering off;
-      '';
-    };
+  # JWT service (keep)
+  "^~ /jwt/" = {
+    priority = 100;
+    proxyPass = "http://localhost:${toString config.services.lk-jwt-service.port}/";
   };
+
+  # LiveKit signaling
+  "^~ /rtc" = {
+    priority = 200;
+    proxyPass = "http://localhost:${toString config.services.livekit.settings.port}/rtc";
+    proxyWebsockets = true;
+
+    extraConfig = ''
+      proxy_http_version 1.1;
+
+      proxy_set_header Upgrade $http_upgrade;
+      proxy_set_header Connection "upgrade";
+      proxy_set_header Host $host;
+
+      proxy_read_timeout 3600;
+      proxy_send_timeout 3600;
+      proxy_connect_timeout 3600;
+
+      proxy_buffering off;
+    '';
+  };
+
+  "^~ /twirp" = {
+    priority = 200;
+    proxyPass = "http://localhost:${toString config.services.livekit.settings.port}/twirp";
+    proxyWebsockets = true;
+
+    extraConfig = ''
+      proxy_http_version 1.1;
+
+      proxy_set_header Upgrade $http_upgrade;
+      proxy_set_header Connection "upgrade";
+      proxy_set_header Host $host;
+
+      proxy_read_timeout 3600;
+      proxy_send_timeout 3600;
+      proxy_connect_timeout 3600;
+
+      proxy_buffering off;
+    '';
+  };
+};
   services.nginx.virtualHosts."chat.mdf.farm".locations = {
     "= /.well-known/matrix/client" = {
       extraConfig = mkWellKnown wellKnownClient;
