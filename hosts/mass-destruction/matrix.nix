@@ -89,8 +89,6 @@ in
         # MSC4222 needed for syncv2 state_after. This allow clients to
         # correctly track the state of the room.
         msc4222_enabled = true;
-        # required for element call
-        msc4140_enabled = true;
         # disable thing for science
         msc3916_authenticated_media_enabled = true; 
       };
