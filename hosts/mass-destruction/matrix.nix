@@ -162,7 +162,7 @@ in
       priority = 400;
       proxyPass = "http://localhost:${toString config.services.lk-jwt-service.port}/";
     };
-    "/" = {
+    locations."/" = {
       proxyPass = "http://localhost:${toString config.services.livekit.settings.port}";
       proxyWebsockets = true;
 
