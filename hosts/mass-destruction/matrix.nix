@@ -225,7 +225,7 @@ in
       "chat.mdf.farm" = {
         forceSSL = true;
         enableACME = true; # Let's encrypt TLS automated, not certbot
-        locations."/_matrix" = {
+        locations."/" = {
           proxyPass = "http://localhost:${toString synapsePort}";
           proxyWebsockets = true;
       
