@@ -162,7 +162,7 @@ in
       priority = 400;
       proxyPass = "http://localhost:${toString config.services.lk-jwt-service.port}/";
     };
-    "^~ /sfu/" = {
+    "/sfu/" = {
       extraConfig = ''
         proxy_send_timeout 86400;
         proxy_read_timeout 86400;
