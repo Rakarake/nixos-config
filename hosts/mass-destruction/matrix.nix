@@ -182,8 +182,6 @@ in
     };
     "^~ /sfu/" = {
       extraConfig = ''
-        proxy_http_version 1.1;
-
         proxy_send_timeout 120;
         proxy_read_timeout 120;
         proxy_buffering off;
