@@ -105,7 +105,7 @@ in
         # correctly track the state of the room.
         msc4222_enabled = true;
         # disable thing for science
-        msc3916_authenticated_media_enabled = true; 
+        msc3916_authenticated_media_enabled = false; 
       };
 
       # The maximum allowed duration by which sent events can be delayed, as
@@ -138,6 +138,7 @@ in
       turn = {
         enabled = true;
         udp_port = 3478;
+        tls_port = 5349;
         relay_range_start = 49000;
         relay_range_end = 50000;
         domain = "voip.mdf.farm";
@@ -181,6 +182,8 @@ in
     };
     "^~ /sfu/" = {
       extraConfig = ''
+        proxy_http_version 1.1;
+
         proxy_send_timeout 120;
         proxy_read_timeout 120;
         proxy_buffering off;
