@@ -371,7 +371,7 @@ in
 
   nixpkgs.overlays = [ (final: prev: {
     cinny-unwrapped = prev.cinny-unwrapped.overrideAttrs (old: rec {
-      version = "4.11.1";
+      version = "4.12.1";
       src = prev.fetchFromGitHub {
         owner = "cinnyapp";
         repo = "cinny";
