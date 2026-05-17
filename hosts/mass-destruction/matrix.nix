@@ -109,14 +109,14 @@ in
         # correctly track the state of the room.
         msc4222_enabled = true;
         # disable thing for science
-        msc3916_authenticated_media_enabled = false; 
+        # msc3916_authenticated_media_enabled = false;
         #match msc4140 to matrix.org
-        msc4140_enabled = true;
+        msc4140_enabled = false;
       };
 
       # The maximum allowed duration by which sent events can be delayed, as
       # per MSC4140.
-       max_event_delay_duration = "24h";
+      # max_event_delay_duration = "24h";
 
       rc_message = {
         # This needs to match at least e2ee key sharing frequency plus a bit of headroom
