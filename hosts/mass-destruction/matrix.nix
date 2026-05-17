@@ -98,6 +98,7 @@ in
         # according to slop
         msc4354_enabled = true;
         msc4155_enabled = false;
+        msc4143_enabled = true;
       };
 
       # The maximum allowed duration by which sent events can be delayed, as
