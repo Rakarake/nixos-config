@@ -109,7 +109,7 @@ in
         # correctly track the state of the room.
         msc4222_enabled = true;
         # disable thing for science
-        msc3916_authenticated_media_enabled = false; 
+        # msc3916_authenticated_media_enabled = false;
         #match msc4140 to matrix.org
         msc4140_enabled = false;
       };
