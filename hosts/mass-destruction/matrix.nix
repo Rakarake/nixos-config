@@ -101,6 +101,15 @@ in
         msc4143_enabled = true;
       };
 
+      matrix_rtc = {
+        transports = [
+          {
+            type = "livekit";
+            livekit_service_url = "https://voip.mdf.farm/jwt";
+          }
+        ];
+      };
+
       # The maximum allowed duration by which sent events can be delayed, as
       # per MSC4140.
       max_event_delay_duration = "24h";
