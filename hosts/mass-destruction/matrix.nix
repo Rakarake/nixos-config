@@ -378,9 +378,9 @@ in
         owner = "cinnyapp";
         repo = "cinny";
         tag = "v${version}";
-        hash = "sha256-dwI3zNey/ukF3t2fhH/ePf4o4iBDwZyLWMYebPgXmWU=";
+        hash = "sha256-s9nu6hYe0OvRcp8n2cOJnhEzIV+nyjnfwTrY477XDT8=";
       };
-      npmDepsHash = "sha256-27WFjb08p09aJRi0S2PvYq3bivEuG5+z2QhFahTSj4Q=";
+      npmDepsHash = "sha256-e37tSrqrEXGH2uInFAiikHNwJ13gXlG50SeYF/HO0z4=";
       npmDeps = prev.fetchNpmDeps {
         inherit src;
         hash = npmDepsHash;
