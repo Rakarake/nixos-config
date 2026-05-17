@@ -99,7 +99,7 @@ in
         msc4354_enabled = true;
         msc4155_enabled = true;
         msc4143_enabled = true;
-        msc4157_enabled = true;
+        msc4157_enabled = false;
       };
 
       # The maximum allowed duration by which sent events can be delayed, as
