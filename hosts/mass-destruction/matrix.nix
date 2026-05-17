@@ -86,21 +86,6 @@ in
         }
       ];
 
-      # Livekit turn connection
-      turn_uris = [
-        #"turn:voip.mdf.farm?transport=udp"
-        #"turn:voip.mdf.farm?transport=tcp"
-        #"turns:voip.mdf.farm?transport=tcp"
-        "turns:voip.mdf.farm:${builtins.toString config.services.coturn.tls-listening-port}?transport=udp"
-        "turns:voip.mdf.farm:${builtins.toString config.services.coturn.tls-listening-port}?transport=tcp"
-        "turn:voip.mdf.farm:${builtins.toString config.services.coturn.listening-port}?transport=udp"
-        "turn:voip.mdf.farm:${builtins.toString config.services.coturn.listening-port}?transport=tcp"
-      ];
-    
-      turn_shared_secret = turnSecret;
-      turn_user_lifetime = "1h";
-      turn_allow_guests = true;
-
       # Required for element call
       experimental_features = {
         # MSC3266: Room summary API. Used for knocking over federation
@@ -133,69 +118,6 @@ in
       };
     };
   };
-
-  networking.firewall.enable = lib.mkForce false;
-  services.coturn = {
-    enable = true;
-    realm = "voip.mdf.farm";
-
-    listening-ips = [ "0.0.0.0" ];
-    listening-port = 3478;
-    tls-listening-port = 3480;
-
-    relay-ips = [ "31.210.250.250" ];
-    min-port = 49152;
-    max-port = 65535;
-
-    cert = "${config.security.acme.certs."voip.mdf.farm".directory}/fullchain.pem";
-    pkey = "${config.security.acme.certs."voip.mdf.farm".directory}/key.pem";
-
-    #no-auth = true;
-    no-tcp = true;
-    secure-stun = true;
-    ## lt-cred-mech = true;
-    use-auth-secret = true;
-    static-auth-secret = turnSecret;
-
-    extraConfig = ''
-      no-multicast-peers
-      total-quota=50
-    '';
-  };
-
-  #services.coturn = {
-  #  enable = true;
-  #
-  #  # IMPORTANT: must match your domain
-  #  realm = "voip.mdf.farm";
-
-  #  # Use shared secret auth (what Synapse expects)
-  #  use-auth-secret = true;
-  #  static-auth-secret = turnSecret;
-  #
-  #  # Networking
-  #  listening-port = 3478;
-  #  tls-listening-port = 5349;
-  #
-  #  # Relay ports (VERY IMPORTANT for WebRTC)
-  #  min-port = 49000;
-  #  max-port = 50000;
-
-  #  cert = "${config.security.acme.certs."voip.mdf.farm".directory}/full.pem";
-  #  pkey = "${config.security.acme.certs."voip.mdf.farm".directory}/key.pem";
-
-  #  #no-loopback-peers
-  #  
-  #  #lt-cred-mech
-  #  extraConfig = ''
-  #    fingerprint
-  #    stale-nonce
-  #    no-multicast-peers
-
-  #    no-cli
-  #    listening-ip = 0.0.0.0
-  #  '';
-  #};
 
   # Used for matrix-call?
   services.livekit = {
@@ -300,13 +222,6 @@ in
     owner = "root";
     group = "root";
   };
-  security.acme.certs."voip.mdf.farm" = {
-    #defaults.webroot = "/var/lib/acme/acme-challenge/";
-    # We are using nginx as webserver, therefore set correct key permissions
-    postRun = "systemctl restart coturn.service";
-    group = "turnserver";
-  };
-
 
   # Proxy, enable https etc
   services.nginx = {
