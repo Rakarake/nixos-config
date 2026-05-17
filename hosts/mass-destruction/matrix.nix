@@ -86,6 +86,17 @@ in
         }
       ];
 
+      # Livekit turn connection
+      turn_uris = [
+        "turn:voip.mdf.farm?transport=udp"
+        "turn:voip.mdf.farm?transport=tcp"
+        "turns:voip.mdf.farm?transport=tcp"
+      ];
+    
+      turn_shared_secret = turnSecret;
+      turn_user_lifetime = "1h";
+      turn_allow_guests = true;
+
       # Required for element call
       experimental_features = {
         # MSC3266: Room summary API. Used for knocking over federation
@@ -130,6 +141,7 @@ in
         relay_range_start = 49000;
         relay_range_end = 50000;
         domain = "voip.mdf.farm";
+        secret = turnSecret;
       };
     };
     inherit keyFile;
