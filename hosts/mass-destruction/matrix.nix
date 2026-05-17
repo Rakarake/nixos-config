@@ -116,7 +116,7 @@ in
 
       # The maximum allowed duration by which sent events can be delayed, as
       # per MSC4140.
-      max_event_delay_duration = "24h";
+      # max_event_delay_duration = "24h";
 
       rc_message = {
         # This needs to match at least e2ee key sharing frequency plus a bit of headroom
