@@ -92,6 +92,9 @@ in
       rclone
       # Needed for gsettings programs to work, probably, maybe
       gsettings-desktop-schemas
+      gnome-calculator  # Still havn't found a better one
+      nix-search-cli
+      inputs.nix-versions.packages.${system}.default
     ];
 
     programs.gamemode = {

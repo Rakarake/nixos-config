@@ -104,6 +104,11 @@
       url = "git+https://codeberg.org/Rakarake/mdf-bouncer";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nix-versions = {
+      url = "github:vic/nix-versions";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
   outputs = { self, nixpkgs, nixpkgs-unsable, home-manager, ... }@inputs:
     let
