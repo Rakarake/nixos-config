@@ -19,6 +19,7 @@
     xdg.configFile."nvim/after/ftplugin/rust.lua".source = ./after/ftplugin/rust.lua;
     xdg.configFile."nvim/after/ftplugin/nix.lua".source = ./after/ftplugin/nix.lua;
     xdg.configFile."nvim/after/ftplugin/agda.lua".source = ./after/ftplugin/agda.lua;
+    xdg.configFile."nvim/after/ftplugin/haskell.lua".source = ./after/ftplugin/haskell.lua;
     # Snippets
     xdg.configFile."nvim/snippets/cs.lua".source = ./snippets/cs.lua;
 
