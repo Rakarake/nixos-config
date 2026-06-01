@@ -11,12 +11,12 @@ vim.cmd('filetype plugin on')
 vim.cmd('filetype indent plugin on')
 
 -- Treesitter setup
-require'nvim-treesitter.configs'.setup {
-  highlight = {
-    enable = true,
-    additional_vim_regex_highlighting = false,
-  },
-}
+--require'nvim-treesitter.configs'.setup {
+--  highlight = {
+--    enable = true,
+--    additional_vim_regex_highlighting = false,
+--  },
+--}
 vim.keymap.set('n', '<C-h>', '<cmd>Treewalker Left<cr>')
 vim.keymap.set('n', '<C-l>', '<cmd>Treewalker Right<cr>')
 vim.keymap.set('n', '<C-k>', '<cmd>Treewalker Up<cr>')
