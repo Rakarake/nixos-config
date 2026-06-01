@@ -23,6 +23,7 @@ in
     # System Packages/Programs To search, run:
     # $ nix search wget
     environment.systemPackages = with pkgs; [
+      libnotify # gives notify-send
       vim
       wget
       gnumake
@@ -51,19 +52,14 @@ in
       gparted
       tmux
       nextcloud-client
-      gnome-software
       mesa-demos # Has programs such as glxgears
       adwaita-icon-theme # Just to be safe
       mpv
-      vlc
       imv
       perf # Performance metrics
-      impression # Boot drive creator
       nix-index # For working with /nix/store
       nix-search
-      libnotify
       wireshark
-      libresprite
       qemu
       nix-tree
       man-pages
@@ -79,9 +75,6 @@ in
       ungoogled-chromium
       thunderbird
       qpwgraph
-      #easyeffects
-      gnome-mines
-      gnome-sound-recorder
       ffmpeg
       waypipe
       kdePackages.okular
@@ -95,6 +88,7 @@ in
       gnome-calculator  # Still havn't found a better one
       nix-search-cli
       inputs.nix-versions.packages.${system}.default
+      android-tools # adb
     ];
 
     programs.gamemode = {
@@ -266,9 +260,6 @@ in
       # Always allow unfree nix packages :(
       NIXPKGS_ALLOW_UNFREE = "1";
     };
-
-    # Enable Android stuff
-    programs.adb.enable = true;
 
     # Bootloader
     boot.loader.systemd-boot.enable = true;

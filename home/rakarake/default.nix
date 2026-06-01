@@ -34,7 +34,7 @@ in
     ./zsh
     ./nushell
     inputs.agenix.homeManagerModules.default
-    inputs.nix-index-database.hmModules.nix-index
+    inputs.nix-index-database.homeModules.nix-index
     inputs.stylix.homeModules.stylix
     #inputs.catppuccin.homeModules.catppuccin
     #inputs.xremap.homeManagerModules.default

@@ -26,6 +26,8 @@
     # Neovim config
     programs.neovim = {
       enable = true;
+      withRuby = false;
+      withPython3 = false;
       #defaultEditor = true;
       plugins = with pkgs.vimPlugins; [
         nvim-lspconfig
@@ -56,7 +58,7 @@
         # Agda mode
         cornelis
       ];
-      extraLuaConfig = ''
+      initLua = ''
 -- We want to import the mutable extra.lua file here
 require("extra")
 

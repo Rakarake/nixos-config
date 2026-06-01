@@ -61,38 +61,38 @@ in
       };
     };
 
-    # Kitty config
-    programs.kitty = {
-      enable = true;
-      keybindings = {
-        # Amazing new tab
-        "ctrl+shift+t" = "new_tab_with_cwd !neighbor";
-      };
-      settings = {
-        linux_display_server = "wayland";
-        #hide_window_decorations = true;
+    ## Kitty config
+    #programs.kitty = {
+    #  enable = true;
+    #  keybindings = {
+    #    # Amazing new tab
+    #    "ctrl+shift+t" = "new_tab_with_cwd !neighbor";
+    #  };
+    #  settings = {
+    #    linux_display_server = "wayland";
+    #    #hide_window_decorations = true;
 
-        # Window Layoutot
-        remember_window_size = true;
-        initial_window_width = 740;
-        initial_window_height = 460;
-        #resize_draw_strategy = blank;
+    #    # Window Layoutot
+    #    remember_window_size = true;
+    #    initial_window_width = 740;
+    #    initial_window_height = 460;
+    #    #resize_draw_strategy = blank;
 
-        # Scrolling
-        touch_scroll_multiplier = "5.0";
+    #    # Scrolling
+    #    touch_scroll_multiplier = "5.0";
 
-        # Tab bar
-        tab_bar_style = "powerline";
+    #    # Tab bar
+    #    tab_bar_style = "powerline";
 
-        # Audio bell
-        enable_audio_bell = false;
-        window_alert_on_bell = false;
+    #    # Audio bell
+    #    enable_audio_bell = false;
+    #    window_alert_on_bell = false;
 
-        confirm_os_window_close = 0;
+    #    confirm_os_window_close = 0;
 
-        wayland_titlebar_color = "background";
-      };
-    };
+    #    wayland_titlebar_color = "background";
+    #  };
+    #};
 
     ## Terminal
     programs.foot = {
@@ -100,6 +100,8 @@ in
       enable = true;
       server.enable = true;
     };
+
+    xdg.userDirs.setSessionVariables = true;
 
     # Ghci prompt
     home.file.".ghci".source = ./.ghci;
@@ -151,38 +153,22 @@ in
       zathuraPkgs.zathura_pdf_mupdf
       steam-run
       appimage-run
-      steamtinkerlaunch
       protonup-qt
       kdePackages.filelight
-      helvum
       nicotine-plus
       #ardour
       r2modman
       #pkgs.osu-lazer
-      superTuxKart
+      supertuxkart
       gamescope
       audacity
-      fragments
-      #varia
       pkgsRocm.blender
-      #(pkgs-unstable.rocmPackages.blender # blender compiled to detect hip/rocm support
-      #logseq
       inkscape
-      parabolic
       emote
-      moonlight-qt
       gcolor3
-      ascii-draw
-      newsflash
-      monero-gui
       handbrake
-      tor-browser
-      supersonic
       video-trimmer
-      pipeline
       easyeffects
-      evince
-      resources
       file-roller
       rclone
       gnome-clocks
@@ -194,13 +180,10 @@ in
       hieroglyphic
       strawberry
       gdb
-      zeal
       renderdoc
       qbittorrent
-      gnome-frog
       discord
       kdePackages.kate
-      rssguard
       kdePackages.kdenlive
       pkgs-unstable.aichat
       poppler-utils # Needed for pdf RAG
@@ -208,9 +191,10 @@ in
       pkgs-unstable.yt-dlp
       pkgs-unstable.grayjay
       pkgs-unstable.komikku
+      libresprite
 
       # Emulators
-      #fceux
+      fceux
       dolphin-emu
       #torzu
       ryubing
@@ -234,20 +218,7 @@ in
     ];
 
     programs.vesktop.enable = true;
-    programs.element-desktop = {
-      enable = true;
-      settings = {
-        default_server_config = {
-          "m.homeserver" = {
-            base_url = "https://chat.mdf.farm";
-            server_name = "chat.mdf.farm";
-          };
-          "m.identity_server" = {
-            base_url = "https://vector.im";
-          };
-        };
-      };
-    };
+    programs.element-desktop.enable = true;
 
     age.secrets.rakarake-rclone-webdav = {
       file = ../../secrets/rakarake-rclone-webdav.age;

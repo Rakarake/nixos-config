@@ -134,8 +134,8 @@
     #sunshine
 
     # Monero mining
-    p2pool
-    xmrig
+    #p2pool
+    #xmrig
 
     lact  # GPU monitor/overclocking
     gpu-screen-recorder-gtk
