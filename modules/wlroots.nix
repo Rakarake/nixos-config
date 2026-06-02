@@ -50,14 +50,14 @@
         river = c;
       };
 
-      #xdg.portal.wlr.settings.screencast = {
-      #  #output_name = "DP-1";
-      #  max_fps = 30;
-      #  #exec_before = "disable_notifications.sh";
-      #  #exec_after = "enable_notifications.sh";
-      #  chooser_type = "simple";
-      #  chooser_cmd = "${pkgs.slurp}/bin/slurp -f %o -or";
-      #};
+      xdg.portal.wlr.settings.screencast = {
+        #output_name = "DP-1";
+        #max_fps = 30;
+        #exec_before = "disable_notifications.sh";
+        #exec_after = "enable_notifications.sh";
+        chooser_type = "simple";
+        chooser_cmd = "${pkgs.slurp}/bin/slurp -f %o -or";
+      };
 
       security.polkit.enable = true;               # Polkit
       services.dbus.enable = lib.mkDefault true;   # Dbus go wrommm 
