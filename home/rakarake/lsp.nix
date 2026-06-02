@@ -17,7 +17,7 @@
     erlang-language-platform
     pyright                                               # Python
     outputs.packages.${pkgs.system}.gdshader-lsp          # Godot shading language
-    zls                                                   # Zig
+    #zls                                                   # Zig
     glsl_analyzer
   ];
 }
