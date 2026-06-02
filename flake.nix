@@ -153,6 +153,7 @@
         #    };
         #  });
         #})
+        #inputs.nvim-treesitter-main.overlays.default
       ];
 
       # Create packages from ./pkgs

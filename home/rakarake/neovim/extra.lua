@@ -10,13 +10,12 @@ vim.cmd('set mousemodel=extend')
 vim.cmd('filetype plugin on')
 vim.cmd('filetype indent plugin on')
 
--- Treesitter setup
-require'nvim-treesitter'.setup {
-  highlight = {
-    enable = true,
-    additional_vim_regex_highlighting = false,
-  },
-}
+vim.api.nvim_create_autocmd('FileType', {
+    pattern = { 'rust', 'python', 'javascript', 'typescript', 'haskell', 'go', 'c', 'c++', 'zig', 'c#', 'html', 'xml' },
+    callback = function()
+        vim.treesitter.start()
+    end,
+})
 
 vim.keymap.set('n', '<C-h>', '<cmd>Treewalker Left<cr>')
 vim.keymap.set('n', '<C-l>', '<cmd>Treewalker Right<cr>')
