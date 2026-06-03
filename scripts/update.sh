@@ -7,8 +7,8 @@
 
 # Run this script again but with no-inhibit
 if ! [ "$1" = "noinhibit" ]; then 
-  echo "we're gonna inhibit!"
   systemd-inhibit --what=sleep --why="System update" $0 noinhibit $@
+  exit 0
 else
   # Run the script like normal, shift arguments
   shift
