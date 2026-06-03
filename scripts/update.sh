@@ -30,10 +30,10 @@ cd ~/Projects/nixos-config \
 fi \
 && flatpak update -y \
 && if [ "$1" = "push" ]; then {
-     git add flake.lock \
+     git add . \
      && git commit -m 'flake update' \
      && git push
    } fi \
-&& notify-send "update finished"
+&& notify-send "update finished"\
 || notify-send "update FAILED!"
 
