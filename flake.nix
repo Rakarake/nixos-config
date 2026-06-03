@@ -33,7 +33,7 @@
     # Styling / Colorscheme / Font management
     stylix = {
       #url = "github:danth/stylix/release-26.05";
-      url = "github:danth/stylix/master";
+      url = "github:danth/stylix/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
