@@ -5,6 +5,15 @@
 # Also does a nix-store --optimize.
 # Can provide 'stealthy' as third argument to not do a nix flake update.
 
+# Run this script again but with no-inhibit
+if ! [ "$1" = "noinhibit" ]; then 
+  echo "we're gonna inhibit!"
+  systemd-inhibit --what=sleep --why="System update" $0 noinhibit $@
+else
+  # Run the script like normal, shift arguments
+  shift
+fi
+
 if ! ([ "$1" = "push" ] || [ "$1" = "pull" ]);
     then echo "argument 1: wether to push/pull, is needed"; exit 1;
 fi

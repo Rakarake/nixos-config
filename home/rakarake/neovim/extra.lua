@@ -11,7 +11,24 @@ vim.cmd('filetype plugin on')
 vim.cmd('filetype indent plugin on')
 
 vim.api.nvim_create_autocmd('FileType', {
-    pattern = { 'rust', 'python', 'javascript', 'typescript', 'haskell', 'go', 'c', 'c++', 'zig', 'c#', 'html', 'xml' },
+    pattern = {
+        'rust',
+        'python',
+        'javascript',
+        'typescript',
+        'haskell',
+        'go',
+        'c',
+        'c++',
+        'zig',
+        'c#',
+        'html',
+        'xml',
+        'lua',
+        'nix',
+        'json',
+        'yaml'
+    },
     callback = function()
         vim.treesitter.start()
     end,
@@ -28,9 +45,6 @@ vim.filetype.add({extension = {wgsl = "wgsl"}})
 -- Vimwiki
 vim.g.vimwiki_list = {{path = '~/Notes/', syntax = 'markdown', ext = '.md'}}
 vim.g.vimwiki_global_ext = 0
--- use telescope to find vimwiki pages
---vim.keymap.set('n', '<leader>fww', function() require'telescope.builtin'.find_files({ cwd = '~/Notes/', prompt_title = 'vimwiki' }) end)
---vim.keymap.set('n', '<leader>fwg', function() require'telescope.builtin'.live_grep({ cwd = '~/Notes/', prompt_title = 'vimwiki' }) end)
 
 -- Telescope
 require'telescope'.setup()
@@ -180,6 +194,7 @@ local lsps_with_default_config = {
     'zls',
     'hls',
     'glsl_analyzer',
+    'lua_ls',
 }
 
 -- Finally enable LSP:s
