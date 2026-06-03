@@ -24,7 +24,7 @@ fi
 cd ~/Projects/nixos-config \
 && git pull --no-rebase \
 && if [ "$1" = "push" ] && ! [ "$3" = "stealthy" ]; then nix flake update; fi \
-&& nh os switch . \
+&& nh os switch --elevation-strategy pkexec . \
 && if [ "$2" == "" ]; then nh home switch -c $USER@$HOSTNAME .;
                       else nh home switch -c $USER@$HOSTNAME-$2 .;
 fi \
