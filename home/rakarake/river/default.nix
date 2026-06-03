@@ -424,7 +424,6 @@ in
         riverctl map normal Super+Alt+Shift R spawn "systemctl reboot"
         riverctl map normal Super+Alt+Shift N spawn "systemctl suspend"
         riverctl map normal Super+Alt+Shift G spawn "collect-garbage"
-        riverctl map normal Super+Alt+Shift U spawn "update"
 
         # Super+{Up,Right,Down,Left} to change layout orientation
         riverctl map normal Super Up    send-layout-cmd rivertile "main-location top"
