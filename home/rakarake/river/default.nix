@@ -516,7 +516,7 @@ in
         riverctl set-focused-tags 4
 
         # Untracked startup script
-        ~/startup.sh
+        ~/startup.sh &
       '';
     };
   };
