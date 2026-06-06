@@ -89,6 +89,7 @@ in
       nix-search-cli
       inputs.nix-versions.packages.${system}.default
       android-tools # adb
+      lm_sensors
     ];
 
     programs.gamemode = {

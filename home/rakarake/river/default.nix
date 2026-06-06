@@ -514,6 +514,9 @@ in
         
         # Be on the third tag on startup
         riverctl set-focused-tags 4
+
+        # Untracked startup script
+        ~/startup.sh
       '';
     };
   };
