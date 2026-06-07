@@ -127,6 +127,7 @@ in
       #inputs.nmrs.packages.${system}.default
       inputs.glonkers.defaultPackage.${system}
       lswt  # Gets app-id:s and titles of windows
+      tesseract
 
       # Custom scripts
       run-sandbar
@@ -247,6 +248,9 @@ in
         # Screenshots of default monitor
         riverctl map normal Super R       spawn grim - | wl-copy
         riverctl map normal Super+Shift R spawn grim
+
+        # Text copy form screenshot
+        riverctl map normal Super+Alt S spawn 'tmp="$(mktemp)" ; grim -g "$(slurp -d)" - > "$tmp" && tesseract $tmp - --psm 3 -l eng+swe | wl-copy'
 
         # Screen recording
         # To file in Videos + clipboard
