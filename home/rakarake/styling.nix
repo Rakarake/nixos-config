@@ -14,14 +14,24 @@
       name = "Fira Code";
     };
     sizes = {
-      desktop = 11;
-      applications = 10;
-      terminal = 12;
+      desktop = 10;
+      applications = 9;
+      terminal = 11;
     };
   };
   home.packages = with pkgs; [
     adw-gtk3
   ];
+
+
+    fonts.fontconfig = {
+      enable = true;
+      antialiasing = true;
+      subpixelRendering = "rgb";
+      #subpixel.lcdfilter = "default";
+      hinting = "slight";
+    };
+
 
   # Qt
   qt = {
