@@ -54,16 +54,13 @@ require'telescope'.load_extension('dap')
 -- undotree
 vim.keymap.set('n', '<leader>ut', vim.cmd.UndotreeToggle)
 
--- Only files visible to git
-vim.keymap.set('n', '<leader>ff', '<cmd>Telescope git_files<cr>')
--- All files
-vim.keymap.set('n', '<leader>fv', '<cmd>Telescope find_files<cr>')
+-- telescope
+vim.keymap.set('n', '<leader>ff', '<cmd>Telescope find_files<cr>')
 vim.keymap.set('n', '<leader>fg', '<cmd>Telescope live_grep<cr>')
 vim.keymap.set('n', '<leader>fb', '<cmd>Telescope buffers<cr>')
 vim.keymap.set('n', '<leader>fh', '<cmd>Telescope help_tags<cr>')
 vim.keymap.set('n', '<leader>fd', '<cmd>Telescope lsp_document_symbols<cr>')
 vim.keymap.set('n', '<leader>fw', '<cmd>Telescope lsp_dynamic_workspace_symbols<cr>')
-
 
 -- Buffers
 vim.keymap.set('n', '<leader>bn', '<cmd>bnext<cr>')
