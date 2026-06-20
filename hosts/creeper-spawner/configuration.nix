@@ -207,6 +207,7 @@ in
   services.grafana = {
     enable = true;
     #domain = "grafana.rakarake.xyz";
+    settings.security.secret_key = "SW2YcwTIb9zpOOhoPsMm";
     settings.server = {
       http_port = localPorts.graphana;
       http_addr = "127.0.0.1";
