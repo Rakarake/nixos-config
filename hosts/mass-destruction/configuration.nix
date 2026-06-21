@@ -228,6 +228,7 @@ in
         proxyPass = "http://localhost:3236";
         extraConfig = ''
           auth_basic "Restricted";
+
           auth_basic_user_file ${config.age.secrets.mdf-login.path};
         '';
       };
