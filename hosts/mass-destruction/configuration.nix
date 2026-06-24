@@ -226,6 +226,11 @@ in
       };
       "/api" = {
         proxyPass = "http://localhost:3236";
+        # NOTE the secret is stored in the text file hashed with a salt,
+        # generated using htpasswd - appache tool
+        # `htpasswd -v temp MDF_Nation`, then copied
+        # into agenix manually. Clients are supposed to send the unhashed
+        # password.
         extraConfig = ''
           auth_basic "Restricted";
 
