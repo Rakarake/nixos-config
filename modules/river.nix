@@ -164,9 +164,6 @@
         dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river
         systemctl --user restart xdg-desktop-portal
 
-        # Swayidle
-        (while true; do (${swayidleCommand}); sleep 1; done) &" else ""
-
         # Emoji picker
         emote &  # Run in background
         riverctl map normal Super E spawn emote
