@@ -5,6 +5,7 @@
   in {
     imports = [
       self.homeModules.neovim
+      self.homeModules.bash
     ];
     # Browser
     programs.librewolf = {

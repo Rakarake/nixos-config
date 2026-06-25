@@ -1,5 +1,5 @@
 { inputs, ... }: {
-  flake.homeModules.bash = { prompt ? ''\[\033[1;32m\]\W\[\033[m\]\[\033[1;32m\] $\[\033[m\] '' }: { config, ... }: {
+  flake.homeModules.bash = { config, ... }: {
     programs.direnv = {
       enable = true;
       enableBashIntegration = true;
@@ -9,7 +9,7 @@
       enable = true;
       bashrcExtra = ''
         # Prompt
-        PS1='${prompt}'
+        PS1='${''\[\033[1;32m\]\W\[\033[m\]\[\033[1;32m\] $\[\033[m\] ''}'
         
         # vi-mode
         set -o vi

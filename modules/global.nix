@@ -4,7 +4,7 @@
     inputs.home-manager.flakeModules.home-manager
   ];
 
-  flake.homeModules.global = { lib, config, pkgs, user, hostname, inputs, ... }: let
+  flake.homeModules.global = { lib, config, pkgs, inputs, ... }: let
     environmentVariables = {
       EDITOR = lib.mkForce "nvim";
       VISUAL = "nvim";
@@ -90,9 +90,10 @@
       nd = "nix develop";
       rebuild = "${pkgs.nh}/bin/nh os switch .";
       rebuildboot = "${pkgs.nh}/bin/nh os boot .";
-      homebuild = "${pkgs.nh}/bin/nh home switch -c ${user}@${hostname} .";
-      lightbuild = "${pkgs.nh}/bin/nh home switch -c ${user}@${hostname}-light .";
-      darkbuild = "${pkgs.nh}/bin/nh home switch -c ${user}@${hostname}-dark .";
+      # idk if this works
+      homebuild = "${pkgs.nh}/bin/nh home switch -c ${config.home.username} .";
+      lightbuild = "${pkgs.nh}/bin/nh home switch -c ${config.home.username}-light .";
+      darkbuild = "${pkgs.nh}/bin/nh home switch -c ${config.home.username}-dark .";
     };
 
     # Tmux
