@@ -247,7 +247,7 @@
         "eden"
       ]);
   };
-  flake.nixosModules.desktop = { lib, config, pkgs, outputs, inputs, ... }: {
+  flake.nixosModules.desktop = { lib, config, pkgs, outputs, ... }: {
     environment.systemPackages = with pkgs; [
       libnotify # gives notify-send
       vim
@@ -488,10 +488,6 @@
       # Always allow unfree nix packages :(
       NIXPKGS_ALLOW_UNFREE = "1";
     };
-
-    # Bootloader
-    boot.loader.systemd-boot.enable = true;
-    boot.loader.efi.canTouchEfiVariables = true;
 
     # Use zen kernel
     #boot.kernelPackages = pkgs.linuxPackages_zen;

@@ -1,5 +1,5 @@
 { inputs, ... }: {
-  flake.homeModules.neovim = { config, lib, pkgs, inputs, outputs, ... }: {
+  flake.homeModules.neovim = { config, lib, pkgs, ... }: {
     # Mutable config with extra.lua!
     xdg.configFile."nvim/lua/extra.lua".source = config.lib.file.mkOutOfStoreSymlink /home/${config.home.username}/Projects/nixos-config/home/${config.home.username}/neovim/extra.lua;
 

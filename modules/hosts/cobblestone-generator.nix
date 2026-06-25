@@ -1,8 +1,9 @@
 # Desktop PC
 { inputs, self, ... }: {
-  flake.nixosConfigurations.cobblestone-generator = inputs.nixpkgs-stable.lib.nixosSystem {
+  flake.nixosConfigurations.cobblestone-generator = inputs.nixpkgs.lib.nixosSystem {
     modules = [
       self.nixosModules.global
+      self.nixosModules.desktop
       self.nixosModules.cobblestone-generator
       self.nixosModules.cobblestone-generator-hardware
       self.nixosModules.wlroots
@@ -35,7 +36,7 @@
       riverctl focus-output ${mainMonitor}
 
       # Local AI slopbot
-      OLLAMA_KEEP_ALIVE=5m ollama serve &
+      #OLLAMA_KEEP_ALIVE=5m ollama serve &
     '';
     pkgs = import inputs.nixpkgs { system = "x86_64-linux"; config.allowUnfree = true; };
    in inputs.home-manager.lib.homeManagerConfiguration {
@@ -54,7 +55,9 @@
     ];
     inherit pkgs;
   };
-  flake.nixosModules.cobblestone-generator = { pkgs, ssh-keys, inputs, pkgs-unstable, ... }: {
+  flake.nixosModules.cobblestone-generator = { pkgs, ... }: let
+    #pkgs-unstable = import inputs.nixpkgs-unstable { system = pkgs.stdenv.hostPlatform.system; config.allowUnfree = true; };
+  in {
     programs.river-classic.enable = true;
 
     programs.eden = {
@@ -104,19 +107,19 @@
     services.avahi.publish.userServices = true;
 
     # ssh into desktop
-    services.openssh = {
-      enable = true;
-      settings.PasswordAuthentication = false;
-      settings.KbdInteractiveAuthentication = false;
-      ports = [ 22 ];
-    };
-    users.users.rakarake.openssh.authorizedKeys.keys = ssh-keys.rakarake;
+    #services.openssh = {
+    #  enable = true;
+    #  settings.PasswordAuthentication = false;
+    #  settings.KbdInteractiveAuthentication = false;
+    #  ports = [ 22 ];
+    #};
+    #users.users.rakarake.openssh.authorizedKeys.keys = ssh-keys.rakarake;
 
     # Desktop specific packages
     environment.systemPackages = with pkgs; [
       lact  # GPU monitor/overclocking
       gpu-screen-recorder-gtk
-      pkgs-unstable.ollama-rocm
+      #pkgs-unstable.ollama-rocm
     ];
     programs.gpu-screen-recorder.enable = true;
 
@@ -126,6 +129,10 @@
       description = "Guest";
       extraGroups = [ "networkmanager" ];
     };
+
+    # Bootloader
+    boot.loader.systemd-boot.enable = true;
+    boot.loader.efi.canTouchEfiVariables = true;
   };
 
   flake.nixosModules.cobblestone-generator-hardware = { config, lib, pkgs, modulesPath, ... }: {
