@@ -1,5 +1,8 @@
 <img src="logo.png" width=25% height=25%>
 
+# NEW STRUCTURE
+- The usage of flake-parts and nix-tree.
+
 # NixOS Config
 This cool nixos system config uses flakes.
 

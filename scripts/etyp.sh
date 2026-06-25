@@ -1,8 +1,0 @@
-#!/bin/sh
-touch $1
-typst compile $1; xdg-open "${1%.*}.pdf" &
-2>/dev/null 1>/dev/null typst watch $1 &
-$EDITOR $1
-echo "closing background tasks"
-kill %1
-kill %2

@@ -1,6 +1,0 @@
-{
-  imports = [
-    ../live/configuration.nix
-  ];
-}
-

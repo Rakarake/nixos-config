@@ -1,9 +1,0 @@
-#!/bin/sh
-# Simple wrapper around "nix shell nixpkgs#"
-for var in "$@"
-do
-    acc="$acc nixpkgs#$var"
-done
-echo $acc
-NIXPKGS_ALLOW_UNFREE=1 nix shell --impure $acc
-

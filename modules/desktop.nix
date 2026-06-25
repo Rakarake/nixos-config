@@ -1,27 +1,252 @@
 # Main "system config", common desktop settings go here
-{
-  lib,
-  config,
-  pkgs,
-  outputs,
-  inputs,
-  ...
-}:
-with lib;
-let
-  cfg = config.cfg-desktop;
-  # For fun ports to play with
-  # React uses 3000 by default
-  #openPorts = [ 1337 1338 1339 3000 ];
-in
-{
-  options.cfg-desktop = {
-    enable = mkEnableOption "Common desktop configuration";
-  };
+{ inputs, self, ... }: {
+  flake.homeModules.desktop = { pkgs, lib, ... }: let
+    pkgs-unstable = import inputs.nixpkgs-unstable { system = pkgs.stdenv.hostPlatform.system; config.allowUnfree = true; };
+  in {
+    imports = [
+      self.homeModules.neovim
+    ];
+    # Browser
+    programs.librewolf = {
+      enable = true;
+      settings = {
+        # Vertical tabs
+        "sidebar.verticalTabs" = true;
+        # Restore previous session on startup
+        "browser.startup.page" = 3;
+        # Enable webgl
+        "webgl.disabled" = false;
+        # Don't clear cookies and history
+        "privacy.clearOnShutdown.history" = false;
+        "privacy.clearOnShutdown.cookies" = false;
+        "privacy.sanitize.sanitizeOnShutdown" = false;
+        # Force big scrollbars
+        "widget.non-native-theme.scrollbar.size.override" = 25;
+        # Middle mouse button scrolling
+        "general.autoScroll" = true;
 
-  config = mkIf cfg.enable {
-    # System Packages/Programs To search, run:
-    # $ nix search wget
+        # Change fingerprint protection.
+        #"privacy.fingerprintingProtection" = false;
+        "privacy.resistFingerprinting" = false;
+        #"privacy.fingerprintingProtection.overrides" = "+AllTargets,-CSSPrefersColorScheme";
+      };
+      profiles = {
+        default = {
+          name = "default";
+          isDefault = true;
+          extensions.force = true;
+        };
+      };
+    };
+
+    ## Terminal
+    programs.foot = {
+      settings.main.term = "xterm-256color";
+      enable = true;
+      server.enable = true;
+    };
+
+    xdg.userDirs.setSessionVariables = true;
+
+    # Ghci prompt
+    home.file.".ghci".source = ./rakarake/.ghci;
+
+    # SSH
+    programs.ssh = {
+      enable = true;
+      enableDefaultConfig = false;
+      #matchBlocks."ssh.rakarake.xyz".proxyCommand = "${pkgs.cloudflared}/bin/cloudflared access ssh --hostname ssh.rakarake.xyz";
+    };
+
+    # Pdf viewer
+    programs.zathura = {
+      enable = true;
+      options = {
+        selection-clipboard = "clipboard";
+      };
+    };
+
+    # Virt-manager error free
+    dconf.settings = {
+      "org/virt-manager/virt-manager/connections" = {
+        autoconnect = [ "qemu:///system" ];
+        uris = [ "qemu:///system" ];
+      };
+    };
+
+    # Mangohud
+    programs.mangohud = {
+      enable = true;
+      settings = {
+        toggle_hud = "Shift_L+F12";
+        toggle_preset = "Shift_L+F10";
+        toggle_hud_position = "Shift_L+F11";
+        toggle_fps_limit = "Shift_L+F1";
+        toggle_logging = "Shift_L+F2";
+        reload_cfg = "Shift_L+F4";
+        upload_log = "Shift_L+F3";
+
+        no_display = true;
+      };
+    };
+
+    nixpkgs.config.allowUnfree = true;
+
+    # User specific packages
+    home.packages = with pkgs; [
+      zathuraPkgs.zathura_pdf_mupdf
+      appimage-run
+      protonup-qt
+      kdePackages.filelight
+      nicotine-plus
+      #ardour
+      r2modman
+      #pkgs.osu-lazer
+      supertuxkart
+      gamescope
+      audacity
+      pkgsRocm.blender
+      inkscape
+      emote
+      gcolor3
+      handbrake
+      video-trimmer
+      easyeffects
+      file-roller
+      rclone
+      gnome-clocks
+      gnupg1
+      okteta
+      krita
+      gimp3
+      obsidian
+      hieroglyphic
+      strawberry
+      gdb
+      renderdoc
+      qbittorrent
+      discord
+      kdePackages.kate
+      kdePackages.kdenlive
+      pkgs-unstable.aichat
+      poppler-utils # Needed for pdf RAG
+      pkgs-unstable.opencode
+      pkgs-unstable.yt-dlp
+      pkgs-unstable.grayjay
+      pkgs-unstable.komikku
+      libresprite
+
+      # Emulators
+      fceux
+      dolphin-emu
+      #torzu
+      ryubing
+      (pkgs.retroarch.withCores (
+        cores: with cores; [
+          mesen
+          bsnes
+          citra
+          parallel-n64
+        ]
+      ))
+
+      # Minecraft time
+      prismlauncher
+      glfw3-minecraft
+      jdk21
+
+      # Hacking
+      skim
+      cargo-mommy
+    ];
+
+    programs.vesktop.enable = true;
+    programs.element-desktop.enable = true;
+
+    #age.secrets.rakarake-rclone-webdav = {
+    #  file = ../../secrets/rakarake-rclone-webdav.age;
+    #  mode = "600";
+    #};
+
+    # Moment
+    nixpkgs.config.permittedInsecurePackages = [
+      "olm-3.2.16" # For nheko matrix client
+      "fluffychat-linux-1.26.1" # Fluffychat
+      "electron-27.3.11"
+      "dotnet-runtime-7.0.20" # Vintage story
+      "mbedtls-2.28.10" # I have no idea
+    ];
+
+    xdg.desktopEntries =
+      let
+        # A desktop entry that launches an electron app with ozone turned on
+        electronWaylandApp = name: {
+          name = "${name} wayland";
+          exec = "${name} --ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-webrtc-pipewire-capturer";
+          icon = name;
+        };
+        qtWaylandApp = name: {
+          name = "${name} wayland";
+          exec = ''${name} -platform "wayland;xcb"'';
+          icon = name;
+        };
+        qtX11App = name: {
+          name = "${name} X11";
+          exec = ''${name} -platform "xcb"'';
+          icon = name;
+        };
+        # Takes a list of executable names and makes wayland desktop entries for them
+        makeElectronWaylandApps =
+          appNames:
+          (lib.listToAttrs (
+            map (name: {
+              name = "${name}Wayland";
+              value = electronWaylandApp name;
+            }) appNames
+          ));
+        makeQTWaylandApps =
+          appNames:
+          (lib.listToAttrs (
+            map (name: {
+              name = "${name}Wayland";
+              value = qtWaylandApp name;
+            }) appNames
+          ));
+        makeQTX11Apps =
+          appNames:
+          (lib.listToAttrs (
+            map (name: {
+              name = "${name}X11";
+              value = qtX11App name;
+            }) appNames
+          ));
+      in
+      {
+        godotSingleWindow = {
+          name = "Godot 4 Single Window";
+          genericName = "Godot 4 Single Window";
+          exec = "godot4 --single-window";
+        };
+        steamGamescope = {
+          name = "Steam Gamescope";
+          genericName = "Steam";
+          # -e enables steam integration, -f fullscreens the window by default
+          exec = "gamescope -W 1920 -H 1080 --adaptive-sync -f -r 600 -e -- steam";
+        };
+      }
+      // (makeElectronWaylandApps [
+        "code"
+        "codium"
+        "vesktop"
+      ])
+      // (makeQTWaylandApps [
+        "monero-wallet-gui"
+      ])
+      // (makeQTX11Apps [
+        "eden"
+      ]);
+  };
+  flake.nixosModules.desktop = { lib, config, pkgs, outputs, inputs, ... }: {
     environment.systemPackages = with pkgs; [
       libnotify # gives notify-send
       vim
@@ -90,6 +315,7 @@ in
       inputs.nix-versions.packages.${system}.default
       android-tools # adb
       lm_sensors
+      steam-run
     ];
 
     programs.gamemode = {

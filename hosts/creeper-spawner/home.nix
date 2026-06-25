@@ -1,3 +1,0 @@
-{
-  home-server.enable = true;
-}
