@@ -1,15 +1,7 @@
-{
-  config,
-  lib,
-  pkgs,
-  inputs,
-  outputs,
-  user,
-  ...
-}:
-{
+{ inputs, ... }: {
+  flake.homeModules.neovim = { config, lib, pkgs, ... }: {
     # Mutable config with extra.lua!
-    xdg.configFile."nvim/lua/extra.lua".source = config.lib.file.mkOutOfStoreSymlink /home/${user}/Projects/nixos-config/home/${user}/neovim/extra.lua;
+    xdg.configFile."nvim/lua/extra.lua".source = config.lib.file.mkOutOfStoreSymlink /home/${config.home.username}/Projects/nixos-config/modules/neovim/extra.lua;
 
     # Make sure undodir exists
     xdg.configFile."nvim/undodir/gamnangstyle".text = "whop\n";
@@ -107,4 +99,5 @@ vim.lsp.config('omnisharp', {
 vim.lsp.enable('omnisharp')
       '';
     };
+  };
 }

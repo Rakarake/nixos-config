@@ -55,21 +55,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Catppuccin
-    catppuccin = {
-      url = "github:catppuccin/nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # Xremap
     xremap = {
       url = "github:xremap/nix-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # Hyprland
-    hyprland = {
-      url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

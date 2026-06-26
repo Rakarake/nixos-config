@@ -4,6 +4,23 @@
     inputs.home-manager.flakeModules.home-manager
   ];
 
+  # Default rakarake home config.
+  flake.homeConfigurations."rakarake" = let
+    pkgs = import inputs.nixpkgs { system = "x86_64-linux"; config.allowUnfree = true; };
+  in inputs.home-manager.lib.homeManagerConfiguration {
+    modules = [
+      self.homeModules.global
+      self.homeModules.desktop
+      self.homeModules.styling
+      ({ lib, ... }: {
+        home.stateVersion = "23.05";
+        home.username = "rakarake";
+        home.homeDirectory = "/home/rakarake";
+      })
+    ];
+    inherit pkgs;
+  };
+
   flake.homeModules.global = { lib, config, pkgs, inputs, ... }: let
     environmentVariables = {
       EDITOR = lib.mkForce "nvim";

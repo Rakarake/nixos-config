@@ -218,19 +218,19 @@
         riverctl map normal Super+Alt B spawn "pkill --signal SIGINT wl-screenrec"
 
         # Persistent clipboard
-        wl-clip-persist --clipboard regular &
+        #wl-clip-persist --clipboard regular &
 
         # Clipboard manager
-        wl-paste --type text --watch cliphist store &
+        #wl-paste --type text --watch cliphist store &
 
         # Access clipboard manager
-        riverctl map normal Super C spawn "cliphist list | rofi -dmenu -p 'Clipboard history: ' | cliphist decode | wl-copy"
+        #riverctl map normal Super C spawn "cliphist list | rofi -dmenu -p 'Clipboard history: ' | cliphist decode | wl-copy"
 
         # Clear clipboard manager
-        riverctl map normal Super+Shift C spawn "cliphist wipe"
+        #riverctl map normal Super+Shift C spawn "cliphist wipe"
 
         # Open file in clipboard
-        riverctl map normal Super+Shift O spawn open-file-in-clipboard
+        #riverctl map normal Super+Shift O spawn open-file-in-clipboard
 
         # Setup srcpy for camera device /dev/vidoX
         riverctl map normal Super+Control+Shift C spawn '

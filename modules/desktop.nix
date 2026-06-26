@@ -263,7 +263,6 @@
       neo-cowsay
       inputs.queercat.defaultPackage.${system}
       powertop # Power usage inspector
-      kitty
       sl
       wl-clipboard
       tree
@@ -290,7 +289,7 @@
       nix-tree
       man-pages
       man-pages-posix
-      wineWowPackages.waylandFull
+      wineWow64Packages.waylandFull
       libreoffice-qt
       onlyoffice-desktopeditors
       hunspell # Libreoffice spelling

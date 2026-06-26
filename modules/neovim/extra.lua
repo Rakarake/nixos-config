@@ -1,5 +1,25 @@
 -- Neovim configuration
 
+
+-- ANSI theme
+local c = vim.g
+
+vim.o.termguicolors = true
+vim.cmd("hi clear")
+vim.g.colors_name = "ansi-soft"
+
+local hl = vim.api.nvim_set_hl
+
+hl(0, "Normal", { fg = c.terminal_color_15, bg = c.terminal_color_0 })
+hl(0, "Comment", { fg = c.terminal_color_8, italic = true })
+hl(0, "String", { fg = c.terminal_color_10 })
+hl(0, "Function", { fg = c.terminal_color_12 })
+hl(0, "Keyword", { fg = c.terminal_color_11 })
+hl(0, "Type", { fg = c.terminal_color_14 })
+hl(0, "Constant", { fg = c.terminal_color_9 })
+hl(0, "Visual", { bg = c.terminal_color_8 })
+
+
 -- Leader key
 vim.g.mapleader = ' '
 

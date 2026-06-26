@@ -6,11 +6,13 @@
       self.nixosModules.desktop
       self.nixosModules.cobblestone-generator
       self.nixosModules.cobblestone-generator-hardware
-      self.nixosModules.wlroots
+      #self.nixosModules.wlroots
+      self.nixosModules.kde
       inputs.eden.nixosModules.default
     ];
   };
-  flake.homeConfigurations."rakarake@cobblestone-generator" = let
+  flake.homeConfigurations."rakarake@cobblestone-generator" =
+  let
     mainMonitor = "DP-1";
     leftMonitor = "DP-2";
     monitorSetup = ''
@@ -39,26 +41,26 @@
       #OLLAMA_KEEP_ALIVE=5m ollama serve &
     '';
     pkgs = import inputs.nixpkgs { system = "x86_64-linux"; config.allowUnfree = true; };
-   in inputs.home-manager.lib.homeManagerConfiguration {
-    modules = [
-      inputs.stylix.homeModules.default
-      self.homeModules.global
-      self.homeModules.desktop
-      self.homeModules.river
-      self.homeModules.river
-      ({ lib, ... }: {
-        home.stateVersion = "23.05";
-        home.username = "rakarake";
-        home.homeDirectory = "/home/rakarake";
-        wayland.windowManager.river.extraConfig = lib.mkAfter extraConfig;
-      })
-    ];
-    inherit pkgs;
+   in
+    inputs.home-manager.lib.homeManagerConfiguration {
+     modules = [
+       self.homeModules.global
+       self.homeModules.desktop
+       self.homeModules.styling
+       #self.homeModules.river
+       ({ lib, ... }: {
+         home.stateVersion = "23.05";
+         home.username = "rakarake";
+         home.homeDirectory = "/home/rakarake";
+         #wayland.windowManager.river.extraConfig = lib.mkAfter extraConfig;
+       })
+     ];
+     inherit pkgs;
   };
   flake.nixosModules.cobblestone-generator = { pkgs, ... }: let
     #pkgs-unstable = import inputs.nixpkgs-unstable { system = pkgs.stdenv.hostPlatform.system; config.allowUnfree = true; };
   in {
-    programs.river-classic.enable = true;
+    networking.hostName = "cobblestone-generator";
 
     programs.eden = {
       enable = true;
