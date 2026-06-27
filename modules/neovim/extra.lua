@@ -17,7 +17,7 @@ hl(0, "Function", { fg = c.terminal_color_12 })
 hl(0, "Keyword", { fg = c.terminal_color_11 })
 hl(0, "Type", { fg = c.terminal_color_14 })
 hl(0, "Constant", { fg = c.terminal_color_9 })
-hl(0, "Visual", { bg = c.terminal_color_8 })
+hl(0, "Visual", { reverse = true })
 
 
 -- Leader key

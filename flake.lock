@@ -856,6 +856,29 @@
         "url": "https://cgit.rory.gay/nix/OOYE-module.git"
       }
     },
+    "plasma-manager": {
+      "inputs": {
+        "home-manager": [
+          "home-manager"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1775856943,
+        "narHash": "sha256-b7Mp7P+q2Md5AGt4rjHfMcBykzMumFTen10ST++AuTU=",
+        "owner": "nix-community",
+        "repo": "plasma-manager",
+        "rev": "a524a6160e6df89f7673ba293cf7d78b559eb1a5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "plasma-manager",
+        "type": "github"
+      }
+    },
     "queercat": {
       "inputs": {
         "flake-utils": "flake-utils_6",
@@ -895,6 +918,7 @@
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "out-of-your-element": "out-of-your-element",
+        "plasma-manager": "plasma-manager",
         "queercat": "queercat",
         "stylix": "stylix",
         "xremap": "xremap"

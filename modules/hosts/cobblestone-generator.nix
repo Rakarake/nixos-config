@@ -47,6 +47,7 @@
        self.homeModules.global
        self.homeModules.desktop
        self.homeModules.styling
+       self.homeModules.kde
        #self.homeModules.river
        ({ lib, ... }: {
          home.stateVersion = "23.05";
