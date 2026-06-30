@@ -7,6 +7,7 @@
       self.homeModules.neovim
       self.homeModules.bash
     ];
+
     # Browser
     programs.librewolf = {
       enable = true;

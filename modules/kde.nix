@@ -3,10 +3,16 @@
     services = {
       desktopManager.plasma6.enable = true;
       displayManager.plasma-login-manager.enable = true;
+      blueman.enable = true;
     };   
+    hardware.bluetooth = {
+      enable = true;
+      powerOnBoot = false;
+    };
 
     environment.systemPackages = with pkgs; [
       kdePackages.oxygen
+      kdePackages.oxygen-icons
       tesseract
       scrcpy
     ];
