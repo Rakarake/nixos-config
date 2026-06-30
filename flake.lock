@@ -534,6 +534,27 @@
         "type": "github"
       }
     },
+    "home-manager-unstable": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs-unstable"
+        ]
+      },
+      "locked": {
+        "lastModified": 1782704057,
+        "narHash": "sha256-G1I1gd32F7mp9LAe1DaZ4ZL7NX5gyiKwdCMwro1Vrck=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "868d0a692de703c2de98fab61968e4e310b7c28e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "ref": "release-26.05",
+        "repo": "home-manager",
+        "type": "github"
+      }
+    },
     "home-manager_2": {
       "inputs": {
         "nixpkgs": [
@@ -909,6 +930,7 @@
         "glonkers": "glonkers",
         "grompt": "grompt",
         "home-manager": "home-manager_2",
+        "home-manager-unstable": "home-manager-unstable",
         "import-tree": "import-tree",
         "jovian-nixos": "jovian-nixos",
         "mdf-bouncer": "mdf-bouncer",

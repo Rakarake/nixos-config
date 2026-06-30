@@ -1,6 +1,6 @@
 # Desktop PC
 { inputs, self, ... }: {
-  flake.nixosConfigurations.cobblestone-generator = inputs.nixpkgs.lib.nixosSystem {
+  flake.nixosConfigurations.cobblestone-generator = inputs.nixpkgs-unstable.lib.nixosSystem {
     modules = [
       self.nixosModules.global
       self.nixosModules.desktop
@@ -42,7 +42,7 @@
     '';
     pkgs = import inputs.nixpkgs { system = "x86_64-linux"; config.allowUnfree = true; };
    in
-    inputs.home-manager.lib.homeManagerConfiguration {
+    inputs.home-manager-unstable.lib.homeManagerConfiguration {
      modules = [
        self.homeModules.global
        self.homeModules.desktop

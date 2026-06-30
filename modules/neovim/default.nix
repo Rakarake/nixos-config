@@ -15,6 +15,32 @@
     # Snippets
     xdg.configFile."nvim/snippets/cs.lua".source = ./snippets/cs.lua;
 
+    # Some lsp:s and ripgrep which is needed for telescope's grepper
+    home.packages = with pkgs; [
+      ripgrep                        
+      vscode-langservers-extracted
+      nil
+      lua-language-server
+      tinymist
+      pyright
+      glsl_analyzer
+      (pkgs.rustPlatform.buildRustPackage {
+        name = "gdshader-lsp";
+        version = "git";
+        src = pkgs.fetchFromGitHub {
+          owner = "GodOfAvacyn";
+          repo = "gdshader-lsp";
+          rev = "f3847df8a17cd66674b2ec058c020d80ff7d4f8f";
+          hash = "sha256-kzZhHIRXW3m3n5TlNRDQO9XsDoSi59N7+4NeFKtauEM=";
+        };
+        cargoHash = "sha256-FP3SMcafLbz3jqKTunCi4Z1CeZADLmmsIyWHQICmi8o=";
+        nativeBuildInputs = [
+        ];
+        buildInputs = [
+        ];
+      })
+    ];
+
     # Neovim config
     programs.neovim = {
       enable = true;
@@ -49,6 +75,7 @@
         rustaceanvim
         # Agda mode
         cornelis
+        # Nix LSP
       ];
       initLua = ''
 -- We want to import the mutable extra.lua file here
