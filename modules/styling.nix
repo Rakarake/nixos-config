@@ -7,7 +7,7 @@
     # Styling
     stylix.polarity = "light";
     stylix.enable = true;
-    stylix.autoEnable = false;
+    stylix.autoEnable = true;
     stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-latte.yaml";
     stylix.image = ./rakarake/touhou-wallpaper.jpg;
     stylix.cursor = {
@@ -42,15 +42,13 @@
     #stylix.targets.gtk.colors.enable = false;
 
     # Qt
-    #qt = {
-    #  enable = true;
-    #  #platformTheme.name = "kvantum";
-    #  #style = {
-    #  #  name = "kvantum";
-    #  #};
-    #};
-    #catppuccin.kvantum.enable = true;
-    stylix.targets.qt.enable = false;
+    qt = {
+      enable = true;
+      #platformTheme.name = "kvantum";
+      #style = {
+      #  name = "kvantum";
+      #};
+    };
 
     # Home manager option needed???
     #qt.enable = true;
@@ -80,6 +78,8 @@
     # Neovim
     stylix.targets.neovim.enable = false;
     #catppuccin.nvim.enable = true;
+
+    #stylix.targets.inkscape.enable = false;
 
     #stylix.targets.rofi.enable = false;
     #catppuccin.rofi.enable = true;

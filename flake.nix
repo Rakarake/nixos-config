@@ -110,10 +110,24 @@
       inputs.home-manager.follows = "home-manager";
     };
 
+    noctalia = {
+      url = "github:noctalia-dev/noctalia";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     flake-parts.url = "github:hercules-ci/flake-parts";
     import-tree.url = "github:denful/import-tree";
   };
   outputs = inputs:
-    inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
+    inputs.flake-parts.lib.mkFlake {
+      inherit inputs;
+    } {
+      _module.args = {
+        dotfiles = "/home/rakarake/Projects/nixos-config";
+      };
+      imports = [
+        (inputs.import-tree ./modules)
+      ];
+    };
 }
 

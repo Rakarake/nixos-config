@@ -6,8 +6,8 @@
       self.nixosModules.desktop
       self.nixosModules.cobblestone-generator
       self.nixosModules.cobblestone-generator-hardware
-      #self.nixosModules.wlroots
-      self.nixosModules.kde
+      self.nixosModules.hyprland
+      #self.nixosModules.kde
       inputs.eden.nixosModules.default
     ];
   };
@@ -47,7 +47,8 @@
        self.homeModules.global
        self.homeModules.desktop
        self.homeModules.styling
-       self.homeModules.kde
+       #self.homeModules.kde
+       self.homeModules.hyprland
        #self.homeModules.river
        ({ lib, ... }: {
          home.stateVersion = "23.05";

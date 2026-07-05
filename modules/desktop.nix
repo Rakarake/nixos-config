@@ -177,6 +177,7 @@
       "electron-27.3.11"
       "dotnet-runtime-7.0.20" # Vintage story
       "mbedtls-2.28.10" # I have no idea
+      "pnpm-10.29.2"
     ];
 
     xdg.desktopEntries =

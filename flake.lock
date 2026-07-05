@@ -832,6 +832,26 @@
         "type": "github"
       }
     },
+    "noctalia": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1783255886,
+        "narHash": "sha256-tM2xlAa0C0NoQ2VYDYbnOo3GOTPq88pNkISIbBwBSyI=",
+        "owner": "noctalia-dev",
+        "repo": "noctalia",
+        "rev": "89e713e6581c5e9dfcdbf7c6c8d6273317c8b83c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "noctalia-dev",
+        "repo": "noctalia",
+        "type": "github"
+      }
+    },
     "nur": {
       "inputs": {
         "flake-parts": [
@@ -939,6 +959,7 @@
         "nix-vscode-extensions": "nix-vscode-extensions",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-unstable": "nixpkgs-unstable",
+        "noctalia": "noctalia",
         "out-of-your-element": "out-of-your-element",
         "plasma-manager": "plasma-manager",
         "queercat": "queercat",
