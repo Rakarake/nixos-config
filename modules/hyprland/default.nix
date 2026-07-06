@@ -18,16 +18,16 @@
       enable = true;
 
       settings = { # This may also be a string or path to a .toml file.
-        theme = {
-          mode = "dark";
-          source = "builtin";
-          builtin = "Catppuccin";
-        };
+        #theme = {
+        #  mode = "dark";
+        #  source = "builtin";
+        #  builtin = "Catppuccin";
+        #};
 
-        wallpaper = {
-          enabled = true;
-          default.path = ../rakarake/wallpaper.png;
-        };
+        #wallpaper = {
+        #  enabled = true;
+        #  default.path = ../rakarake/wallpaper.png;
+        #};
         bar.order = [ "main" ];
         bar.main = {
           margin_edge        = 0;
@@ -40,6 +40,7 @@
       kitty
       pcmanfm-qt
     ];
+    programs.rofi.enable = true;
     xdg.configFile."hypr/extra.lua" = {
       source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/modules/hyprland/extra.lua";
       force = true;

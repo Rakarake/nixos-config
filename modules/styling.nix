@@ -2,7 +2,7 @@
   # General styling module
   flake.homeModules.styling = { pkgs, config, ... }: {
     imports = [
-      inputs.stylix.homeModules.stylix
+      inputs.stylix-unstable.homeModules.stylix
     ];
     # Styling
     stylix.polarity = "light";
@@ -71,6 +71,8 @@
 
     # Mangohud
     stylix.targets.mangohud.enable = false;
+
+    stylix.targets.noctalia.enable = true;
 
     # Hyprland
     #stylix.targets.hyprland.enable = false;

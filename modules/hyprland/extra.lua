@@ -12,6 +12,13 @@ hl.monitor({
   scale = 1,
 })
 
+-- Laptop montior
+hl.monitor({
+  output = "eDP-1",
+  mode = "1920x1080@60",
+  scale = 1,
+})
+
 hl.config({
     master = {
         new_on_top = true,
@@ -24,7 +31,8 @@ hl.config({
 local mainMod = "SUPER"
 local terminal = "kitty"
 hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd(terminal))
-hl.bind(mainMod .. " + Y", hl.dsp.exec_cmd("librewolf"))
+hl.bind(mainMod .. " + y", hl.dsp.exec_cmd("librewolf"))
+hl.bind(mainMod .. " + f", hl.dsp.exec_cmd("pcmanfm-qt"))
 
 -- Resizing
 hl.bind(mainMod .. " + h",  hl.dsp.window.resize({ x = "-80", y = 0, relative = true }), { repeating = true })
@@ -55,8 +63,11 @@ end
 
 hl.bind(mainMod .. " + b", hl.dsp.window.fullscreen({ action = "toggle" }))
 
+-- TODO check if this works
 hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
 hl.bind(mainMod .. " + mouse_up",   hl.dsp.focus({ workspace = "e-1" }))
+
+hl.bind(mainMod .. " + d",   hl.dsp.exec_cmd("rofi -show drun"))
 
 hl.config({
     input = {
@@ -71,7 +82,9 @@ hl.config({
         sensitivity = 0, -- -1.0 - 1.0, 0 means no modification.
 
         touchpad = {
-            natural_scroll = false,
+            natural_scroll = true,
+            middle_button_emulation = true,
+            clickfinger_behavior = true,
         },
     },
 })
