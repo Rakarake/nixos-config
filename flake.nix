@@ -79,7 +79,7 @@
     # Discord to matrix bridge
     out-of-your-element = {
       url = "git+https://cgit.rory.gay/nix/OOYE-module.git";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
     };
     
     # NetworkManager GUI
