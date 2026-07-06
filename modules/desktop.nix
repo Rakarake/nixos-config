@@ -137,6 +137,7 @@
       pkgs-unstable.grayjay
       pkgs-unstable.komikku
       libresprite
+      dragon-drop
 
       # Emulators
       fceux
