@@ -32,10 +32,17 @@ hl.config({
 hl.animation({leaf = "global", enabled = false})
 
 local mainMod = "SUPER"
-local terminal = "kitty"
+local terminal = "foot"
 hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. " + y", hl.dsp.exec_cmd("librewolf"))
 hl.bind(mainMod .. " + f", hl.dsp.exec_cmd("pcmanfm-qt"))
+
+-- Magnifier
+hl.bind(mainMod .. " + SHIFT + m", hl.dsp.exec_cmd('TMP=$(mktemp); grim -g "$(slurp)" - > $TMP; imv -u nearest_neighbour $TMP; rm $TMP'))
+
+--riverctl map normal Super+Shift M spawn '
+--  TMP=$(mktemp); grim -g "$(slurp)" - > $TMP; imv -u nearest_neighbour $TMP; rm $TMP
+--'
 
 -- Resizing
 hl.bind(mainMod .. " + h",  hl.dsp.window.resize({ x = "-80", y = 0, relative = true }), { repeating = true })
@@ -61,11 +68,12 @@ hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
 for i = 1, 10 do
     local key = i % 10 -- 10 maps to key 0
-    hl.workspace_rule({ workspace = "DP-1/" .. tostring(i), monitor = "DP-1", default = true })
-    hl.workspace_rule({ workspace = "DP-2/" .. tostring(i), monitor = "DP-2", default = true })
-    hl.bind(mainMod .. " + " .. key,             hl.dsp.focus({ workspace = "r~" .. tostring(i)}))
-    hl.bind(mainMod .. " + SHIFT + " .. key,     hl.dsp.window.move({ workspace = "r~" .. tostring(i) }))
+    hl.workspace_rule({ workspace = "r~" .. tostring(i), persistent = true })
+    hl.bind(mainMod .. " + " .. key,             hl.dsp.focus({ workspace = "r~" .. tostring(key)}))
+    hl.bind(mainMod .. " + SHIFT + " .. key,     hl.dsp.window.move({ workspace = "r~" .. tostring(key) }))
 end
+hl.workspace_rule({ workspace = "DP-1/" .. 2, monitor = "DP-1", default = true })
+hl.workspace_rule({ workspace = "DP-1/" .. 1, monitor = "DP-2", default = true })
 
 hl.bind(mainMod .. " + b", hl.dsp.window.fullscreen({ action = "toggle" }))
 
@@ -75,7 +83,15 @@ hl.bind(mainMod .. " + mouse_up",   hl.dsp.focus({ workspace = "e-1" }))
 
 hl.bind(mainMod .. " + d",   hl.dsp.exec_cmd("rofi -show drun"))
 
---hl.bind(mainMod .. " + p",   hl.dsp.exec_cmd("dir=$(ls ~/Projects/ | rofi -dmenu -p "Choose project: ") && foot sh -c "cd ~/Projects/$dir && tmux attach -t $dir || tmux new -s $dir""))
+-- Project selector
+hl.bind(mainMod .. " + p",   hl.dsp.exec_cmd('dir=$(ls ~/Projects/ | rofi -dmenu -p "Choose project: ") && foot sh -c "cd ~/Projects/$dir && tmux attach -t $dir || tmux new -s $dir"'))
+-- Open notes
+hl.bind(mainMod .. "+ SHIFT + p",   hl.dsp.exec_cmd('foot sh -c "cd ~/Notes/ && tmux attach -t notes || tmux new -s notes $EDITOR"'))
+
+hl.bind(mainMod .. " + s",   hl.dsp.exec_cmd('grim -g "$(slurp -d)" - | wl-copy'))
+hl.bind(mainMod .. " + r",   hl.dsp.exec_cmd('grim - | wl-copy'))
+hl.bind(mainMod .. "+ SHIFT + r",   hl.dsp.exec_cmd('grim'))
+hl.bind(mainMod .. "+ ALT + s",   hl.dsp.exec_cmd('tmp="$(mktemp)" ; grim -g "$(slurp -d)" - > "$tmp" && tesseract $tmp - --psm 3 -l eng+swe | wl-copy'))
 
 hl.config({
     general = {

@@ -14,15 +14,32 @@
       inputs.noctalia.homeModules.default
     ];
 
-    programs.kitty = {
+    home.packages = with pkgs; [
+      kitty
+      pcmanfm-qt
+      imv
+      
+      grim # Screenshot utility
+      wl-screenrec # Screen recorder
+      slurp # Screen "area" picker utility
+      pamixer # Used for panel sound control
+      alsa-utils # keyboard volume control
+      pulseaudio # for pactl command
+      playerctl # MPRIS global player controller
+      swayidle # Idle inhibitor, knows when computer is ueseless
+      brightnessctl # Laptop brighness controls
+      emote # emoji picker
+      hyprpicker # Color picker
+      inputs.glonkers.defaultPackage.${system}
+      lswt  # Gets app-id:s and titles of windows
+      tesseract
+    ];
+
+    # Terminal
+    programs.foot = {
+      settings.main.term = "xterm-256color";
       enable = true;
-      extraConfig = ''
-        term xterm-kitty
-        enable_audio_bell no
-        disable_ligatures always
-        cursor_shape block
-        shell_integration disabled
-      '';
+      server.enable = true;
     };
 
     programs.noctalia = {
@@ -43,14 +60,29 @@
         bar.main = {
           margin_edge        = 0;
           padding = 0;
+          center = [];
+          end = [
+              "media"
+              "tray"
+              "notifications"
+              "clipboard"
+              "network"
+              "bluetooth"
+              "volume"
+              "brightness"
+              "battery"
+              "control-center"
+              "session"
+              "clock"
+          ];
+          margin_ends = 0;
+          radius = 0;
+          shadow = false;
+          start = [ "workspaces" ];
+          thickness = 22;
         };
       };
     };
-
-    home.packages = with pkgs; [
-      kitty
-      pcmanfm-qt
-    ];
     programs.rofi.enable = true;
     xdg.configFile."hypr/extra.lua" = {
       source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/modules/hyprland/extra.lua";
