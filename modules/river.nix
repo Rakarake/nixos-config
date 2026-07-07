@@ -63,6 +63,14 @@
       && notify-send "Done collecting garbage."
     '';
   in {
+
+    # Terminal
+    programs.foot = {
+      settings.main.term = "xterm-256color";
+      enable = true;
+      server.enable = true;
+    };
+
     home.packages = with pkgs; [
       grim # Screenshot utility
       wl-screenrec # Screen recorder

@@ -14,6 +14,17 @@
       inputs.noctalia.homeModules.default
     ];
 
+    programs.kitty = {
+      enable = true;
+      extraConfig = ''
+        term xterm-kitty
+        enable_audio_bell no
+        disable_ligatures always
+        cursor_shape block
+        shell_integration disabled
+      '';
+    };
+
     programs.noctalia = {
       enable = true;
 

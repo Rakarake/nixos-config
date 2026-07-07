@@ -22,11 +22,14 @@ hl.monitor({
 hl.config({
     master = {
         new_on_top = true,
+        new_status = "master",
     },
     general = {
         layout = "master",
     },
 })
+
+hl.animation({leaf = "global", enabled = false})
 
 local mainMod = "SUPER"
 local terminal = "kitty"
@@ -72,7 +75,24 @@ hl.bind(mainMod .. " + mouse_up",   hl.dsp.focus({ workspace = "e-1" }))
 
 hl.bind(mainMod .. " + d",   hl.dsp.exec_cmd("rofi -show drun"))
 
+--hl.bind(mainMod .. " + p",   hl.dsp.exec_cmd("dir=$(ls ~/Projects/ | rofi -dmenu -p "Choose project: ") && foot sh -c "cd ~/Projects/$dir && tmux attach -t $dir || tmux new -s $dir""))
+
 hl.config({
+    general = {
+        border_size = 3,
+        gaps_in = 0,
+        gaps_out = 0,
+        resize_on_border = true,
+        hover_icon_on_border = false,
+    },
+    decoration = {
+      blur = {
+          enabled = false,
+      },
+      shadow = {
+          enabled = false,
+      },
+    },
     input = {
         kb_layout  = "se",
         kb_variant = "us",
@@ -90,18 +110,15 @@ hl.config({
             clickfinger_behavior = true,
         },
     },
+    misc = {
+        force_default_wallpaper = 0,
+        disable_hyprland_logo   = true,
+    },
 })
 
 hl.gesture({
     fingers = 3,
     direction = "horizontal",
     action = "workspace"
-})
-
-hl.config({
-    misc = {
-        force_default_wallpaper = 0,
-        disable_hyprland_logo   = true,
-    },
 })
 

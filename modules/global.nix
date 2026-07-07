@@ -88,7 +88,7 @@
       ks = "kitten ssh";
 
       # Swag
-      uwu = "${pkgs.fastfetch}/bin/fastfetch --logo ${self}/home/rakarake/sillyascii";
+      uwu = "${pkgs.fastfetch}/bin/fastfetch --logo ${self}/modules/rakarake/sillyascii";
       
       # Open new terminal in directory
       gg = "gnome-terminal . &";

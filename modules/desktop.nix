@@ -41,13 +41,6 @@
       };
     };
 
-    ## Terminal
-    programs.foot = {
-      settings.main.term = "xterm-256color";
-      enable = true;
-      server.enable = true;
-    };
-
     xdg.userDirs.setSessionVariables = true;
 
     # Ghci prompt
