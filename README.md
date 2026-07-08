@@ -50,6 +50,8 @@ if that doesn't work then try:
 7. Set up the config in the git
 8. Pull and rebuild (🙏🙏🙏)
 
+## Xmage Config
+Config may break during update. In the config file config.xml (in .../mage-server/config/) the server address is the global ip/domain.
 
 ## Troubleshooting
 ### When switching from Plasma to Gnome
