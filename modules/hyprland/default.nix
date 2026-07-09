@@ -1,6 +1,9 @@
 { inputs, dotfiles, ... }: {
   flake.nixosModules.hyprland = { lib, system, config, pkgs, ... }: {
     hardware.bluetooth.enable = true;
+    services.power-profiles-daemon.enable = true;
+    # Batter stats I think
+    services.upower.enable = true;
     environment.systemPackages = [
       inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
     ];
@@ -46,6 +49,11 @@
       enable = true;
 
       settings = { # This may also be a string or path to a .toml file.
+        hooks = {
+          battery_discharging = "noctalia msg power-set balanced";
+          battery_charging = "noctalia msg power-set performance";
+          battery_plugged = "noctalia msg power-set performance";
+        };
         #theme = {
         #  mode = "dark";
         #  source = "builtin";

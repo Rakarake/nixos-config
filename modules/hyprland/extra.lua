@@ -77,11 +77,53 @@ hl.workspace_rule({ workspace = "DP-1/" .. 1, monitor = "DP-2", default = true }
 
 hl.bind(mainMod .. " + b", hl.dsp.window.fullscreen({ action = "toggle" }))
 
+-- Media keys
+local ipc = "noctalia msg"
+hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd(ipc .. " volume-up"))
+hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd(ipc .. " volume-down"))
+hl.bind(mainMod .. "+ ALT + k", hl.dsp.exec_cmd(ipc .. " volume-up"))
+hl.bind(mainMod .. "+ ALT + j", hl.dsp.exec_cmd(ipc .. " volume-down"))
+hl.bind("XF86AudioMute", hl.dsp.exec_cmd(ipc .. " volume-mute"))
+hl.bind(mainMod .. "+ ALT + m", hl.dsp.exec_cmd(ipc .. " volume-mute"))
+hl.bind(mainMod .. "+ ALT + n", hl.dsp.exec_cmd(ipc .. " mic-mute"))
+hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd(ipc .. " brightness-up"))
+hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd(ipc .. " brightness-down"))
+hl.bind(mainMod .. "+ ALT + p", hl.dsp.exec_cmd(ipc .. " media toggle"))
+hl.bind(mainMod .. "+ ALT + l", hl.dsp.exec_cmd(ipc .. " media next"))
+hl.bind(mainMod .. "+ ALT + h", hl.dsp.exec_cmd(ipc .. " media previous"))
+
+-- Network
+hl.bind(mainMod .. "+ m", hl.dsp.exec_cmd(ipc .. " panel-toggle control-center network"))
+hl.bind(mainMod .. "+ CTRL + m", hl.dsp.exec_cmd(ipc .. " panel-toggle control-center bluetooth"))
+
+-- Lock screen
+hl.bind(mainMod .. "+ ESCAPE", hl.dsp.exec_cmd(ipc .. " session lock"))
+hl.bind(mainMod .. "+ ALT + SHIFT + s", hl.dsp.exec_cmd(ipc .. " session shutdown"))
+hl.bind(mainMod .. "+ ALT + SHIFT + r", hl.dsp.exec_cmd(ipc .. " session reboot"))
+hl.bind(mainMod .. "+ ALT + SHIFT + n", hl.dsp.exec_cmd(ipc .. " session suspend"))
+hl.bind(mainMod .. "+ ALT + SHIFT + e", hl.dsp.exec_cmd(ipc .. " session logout"))
+
+-- Laptop lid close
+hl.bind("switch:Lid Switch", hl.dsp.exec_cmd(ipc .. " session lock"), { locked = true })
+
+-- clipboard
+hl.bind(mainMod .. "+ c", hl.dsp.exec_cmd(ipc .. " panel-toggle clipboard"))
+hl.bind(mainMod .. "+ SHIFT + c", hl.dsp.exec_cmd(ipc .. " clipboard-clear"))
+
+hl.bind(mainMod .. "+ e", hl.dsp.exec_cmd("emote"))
+
+-- Notifications
+hl.bind(mainMod .. "+ n", hl.dsp.exec_cmd(ipc .. " notification-clear-active"))
+hl.bind(mainMod .. "+ SHIFT + n", hl.dsp.exec_cmd(ipc .. " notification-clear-history"))
+hl.bind(mainMod .. "+ ALT + d", hl.dsp.exec_cmd(ipc .. " notification-dnd-toggle"))
+hl.bind(mainMod .. "+ CTRL + n", hl.dsp.exec_cmd(ipc .. " panel-toggle control-center notifications"))
+
 -- TODO check if this works
 hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
 hl.bind(mainMod .. " + mouse_up",   hl.dsp.focus({ workspace = "e-1" }))
 
 hl.bind(mainMod .. " + d",   hl.dsp.exec_cmd("rofi -show drun"))
+hl.bind(mainMod .. " + SHIFT + d",   hl.dsp.exec_cmd("rofi -show run"))
 
 -- Project selector
 hl.bind(mainMod .. " + p",   hl.dsp.exec_cmd('dir=$(ls ~/Projects/ | rofi -dmenu -p "Choose project: ") && foot sh -c "cd ~/Projects/$dir && tmux attach -t $dir || tmux new -s $dir"'))
@@ -137,4 +179,9 @@ hl.gesture({
     direction = "horizontal",
     action = "workspace"
 })
+
+hl.on("hyprland.start", function()
+  hl.exec_cmd("emote")
+  hl.exec_cmd("noctalia")
+end)
 
