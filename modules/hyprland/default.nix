@@ -64,6 +64,15 @@
         #  enabled = true;
         #  default.path = ../rakarake/wallpaper.png;
         #};
+        widget = {
+          workspaces = {
+            minimal = true;
+          };
+          date = {
+            format = "{:%F %A vecka %V}";
+          };
+        };
+
         bar.order = [ "main" ];
         bar.main = {
           margin_edge        = 0;
@@ -82,6 +91,7 @@
               "control-center"
               "session"
               "clock"
+              "date"
           ];
           margin_ends = 0;
           radius = 0;
