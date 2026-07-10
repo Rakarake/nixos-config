@@ -164,7 +164,7 @@ hl.config({
 
         touchpad = {
             natural_scroll = true,
-            middle_button_emulation = true,
+            --middle_button_emulation = true,
             clickfinger_behavior = true,
         },
     },
