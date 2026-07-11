@@ -184,6 +184,7 @@ hl.gesture({
 
 hl.on("hyprland.start", function()
   hl.exec_cmd("emote")
+  hl.exec_cmd("easyeffects")
   hl.exec_cmd("noctalia")
 end)
 
