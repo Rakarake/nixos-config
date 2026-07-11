@@ -131,7 +131,9 @@ hl.bind(mainMod .. " + p",   hl.dsp.exec_cmd('dir=$(ls ~/Projects/ | rofi -dmenu
 hl.bind(mainMod .. "+ SHIFT + p",   hl.dsp.exec_cmd('foot sh -c "cd ~/Notes/ && tmux attach -t notes || tmux new -s notes $EDITOR"'))
 
 hl.bind(mainMod .. " + s",   hl.dsp.exec_cmd('grim -g "$(slurp -d)" - | wl-copy'))
-hl.bind(mainMod .. " + r",   hl.dsp.exec_cmd('grim - | wl-copy'))
+hl.bind(mainMod .. " + t",   hl.dsp.exec_cmd('grim -o eDP-1 - | wl-copy'))
+hl.bind(mainMod .. " + r",   hl.dsp.exec_cmd('grim -o DP-2 - | wl-copy'))
+hl.bind(mainMod .. " + t",   hl.dsp.exec_cmd('grim -o DP-1 - | wl-copy'))
 hl.bind(mainMod .. "+ SHIFT + r",   hl.dsp.exec_cmd('grim'))
 hl.bind(mainMod .. "+ ALT + s",   hl.dsp.exec_cmd('tmp="$(mktemp)" ; grim -g "$(slurp -d)" - > "$tmp" && tesseract $tmp - --psm 3 -l eng+swe | wl-copy'))
 
