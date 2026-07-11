@@ -68,12 +68,11 @@ hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
 for i = 1, 10 do
     local key = i % 10 -- 10 maps to key 0
-    hl.workspace_rule({ workspace = "r~" .. tostring(i), persistent = true })
-    hl.bind(mainMod .. " + " .. key,             hl.dsp.focus({ workspace = "r~" .. tostring(key)}))
-    hl.bind(mainMod .. " + SHIFT + " .. key,     hl.dsp.window.move({ workspace = "r~" .. tostring(key) }))
+    hl.workspace_rule({ workspace = tostring(i), default_name = tostring(i), monitor = "DP-1", persistent = true })
+    hl.workspace_rule({ workspace = tostring(i + 10), default_name = tostring(i), monitor = "DP-2", persistent = true })
+    hl.bind(mainMod .. " + " .. key,             hl.dsp.focus({ workspace = "r~" .. tostring(i)}))
+    hl.bind(mainMod .. " + SHIFT + " .. key,     hl.dsp.window.move({ workspace = "r~" .. tostring(i) }))
 end
-hl.workspace_rule({ workspace = "DP-1/" .. 2, monitor = "DP-1", default = true })
-hl.workspace_rule({ workspace = "DP-1/" .. 1, monitor = "DP-2", default = true })
 
 hl.bind(mainMod .. " + b", hl.dsp.window.fullscreen({ action = "toggle" }))
 
