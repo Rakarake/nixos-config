@@ -36,6 +36,7 @@
       inputs.glonkers.defaultPackage.${system}
       lswt  # Gets app-id:s and titles of windows
       tesseract
+      brightnessctl 
     ];
 
     # Terminal

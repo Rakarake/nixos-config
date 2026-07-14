@@ -79,18 +79,18 @@ hl.bind(mainMod .. " + b", hl.dsp.window.fullscreen({ action = "toggle" }))
 
 -- Media keys
 local ipc = "noctalia msg"
-hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd(ipc .. " volume-up"))
-hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd(ipc .. " volume-down"))
-hl.bind(mainMod .. "+ ALT + k", hl.dsp.exec_cmd(ipc .. " volume-up"))
-hl.bind(mainMod .. "+ ALT + j", hl.dsp.exec_cmd(ipc .. " volume-down"))
-hl.bind("XF86AudioMute", hl.dsp.exec_cmd(ipc .. " volume-mute"))
-hl.bind(mainMod .. "+ ALT + m", hl.dsp.exec_cmd(ipc .. " volume-mute"))
-hl.bind(mainMod .. "+ ALT + n", hl.dsp.exec_cmd(ipc .. " mic-mute"))
-hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd(ipc .. " brightness-up"))
-hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd(ipc .. " brightness-down"))
-hl.bind(mainMod .. "+ ALT + p", hl.dsp.exec_cmd(ipc .. " media toggle"))
-hl.bind(mainMod .. "+ ALT + l", hl.dsp.exec_cmd(ipc .. " media next"))
-hl.bind(mainMod .. "+ ALT + h", hl.dsp.exec_cmd(ipc .. " media previous"))
+hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+"))
+hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%-"))
+hl.bind(mainMod .. "+ ALT + k", hl.dsp.exec_cmd("wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+"))
+hl.bind(mainMod .. "+ ALT + j", hl.dsp.exec_cmd("wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%-"))
+hl.bind("XF86AudioMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"))
+hl.bind(mainMod .. "+ ALT + m", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"))
+hl.bind(mainMod .. "+ ALT + n", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"))
+hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl set +5%"))
+hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl set 5%-"))
+hl.bind(mainMod .. "+ ALT + p", hl.dsp.exec_cmd("playerctl play-pause"))
+hl.bind(mainMod .. "+ ALT + l", hl.dsp.exec_cmd("playerctl next"))
+hl.bind(mainMod .. "+ ALT + h", hl.dsp.exec_cmd("playerctl previous"))
 
 -- Network
 hl.bind(mainMod .. "+ m", hl.dsp.exec_cmd(ipc .. " panel-toggle control-center network"))
@@ -98,10 +98,10 @@ hl.bind(mainMod .. "+ CTRL + m", hl.dsp.exec_cmd(ipc .. " panel-toggle control-c
 
 -- Lock screen
 hl.bind(mainMod .. "+ ESCAPE", hl.dsp.exec_cmd(ipc .. " session lock"))
-hl.bind(mainMod .. "+ ALT + SHIFT + s", hl.dsp.exec_cmd(ipc .. " session shutdown"))
-hl.bind(mainMod .. "+ ALT + SHIFT + r", hl.dsp.exec_cmd(ipc .. " session reboot"))
-hl.bind(mainMod .. "+ ALT + SHIFT + n", hl.dsp.exec_cmd(ipc .. " session suspend"))
-hl.bind(mainMod .. "+ ALT + SHIFT + e", hl.dsp.exec_cmd(ipc .. " session logout"))
+hl.bind(mainMod .. "+ ALT + SHIFT + s", hl.dsp.exec_cmd("systemctl poweroff"))
+hl.bind(mainMod .. "+ ALT + SHIFT + r", hl.dsp.exec_cmd("systemctl reboot"))
+hl.bind(mainMod .. "+ ALT + SHIFT + n", hl.dsp.exec_cmd("systemctl suspend"))
+hl.bind(mainMod .. "+ ALT + SHIFT + e", hl.dsp.exec_cmd("hyprctl exit"))
 
 -- Laptop lid close
 hl.bind("switch:Lid Switch", hl.dsp.exec_cmd(ipc .. " session lock"), { locked = true })
@@ -192,5 +192,7 @@ hl.on("hyprland.start", function()
   hl.exec_cmd("easyeffects")
   hl.exec_cmd("noctalia")
   hl.exec_cmd("systemctl --user start foot-server.service")
+  hl.exec_cmd("nextcloud")
+  hl.exec_cmd("playerctld")
 end)
 
