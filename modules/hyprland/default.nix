@@ -19,7 +19,7 @@
 
     home.packages = with pkgs; [
       kitty
-      pcmanfm-qt
+      pcmanfm
       imv
       
       grim # Screenshot utility

@@ -32,10 +32,10 @@ hl.config({
 hl.animation({leaf = "global", enabled = false})
 
 local mainMod = "SUPER"
-local terminal = "foot"
+local terminal = "footclient"
 hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. " + y", hl.dsp.exec_cmd("librewolf"))
-hl.bind(mainMod .. " + f", hl.dsp.exec_cmd("pcmanfm-qt"))
+hl.bind(mainMod .. " + f", hl.dsp.exec_cmd("pcmanfm"))
 
 -- Magnifier
 hl.bind(mainMod .. " + SHIFT + m", hl.dsp.exec_cmd('TMP=$(mktemp); grim -g "$(slurp)" - > $TMP; imv -u nearest_neighbour $TMP; rm $TMP'))
@@ -126,9 +126,9 @@ hl.bind(mainMod .. " + d",   hl.dsp.exec_cmd("rofi -show drun"))
 hl.bind(mainMod .. " + SHIFT + d",   hl.dsp.exec_cmd("rofi -show run"))
 
 -- Project selector
-hl.bind(mainMod .. " + p",   hl.dsp.exec_cmd('dir=$(ls ~/Projects/ | rofi -dmenu -p "Choose project: ") && foot sh -c "cd ~/Projects/$dir && tmux attach -t $dir || tmux new -s $dir"'))
+hl.bind(mainMod .. " + p",   hl.dsp.exec_cmd('dir=$(ls ~/Projects/ | rofi -dmenu -p "Choose project: ") && footclient sh -c "cd ~/Projects/$dir && tmux attach -t $dir || tmux new -s $dir"'))
 -- Open notes
-hl.bind(mainMod .. "+ SHIFT + p",   hl.dsp.exec_cmd('foot sh -c "cd ~/Notes/ && tmux attach -t notes || tmux new -s notes $EDITOR"'))
+hl.bind(mainMod .. "+ SHIFT + p",   hl.dsp.exec_cmd('footclient sh -c "cd ~/Notes/ && tmux attach -t notes || tmux new -s notes $EDITOR"'))
 
 hl.bind(mainMod .. " + s",   hl.dsp.exec_cmd('grim -g "$(slurp -d)" - | wl-copy'))
 hl.bind(mainMod .. " + t",   hl.dsp.exec_cmd('grim -o eDP-1 - | wl-copy'))
