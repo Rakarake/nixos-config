@@ -182,9 +182,15 @@ hl.gesture({
     action = "workspace"
 })
 
+hl.device({
+    name = "synps/2-synaptics-touchpad",
+    enabled = false,
+})
+
 hl.on("hyprland.start", function()
   hl.exec_cmd("emote")
   hl.exec_cmd("easyeffects")
   hl.exec_cmd("noctalia")
+  hl.exec_cmd("systemctl --user start foot-server.service")
 end)
 
