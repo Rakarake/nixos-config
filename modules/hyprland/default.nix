@@ -80,7 +80,6 @@
           padding = 0;
           center = [];
           end = [
-              "media"
               "tray"
               "notifications"
               "clipboard"
@@ -89,10 +88,9 @@
               "volume"
               "brightness"
               "battery"
-              "control-center"
               "session"
-              "clock"
               "date"
+              "clock"
           ];
           margin_ends = 0;
           radius = 0;
