@@ -187,6 +187,14 @@ hl.device({
     enabled = false,
 })
 
+hl.window_rule({
+  name = "no-choosing-outputs",
+  match = {
+    class = ".*" ,
+  },
+  suppress_event = "fullscreenoutput",
+})
+
 hl.on("hyprland.start", function()
   hl.exec_cmd("emote")
   hl.exec_cmd("easyeffects")
