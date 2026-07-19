@@ -55,16 +55,9 @@
           battery_charging = "noctalia msg power-set performance";
           battery_plugged = "noctalia msg power-set performance";
         };
-        #theme = {
-        #  mode = "dark";
-        #  source = "builtin";
-        #  builtin = "Catppuccin";
-        #};
-
-        #wallpaper = {
-        #  enabled = true;
-        #  default.path = ../rakarake/wallpaper.png;
-        #};
+        osd.kinds = {
+          media = false;
+        };
         widget = {
           workspaces = {
             minimal = true;
