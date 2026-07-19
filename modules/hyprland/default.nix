@@ -57,6 +57,7 @@
         };
         osd.kinds = {
           media = false;
+          volume = false;
         };
         widget = {
           workspaces = {
