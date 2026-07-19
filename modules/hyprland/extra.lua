@@ -193,6 +193,7 @@ hl.window_rule({
     class = ".*" ,
   },
   suppress_event = "fullscreenoutput",
+  -- Note, there is also: x11configurerequest
 })
 
 hl.on("hyprland.start", function()
