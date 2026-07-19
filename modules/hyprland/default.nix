@@ -56,8 +56,18 @@
           battery_plugged = "noctalia msg power-set performance";
         };
         osd.kinds = {
+          bluetooth = false;
+          brightness = false;
+          caffeine = false;
+          dnd = false;
+          keyboard_layout = false;
+          lock_keys = false;
           media = false;
+          nightlight = false;
+          power_profile = false;
+          privacy = false;
           volume = false;
+          wifi = false;
         };
         widget = {
           workspaces = {
