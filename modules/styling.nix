@@ -9,7 +9,7 @@
     stylix.enable = true;
     stylix.autoEnable = true;
     stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-latte.yaml";
-    stylix.image = ./rakarake/touhou-wallpaper.jpg;
+    stylix.image = ./rakarake/wallpaper-goblets.png;
     stylix.cursor = {
       package = pkgs.adwaita-icon-theme;
       name = "Adwaita";
