@@ -1,5 +1,7 @@
 { inputs, dotfiles, ... }: {
   flake.nixosModules.hyprland = { lib, system, config, pkgs, ... }: {
+    # Gnome keyring
+    services.gnome.gnome-keyring.enable = true;  # Keyring, dbus service to remember passwords
     hardware.bluetooth.enable = true;
     services.power-profiles-daemon.enable = true;
     # Batter stats I think
@@ -55,6 +57,7 @@
           battery_charging = "noctalia msg power-set performance";
           battery_plugged = "noctalia msg power-set performance";
         };
+        shell.polkit_agent = true;
         osd.kinds = {
           bluetooth = false;
           brightness = false;
@@ -71,7 +74,7 @@
         };
         widget = {
           workspaces = {
-            minimal = true;
+            style = "minimal";
           };
           date = {
             format = "{:%F %A vecka %V}";

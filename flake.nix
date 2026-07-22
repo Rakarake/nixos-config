@@ -89,7 +89,7 @@
     #};
 
     eden = {
-      url = "github:Grantimatter/eden-flake";
+      url = "github:Daaboulex/eden-nix";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
