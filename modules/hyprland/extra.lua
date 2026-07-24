@@ -183,8 +183,12 @@ hl.gesture({
 })
 
 hl.device({
-    name = "synps/2-synaptics-touchpad",
+    name = "tpps/2-ibm-trackpoint",
     enabled = false,
+})
+hl.device({
+    name = "synps/2-synaptics-touchpad",
+    enabled = true,
 })
 
 hl.window_rule({
