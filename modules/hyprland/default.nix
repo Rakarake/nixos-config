@@ -6,9 +6,11 @@
     services.power-profiles-daemon.enable = true;
     # Batter stats I think
     services.upower.enable = true;
-    environment.systemPackages = [
+    environment.systemPackages = with pkgs; [
       inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
+      swaylock
     ];
+    security.pam.services.swaylock = {};
     programs.hyprland = {
       enable = true;
       withUWSM = true;
@@ -39,6 +41,8 @@
       lswt  # Gets app-id:s and titles of windows
       tesseract
       brightnessctl 
+      swaybg
+      swayidle
     ];
 
     # Terminal
@@ -47,6 +51,8 @@
       enable = true;
       server.enable = true;
     };
+
+    programs.swaylock.enable = true;
 
     programs.noctalia = {
       enable = true;
@@ -80,6 +86,8 @@
             format = "{:%F %A vecka %V}";
           };
         };
+
+        wallpaper.enabled = false;
 
         bar.order = [ "main" ];
         bar.main = {
@@ -117,7 +125,20 @@
       enable = true;
       systemd.enable = false;
       configType = "lua";
-      extraConfig = ''
+      extraConfig = let
+        wallpaper = ../rakarake/wallpaper-goblets.png;
+        swaylockCommand = "${pkgs.swaylock}/bin/swaylock -f -i ${wallpaper}";
+      in ''
+        local mainMod = "SUPER"
+
+        -- Wallpaper
+        hl.on("hyprland.start", function()
+          hl.exec_cmd("swaybg -i ${wallpaper}")
+        end)
+
+        -- Lockscreen
+        hl.bind(mainMod .. "+ ESCAPE", hl.dsp.exec_cmd("${swaylockCommand}"))
+
         -- Load the extra.lua file here
         require("extra")
       '';

@@ -27,6 +27,9 @@ hl.config({
     general = {
         layout = "master",
     },
+    misc = {
+        initial_workspace_tracking = 1,
+    },
 })
 
 hl.animation({leaf = "global", enabled = false})
@@ -96,8 +99,6 @@ hl.bind(mainMod .. "+ ALT + h", hl.dsp.exec_cmd("playerctl previous"))
 hl.bind(mainMod .. "+ m", hl.dsp.exec_cmd(ipc .. " panel-toggle control-center network"))
 hl.bind(mainMod .. "+ CTRL + m", hl.dsp.exec_cmd(ipc .. " panel-toggle control-center bluetooth"))
 
--- Lock screen
-hl.bind(mainMod .. "+ ESCAPE", hl.dsp.exec_cmd(ipc .. " session lock"))
 hl.bind(mainMod .. "+ ALT + SHIFT + s", hl.dsp.exec_cmd("systemctl poweroff"))
 hl.bind(mainMod .. "+ ALT + SHIFT + r", hl.dsp.exec_cmd("systemctl reboot"))
 hl.bind(mainMod .. "+ ALT + SHIFT + n", hl.dsp.exec_cmd("systemctl suspend"))
