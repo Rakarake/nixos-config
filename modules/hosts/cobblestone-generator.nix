@@ -55,6 +55,14 @@
          home.username = "rakarake";
          home.homeDirectory = "/home/rakarake";
          #wayland.windowManager.river.extraConfig = lib.mkAfter extraConfig;
+         home.packages = [
+           (pkgs.writeShellScriptBin "prevent-idle" ''systemd-inhibit --what=idle --why "No system lock" sleep infinity'')
+         ];
+         wayland.windowManager.hyprland.extraConfig = lib.mkAfter ''
+           hl.on("hyprland.start", function()
+             hl.exec_cmd("prevent-idle")
+           end)
+         '';
        })
      ];
      inherit pkgs;

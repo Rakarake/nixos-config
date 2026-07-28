@@ -131,20 +131,11 @@
       configType = "lua";
       extraConfig = let
         wallpaper = ../rakarake/wallpaper-goblets.png;
-        swaylockCommand = "${pkgs.swaylock}/bin/swaylock -f -i ${wallpaper}";
       in ''
-        local mainMod = "SUPER"
-
-        -- Wallpaper
-        hl.on("hyprland.start", function()
-          hl.exec_cmd("swaybg -i ${wallpaper}")
-        end)
-
-        -- Lockscreen
-        hl.bind(mainMod .. "+ ESCAPE", hl.dsp.exec_cmd("${swaylockCommand}"))
-
         -- Load the extra.lua file here
-        require("extra")
+        local mod require("extra") ({
+          wallpaper = "${wallpaper}",
+        })
       '';
     };
   };

@@ -1,3 +1,17 @@
+-- This file takes some arguments in `options`
+return function(options)
+local mainMod = "SUPER"
+local terminal = "footclient"
+local lock_command = "swaylock -f -i " .. options.wallpaper
+
+-- Wallpaper
+hl.on("hyprland.start", function()
+  hl.exec_cmd("swaybg -i " .. options.wallpaper)
+end)
+
+-- Lockscreen
+hl.bind(mainMod .. "+ ESCAPE", hl.dsp.exec_cmd(lock_command))
+
 hl.monitor({
   output = "DP-1",
   mode = "1920x1080@144",
@@ -34,8 +48,6 @@ hl.config({
 
 hl.animation({leaf = "global", enabled = false})
 
-local mainMod = "SUPER"
-local terminal = "footclient"
 hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. " + y", hl.dsp.exec_cmd("librewolf"))
 hl.bind(mainMod .. " + f", hl.dsp.exec_cmd("pcmanfm"))
@@ -105,7 +117,7 @@ hl.bind(mainMod .. "+ ALT + SHIFT + n", hl.dsp.exec_cmd("systemctl suspend"))
 hl.bind(mainMod .. "+ ALT + SHIFT + e", hl.dsp.exit())
 
 -- Laptop lid close
-hl.bind("switch:Lid Switch", hl.dsp.exec_cmd(ipc .. " session lock"), { locked = true })
+hl.bind("switch:on:Lid Switch", hl.dsp.exec_cmd(lock_command), { locked = true })
 
 -- clipboard
 hl.bind(mainMod .. "+ c", hl.dsp.exec_cmd(ipc .. " panel-toggle clipboard"))
@@ -208,5 +220,7 @@ hl.on("hyprland.start", function()
   hl.exec_cmd("systemctl --user start foot-server.service")
   hl.exec_cmd("nextcloud")
   hl.exec_cmd("playerctld")
+  hl.exec_cmd("swayidle -w timeout 450 '" .. lock_command .. "' timeout 700 'systemctl suspend'")
 end)
+end
 

@@ -154,6 +154,9 @@
       # Hacking
       skim
       cargo-mommy
+
+      # Custom scripts
+      (pkgs.writeShellScriptBin "prevent-idle" ''systemd-inhibit --what=idle --why "No system lock" sleep infinity'')
     ];
 
     xdg.terminal-exec = {
