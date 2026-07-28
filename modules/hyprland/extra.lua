@@ -102,7 +102,7 @@ hl.bind(mainMod .. "+ CTRL + m", hl.dsp.exec_cmd(ipc .. " panel-toggle control-c
 hl.bind(mainMod .. "+ ALT + SHIFT + s", hl.dsp.exec_cmd("systemctl poweroff"))
 hl.bind(mainMod .. "+ ALT + SHIFT + r", hl.dsp.exec_cmd("systemctl reboot"))
 hl.bind(mainMod .. "+ ALT + SHIFT + n", hl.dsp.exec_cmd("systemctl suspend"))
-hl.bind(mainMod .. "+ ALT + SHIFT + e", hl.dsp.exec_cmd("hyprctl exit"))
+hl.bind(mainMod .. "+ ALT + SHIFT + e", hl.dsp.exit())
 
 -- Laptop lid close
 hl.bind("switch:Lid Switch", hl.dsp.exec_cmd(ipc .. " session lock"), { locked = true })
