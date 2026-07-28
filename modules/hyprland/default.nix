@@ -22,7 +22,7 @@
     ];
 
     home.packages = with pkgs; [
-      kitty
+      #kitty
       pcmanfm
       imv
       
@@ -85,6 +85,9 @@
           };
           date = {
             format = "{:%F %A vecka %V}";
+          };
+          tray = {
+            drawer = true;
           };
         };
 

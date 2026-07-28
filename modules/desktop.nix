@@ -156,6 +156,63 @@
       cargo-mommy
     ];
 
+    xdg.terminal-exec = {
+      enable = true;
+      settings = {
+        default = [
+          "footclient.desktop"
+        ];
+      };
+    };
+
+    home.pointerCursor.enable = true;
+
+    xdg.mimeApps = {
+      enable = true;
+      defaultApplications = let 
+        file-manager = "pcmanfm.desktop";
+        browser = "librewolf.desktop";
+        mail-client = "thunderbird.desktop";
+        audio-player = "mpv.desktop";
+        video-player = "mpv.desktop";
+        image-viewer = "imv.desktop";
+        pdf-viewer = "org.pwmt.zathura.desktop";
+      in {
+        # Browser
+        "application/x-extension-htm"   = browser;
+        "application/x-extension-html"  = browser;
+        "application/x-extension-shtml" = browser;
+        "application/x-extension-xht"   = browser;
+        "application/x-extension-xhtml" = browser;
+        "application/xhtml+xml"         = browser;
+        "text/html"                     = browser;
+        "x-scheme-handler/about"        = browser;
+        "x-scheme-handler/chrome"       = browser;
+        "x-scheme-handler/ftp"          = browser;
+        "x-scheme-handler/http"         = browser;
+        "x-scheme-handler/https"        = browser;
+        "x-scheme-handler/unknown"      = browser;
+
+        # Mail
+        "handler/mailto" = mail-client;
+
+        # Multimedia
+        "audio/flac"       = audio-player;
+        "audio/mp3"        = audio-player;
+        "video/mp4"        = video-player;
+        "video/x-matroska" = video-player;
+        "video/webm"       = video-player;
+        "image/png"        = image-viewer;
+        "image/jpeg"       = image-viewer;
+        "image/webp"       = image-viewer;
+        "image/gif"        = image-viewer;
+        "application/pdf"  = pdf-viewer;
+
+        # File manager
+        "inode/directory" = file-manager;
+      };
+    };
+
     programs.vesktop.enable = true;
 
     programs.element-desktop.enable = true;
