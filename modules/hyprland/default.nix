@@ -80,6 +80,7 @@
         };
         widget = {
           workspaces = {
+            display = "name";
             style = "minimal";
           };
           date = {
