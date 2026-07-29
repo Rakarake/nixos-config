@@ -83,9 +83,6 @@ hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
 for i = 1, 10 do
     local key = i % 10 -- 10 maps to key 0
-    hl.workspace_rule({ workspace = tostring(i), default_name = tostring(i), monitor = "DP-1", persistent = true })
-    hl.workspace_rule({ workspace = tostring(i + 10), default_name = tostring(i), monitor = "DP-2", persistent = true })
-    hl.workspace_rule({ workspace = tostring(i), default_name = tostring(i), monitor = "eDP-1", persistent = true })
     hl.bind(mainMod .. " + " .. key,             hl.dsp.focus({ workspace = "r~" .. tostring(i)}))
     hl.bind(mainMod .. " + SHIFT + " .. key,     hl.dsp.window.move({ workspace = "r~" .. tostring(i) }))
 end

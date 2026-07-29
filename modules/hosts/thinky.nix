@@ -25,6 +25,12 @@
          home.stateVersion = "23.05";
          home.username = "rakarake";
          home.homeDirectory = "/home/rakarake";
+         wayland.windowManager.hyprland.extraConfig = lib.mkAfter ''
+           for i = 1, 10 do
+             local key = i % 10 -- 10 maps to key 0
+             hl.workspace_rule({ workspace = tostring(i), default_name = tostring(i), monitor = "eDP-1", persistent = true })
+           end
+         '';
        })
      ];
      inherit pkgs;
