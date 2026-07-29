@@ -80,7 +80,7 @@
     programs.droidcam.enable = true;
 
     # Lact GPU
-    services.lact.enable = true;
+    #services.lact.enable = true;
 
     # Enable SSD trimming
     services.fstrim = {
@@ -126,7 +126,7 @@
 
     # Desktop specific packages
     environment.systemPackages = with pkgs; [
-      lact  # GPU monitor/overclocking
+      #lact  # GPU monitor/overclocking
       gpu-screen-recorder-gtk
       #pkgs-unstable.ollama-rocm
     ];
