@@ -23,6 +23,26 @@
         "type": "github"
       }
     },
+    "app-manager": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs-unstable"
+        ]
+      },
+      "locked": {
+        "lastModified": 1785310673,
+        "narHash": "sha256-RuYhBi/5S5SQafE373Udv8BKh0LLMwlNqTzobODABAc=",
+        "owner": "kem-a",
+        "repo": "AppManager",
+        "rev": "8c3f44dcfcd1b070f344054faed8cbc23de19b4e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "kem-a",
+        "repo": "AppManager",
+        "type": "github"
+      }
+    },
     "base16": {
       "inputs": {
         "fromYaml": "fromYaml"
@@ -1196,6 +1216,7 @@
     "root": {
       "inputs": {
         "agenix": "agenix",
+        "app-manager": "app-manager",
         "bingbingo": "bingbingo",
         "eden": "eden",
         "flake-parts": "flake-parts_3",

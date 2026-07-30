@@ -119,6 +119,11 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
+    app-manager = {
+      url = "github:kem-a/AppManager";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+
     flake-parts.url = "github:hercules-ci/flake-parts";
     import-tree.url = "github:denful/import-tree";
   };
