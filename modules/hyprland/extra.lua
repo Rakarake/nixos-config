@@ -175,8 +175,8 @@ hl.config({
         sensitivity = 0, -- -1.0 - 1.0, 0 means no modification.
 
         touchpad = {
+            disable_while_typing = false,
             natural_scroll = true,
-            --middle_button_emulation = true,
             clickfinger_behavior = true,
         },
     },
