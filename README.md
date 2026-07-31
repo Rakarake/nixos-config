@@ -18,26 +18,20 @@ After this, `sudo nixos-rebuild switch --flake .` can be used instead.
 
 `nix flake lock --update-input dev-stuff` to update flake input 'dev-stuff'.
 
-For garbage collection: use nh since it can clean direnv profiles, or
-just use the collec
+For garbage collection: use nh since it can clean direnv profiles (e.g. `nh clean all`), or
+just use the collect-garbage (graphical sessions only).
 
 `nix-store --optimize` to link derivations with the same content, saving space.
 
-`sudo nix-collect-garbage -d` then *rebuild* to remove bootloader entries.
-
 `sudo nix-env --list-generations --profile /nix/var/nix/profiles/system` to
 list your generations.
-
-`nix-channel --add https://nixos.org/channels/nixos-unstable nixos` to
-set the 'package channel' to nixos-unstable (not system config).
-
-`nix-channel --update` to update the channel.
 
 ## Minecraft Servers
 `sudo -u <service-user> tmux -S /var/<name-of-server>/tmux.socket attach` to to enter the server console.
 
 if that doesn't work then try:
 `sudo -u SERVERUSER tmux -S /PATH/TO/SOCKET/tmux.socket attach -d`
+
 ### Initial MC server setup "guide" - am writing this from the top of my head. Might therefore be somewhat incomplete.
 1. Setup the MC directories
 2. Manually download server.jar
@@ -47,7 +41,6 @@ if that doesn't work then try:
 6. I think chown is next for the MC server user
 7. Set up the config in the git
 8. Pull and rebuild (🙏🙏🙏)
-
 
 ## Troubleshooting
 ### When switching from Plasma to Gnome
