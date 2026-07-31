@@ -131,6 +131,7 @@
       pkgs-unstable.komikku
       libresprite
       dragon-drop
+      moonlight-qt
 
       # Emulators
       fceux
