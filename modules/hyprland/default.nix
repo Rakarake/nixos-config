@@ -64,7 +64,7 @@
           battery_plugged = "noctalia msg power-set performance";
         };
         shell.polkit_agent = true;
-        avatar_path = "/home/rakarake/Projects/nixos-config/modules/rakarake/sitting-neco-arc.png";
+        avatar_path = "${dotfiles}/modules/rakarake/sitting-neco-arc.png";
         osd.kinds = {
           bluetooth = false;
           brightness = false;

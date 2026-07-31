@@ -108,8 +108,8 @@
       rebuild = "${pkgs.nh}/bin/nh os switch .";
       rebuildboot = "${pkgs.nh}/bin/nh os boot .";
       # idk if this works
-      lightbuild = "${pkgs.nh}/bin/nh home switch -c ${config.home.username}-light@$(hostname) .";
-      darkbuild = "${pkgs.nh}/bin/nh home switch -c ${config.home.username}-dark@$(hostname) .";
+      lightbuild = "${pkgs.nh}/bin/nh home switch -c ${config.home.username}@$(hostname)-light .";
+      darkbuild = "${pkgs.nh}/bin/nh home switch -c ${config.home.username}@$(hostname)-dark .";
     };
 
     # Tmux

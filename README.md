@@ -7,24 +7,19 @@
 This cool nixos system config uses flakes.
 
 `nix build .#nixosConfigurations.live.config.system.build.isoImage` to
-build a live ISO image.
+build a live ISO image. TODO reintroduce this.
 
 `nix-shell` to bootstrap, enable flakes etc.
 
 `sudo nixos-rebuild switch --flake '.#hostname'` to rebuild system with the right hostname.
 After this, `sudo nixos-rebuild switch --flake .` can be used instead.
 
-`home-manager switch --flake '.#<user>/<hostname>-<variation>'` to initiate home-manager.
-Currently, home configurations can be specified to have versions, usually
-dark/light versions (default for "I don't care"). Look at flake.nix how this
-is configured.
-
 `nix flake update` to update, requires rebuild to apply.
 
 `nix flake lock --update-input dev-stuff` to update flake input 'dev-stuff'.
 
-`nix-collect-garbage --delete-older-than 10d` to clean the nix store.
-NOTE: run as root to remove old system packages and boot entries.
+For garbage collection: use nh since it can clean direnv profiles, or
+just use the collec
 
 `nix-store --optimize` to link derivations with the same content, saving space.
 
