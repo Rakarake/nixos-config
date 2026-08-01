@@ -30,6 +30,10 @@
              local key = i % 10 -- 10 maps to key 0
              hl.workspace_rule({ workspace = tostring(i), default_name = tostring(i), monitor = "eDP-1", persistent = true })
            end
+           -- Swayidle
+           hl.on("hyprland.start", function()
+             hl.exec_cmd("swayidle -w timeout 450 '" .. lock_command .. "' timeout 700 'systemctl suspend'")
+           end)
          '';
        })
      ];

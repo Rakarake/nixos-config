@@ -160,7 +160,6 @@
       inputs.app-manager.packages.x86_64-linux.default
 
       # Custom scripts
-      (pkgs.writeShellScriptBin "prevent-idle" ''systemd-inhibit --what=idle --why "No system lock" sleep infinity'')
       self.packages.${pkgs.stdenv.hostPlatform.system}.collect-garbage
     ];
 

@@ -131,11 +131,13 @@
       systemd.enable = false;
       configType = "lua";
       extraConfig = let
-        wallpaper = ../rakarake/wallpaper-goblets.png;
+        wallpaper = config.stylix.wallpaper;
       in ''
+        local lock_command = "swaylock -f -i " .. "${wallpaper}"
         -- Load the extra.lua file here
         local mod require("extra") ({
           wallpaper = "${wallpaper}",
+          lock_command = lock_command,
         })
       '';
     };
