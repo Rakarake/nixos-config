@@ -74,8 +74,20 @@
   in {
     networking.hostName = "cobblestone-generator";
 
+    # Switch emulator
     programs.eden = {
       enable = true;
+    };
+
+    # Remote play
+    services.sunshine = {
+      enable = true;
+      autoStart = true;
+      capSysAdmin = true;
+      openFirewall = true;
+    };
+    users.users.rakarake = {
+      extraGroups = [ "uinput" ];
     };
 
     # Linux kernel package
