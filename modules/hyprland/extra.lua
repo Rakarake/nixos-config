@@ -145,7 +145,7 @@ hl.bind(mainMod .. " + s",   hl.dsp.exec_cmd('grim -g "$(slurp -d)" - | wl-copy'
 hl.bind(mainMod .. " + t",   hl.dsp.exec_cmd('grim -o eDP-1 - | wl-copy'))
 hl.bind(mainMod .. " + r",   hl.dsp.exec_cmd('grim -o DP-2 - | wl-copy'))
 hl.bind(mainMod .. " + t",   hl.dsp.exec_cmd('grim -o DP-1 - | wl-copy'))
-hl.bind(mainMod .. "+ SHIFT + r",   hl.dsp.exec_cmd('grim'))
+hl.bind(mainMod .. "+ SHIFT + s",   hl.dsp.exec_cmd('grim -g "$(slurp -d)"'))
 hl.bind(mainMod .. "+ ALT + s",   hl.dsp.exec_cmd('tmp="$(mktemp)" ; grim -g "$(slurp -d)" - > "$tmp" && tesseract $tmp - --psm 3 -l eng+swe | wl-copy'))
 
 hl.config({
