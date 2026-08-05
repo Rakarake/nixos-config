@@ -108,6 +108,9 @@ hl.bind(mainMod .. "+ ALT + h", hl.dsp.exec_cmd("playerctl previous"))
 hl.bind(mainMod .. "+ m", hl.dsp.exec_cmd(ipc .. " panel-toggle control-center network"))
 hl.bind(mainMod .. "+ CTRL + m", hl.dsp.exec_cmd(ipc .. " panel-toggle control-center bluetooth"))
 
+-- Audio device
+hl.bind(mainMod .. "+ ALT + d", hl.dsp.exec_cmd('sink=$(pactl list sinks short | awk "{print \\$2}" | rofi -p "Choose Audio Sink: " -dmenu); pactl set-default-sink $sink'))
+
 hl.bind(mainMod .. "+ ALT + SHIFT + s", hl.dsp.exec_cmd("systemctl poweroff"))
 hl.bind(mainMod .. "+ ALT + SHIFT + r", hl.dsp.exec_cmd("systemctl reboot"))
 hl.bind(mainMod .. "+ ALT + SHIFT + n", hl.dsp.exec_cmd("systemctl suspend"))

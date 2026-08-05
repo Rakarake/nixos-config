@@ -378,6 +378,8 @@
       steam-run
     ];
 
+    virtualisation.waydroid.enable = true;
+
     programs.gamemode = {
       enable = true;
       settings = {

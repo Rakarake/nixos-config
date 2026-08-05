@@ -195,6 +195,13 @@
       })
     ];
 
+    # Makes sure that "nix ..." commands use our version of nixpkgs.
+    nix.registry.nixpkgs.flake = inputs.nixpkgs-unstable;
+    # Same but for older "nix-..." commands.
+    nix.nixPath = [ "nixpkgs=${inputs.nixpkgs-unstable}" ];
+    # Disable flake registry
+    nix.settings.flake-registry = "";
+
     # Global nix settings
     nix.settings = {
       # Enable Flakes
