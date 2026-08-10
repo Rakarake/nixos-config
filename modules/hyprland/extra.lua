@@ -152,6 +152,8 @@ hl.bind(mainMod .. " + t",   hl.dsp.exec_cmd('grim -o DP-1 - | wl-copy'))
 hl.bind(mainMod .. "+ SHIFT + s",   hl.dsp.exec_cmd('grim -g "$(slurp -d)"'))
 hl.bind(mainMod .. "+ ALT + s",   hl.dsp.exec_cmd('tmp="$(mktemp)" ; grim -g "$(slurp -d)" - > "$tmp" && tesseract $tmp - --psm 3 -l eng+swe | wl-copy'))
 
+hl.bind(mainMod .. "+ CTRL + SHIFT + c",   hl.dsp.exec_cmd('d=$(rofi -dmenu -p "Choose Camera Device") ; scrcpy --no-window --video-source=camera --camera-size=1920x1080 --camera-facing=back --v4l2-sink=/dev/video$d --no-playback'))
+
 hl.config({
     general = {
         border_size = 3,
