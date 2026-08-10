@@ -7,7 +7,7 @@
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     # Home manager
-    home-manager = {
+    home-manager-stable = {
       url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
@@ -36,9 +36,9 @@
     };
 
     # Styling / Colorscheme / Font management
-    stylix = {
+    stylix-stable = {
       url = "github:danth/stylix/release-26.05";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
     };
 
     stylix-unstable = {

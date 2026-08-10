@@ -450,7 +450,7 @@
     "flake-parts_5": {
       "inputs": {
         "nixpkgs-lib": [
-          "stylix",
+          "stylix-stable",
           "nixpkgs"
         ]
       },
@@ -752,27 +752,7 @@
         "type": "github"
       }
     },
-    "home-manager-unstable": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs-unstable"
-        ]
-      },
-      "locked": {
-        "lastModified": 1786356609,
-        "narHash": "sha256-ou8fYz5w9yhXC8YbvvExybFIa19MyW5G/8dEPqa90hM=",
-        "owner": "nix-community",
-        "repo": "home-manager",
-        "rev": "c30c7955cec30d664a9baced6bc0112e263d4647",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "home-manager",
-        "type": "github"
-      }
-    },
-    "home-manager_2": {
+    "home-manager-stable": {
       "inputs": {
         "nixpkgs": [
           "nixpkgs-stable"
@@ -789,6 +769,26 @@
       "original": {
         "owner": "nix-community",
         "ref": "release-26.05",
+        "repo": "home-manager",
+        "type": "github"
+      }
+    },
+    "home-manager-unstable": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs-unstable"
+        ]
+      },
+      "locked": {
+        "lastModified": 1786356609,
+        "narHash": "sha256-ou8fYz5w9yhXC8YbvvExybFIa19MyW5G/8dEPqa90hM=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "c30c7955cec30d664a9baced6bc0112e263d4647",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
         "repo": "home-manager",
         "type": "github"
       }
@@ -1102,11 +1102,11 @@
     "nur": {
       "inputs": {
         "flake-parts": [
-          "stylix",
+          "stylix-stable",
           "flake-parts"
         ],
         "nixpkgs": [
-          "stylix",
+          "stylix-stable",
           "nixpkgs"
         ]
       },
@@ -1222,7 +1222,7 @@
         "flake-parts": "flake-parts_3",
         "glonkers": "glonkers",
         "grompt": "grompt",
-        "home-manager": "home-manager_2",
+        "home-manager-stable": "home-manager-stable",
         "home-manager-unstable": "home-manager-unstable",
         "import-tree": "import-tree",
         "jovian-nixos": "jovian-nixos",
@@ -1236,7 +1236,7 @@
         "out-of-your-element": "out-of-your-element",
         "plasma-manager": "plasma-manager",
         "queercat": "queercat",
-        "stylix": "stylix",
+        "stylix-stable": "stylix-stable",
         "stylix-unstable": "stylix-unstable",
         "xremap": "xremap"
       }
@@ -1344,7 +1344,7 @@
         "type": "github"
       }
     },
-    "stylix": {
+    "stylix-stable": {
       "inputs": {
         "base16": "base16",
         "base16-fish": "base16-fish",
@@ -1354,7 +1354,7 @@
         "flake-parts": "flake-parts_5",
         "gnome-shell": "gnome-shell",
         "nixpkgs": [
-          "nixpkgs-unstable"
+          "nixpkgs-stable"
         ],
         "nur": "nur",
         "systems": "systems_8",

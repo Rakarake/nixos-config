@@ -1,7 +1,7 @@
 { inputs, self, ... }: {
   # flake-parts modules, so that we can expose homeModules etc.
   imports = [
-    inputs.home-manager.flakeModules.home-manager
+    inputs.home-manager-stable.flakeModules.home-manager
   ];
 
   # Default rakarake home config.
@@ -180,7 +180,7 @@
   flake.nixosModules.global = { pkgs, ... }: {
     imports = [
       # At least make home manager available
-      inputs.home-manager.nixosModules.home-manager
+      inputs.home-manager-stable.nixosModules.home-manager
       inputs.agenix.nixosModules.default
     ];
 

@@ -42,7 +42,7 @@
     '';
     pkgs = import inputs.nixpkgs-stable { system = "x86_64-linux"; config.allowUnfree = true; };
    in
-    inputs.home-manager-unstable.lib.homeManagerConfiguration {
+    inputs.home-manager-stable.lib.homeManagerConfiguration {
      modules = [
        self.homeModules.global
        self.homeModules.desktop
