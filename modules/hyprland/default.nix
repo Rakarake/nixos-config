@@ -54,6 +54,61 @@
 
     programs.swaylock.enable = true;
 
+    programs.yazi = {
+      enable = true;
+      enableBashIntegration = true;
+      shellWrapperName = "y";
+      plugins = {
+        clipboard ={
+          package = pkgs.yaziPlugins.clipboard;
+        };
+      };
+      keymap = {
+        mgr.prepend_keymap = [
+          {
+            on   = "!";
+            for  = "unix";
+            run  = ''shell "$SHELL" --block'';
+            desc = "Open $SHELL here";
+          }
+          {
+            on   = "Q";
+            run  = "quit --no-cwd-file";
+            desc = "Guaranteed quit";
+          }
+          {
+            # Drag and drop window popup
+            on  = "<C-n>";
+            run = "shell -- blobdrop %h";
+          }
+          {
+            # Copy yanked files to the system clipboard
+            on  = "y";
+            run = [ "yank" ''plugin clipboard -- --action=copy'' ];
+            desc = "Yank selected files (copy)";
+          }
+          {
+            # Keep behaviour consistent with cut
+            on  = "x";
+            run = [ "yank --cut" ''plugin clipboard -- --action=copy'' ];
+            desc = "Yank selected files (cut)";
+          }
+          {
+            # Paste files from the system clipboard into the current directory
+            on  = "<C-p>";
+            run = [ ''plugin clipboard -- --action=paste'' ];
+            desc = "Paste yanked system clipboard files";
+          }
+          {
+            # Paste an image
+            on  = "<C-S-p>";
+            run = [ ''shell -- wl-paste -t image/png > ./pasted_image.png''];
+            desc = "Paste image";
+          }
+        ];
+      };
+    };
+
     programs.noctalia = {
       enable = true;
 

@@ -51,7 +51,7 @@ hl.animation({leaf = "global", enabled = false})
 
 hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. " + y", hl.dsp.exec_cmd("librewolf"))
-hl.bind(mainMod .. " + f", hl.dsp.exec_cmd("pcmanfm"))
+hl.bind(mainMod .. " + f", hl.dsp.exec_cmd("footclient yazi"))
 
 -- Magnifier
 hl.bind(mainMod .. " + SHIFT + m", hl.dsp.exec_cmd('TMP=$(mktemp); grim -g "$(slurp)" - > $TMP; imv -u nearest_neighbour $TMP; rm $TMP'))
