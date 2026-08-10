@@ -5,24 +5,29 @@
   ];
 
   # Default rakarake home config.
-  flake.homeConfigurations."rakarake" = let
-    pkgs = import inputs.nixpkgs { system = "x86_64-linux"; config.allowUnfree = true; };
-  in inputs.home-manager.lib.homeManagerConfiguration {
-    modules = [
-      self.homeModules.global
-      self.homeModules.desktop
-      self.homeModules.styling
-      ({ lib, ... }: {
-        home.stateVersion = "23.05";
-        home.username = "rakarake";
-        home.homeDirectory = "/home/rakarake";
-      })
-    ];
-    inherit pkgs;
-  };
+  #flake.homeConfigurations."rakarake" = let
+  #  pkgs = import inputs.nixpkgs { system = "x86_64-linux"; config.allowUnfree = true; };
+  #in inputs.home-manager.lib.homeManagerConfiguration {
+  #  modules = [
+  #    self.homeModules.global
+  #    self.homeModules.desktop
+  #    self.homeModules.styling
+  #    ({ lib, ... }: {
+  #      home.stateVersion = "23.05";
+  #      home.username = "rakarake";
+  #      home.homeDirectory = "/home/rakarake";
+  #    })
+  #  ];
+  #  inherit pkgs;
+  #};
 
   flake.homeModules.global = { lib, config, pkgs, inputs, ... }: let
     environmentVariables = {
+      XDG_CACHE_HOME  = "$HOME/.cache";
+      XDG_CONFIG_HOME = "$HOME/.config";
+      XDG_DATA_HOME   = "$HOME/.local/share";
+      XDG_STATE_HOME  = "$HOME/.local/state";
+
       EDITOR = lib.mkForce "nvim";
       VISUAL = "nvim";
       BROWSER = "librewolf";
@@ -188,19 +193,12 @@
       btrfs-progs
     ];
 
-    nixpkgs.overlays = [
-      # Replace openssl with libressl
-      (final: super: { 
-        nginxStable = super.nginxStable.override { openssl = super.pkgs.libressl; }; 
-      })
-    ];
-
     # Makes sure that "nix ..." commands use our version of nixpkgs.
-    nix.registry.nixpkgs.flake = inputs.nixpkgs-unstable;
-    # Same but for older "nix-..." commands.
-    nix.nixPath = [ "nixpkgs=${inputs.nixpkgs-unstable}" ];
-    # Disable flake registry
-    nix.settings.flake-registry = "";
+    #nix.registry.nixpkgs.flake = inputs.nixpkgs-unstable;
+    ## Same but for older "nix-..." commands.
+    #nix.nixPath = [ "nixpkgs=${inputs.nixpkgs-unstable}" ];
+    ## Disable flake registry
+    #nix.settings.flake-registry = "";
 
     # Global nix settings
     nix.settings = {

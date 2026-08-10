@@ -16,6 +16,7 @@ hl.monitor({
   output = "DP-1",
   mode = "1920x1080@144",
   position = "1920x0",
+  vrr = 2,
   scale = 1,
 })
 
@@ -68,8 +69,8 @@ hl.bind(mainMod .. " + j",    hl.dsp.layout("cyclenext"))
 hl.bind(mainMod .. " + SHIFT + k",    hl.dsp.layout("swapprev"))
 hl.bind(mainMod .. " + SHIFT + j",    hl.dsp.layout("swapnext"))
 
-hl.bind(mainMod .. " + z",    hl.dsp.focus({direction = "left"}))
-hl.bind(mainMod .. " + x",    hl.dsp.focus({direction = "right"}))
+hl.bind(mainMod .. " + z",    hl.dsp.focus({monitor = "DP-2"}))
+hl.bind(mainMod .. " + x",    hl.dsp.focus({monitor = "DP-1"}))
 
 hl.bind(mainMod .. " + SHIFT + z", hl.dsp.window.move({monitor = "-1"}))
 hl.bind(mainMod .. " + SHIFT + x", hl.dsp.window.move({monitor = "+1"}))
@@ -216,7 +217,7 @@ hl.window_rule({
 
 hl.on("hyprland.start", function()
   hl.exec_cmd("emote")
-  hl.exec_cmd("easyeffects")
+  hl.exec_cmd("sleep 4 ; easyeffects")
   hl.exec_cmd("noctalia")
   hl.exec_cmd("systemctl --user start foot-server.service")
   hl.exec_cmd("nextcloud")

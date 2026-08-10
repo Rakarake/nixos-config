@@ -1,6 +1,6 @@
 # Desktop PC
 { inputs, self, ... }: {
-  flake.nixosConfigurations.cobblestone-generator = inputs.nixpkgs-unstable.lib.nixosSystem {
+  flake.nixosConfigurations.cobblestone-generator = inputs.nixpkgs-stable.lib.nixosSystem {
     modules = [
       self.nixosModules.global
       self.nixosModules.desktop
@@ -40,7 +40,7 @@
       # Local AI slopbot
       #OLLAMA_KEEP_ALIVE=5m ollama serve &
     '';
-    pkgs = import inputs.nixpkgs-unstable { system = "x86_64-linux"; config.allowUnfree = true; };
+    pkgs = import inputs.nixpkgs-stable { system = "x86_64-linux"; config.allowUnfree = true; };
    in
     inputs.home-manager-unstable.lib.homeManagerConfiguration {
      modules = [
@@ -97,7 +97,7 @@
     programs.droidcam.enable = true;
 
     # Lact GPU
-    #services.lact.enable = true;
+    services.lact.enable = true;
 
     # Enable SSD trimming
     services.fstrim = {

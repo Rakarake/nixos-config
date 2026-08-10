@@ -8,6 +8,7 @@
       self.homeModules.bash
     ];
 
+
     # Browser
     programs.librewolf = {
       enable = true;
@@ -94,7 +95,6 @@
       protonup-qt
       kdePackages.filelight
       nicotine-plus
-      #ardour
       r2modman
       #pkgs.osu-lazer
       supertuxkart
@@ -130,7 +130,7 @@
       pkgs-unstable.grayjay
       pkgs-unstable.komikku
       libresprite
-      dragon-drop
+      blobdrop  # terminal drag-and-drop
       moonlight-qt
 
       # Emulators
@@ -663,8 +663,8 @@
     hardware.uinput.enable = true;
 
     ## Mullvad Service
-    services.mullvad-vpn.enable = true;
-    services.mullvad-vpn.package = pkgs.mullvad-vpn;
+    #services.mullvad-vpn.enable = true;
+    #services.mullvad-vpn.package = pkgs.mullvad-vpn;
 
     # Enable the flatpak service
     services.flatpak.enable = true;

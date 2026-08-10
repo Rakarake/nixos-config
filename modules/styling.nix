@@ -22,7 +22,7 @@
       };
       sizes = {
         desktop = 10;
-        applications = 9;
+        applications = 10;
         terminal = 11;
       };
     };

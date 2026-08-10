@@ -131,7 +131,7 @@
       systemd.enable = false;
       configType = "lua";
       extraConfig = let
-        wallpaper = config.stylix.wallpaper;
+        wallpaper = config.stylix.image;
       in ''
         local lock_command = "swaylock -f -i " .. "${wallpaper}"
         -- Load the extra.lua file here
