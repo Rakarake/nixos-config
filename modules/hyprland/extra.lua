@@ -72,8 +72,8 @@ hl.bind(mainMod .. " + SHIFT + j",    hl.dsp.layout("swapnext"))
 hl.bind(mainMod .. " + z",    hl.dsp.focus({monitor = "DP-2"}))
 hl.bind(mainMod .. " + x",    hl.dsp.focus({monitor = "DP-1"}))
 
-hl.bind(mainMod .. " + SHIFT + z", hl.dsp.window.move({monitor = "-1"}))
-hl.bind(mainMod .. " + SHIFT + x", hl.dsp.window.move({monitor = "+1"}))
+hl.bind(mainMod .. " + ALT + z", hl.dsp.window.move({monitor = "-1"}))
+hl.bind(mainMod .. " + ALT + x", hl.dsp.window.move({monitor = "+1"}))
 
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 
