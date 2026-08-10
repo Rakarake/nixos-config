@@ -81,8 +81,6 @@
     stylix.targets.neovim.enable = false;
     #catppuccin.nvim.enable = true;
 
-    #stylix.targets.inkscape.enable = false;
-
     #stylix.targets.rofi.enable = false;
     #catppuccin.rofi.enable = true;
 

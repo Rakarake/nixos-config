@@ -101,7 +101,6 @@
       gamescope
       audacity
       pkgsRocm.blender
-      inkscape
       emote
       gcolor3
       handbrake
