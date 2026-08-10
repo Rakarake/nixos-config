@@ -1,6 +1,6 @@
 # Laptop
 { inputs, self, ... }: {
-  flake.nixosConfigurations.thinky = inputs.nixpkgs-unstable.lib.nixosSystem {
+  flake.nixosConfigurations.thinky = inputs.nixpkgs-stable.lib.nixosSystem {
     modules = [
       self.nixosModules.global
       self.nixosModules.desktop
@@ -12,8 +12,8 @@
     ];
   };
   flake.homeConfigurations."rakarake@thinky" = let
-    pkgs = import inputs.nixpkgs-unstable { system = "x86_64-linux"; config.allowUnfree = true; };
-   in inputs.home-manager-unstable.lib.homeManagerConfiguration {
+    pkgs = import inputs.nixpkgs-stable { system = "x86_64-linux"; config.allowUnfree = true; };
+   in inputs.home-manager-stable.lib.homeManagerConfiguration {
      modules = [
        self.homeModules.global
        self.homeModules.desktop
