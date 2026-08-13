@@ -176,7 +176,7 @@
     xdg.mimeApps = {
       enable = true;
       defaultApplications = let 
-        file-manager = "pcmanfm.desktop";
+        file-manager = "yazi.desktop";
         browser = "librewolf.desktop";
         mail-client = "thunderbird.desktop";
         audio-player = "mpv.desktop";
