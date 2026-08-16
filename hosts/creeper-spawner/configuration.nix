@@ -75,11 +75,17 @@ in
       packages = [ pkgs.dotnet-runtime_8 ];
       path = /var/${name};
     })
+    #(outputs.extra.statefulServerTemplate {
+    #  name = "minecraftserverspruce";
+    #  description = "A wooden minecraft server";
+    #  packages = [ pkgs.jdk17 ];
+    #  path = /var/minecraftserverspruce;
+    #})
     (outputs.extra.statefulServerTemplate {
-      name = "minecraftserverspruce";
-      description = "A wooden minecraft server";
+      name = "terrafirmagregz";
+      description = "Terrafirmagreg modded minecraft server";
       packages = [ pkgs.jdk17 ];
-      path = /var/minecraftserverspruce;
+      path = /data/minecraft-servers/terrafirmagregz;
     })
   ];
 
