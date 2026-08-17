@@ -37,7 +37,7 @@ in
   imports = [
     ./hardware-configuration.nix
     ./matrix.nix
-    (inputs.mdf-bouncer.nixosModules.${system}.default)
+    #(inputs.mdf-bouncer.nixosModules.${system}.default)
 
     (outputs.extra.statefulServerTemplate rec {
       name = "minecraftserver-kreate";
@@ -210,12 +210,12 @@ in
     owner = "nginx";
     group = "nginx";
   };
-  services.mdf-bouncer = {
-    enable = true;
-    dstPath = "/data/website";
-    srcPath = "/data/website-source";
-    subPath = "api/";
-  };
+  #services.mdf-bouncer = {
+  #  enable = true;
+  #  dstPath = "/data/website";
+  #  srcPath = "/data/website-source";
+  #  subPath = "api/";
+  #};
   services.nginx.virtualHosts."mdf.farm" = {
     forceSSL = true;
     enableACME = true; # Let's encrypt TLS automated, not certbot
