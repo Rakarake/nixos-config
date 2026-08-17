@@ -6,8 +6,9 @@
       self.nixosModules.desktop
       self.nixosModules.cobblestone-generator
       self.nixosModules.cobblestone-generator-hardware
-      self.nixosModules.hyprland
+      #self.nixosModules.hyprland
       #self.nixosModules.kde
+      self.nixosModules.wlroots
       inputs.eden.nixosModules.default
     ];
   };
@@ -17,7 +18,7 @@
     leftMonitor = "DP-2";
     monitorSetup = ''
       # Monitor setup
-      wlr-randr --output ${mainMonitor} --mode 1920x1080@144.001007 --pos 3840,0
+      wlr-randr --output ${mainMonitor} --mode 1920x1080@144.001007 --adaptive-sync enabled --pos 3840,0
       wlr-randr --output ${leftMonitor} --mode 1920x1080@143.854996 --pos 0,0
     '';
     monitor-setup = pkgs.writeShellScriptBin "monitor-setup" monitorSetup;
@@ -48,23 +49,32 @@
        self.homeModules.desktop
        self.homeModules.styling
        #self.homeModules.kde
-       self.homeModules.hyprland
-       #self.homeModules.river
+       #self.homeModules.hyprland
+       self.homeModules.new-river
        ({ lib, ... }: {
          home.stateVersion = "23.05";
          home.username = "rakarake";
          home.homeDirectory = "/home/rakarake";
+
+         home.packages = with pkgs; [
+           monitor-setup
+         ];
+
+         # Dark theme
+         stylix.base16Scheme = lib.mkForce "${pkgs.base16-schemes}/share/themes/decaf.yaml";
+         stylix.image = lib.mkForce ../rakarake/wallpaper.png;
+
          #wayland.windowManager.river.extraConfig = lib.mkAfter extraConfig;
-         wayland.windowManager.hyprland.extraConfig = lib.mkAfter ''
-           for i = 1, 10 do
-             local key = i % 10 -- 10 maps to key 0
-             hl.workspace_rule({ workspace = tostring(i), default_name = tostring(i), monitor = "DP-1", persistent = true })
-             hl.workspace_rule({ workspace = tostring(i + 10), default_name = tostring(i), monitor = "DP-2", persistent = true })
-           end
-           hl.on("hyprland.start", function()
-             hl.exec_cmd("prevent-idle")
-           end)
-         '';
+         #wayland.windowManager.hyprland.extraConfig = lib.mkAfter ''
+         #  for i = 1, 10 do
+         #    local key = i % 10 -- 10 maps to key 0
+         #    hl.workspace_rule({ workspace = tostring(i), default_name = tostring(i), monitor = "DP-1", persistent = true })
+         #    hl.workspace_rule({ workspace = tostring(i + 10), default_name = tostring(i), monitor = "DP-2", persistent = true })
+         #  end
+         #  hl.on("hyprland.start", function()
+         #    hl.exec_cmd("prevent-idle")
+         #  end)
+         #'';
        })
      ];
      inherit pkgs;

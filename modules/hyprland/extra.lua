@@ -4,6 +4,10 @@ local mainMod = "SUPER"
 local terminal = "footclient"
 local lock_command = "swaylock -f -i " .. options.wallpaper
 
+-- I want my crashlogs
+debug.disable_logs = false
+debug.gl_debugging = false
+
 -- Wallpaper
 hl.on("hyprland.start", function()
   hl.exec_cmd("swaybg -i " .. options.wallpaper)
@@ -106,7 +110,7 @@ hl.bind(mainMod .. "+ ALT + l", hl.dsp.exec_cmd("playerctl next"))
 hl.bind(mainMod .. "+ ALT + h", hl.dsp.exec_cmd("playerctl previous"))
 
 -- Network
-hl.bind(mainMod .. "+ m", hl.dsp.exec_cmd(ipc .. " panel-toggle control-center network"))
+hl.bind(mainMod .. "+ m", hl.dsp.exec_cmd("rofi-network-manager"))
 hl.bind(mainMod .. "+ CTRL + m", hl.dsp.exec_cmd(ipc .. " panel-toggle control-center bluetooth"))
 
 -- Audio device
@@ -121,17 +125,12 @@ hl.bind(mainMod .. "+ ALT + SHIFT + g", hl.dsp.exec_cmd("collect-garbage"))
 -- Laptop lid close
 hl.bind("switch:on:Lid Switch", hl.dsp.exec_cmd(lock_command), { locked = true })
 
--- clipboard
-hl.bind(mainMod .. "+ c", hl.dsp.exec_cmd(ipc .. " panel-toggle clipboard"))
-hl.bind(mainMod .. "+ SHIFT + c", hl.dsp.exec_cmd(ipc .. " clipboard-clear"))
-
 hl.bind(mainMod .. "+ e", hl.dsp.exec_cmd("emote"))
 
 -- Notifications
-hl.bind(mainMod .. "+ n", hl.dsp.exec_cmd(ipc .. " notification-clear-active"))
-hl.bind(mainMod .. "+ SHIFT + n", hl.dsp.exec_cmd(ipc .. " notification-clear-history"))
-hl.bind(mainMod .. "+ ALT + d", hl.dsp.exec_cmd(ipc .. " notification-dnd-toggle"))
-hl.bind(mainMod .. "+ CTRL + n", hl.dsp.exec_cmd(ipc .. " panel-toggle control-center notifications"))
+hl.bind(mainMod .. "+ n", hl.dsp.exec_cmd("fnottctl dismiss"))
+hl.bind(mainMod .. "+ SHIFT + n", hl.dsp.exec_cmd("fnottctl pause"))
+hl.bind(mainMod .. "+ SHIFT + b", hl.dsp.exec_cmd("fnottctl unpause"))
 
 -- TODO check if this works
 hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
@@ -220,7 +219,7 @@ hl.window_rule({
 hl.on("hyprland.start", function()
   hl.exec_cmd("emote")
   hl.exec_cmd("sleep 4 ; easyeffects")
-  hl.exec_cmd("noctalia")
+  --hl.exec_cmd("noctalia")
   hl.exec_cmd("systemctl --user start foot-server.service")
   hl.exec_cmd("nextcloud")
   hl.exec_cmd("playerctld")

@@ -7,7 +7,7 @@
     # Batter stats I think
     services.upower.enable = true;
     environment.systemPackages = with pkgs; [
-      inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
+      #inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
       swaylock
     ];
     security.pam.services.swaylock = {};
@@ -18,7 +18,7 @@
   };
   flake.homeModules.hyprland = { config, pkgs, ... }: {
     imports = [
-      inputs.noctalia.homeModules.default
+      #inputs.noctalia.homeModules.default
     ];
 
     home.packages = with pkgs; [
@@ -43,6 +43,7 @@
       brightnessctl 
       swaybg
       swayidle
+      rofi-network-manager
     ];
 
     # Terminal
@@ -109,72 +110,76 @@
       };
     };
 
-    programs.noctalia = {
+    services.fnott = {
       enable = true;
-
-      settings = { # This may also be a string or path to a .toml file.
-        hooks = {
-          battery_discharging = "noctalia msg power-set balanced";
-          battery_charging = "noctalia msg power-set performance";
-          battery_plugged = "noctalia msg power-set performance";
-        };
-        shell.polkit_agent = true;
-        avatar_path = "${dotfiles}/modules/rakarake/sitting-neco-arc.png";
-        osd.kinds = {
-          bluetooth = false;
-          brightness = false;
-          caffeine = false;
-          dnd = false;
-          keyboard_layout = false;
-          lock_keys = false;
-          media = false;
-          nightlight = false;
-          power_profile = false;
-          privacy = false;
-          volume = false;
-          wifi = false;
-        };
-        widget = {
-          workspaces = {
-            display = "name";
-            style = "minimal";
-          };
-          date = {
-            format = "{:%F %A vecka %V}";
-          };
-          tray = {
-            drawer = true;
-          };
-        };
-
-        wallpaper.enabled = false;
-
-        bar.order = [ "main" ];
-        bar.main = {
-          margin_edge        = 0;
-          padding = 0;
-          center = [];
-          end = [
-              "tray"
-              "notifications"
-              "clipboard"
-              "network"
-              "bluetooth"
-              "volume"
-              "brightness"
-              "battery"
-              "session"
-              "date"
-              "clock"
-          ];
-          margin_ends = 0;
-          radius = 0;
-          shadow = false;
-          start = [ "workspaces" ];
-          thickness = 22;
+      settings = {
+        main = {
+          max-timeout = 6;
         };
       };
     };
+
+    programs.waybar = {
+      enable = true;
+      style = ''
+        #workspaces {
+          background: transparent;
+          margin: 0;
+          padding: 0;
+        }
+
+        #workspaces button {
+          padding: 0 8px;
+          margin: 0;
+          background: transparent;
+          border: none;
+          border-radius: 0;
+          box-shadow: none;
+        }
+
+        #workspaces button.active {
+          border-bottom: 2px solid #ffffff;
+        }
+
+        #workspaces button:hover {
+          background: transparent;
+          box-shadow: none;
+        }
+
+        #window, #clock {
+          padding: 0 10px;
+        }
+      '';
+      settings.mainBar = {
+        layer = "bottom";
+        position = "top";
+        height = 10;
+        modules-left = [
+          "hyprland/workspaces"
+          "hyprland/window"
+        ];
+        modules-right = [
+          "mpd"
+          "temperature"
+          "tray"
+          "clock"
+        ];
+        "hyprland/workspaces" = {
+          disable-scroll = true;
+          all-outputs = false;
+          active-only = false;
+          show-special = false;
+        };
+        "hyprland/window" = {
+          format = "{}";
+          separate-outputs = true;
+        };
+        "clock" = {
+          format = "{:%Y-%m-%d %H:%M}";
+        };
+      };
+    };
+
     programs.rofi.enable = true;
     xdg.configFile."hypr/extra.lua" = {
       source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/modules/hyprland/extra.lua";
