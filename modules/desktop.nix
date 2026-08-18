@@ -156,7 +156,7 @@
       cargo-mommy
 
       # AppImage manager
-      inputs.app-manager.packages.x86_64-linux.default
+      #inputs.app-manager.packages.x86_64-linux.default
 
       # Custom scripts
       self.packages.${pkgs.stdenv.hostPlatform.system}.collect-garbage

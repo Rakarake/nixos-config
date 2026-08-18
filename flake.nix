@@ -95,7 +95,7 @@
 
     # Wallpaper engine thinymajingy
     glonkers = {
-      url = "git+https://git.rakarake.xyz/Rakarake/glonkers";
+      url = "git+https://codeberg.org/Rakarake/glonkers";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     mdf-bouncer = {
