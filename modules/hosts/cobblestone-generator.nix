@@ -54,6 +54,10 @@
          home.stateVersion = "23.05";
          home.username = "rakarake";
          home.homeDirectory = "/home/rakarake";
+
+         stylix.base16Scheme = lib.mkForce "${pkgs.base16-schemes}/share/themes/decaf.yaml";
+         stylix.image = lib.mkForce ../rakarake/wallpaper.png;
+
          #wayland.windowManager.river.extraConfig = lib.mkAfter extraConfig;
          wayland.windowManager.hyprland.extraConfig = lib.mkAfter ''
            for i = 1, 10 do

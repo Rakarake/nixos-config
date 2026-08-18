@@ -118,8 +118,10 @@
           battery_charging = "noctalia msg power-set performance";
           battery_plugged = "noctalia msg power-set performance";
         };
+
         shell.polkit_agent = true;
-        avatar_path = "${dotfiles}/modules/rakarake/sitting-neco-arc.png";
+        shell.avatar_path = "${dotfiles}/modules/rakarake/sitting-neco-arc.png";
+
         osd.kinds = {
           bluetooth = false;
           brightness = false;
@@ -134,16 +136,26 @@
           volume = false;
           wifi = false;
         };
+
         widget = {
           workspaces = {
-            display = "name";
+            label_source = "name";
             style = "minimal";
+            change_color_on_hover = false;
+            empty_color = "on_surface";
+            focused_color = "secondary";
+            max_label_chars = 4;
+            occupied_color = "on_surface";
+            urgent_color = "on_surface";
           };
           date = {
             format = "{:%F %A vecka %V}";
           };
           tray = {
             drawer = true;
+          };
+          active_window = {
+            display = "text_only";
           };
         };
 
@@ -155,22 +167,26 @@
           padding = 0;
           center = [];
           end = [
-              "tray"
-              "notifications"
-              "clipboard"
-              "network"
-              "bluetooth"
-              "volume"
-              "brightness"
-              "battery"
-              "session"
-              "date"
-              "clock"
+            "media"
+            "ram"
+            "cpu"
+            "temp"
+            "tray"
+            "notifications"
+            "clipboard"
+            "network"
+            "bluetooth"
+            "volume"
+            "brightness"
+            "battery"
+            "session"
+            "date"
+            "clock"
           ];
           margin_ends = 0;
           radius = 0;
           shadow = false;
-          start = [ "workspaces" ];
+          start = [ "workspaces" "active_window" ];
           thickness = 22;
         };
       };
