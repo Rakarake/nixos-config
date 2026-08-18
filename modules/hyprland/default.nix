@@ -16,7 +16,7 @@
       withUWSM = true;
     };
   };
-  flake.homeModules.hyprland = { config, pkgs, ... }: {
+  flake.homeModules.hyprland = { config, pkgs, lib, ... }: {
     imports = [
       inputs.noctalia.homeModules.default
     ];
@@ -47,7 +47,11 @@
 
     # Terminal
     programs.foot = {
-      settings.main.term = "xterm-256color";
+      settings = {
+        main.term = "xterm-256color";
+        colors-dark.alpha = lib.mkForce 0.82;
+        colors-light.alpha = lib.mkForce 0.82;
+      };
       enable = true;
       server.enable = true;
     };
