@@ -1,5 +1,7 @@
 { inputs, dotfiles, ... }: {
   flake.nixosModules.hyprland = { lib, system, config, pkgs, ... }: {
+    # Monitor brightness
+    hardware.i2c.enable = true;
     # Gnome keyring
     services.gnome.gnome-keyring.enable = true;  # Keyring, dbus service to remember passwords
     hardware.bluetooth.enable = true;
@@ -43,6 +45,7 @@
       brightnessctl 
       swaybg
       swayidle
+      ddcutil  # Monitor brightness
     ];
 
     # Terminal
@@ -147,7 +150,7 @@
             style = "minimal";
             change_color_on_hover = false;
             empty_color = "on_surface";
-            focused_color = "secondary";
+            focused_color = "on_surface";
             max_label_chars = 4;
             occupied_color = "on_surface";
             urgent_color = "on_surface";

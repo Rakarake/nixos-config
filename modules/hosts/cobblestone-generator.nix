@@ -66,6 +66,7 @@
              hl.workspace_rule({ workspace = tostring(i + 10), default_name = tostring(i), monitor = "DP-2", persistent = true })
            end
            hl.on("hyprland.start", function()
+             hl.exec_cmd("glonkers -l -t 0.1 ${../rakarake/balatro.glsl}")
              hl.exec_cmd("prevent-idle")
            end)
          '';

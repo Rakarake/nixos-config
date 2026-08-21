@@ -342,7 +342,7 @@
       mpv
       imv
       perf # Performance metrics
-      nix-index # For working with /nix/store
+      inputs.nix-index-database.packages.${system}.nix-index-with-db
       nix-search
       wireshark
       qemu

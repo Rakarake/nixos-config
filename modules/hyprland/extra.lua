@@ -105,6 +105,8 @@ hl.bind(mainMod .. "+ ALT + p", hl.dsp.exec_cmd("playerctl play-pause"))
 hl.bind(mainMod .. "+ ALT + l", hl.dsp.exec_cmd("playerctl next"))
 hl.bind(mainMod .. "+ ALT + h", hl.dsp.exec_cmd("playerctl previous"))
 
+hl.bind(mainMod .. "+ ALT + i", hl.dsp.exec_cmd("m=$(rofi -p \"Which monitor \" -dmenu) && b=$(rofi -p \"Set Monitor Brightness (0-100) \" -dmenu) && ddcutil setvcp -d $m 10 $b"))
+
 -- Network
 hl.bind(mainMod .. "+ m", hl.dsp.exec_cmd(ipc .. " panel-toggle control-center network"))
 hl.bind(mainMod .. "+ CTRL + m", hl.dsp.exec_cmd(ipc .. " panel-toggle control-center bluetooth"))
