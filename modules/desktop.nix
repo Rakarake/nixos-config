@@ -131,6 +131,7 @@
       libresprite
       blobdrop  # terminal drag-and-drop
       moonlight-qt
+      osu-lazer-bin  # official appimage version
 
       # Emulators
       fceux
@@ -611,9 +612,16 @@
       extraConfig.pipewire."99-latency" = {
         "context.properties" = {
           "default.clock.rate" = 48000;
-          "default.clock.quantum" = 512;
-          "default.clock.min-quantum" = 256;
+          "default.clock.quantum" = 256;
+          "default.clock.min-quantum" = 128;
           "default.clock.max-quantum" = 1024;
+        };
+      };
+      extraConfig.pipewire-pulse."99-pulse-latency" = {
+        "stream.properties" = {
+          pulse.min.req      = "128/48000";
+          pulse.min.quantum  = "128/48000";
+          pulse.min.frag     = "128/48000";
         };
       };
     };

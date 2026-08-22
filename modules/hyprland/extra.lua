@@ -116,7 +116,7 @@ hl.bind(mainMod .. "+ ALT + d", hl.dsp.exec_cmd('sink=$(pactl list sinks short |
 
 hl.bind(mainMod .. "+ ALT + SHIFT + s", hl.dsp.exec_cmd("systemctl poweroff"))
 hl.bind(mainMod .. "+ ALT + SHIFT + r", hl.dsp.exec_cmd("systemctl reboot"))
-hl.bind(mainMod .. "+ ALT + SHIFT + n", hl.dsp.exec_cmd("systemctl suspend"))
+hl.bind(mainMod .. "+ ALT + SHIFT + n", hl.dsp.exec_cmd(lock_command .. " && systemctl suspend"))
 hl.bind(mainMod .. "+ ALT + SHIFT + e", hl.dsp.exit())
 hl.bind(mainMod .. "+ ALT + SHIFT + g", hl.dsp.exec_cmd("collect-garbage"))
 
