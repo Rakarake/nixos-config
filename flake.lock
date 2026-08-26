@@ -870,6 +870,26 @@
         "type": "github"
       }
     },
+    "neu-nix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs-stable"
+        ]
+      },
+      "locked": {
+        "lastModified": 1787431271,
+        "narHash": "sha256-QPyuZORGzf52SNSoFWzPrACI77GQLfSOeCTh32AZeKE=",
+        "owner": "ricardomaps",
+        "repo": "neu-nix",
+        "rev": "6eae2d2e019eb741309e6097c76ed47ff451fb61",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ricardomaps",
+        "repo": "neu-nix",
+        "type": "github"
+      }
+    },
     "nix-github-actions": {
       "inputs": {
         "nixpkgs": [
@@ -1227,6 +1247,7 @@
         "import-tree": "import-tree",
         "jovian-nixos": "jovian-nixos",
         "mdf-bouncer": "mdf-bouncer",
+        "neu-nix": "neu-nix",
         "nix-index-database": "nix-index-database",
         "nix-versions": "nix-versions",
         "nix-vscode-extensions": "nix-vscode-extensions",

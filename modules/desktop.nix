@@ -42,6 +42,13 @@
       };
     };
 
+    # Mpd
+    services.mpd = {
+      enable = true;
+      musicDirectory = "~/Music";
+    };
+    services.mpdris2-rs.enable = true;
+
     xdg.userDirs.setSessionVariables = true;
 
     # Ghci prompt
@@ -90,6 +97,7 @@
 
     # User specific packages
     home.packages = with pkgs; [
+      rmpc  # MPD client
       zathuraPkgs.zathura_pdf_mupdf
       appimage-run
       protonup-qt

@@ -124,6 +124,11 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
+    neu-nix = {
+      url = "github:ricardomaps/neu-nix";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
+    };
+
     flake-parts.url = "github:hercules-ci/flake-parts";
     import-tree.url = "github:denful/import-tree";
   };

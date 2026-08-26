@@ -50,10 +50,18 @@
        #self.homeModules.kde
        self.homeModules.hyprland
        #self.homeModules.river
-       ({ lib, ... }: {
+       ({ lib, ... }: let
+         system = pkgs.stdenv.hostPlatform.system;
+       in {
          home.stateVersion = "23.05";
          home.username = "rakarake";
          home.homeDirectory = "/home/rakarake";
+
+         # Testign this stuff out
+         home.packages = with inputs.neu-nix.packages.${system}; [
+           neuswc
+           howl
+         ];
 
          stylix.base16Scheme = lib.mkForce "${pkgs.base16-schemes}/share/themes/decaf.yaml";
          stylix.image = lib.mkForce ../rakarake/wallpaper.png;
@@ -151,6 +159,7 @@
       #lact  # GPU monitor/overclocking
       gpu-screen-recorder-gtk
       #pkgs-unstable.ollama-rocm
+      umr
     ];
     programs.gpu-screen-recorder.enable = true;
 

@@ -174,7 +174,6 @@
           padding = 0;
           center = [];
           end = [
-            "media"
             "ram"
             "cpu"
             "temp"
