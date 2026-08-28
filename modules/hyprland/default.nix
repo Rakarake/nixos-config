@@ -126,6 +126,7 @@
           battery_plugged = "noctalia msg power-set performance";
         };
 
+        lockscreen.enabled = false;
         shell.polkit_agent = true;
         shell.avatar_path = "${dotfiles}/modules/rakarake/sitting-neco-arc.png";
 
