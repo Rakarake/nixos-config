@@ -158,6 +158,7 @@
           bsnes
           citra
           parallel-n64
+          mgba
         ]
       ))
 
