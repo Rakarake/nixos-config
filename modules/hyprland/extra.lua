@@ -4,11 +4,6 @@ local mainMod = "SUPER"
 local terminal = "footclient"
 local lock_command = "swaylock -f -i " .. options.wallpaper
 
--- Wallpaper
-hl.on("hyprland.start", function()
-  hl.exec_cmd("swaybg -i " .. options.wallpaper)
-end)
-
 -- Lockscreen
 hl.bind(mainMod .. "+ ESCAPE", hl.dsp.exec_cmd(lock_command))
 

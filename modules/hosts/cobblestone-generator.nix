@@ -75,7 +75,6 @@
            end
            hl.on("hyprland.start", function()
              hl.exec_cmd("glonkers -l -t 0.1 ${../rakarake/balatro.glsl}")
-             hl.exec_cmd("prevent-idle")
            end)
          '';
        })

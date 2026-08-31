@@ -1,5 +1,5 @@
 # Laptop
-{ inputs, self, ... }: {
+{ inputs, self, config, ... }: {
   flake.nixosConfigurations.thinky = inputs.nixpkgs-stable.lib.nixosSystem {
     modules = [
       self.nixosModules.global
@@ -34,6 +34,11 @@
            hl.on("hyprland.start", function()
              hl.exec_cmd("swayidle -w timeout 450 '" .. lock_command .. "' timeout 700 'systemctl suspend'")
            end)
+
+          -- Wallpaper
+          hl.on("hyprland.start", function()
+            hl.exec_cmd("swaybg -i " .. ${config.stylix.image})
+          end)
          '';
        })
      ];

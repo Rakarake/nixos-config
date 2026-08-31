@@ -19,6 +19,19 @@
     };
   };
   flake.homeModules.hyprland = { config, pkgs, lib, ... }: {
+
+    # Hyprland portal configured with it's own module
+    xdg.portal.configPackages =  with pkgs; [
+      xdg-desktop-portal-gtk
+    ];
+    xdg.portal.config = {
+      common = {
+        default = [
+          "gtk"
+        ];
+      };
+    };
+
     imports = [
       inputs.noctalia.homeModules.default
     ];
