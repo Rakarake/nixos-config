@@ -3,9 +3,11 @@ return function(options)
 local mainMod = "SUPER"
 local terminal = "footclient"
 local lock_command = "swaylock -f -i " .. options.wallpaper
+-- Running stuff in their own units
+local prefix = "uwsm app -- "
 
 -- Lockscreen
-hl.bind(mainMod .. "+ ESCAPE", hl.dsp.exec_cmd(lock_command))
+hl.bind(mainMod .. "+ ESCAPE", hl.dsp.exec_cmd(prefix .. lock_command))
 
 hl.monitor({
   output = "DP-1",
@@ -44,9 +46,9 @@ hl.config({
 
 hl.animation({leaf = "global", enabled = false})
 
-hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd(terminal))
-hl.bind(mainMod .. " + y", hl.dsp.exec_cmd("librewolf"))
-hl.bind(mainMod .. " + f", hl.dsp.exec_cmd("footclient yazi"))
+hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd(prefix .. terminal))
+hl.bind(mainMod .. " + y", hl.dsp.exec_cmd(prefix .."librewolf"))
+hl.bind(mainMod .. " + f", hl.dsp.exec_cmd(prefix .. "footclient yazi"))
 
 -- Magnifier
 hl.bind(mainMod .. " + SHIFT + m", hl.dsp.exec_cmd('TMP=$(mktemp); grim -g "$(slurp)" - > $TMP; imv -u nearest_neighbour $TMP; rm $TMP'))
@@ -116,7 +118,7 @@ hl.bind(mainMod .. "+ ALT + SHIFT + e", hl.dsp.exit())
 hl.bind(mainMod .. "+ ALT + SHIFT + g", hl.dsp.exec_cmd("collect-garbage"))
 
 -- Laptop lid close
-hl.bind("switch:on:Lid Switch", hl.dsp.exec_cmd(lock_command), { locked = true })
+hl.bind("switch:on:Lid Switch", hl.dsp.exec_cmd(prefix .. lock_command), { locked = true })
 
 -- clipboard
 hl.bind(mainMod .. "+ c", hl.dsp.exec_cmd(ipc .. " panel-toggle clipboard"))
@@ -134,13 +136,13 @@ hl.bind(mainMod .. "+ CTRL + n", hl.dsp.exec_cmd(ipc .. " panel-toggle control-c
 hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
 hl.bind(mainMod .. " + mouse_up",   hl.dsp.focus({ workspace = "e-1" }))
 
-hl.bind(mainMod .. " + d",   hl.dsp.exec_cmd("rofi -show drun"))
-hl.bind(mainMod .. " + SHIFT + d",   hl.dsp.exec_cmd("rofi -show run"))
+hl.bind(mainMod .. " + d",   hl.dsp.exec_cmd(prefix .. "rofi -show drun"))
+hl.bind(mainMod .. " + SHIFT + d",   hl.dsp.exec_cmd(prefix .. "rofi -show run"))
 
 -- Project selector
-hl.bind(mainMod .. " + p",   hl.dsp.exec_cmd('dir=$(ls ~/Projects/ | rofi -dmenu -p "Choose project: ") && footclient sh -c "cd ~/Projects/$dir && tmux attach -t $dir || tmux new -s $dir"'))
+hl.bind(mainMod .. " + p",   hl.dsp.exec_cmd(prefix .. 'sh -c \'dir=$(ls ~/Projects/ | rofi -dmenu -p "Choose project: ") && footclient sh -c "cd ~/Projects/$dir && tmux attach -t $dir || tmux new -s $dir"\''))
 -- Open notes
-hl.bind(mainMod .. "+ SHIFT + p",   hl.dsp.exec_cmd('footclient sh -c "cd ~/Notes/ && tmux attach -t notes || tmux new -s notes $EDITOR"'))
+hl.bind(mainMod .. "+ SHIFT + p",   hl.dsp.exec_cmd(prefix .. 'footclient sh -c "cd ~/Notes/ && tmux attach -t notes || tmux new -s notes $EDITOR"'))
 
 hl.bind(mainMod .. " + s",   hl.dsp.exec_cmd('grim -g "$(slurp -d)" - | wl-copy'))
 hl.bind(mainMod .. " + t",   hl.dsp.exec_cmd('grim -o eDP-1 - | wl-copy'))
@@ -215,12 +217,12 @@ hl.window_rule({
 })
 
 hl.on("hyprland.start", function()
-  hl.exec_cmd("emote")
-  hl.exec_cmd("sleep 4 ; easyeffects")
-  hl.exec_cmd("noctalia")
-  hl.exec_cmd("systemctl --user start foot-server.service")
-  hl.exec_cmd("nextcloud")
-  hl.exec_cmd("playerctld")
+  hl.exec_cmd(prefix .. "emote")
+  hl.exec_cmd(prefix .. "sleep 4 ; easyeffects")
+  hl.exec_cmd(prefix .. "noctalia")
+  hl.exec_cmd(prefix .. "systemctl --user start foot-server.service")
+  hl.exec_cmd(prefix .. "nextcloud")
+  hl.exec_cmd(prefix .. "playerctld")
 end)
 end
 

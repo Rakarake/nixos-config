@@ -68,13 +68,14 @@
 
          #wayland.windowManager.river.extraConfig = lib.mkAfter extraConfig;
          wayland.windowManager.hyprland.extraConfig = lib.mkAfter ''
+           local prefix = "uwsm app -- "
            for i = 1, 10 do
              local key = i % 10 -- 10 maps to key 0
              hl.workspace_rule({ workspace = tostring(i), default_name = tostring(i), monitor = "DP-1", persistent = true })
              hl.workspace_rule({ workspace = tostring(i + 10), default_name = tostring(i), monitor = "DP-2", persistent = true })
            end
            hl.on("hyprland.start", function()
-             hl.exec_cmd("glonkers -l -t 0.1 ${../rakarake/balatro.glsl}")
+             hl.exec_cmd(prefix .. "sleep 1; glonkers -l -t 0.1 ${../rakarake/balatro.glsl}")
            end)
          '';
        })
