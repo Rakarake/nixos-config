@@ -52,7 +52,7 @@
       brightnessctl # Laptop brighness controls
       emote # emoji picker
       hyprpicker # Color picker
-      inputs.glonkers.defaultPackage.${system}
+      inputs.glonkers.packages.${system}.default
       lswt  # Gets app-id:s and titles of windows
       tesseract
       brightnessctl 

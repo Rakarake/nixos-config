@@ -659,11 +659,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1788120555,
-        "narHash": "sha256-+a9sNZ3rHnV03GkVaC42LVcsFyHLpc0xG50fHFX3n9Y=",
+        "lastModified": 1788327622,
+        "narHash": "sha256-cCmt6fx6SEX4NtWp1YceqaSuubjlTJYjn15Fwqy3Cms=",
         "ref": "refs/heads/master",
-        "rev": "fd67e4b6187af6628488527f504949104fbd73ab",
-        "revCount": 171,
+        "rev": "3141f6bc00ae4aa5d3f25f5040dc57f1377ff73a",
+        "revCount": 174,
         "type": "git",
         "url": "https://codeberg.org/Rakarake/glonkers"
       },

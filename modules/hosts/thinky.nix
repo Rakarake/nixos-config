@@ -21,7 +21,7 @@
        self.homeModules.hyprland
        #self.homeModules.cosmic
        #self.homeModules.kde
-       ({ lib, ... }: {
+       ({ lib, config, ... }: {
          home.stateVersion = "23.05";
          home.username = "rakarake";
          home.homeDirectory = "/home/rakarake";
@@ -37,7 +37,7 @@
 
           -- Wallpaper
           hl.on("hyprland.start", function()
-            hl.exec_cmd("swaybg -i " .. ${config.stylix.image})
+            hl.exec_cmd("swaybg -i ${config.stylix.image}")
           end)
          '';
        })
