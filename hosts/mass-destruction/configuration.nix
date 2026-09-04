@@ -183,6 +183,13 @@ in
     defaults.email = "scolipede2@hotmail.com";
   };
 
+  # Ollama stuff
+  services.ollama = {
+    enable = true;
+    package = pkgs.ollama-cuda;
+  };
+
+
   # XMage networking stuff
   networking.extraHosts =
     ''
