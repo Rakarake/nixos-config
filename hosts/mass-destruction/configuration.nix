@@ -189,6 +189,7 @@ in
     package = pkgs.ollama-cuda;
     environmentVariables = {
     #stuff here
+    OLLAMA_HOST = 0.0.0.0;
     };
   };
 
