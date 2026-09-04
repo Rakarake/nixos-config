@@ -30,6 +30,7 @@ let
     coturn2 = 5349;
     xmage = 17171;
     xmage2 = 17172;
+    ollama = 11434;
   };
 
 in
