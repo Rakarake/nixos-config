@@ -152,6 +152,13 @@ in
   # Enable networking
   networking.networkmanager.enable = true;
 
+  # Nvidia driver stuff
+  {
+    hardware.graphics.enable = true;
+    services.xserver.videoDrivers = [ "nvidia" ];
+    hardware.nvidia.open = true;  # see the note above
+  }
+
   ## Set your time zone
   time.timeZone = "Europe/Stockholm";
   #services.automatic-timezoned.enable = true;
