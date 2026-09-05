@@ -191,6 +191,7 @@ in
     package = pkgs.ollama-cuda;
     environmentVariables = {
     #stuff here
+    OLLAMA_CONTEXT_LENGTH = "128000"
     };
   };
   services.open-webui.enable = true;
