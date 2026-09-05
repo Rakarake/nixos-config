@@ -50,6 +50,10 @@
       #};
     };
 
+    # Disable automatic hyprpaper
+    stylix.targets.hyprland.image.enable = false;
+    stylix.targets.hyprland.hyprpaper.enable = false;
+
     # Home manager option needed???
     #qt.enable = true;
     #qt.style.name = "kvantum";

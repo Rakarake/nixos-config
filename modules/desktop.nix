@@ -142,6 +142,7 @@
       pkgs-unstable.yt-dlp
       pkgs-unstable.grayjay
       pkgs-unstable.komikku
+      pkgs-unstable.ollama
       libresprite
       blobdrop  # terminal drag-and-drop
       moonlight-qt
@@ -324,6 +325,9 @@
       ]);
   };
   flake.nixosModules.desktop = { lib, config, pkgs, outputs, ... }: {
+    imports = [
+      inputs.hermes-agent.nixosModules.default
+    ];
     environment.systemPackages = with pkgs; [
       libnotify # gives notify-send
       vim
@@ -392,6 +396,14 @@
       lm_sensors
       steam-run
     ];
+
+    # Slop
+    services.hermes-agent = {
+      enable = true;
+      addToSystemPackages = true;
+      #gateway.enable = true;
+    };
+    #programs.hermes-agent.desktop.enable = true;
 
     virtualisation.waydroid.enable = true;
 

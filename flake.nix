@@ -17,6 +17,11 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
+    # Slop
+    hermes-agent = {
+      url = "github:NousResearch/hermes-agent";
+    };
+
     # UwU
     queercat = {
       url = "github:Elsa002/queercat";
