@@ -190,9 +190,9 @@ in
     package = pkgs.ollama-cuda;
     environmentVariables = {
     #stuff here
-    OLLAMA_HOST = "0.0.0.0";
     };
   };
+  services.open-webui.enable = true;
 
 
   # XMage networking stuff
