@@ -178,6 +178,9 @@
           active_window = {
             display = "text_only";
           };
+          network = {
+            show_label = false;
+          };
         };
 
         wallpaper.enabled = false;
