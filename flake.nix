@@ -134,6 +134,11 @@
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
 
+    whibit = {
+      url = "git+https://codeberg.org/Rakarake/whibit";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
+    };
+
     flake-parts.url = "github:hercules-ci/flake-parts";
     import-tree.url = "github:denful/import-tree";
   };

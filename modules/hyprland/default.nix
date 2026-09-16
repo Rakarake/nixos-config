@@ -18,7 +18,9 @@
       withUWSM = true;
     };
   };
-  flake.homeModules.hyprland = { config, pkgs, lib, ... }: {
+  flake.homeModules.hyprland = { config, pkgs, lib, ... }: let
+    system = pkgs.stdenv.hostPlatform.system;
+  in {
 
     # Hyprland portal configured with it's own module
     xdg.portal.configPackages =  with pkgs; [
@@ -59,6 +61,7 @@
       swaybg
       swayidle
       ddcutil  # Monitor brightness
+      inputs.whibit.packages.${system}.default
     ];
 
     # Terminal

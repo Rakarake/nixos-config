@@ -326,7 +326,7 @@
   };
   flake.nixosModules.desktop = { lib, config, pkgs, outputs, ... }: {
     imports = [
-      inputs.hermes-agent.nixosModules.default
+      #inputs.hermes-agent.nixosModules.default
     ];
     environment.systemPackages = with pkgs; [
       libnotify # gives notify-send
@@ -395,14 +395,18 @@
       android-tools # adb
       lm_sensors
       steam-run
+      # Hermes tui
+      inputs.hermes-agent.packages.${system}.default
     ];
 
     # Slop
-    services.hermes-agent = {
-      enable = true;
-      addToSystemPackages = true;
-      #gateway.enable = true;
-    };
+    #services.hermes-agent = {
+    #  enable = true;
+    #  addToSystemPackages = true;
+    #  #environmentFiles = [ "/var/lib/hermes/env" ];
+    #  configFile = /etc/hermes/config.yaml;
+    #  #gateway.enable = true;
+    #};
     #programs.hermes-agent.desktop.enable = true;
 
     virtualisation.waydroid.enable = true;
@@ -670,6 +674,7 @@
         # Adb: android debugging
         "adbusers"
         "docker"
+        #"hermes"
         "wireshark"
         "davfs2"
 
