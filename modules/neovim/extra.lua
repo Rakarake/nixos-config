@@ -66,6 +66,18 @@ vim.filetype.add({extension = {wgsl = "wgsl"}})
 vim.g.vimwiki_list = {{path = '~/Notes/', syntax = 'markdown', ext = '.md'}}
 vim.g.vimwiki_global_ext = 0
 
+-- Open visualization of the current markdown file with xdg-open
+vim.keymap.set('n', '<leader>mr', function ()
+  local result =  '/tmp/tmp.pdf'
+  local on_exit = function()
+    vim.system({'xdg-open', result})
+  end
+  vim.system({'pandoc', vim.fn.expand('%'), '--resource-path=' .. vim.fn.expand('%:p:h'), '-f', 'gfm+tex_math_dollars', '-o', result, '--pdf-engine=xelatex', '-V', 'geometry:margin=1in'}, on_exit)
+end)
+
+--vim.keymap.set('n', '<leader>mr', '<cmd>!pandoc % --resource-path="%:p:h" -f gfm+tex_math_dollars -o %:r.pdf --pdf-engine=xelatex -V geometry:margin=1in && xdg-open %:r.pdf<cr>')
+
+
 -- Telescope
 require'telescope'.setup()
 -- Enalbe DAP integration

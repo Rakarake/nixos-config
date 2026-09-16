@@ -172,6 +172,8 @@
       skim
       cargo-mommy
 
+      texliveSmall
+
       # AppImage manager
       #inputs.app-manager.packages.x86_64-linux.default
 
