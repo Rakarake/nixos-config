@@ -147,6 +147,7 @@
       blobdrop  # terminal drag-and-drop
       moonlight-qt
       osu-lazer-bin  # official appimage version
+      openrct2  # Open Roller Coaster Tycoon 2
 
       # Emulators
       fceux
