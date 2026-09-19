@@ -1,6 +1,6 @@
 # Desktop PC
 { inputs, self, ... }: {
-  flake.nixosConfigurations.cobblestone-generator = inputs.nixpkgs-stable.lib.nixosSystem {
+  flake.nixosConfigurations.cobblestone-generator = inputs.nixpkgs-unstable.lib.nixosSystem {
     modules = [
       self.nixosModules.global
       self.nixosModules.desktop
@@ -40,9 +40,9 @@
       # Local AI slopbot
       #OLLAMA_KEEP_ALIVE=5m ollama serve &
     '';
-    pkgs = import inputs.nixpkgs-stable { system = "x86_64-linux"; config.allowUnfree = true; };
+    pkgs = import inputs.nixpkgs-unstable { system = "x86_64-linux"; config.allowUnfree = true; };
    in
-    inputs.home-manager-stable.lib.homeManagerConfiguration {
+    inputs.home-manager-unstable.lib.homeManagerConfiguration {
      modules = [
        self.homeModules.global
        self.homeModules.desktop

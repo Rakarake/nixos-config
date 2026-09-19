@@ -131,12 +131,12 @@
 
     neu-nix = {
       url = "github:ricardomaps/neu-nix";
-      inputs.nixpkgs.follows = "nixpkgs-stable";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
     whibit = {
       url = "git+https://codeberg.org/Rakarake/whibit";
-      inputs.nixpkgs.follows = "nixpkgs-stable";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
     flake-parts.url = "github:hercules-ci/flake-parts";

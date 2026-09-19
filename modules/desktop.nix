@@ -4,10 +4,9 @@
     pkgs-unstable = import inputs.nixpkgs-unstable { system = pkgs.stdenv.hostPlatform.system; config.allowUnfree = true; };
   in {
     imports = [
-      self.homeModules.neovim
       self.homeModules.bash
+      self.homeModules.devenv
     ];
-
 
     # Browser
     programs.librewolf = {
@@ -124,30 +123,25 @@
       rclone
       gnome-clocks
       gnupg1
-      okteta
       krita
       gimp3
       obsidian
       hieroglyphic
       strawberry
-      gdb
       renderdoc
       qbittorrent
       discord
       kdePackages.kate
       kdePackages.kdenlive
-      pkgs-unstable.aichat
       poppler-utils # Needed for pdf RAG
-      pkgs-unstable.opencode
       pkgs-unstable.yt-dlp
-      pkgs-unstable.grayjay
       pkgs-unstable.komikku
-      pkgs-unstable.ollama
       libresprite
       blobdrop  # terminal drag-and-drop
       moonlight-qt
       osu-lazer-bin  # official appimage version
       openrct2  # Open Roller Coaster Tycoon 2
+      skim
 
       # Emulators
       fceux
@@ -168,10 +162,6 @@
       prismlauncher
       glfw3-minecraft
       jdk21
-
-      # Hacking
-      skim
-      cargo-mommy
 
       texliveSmall
 
@@ -795,7 +785,6 @@
         libXi
         libSM
         libICE
-        gnome2.GConf
         nspr
         nss
         cups
@@ -847,9 +836,6 @@
         SDL_mixer
         SDL2_ttf
         SDL2_mixer
-        libappindicator-gtk2
-        libdbusmenu-gtk2
-        libindicator-gtk2
         libcaca
         libcanberra
         libgcrypt
