@@ -65,6 +65,7 @@
 
          stylix.base16Scheme = lib.mkForce "${pkgs.base16-schemes}/share/themes/decaf.yaml";
          stylix.image = lib.mkForce ../rakarake/wallpaper.png;
+         stylix.polarity = lib.mkForce "dark";
 
          #wayland.windowManager.river.extraConfig = lib.mkAfter extraConfig;
          wayland.windowManager.hyprland.extraConfig = lib.mkAfter ''
