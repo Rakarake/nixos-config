@@ -105,7 +105,7 @@
     };
 
     # Linux kernel package
-    boot.kernelPackages = pkgs.linuxPackages_latest;
+    #boot.kernelPackages = pkgs.linuxPackages_latest;
 
     # Droidcam
     programs.droidcam.enable = true;
