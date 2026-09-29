@@ -16,6 +16,7 @@
       glsl_analyzer
       cargo-mommy
       gdb
+      valgrind
       okteta
       (pkgs.rustPlatform.buildRustPackage {
         name = "gdshader-lsp";
