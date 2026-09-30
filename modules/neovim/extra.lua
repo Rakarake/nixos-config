@@ -94,14 +94,11 @@ vim.keymap.set('n', '<leader>fh', '<cmd>Telescope help_tags<cr>')
 vim.keymap.set('n', '<leader>fd', '<cmd>Telescope lsp_document_symbols<cr>')
 vim.keymap.set('n', '<leader>fw', '<cmd>Telescope lsp_dynamic_workspace_symbols<cr>')
 
--- Buffers
-vim.keymap.set('n', '<leader>bn', '<cmd>bnext<cr>')
-vim.keymap.set('n', '<leader>bp', '<cmd>bprevious<cr>')
-vim.keymap.set('n', '<leader>bd', '<cmd>bdelete<cr>')
+-- Open directory in our file viewer.
 vim.keymap.set('n', '<leader>od', '<cmd>e %:h<cr>', {silent = true})
 
 -- Tmux
-vim.keymap.set('n', '<leader>ow', '<cmd>!tmux new-window -c "%:p:h"<cr><cr>', {silent = true})
+vim.keymap.set('n', '<leader>ot', '<cmd>!tmux new-window -c "%:p:h"<cr><cr>', {silent = true})
 
 -- Insert a tab with Shift-Tab in insert mode
 vim.keymap.set('i', '<S-Tab>', '<C-V><Tab>')
