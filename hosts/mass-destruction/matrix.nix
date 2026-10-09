@@ -123,7 +123,7 @@ in
       
       matrix_rtc = {
         transports = { 
-          type = livekit; 
+          type = "livekit"; 
           livekit_service_url = "https://voip.mdf.farm/jwt";
         };
       };
