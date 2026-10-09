@@ -98,7 +98,7 @@ in
         # MSC4222 needed for syncv2 state_after. This allow clients correctly track the state of the room.
         msc4140_enabled = true;
         # MSC4143: MatrixRTC. For historical reasons this flag enables the transports endpoint defined in MSC4519.
-        msc4143_enabled: true
+        msc4143_enabled = true;
       };
 
       # The maximum allowed duration by which sent events can be delayed, as
