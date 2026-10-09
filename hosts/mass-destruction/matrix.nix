@@ -96,16 +96,16 @@ in
         # disable thing for science
         # msc3916_authenticated_media_enabled = false;
         # MSC4222 needed for syncv2 state_after. This allow clients correctly track the state of the room.
-        msc4140_enabled = false;
+        msc4140_enabled = true;
         # MSC4143: MatrixRTC. For historical reasons this flag enables the transports endpoint defined in MSC4519.
-        # msc4143_enabled = true;
+        msc4143_enabled = true;
         # MatrixRTC Transports Registry: Defines an endpoint that clients can use to query the available MatrixRTC transports (i.e. find your LiveKit SFU).
-        # msc4519_enabled = true;
+        msc4519_enabled = true;
       };
 
       # The maximum allowed duration by which sent events can be delayed, as
       # per MSC4140.
-      # max_event_delay_duration = "24h";
+       max_event_delay_duration = "24h";
 
       rc_message = {
         # This needs to match at least e2ee key sharing frequency plus a bit of headroom
@@ -121,12 +121,14 @@ in
         burst_count = 20;
       };
       
-   #   matrix_rtc = {
-   #     transports = { 
-   #       type = "livekit"; 
-   #       livekit_service_url = "https://voip.mdf.farm/jwt";
-   #     };
-   #   };
+      matrix_rtc = {
+        transports =[
+          { 
+            type = "livekit"; 
+            livekit_service_url = "https://voip.mdf.farm/jwt";
+          }
+        ];
+      };
     };
   };
 
