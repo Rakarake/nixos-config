@@ -120,6 +120,10 @@ in
         per_second = 1;
         burst_count = 20;
       };
+      
+      matrix_rtc = {
+        transports = { type = "livekit"; livekit_service_url = "https://voip.mdf.farm/jwt"}
+      };
     };
   };
 
@@ -153,7 +157,7 @@ in
   # generate the key when needed
   systemd.services.livekit-key = {
     before = [
-      "lk-jwt-service.service"
+      "lk--service.service"
       "livekit.service"
     ];
     wantedBy = [ "multi-user.target" ];
