@@ -99,6 +99,8 @@ in
         msc4140_enabled = true;
         # MSC4143: MatrixRTC. For historical reasons this flag enables the transports endpoint defined in MSC4519.
         msc4143_enabled = true;
+        # MatrixRTC Transports Registry: Defines an endpoint that clients can use to query the available MatrixRTC transports (i.e. find your LiveKit SFU).
+        msc4519_enabled = true;
       };
 
       # The maximum allowed duration by which sent events can be delayed, as
