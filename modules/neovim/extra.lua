@@ -221,6 +221,7 @@ local lsps_with_default_config = {
     'hls',
     'glsl_analyzer',
     'lua_ls',
+    'haskell-language-server',
 }
 
 -- Finally enable LSP:s
