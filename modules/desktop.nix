@@ -102,7 +102,6 @@
 
     # User specific packages
     home.packages = with pkgs; [
-      rmpc  # MPD client
       zathuraPkgs.zathura_pdf_mupdf
       appimage-run
       protonup-qt
@@ -182,6 +181,16 @@
     };
 
     home.pointerCursor.enable = true;
+
+    # MPD Client.
+    programs.rmpc = {
+      enable = true;
+      config = ''
+        (
+          enable_mouse: true,
+        )
+      '';
+    };
 
     xdg.mimeApps = {
       enable = true;
