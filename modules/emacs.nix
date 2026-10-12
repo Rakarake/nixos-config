@@ -3,12 +3,12 @@
     programs.emacs = {
       enable = true;
       package = pkgs.emacs-pgtk;
-      extraPackages = epkgs: with epkgs; [
-        ivy
-        eat
+      #extraPackages = epkgs: with epkgs; [
+      #  ivy
+      #  eat
 
-        #agda2-mode
-      ];
+      #  #agda2-mode
+      #];
       extraConfig = ''
         ; Hide UI garbage
         (menu-bar-mode 0)
@@ -25,7 +25,7 @@
         (setq x-select-enable-clipboard t)
 
         ; Ivy mode: completion
-        (ivy-mode 1)
+        ;(ivy-mode 1)
       '';
     };
   };
