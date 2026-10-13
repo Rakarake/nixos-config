@@ -24,11 +24,13 @@
 
     # Hyprland portal configured with it's own module
     xdg.portal.configPackages =  with pkgs; [
+      xdg-desktop-portal-termfilechooser
       xdg-desktop-portal-gtk
     ];
     xdg.portal.config = {
       common = {
         default = [
+          "termfilechooser"
           "gtk"
         ];
       };
@@ -76,6 +78,17 @@
     };
 
     programs.swaylock.enable = true;
+
+    # Make yazi the desktop portal file picker
+    home.file.".config/xdg-desktop-portal-termfilechooser/config".text = ''
+      [filechooser]
+      cmd=${pkgs.xdg-desktop-portal-termfilechooser}/share/xdg-desktop-portal-termfilechooser/yazi-wrapper.sh
+      default_dir=$HOME
+      env=TERMCMD=footclient
+      env=PATH="$PATH:/run/current-system/sw/bin"
+      open_mode = suggested
+      save_mode = last
+    '';
 
     programs.yazi = {
       enable = true;

@@ -102,6 +102,24 @@ hl.bind(mainMod .. "+ ALT + p", hl.dsp.exec_cmd("playerctl play-pause"))
 hl.bind(mainMod .. "+ ALT + l", hl.dsp.exec_cmd("playerctl next"))
 hl.bind(mainMod .. "+ ALT + h", hl.dsp.exec_cmd("playerctl previous"))
 
+-- MPD keys
+local mpd = "rmpc "
+hl.bind(mainMod .. "+ ALT + CTRL + p", hl.dsp.exec_cmd(mpd .. "togglepause"))
+hl.bind(mainMod .. "+ ALT + CTRL + l", hl.dsp.exec_cmd(mpd .. "next"))
+hl.bind(mainMod .. "+ ALT + CTRL + h", hl.dsp.exec_cmd(mpd .. "prev"))
+hl.bind(mainMod .. "+ ALT + CTRL + s", hl.dsp.exec_cmd(mpd .. "stop"))
+hl.bind(mainMod .. "+ ALT + CTRL + g", hl.dsp.exec_cmd(mpd .. "play"))
+hl.bind(mainMod .. "+ ALT + CTRL + r", hl.dsp.exec_cmd(mpd .. "rescan"))
+
+hl.bind(mainMod .. "+ ALT + CTRL + z", hl.dsp.exec_cmd(mpd .. "togglerepeat"))
+hl.bind(mainMod .. "+ ALT + CTRL + x", hl.dsp.exec_cmd(mpd .. "togglerandom"))
+hl.bind(mainMod .. "+ ALT + CTRL + c", hl.dsp.exec_cmd(mpd .. "toggleconsume"))
+hl.bind(mainMod .. "+ ALT + CTRL + v", hl.dsp.exec_cmd(mpd .. "togglesingle"))
+
+hl.bind(mainMod .. "+ ALT + CTRL + k", hl.dsp.exec_cmd(mpd .. "volume +5"))
+hl.bind(mainMod .. "+ ALT + CTRL + j", hl.dsp.exec_cmd(mpd .. "volume -5"))
+
+-- Monitor brightness
 hl.bind(mainMod .. "+ ALT + i", hl.dsp.exec_cmd("m=$(rofi -p \"Which monitor \" -dmenu) && b=$(rofi -p \"Set Monitor Brightness (0-100) \" -dmenu) && ddcutil setvcp -d $m 10 $b"))
 
 -- Network

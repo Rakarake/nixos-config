@@ -46,6 +46,7 @@
       enable = true;
       musicDirectory = "~/Music";
       extraConfig = ''
+        playlist_directory "~/Music/mpd-playlists"
         audio_output {
           type "pipewire"
           name "MPD Pipewire Output"
