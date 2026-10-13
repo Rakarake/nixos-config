@@ -141,6 +141,7 @@
       osu-lazer-bin  # official appimage version
       openrct2  # Open Roller Coaster Tycoon 2
       skim
+      exiftool  # Used by yazi for checking exif info
 
       # Emulators
       fceux
