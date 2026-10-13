@@ -81,9 +81,19 @@
       enable = true;
       enableBashIntegration = true;
       shellWrapperName = "y";
-      plugins = {
-        clipboard ={
-          package = pkgs.yaziPlugins.clipboard;
+      #plugins = {
+      #  clipboard ={
+      #    package = pkgs.yaziPlugins.clipboard;
+      #  };
+      #};
+      theme = {
+        indicator = {
+          padding = { open = ""; close = ""; };
+        };
+        status = {
+          padding = { open = ""; close = ""; };
+          sep_left = { open = ""; close = ""; };
+          sep_right = { open = ""; close = ""; };
         };
       };
       keymap = {
@@ -95,33 +105,37 @@
             desc = "Open $SHELL here";
           }
           {
-            on   = "Q";
-            run  = "quit --no-cwd-file";
-            desc = "Guaranteed quit";
+            on  = "y";
+            run = [ "shell -- for path in %s; do echo \"file://$path\"; done | wl-copy -t text/uri-list" "yank" ];
           }
+          #{
+          #  on   = "Q";
+          #  run  = "quit --no-cwd-file";
+          #  desc = "Guaranteed quit";
+          #}
           {
             # Drag and drop window popup
             on  = "<C-n>";
             run = "shell -- blobdrop %h";
           }
-          {
-            # Copy yanked files to the system clipboard
-            on  = "y";
-            run = [ "yank" ''plugin clipboard -- --action=copy'' ];
-            desc = "Yank selected files (copy)";
-          }
-          {
-            # Keep behaviour consistent with cut
-            on  = "x";
-            run = [ "yank --cut" ''plugin clipboard -- --action=copy'' ];
-            desc = "Yank selected files (cut)";
-          }
-          {
-            # Paste files from the system clipboard into the current directory
-            on  = "<C-p>";
-            run = [ ''plugin clipboard -- --action=paste'' ];
-            desc = "Paste yanked system clipboard files";
-          }
+          #{
+          #  # Copy yanked files to the system clipboard
+          #  on  = "y";
+          #  run = [ "yank" ''plugin clipboard -- --action=copy'' ];
+          #  desc = "Yank selected files (copy)";
+          #}
+          #{
+          #  # Keep behaviour consistent with cut
+          #  on  = "x";
+          #  run = [ "yank --cut" ''plugin clipboard -- --action=copy'' ];
+          #  desc = "Yank selected files (cut)";
+          #}
+          #{
+          #  # Paste files from the system clipboard into the current directory
+          #  on  = "<C-p>";
+          #  run = [ ''plugin clipboard -- --action=paste'' ];
+          #  desc = "Paste yanked system clipboard files";
+          #}
           {
             # Paste an image
             on  = "<C-S-p>";

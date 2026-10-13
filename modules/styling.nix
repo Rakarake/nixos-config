@@ -17,12 +17,20 @@
     };
     stylix.fonts = {
       monospace = {
-        package = pkgs.fira-code;
-        name = "Fira Code";
+        #package = pkgs.fira-code;
+        name = "GoMono Nerd Font";
+      };
+      serif = {
+        #package = pkgs.fira-code;
+        name = "FreeSerif";
+      };
+      sansSerif = {
+        #package = pkgs.fira-code;
+        name = "FreeSerif";
       };
       sizes = {
-        desktop = 10;
-        applications = 10;
+        desktop = 11;
+        applications = 11;
         terminal = 11;
       };
     };
