@@ -181,7 +181,8 @@ hl.bind(mainMod .. " + ALT + b",   hl.dsp.exec_cmd('pkill --signal SIGINT wl-scr
 hl.bind(mainMod .. " + ALT + y",   hl.dsp.exec_cmd('pkill whibit ; whibit'))
 hl.bind(mainMod .. " + ALT + SHIFT + y",   hl.dsp.exec_cmd('pkill whibit'))
 
-hl.bind(mainMod .. "+ CTRL + SHIFT + c",   hl.dsp.exec_cmd('d=$(rofi -dmenu -p "Choose Camera Device") ; scrcpy --no-window --video-source=camera --camera-size=1920x1080 --camera-facing=back --v4l2-sink=/dev/video$d --no-playback'))
+-- On the android phone: need to enable the developer option "USB Debugging" (or WIFI debugging I guess).
+hl.bind(mainMod .. "+ CTRL + SHIFT + c",   hl.dsp.exec_cmd('scrcpy --no-window --video-source=camera --camera-size=1920x1080 --camera-facing=back --v4l2-sink=/dev/video1 --no-playback'))
 
 hl.config({
     general = {
