@@ -225,8 +225,6 @@
             "cpu"
             "temp"
             "tray"
-            "notifications"
-            "clipboard"
             "network"
             "bluetooth"
             "volume"
