@@ -54,7 +54,8 @@
         rustaceanvim
         # Agda mode
         cornelis
-        # Nix LSP
+        # Use the command Ghcid to get an LSP like experience backed by ghci
+        ghcid
       ];
       initLua = ''
 -- We want to import the mutable extra.lua file here
