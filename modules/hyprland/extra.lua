@@ -161,8 +161,10 @@ hl.bind(mainMod .. " + SHIFT + d",   hl.dsp.exec_cmd(prefix .. "rofi -show run")
 hl.bind(mainMod .. " + p",   hl.dsp.exec_cmd(prefix .. 'sh -c \'dir=$(ls ~/Projects/ | rofi -dmenu -p "Choose project: ") && footclient sh -c "cd ~/Projects/$dir && tmux attach -t $dir || tmux new -s $dir"\''))
 -- Open notes
 hl.bind(mainMod .. "+ SHIFT + p",   hl.dsp.exec_cmd(prefix .. 'footclient sh -c "cd ~/Notes/ && tmux attach -t notes || tmux new -s notes $EDITOR"'))
--- Open program in ~/Programs
+-- Open AppImage in ~/Programs/AppImages
 hl.bind(mainMod .. " + CTRL + d", hl.dsp.exec_cmd(prefix .. 'sh -c \'app=$(ls ~/Programs/AppImages/ | rofi -dmenu); appimage-run ~/Programs/AppImages/$app\''))
+-- Open gifs
+hl.bind(mainMod .. " + CTRL + g", hl.dsp.exec_cmd(prefix .. 'footclient yazi ~/TheGoods/gifs/'))
 
 hl.bind(mainMod .. " + s",   hl.dsp.exec_cmd('grim -g "$(slurp -d)" - | wl-copy'))
 hl.bind(mainMod .. " + t",   hl.dsp.exec_cmd('grim -o eDP-1 - | wl-copy'))
