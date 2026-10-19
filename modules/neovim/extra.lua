@@ -94,6 +94,10 @@ vim.keymap.set('n', '<leader>fh', '<cmd>Telescope help_tags<cr>')
 vim.keymap.set('n', '<leader>fd', '<cmd>Telescope lsp_document_symbols<cr>')
 vim.keymap.set('n', '<leader>fw', '<cmd>Telescope lsp_dynamic_workspace_symbols<cr>')
 
+-- Buffers
+-- "bp|bd #" does not close the current window.
+vim.keymap.set('n', '<leader>bd', '<cmd>bp|bd #<cr>')
+
 -- Open directory in our file viewer.
 vim.keymap.set('n', '<leader>od', '<cmd>e %:h<cr>', {silent = true})
 
