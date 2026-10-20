@@ -163,6 +163,9 @@
       enable = true;
 
       settings = { # This may also be a string or path to a .toml file.
+        audio = {
+          enable_sounds = false;
+        };
         hooks = {
           battery_discharging = "noctalia msg power-set balanced";
           battery_charging = "noctalia msg power-set performance";
