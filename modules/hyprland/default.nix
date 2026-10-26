@@ -255,6 +255,7 @@
             "network"
             "bluetooth"
             "volume"
+            "input_volume"
             "brightness"
             "battery"
             "session"
