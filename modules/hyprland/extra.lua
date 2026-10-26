@@ -142,7 +142,14 @@ hl.bind("switch:on:Lid Switch", hl.dsp.exec_cmd(prefix .. lock_command), { locke
 hl.bind(mainMod .. "+ c", hl.dsp.exec_cmd(ipc .. " panel-toggle clipboard"))
 hl.bind(mainMod .. "+ SHIFT + c", hl.dsp.exec_cmd(ipc .. " clipboard-clear"))
 
+-- Emoji picker
 hl.bind(mainMod .. "+ e", hl.dsp.exec_cmd("emote"))
+
+-- STT (Speech To Text)
+hl.bind(mainMod .. "+ r", hl.dsp.exec_cmd("voxtype record start"))
+hl.bind(mainMod .. "+ r", hl.dsp.exec_cmd("voxtype record stop"), { release = true })
+--bind = SUPER, V, exec, voxtype record start
+--bindr = SUPER, V, exec, voxtype record stop
 
 -- Notifications
 hl.bind(mainMod .. "+ n", hl.dsp.exec_cmd(ipc .. " notification-clear-active"))

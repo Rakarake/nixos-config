@@ -401,6 +401,7 @@
       steam-run
       # Hermes tui
       inputs.hermes-agent.packages.${system}.default
+      openssl # Hermes need this in PATH...
     ];
 
     # Slop

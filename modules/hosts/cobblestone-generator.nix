@@ -88,6 +88,39 @@
   in {
     networking.hostName = "cobblestone-generator";
 
+    # Slop
+    systemd.services.llama-cpp = {
+      environment = {
+        XDG_CACHE_HOME = "/var/cache/llama-cpp";
+        MESA_SHADER_CACHE_DIR = "/var/cache/llama-cpp";
+      };
+    };
+    services.llama-cpp = {
+      package = pkgs.llama-cpp-vulkan;
+      enable = true;
+      settings = {
+        models-preset = (pkgs.formats.ini { }).generate "models-preset.ini" {
+          "gemma-4-E2B-it-Q8_0" = {
+            sleep-idle-seconds = 140;
+
+            # Smallest gemma
+            hf-repo = "unsloth/gemma-4-E2B-it-GGUF";
+            hf-file = "gemma-4-E2B-it-Q8_0.gguf";
+            temp = 1.0;
+            top-p = 0.95;
+            top-k = 64;
+            
+            # Big gemma
+            #hf-repo = "unsloth/gemma-4-26B-A4B-it-GGUF";
+            #hf-file = "gemma-4-26B-A4B-it-UD-Q4_K_XL.gguf";
+            #temp = 1.0;
+            #top-p = 0.95;
+            #top-k = 64;
+          };
+        };
+      };
+    };
+
     # Switch emulator
     programs.eden = {
       enable = true;
@@ -161,6 +194,8 @@
       gpu-screen-recorder-gtk
       #pkgs-unstable.ollama-rocm
       umr
+      # Slop
+      pkgs.llama-cpp-vulkan
     ];
     programs.gpu-screen-recorder.enable = true;
 
