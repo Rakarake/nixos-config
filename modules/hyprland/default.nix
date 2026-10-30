@@ -71,8 +71,8 @@
     programs.foot = {
       settings = {
         main.term = "xterm-256color";
-        colors-dark.alpha = lib.mkForce 0.82;
-        colors-light.alpha = lib.mkForce 0.82;
+        #colors-dark.alpha = lib.mkForce 0.82;
+        #colors-light.alpha = lib.mkForce 0.82;
       };
       enable = true;
       server.enable = true;

@@ -132,6 +132,9 @@
       autoStart = true;
       capSysAdmin = true;
       openFirewall = true;
+      settings = {
+        capture = "wlr";
+      };
     };
     users.users.rakarake = {
       extraGroups = [ "uinput" ];
@@ -197,7 +200,10 @@
       # Slop
       pkgs.llama-cpp-vulkan
     ];
-    programs.gpu-screen-recorder.enable = true;
+    programs.gpu-screen-recorder = {
+      enable = true;
+      #ui.enable = true; # For overlay
+    };
 
     # Guest User
     users.users.guest = {

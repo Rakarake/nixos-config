@@ -69,8 +69,11 @@ hl.bind(mainMod .. " + SHIFT + j",    hl.dsp.layout("swapnext"))
 hl.bind(mainMod .. " + z",    hl.dsp.focus({monitor = "DP-2"}))
 hl.bind(mainMod .. " + x",    hl.dsp.focus({monitor = "DP-1"}))
 
-hl.bind(mainMod .. " + ALT + z", hl.dsp.window.move({monitor = "-1"}))
-hl.bind(mainMod .. " + ALT + x", hl.dsp.window.move({monitor = "+1"}))
+hl.bind(mainMod .. " + ALT + z", hl.dsp.window.move({monitor = "-1", follow = false}))
+hl.bind(mainMod .. " + ALT + x", hl.dsp.window.move({monitor = "+1", follow = false}))
+
+hl.bind(mainMod .. " + t", hl.dsp.layout("focusmaster"))
+hl.bind(mainMod .. " + SHIFT + t", hl.dsp.layout("swapwithmaster master"))
 
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 
@@ -82,7 +85,7 @@ hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 for i = 1, 10 do
     local key = i % 10 -- 10 maps to key 0
     hl.bind(mainMod .. " + " .. key,             hl.dsp.focus({ workspace = "r~" .. tostring(i)}))
-    hl.bind(mainMod .. " + SHIFT + " .. key,     hl.dsp.window.move({ workspace = "r~" .. tostring(i) }))
+    hl.bind(mainMod .. " + SHIFT + " .. key,     hl.dsp.window.move({ workspace = "r~" .. tostring(i), follow = false }))
 end
 
 hl.bind(mainMod .. " + b", hl.dsp.window.fullscreen({ action = "toggle" }))
