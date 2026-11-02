@@ -145,7 +145,7 @@
       exiftool  # Used by yazi for checking exif info
 
       # Emulators
-      fceux
+      #fceux -- put this in project flake instead, use retroarch for emulation
       dolphin-emu
       #torzu
       ryubing
