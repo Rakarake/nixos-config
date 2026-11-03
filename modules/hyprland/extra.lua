@@ -126,7 +126,7 @@ hl.bind(mainMod .. "+ ALT + CTRL + j", hl.dsp.exec_cmd(mpd .. "volume -5"))
 hl.bind(mainMod .. "+ ALT + i", hl.dsp.exec_cmd("m=$(rofi -p \"Which monitor \" -dmenu) && b=$(rofi -p \"Set Monitor Brightness (0-100) \" -dmenu) && ddcutil setvcp -d $m 10 $b"))
 
 -- SSH into tmux
-hl.bind(mainMod .. "+ CTRL + t", hl.dsp.exec_cmd("rofi -ssh-command 'foot ssh {host} -t tmux' -show ssh"))
+hl.bind(mainMod .. "+ CTRL + t", hl.dsp.exec_cmd("rofi -ssh-command 'footclient ssh {host} -t tmux' -show ssh"))
 
 -- Network
 hl.bind(mainMod .. "+ m", hl.dsp.exec_cmd(ipc .. " panel-toggle control-center network"))
