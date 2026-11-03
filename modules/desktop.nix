@@ -53,7 +53,7 @@
         }
       '';
     };
-    services.mpdris2-rs.enable = true;
+    #services.mpdris2-rs.enable = true;
 
     xdg.userDirs.setSessionVariables = true;
 
@@ -76,12 +76,12 @@
     };
 
     # Virt-manager error free
-    dconf.settings = {
-      "org/virt-manager/virt-manager/connections" = {
-        autoconnect = [ "qemu:///system" ];
-        uris = [ "qemu:///system" ];
-      };
-    };
+    #dconf.settings = {
+    #  "org/virt-manager/virt-manager/connections" = {
+    #    autoconnect = [ "qemu:///system" ];
+    #    uris = [ "qemu:///system" ];
+    #  };
+    #};
 
     # Mangohud
     programs.mangohud = {
@@ -121,13 +121,13 @@
       easyeffects
       file-roller
       rclone
-      gnome-clocks
+      #gnome-clocks
       gnupg1
       krita
       gimp3
-      obsidian
+      #obsidian
       hieroglyphic
-      strawberry
+      #strawberry
       renderdoc
       qbittorrent
       discord
@@ -182,7 +182,7 @@
       };
     };
 
-    home.pointerCursor.enable = true;
+    #home.pointerCursor.enable = true;
 
     # MPD Client.
     programs.rmpc = {
@@ -242,7 +242,7 @@
 
     programs.vesktop.enable = true;
 
-    programs.element-desktop.enable = true;
+    #programs.element-desktop.enable = true;
 
     #age.secrets.rakarake-rclone-webdav = {
     #  file = ../../secrets/rakarake-rclone-webdav.age;
@@ -250,14 +250,14 @@
     #};
 
     # Moment
-    nixpkgs.config.permittedInsecurePackages = [
-      "olm-3.2.16" # For nheko matrix client
-      "fluffychat-linux-1.26.1" # Fluffychat
-      "electron-27.3.11"
-      "dotnet-runtime-7.0.20" # Vintage story
-      "mbedtls-2.28.10" # I have no idea
-			"pnpm-10.29.2" # Vestkop
-    ];
+    #nixpkgs.config.permittedInsecurePackages = [
+    #  "olm-3.2.16" # For nheko matrix client
+    #  "fluffychat-linux-1.26.1" # Fluffychat
+    #  "electron-27.3.11"
+    #  "dotnet-runtime-7.0.20" # Vintage story
+    #  "mbedtls-2.28.10" # I have no idea
+		#	"pnpm-10.29.2" # Vestkop
+    #];
 
     xdg.desktopEntries =
       let
@@ -329,12 +329,12 @@
       ]);
   };
   flake.nixosModules.desktop = { lib, config, pkgs, outputs, ... }: {
-    imports = [
-      #inputs.hermes-agent.nixosModules.default
-    ];
+    #imports = [
+    #  #inputs.hermes-agent.nixosModules.default
+    #];
     environment.systemPackages = with pkgs; [
       libnotify # gives notify-send
-      vim
+      nano
       wget
       gnumake
       git
@@ -362,17 +362,17 @@
       tmux
       nextcloud-client
       mesa-demos # Has programs such as glxgears
-      adwaita-icon-theme # Just to be safe
+      #adwaita-icon-theme # Just to be safe
       mpv
       imv
       perf # Performance metrics
-      inputs.nix-index-database.packages.${system}.nix-index-with-db
-      nix-search
+      #inputs.nix-index-database.packages.${system}.nix-index-with-db
       wireshark
       qemu
       nix-tree
       man-pages
       man-pages-posix
+      # Is there a wine with better builtins?
       wineWow64Packages.waylandFull
       libreoffice-qt
       hunspell # Libreoffice spelling
@@ -391,9 +391,9 @@
       exfat
       rclone
       # Needed for gsettings programs to work, probably, maybe
-      gsettings-desktop-schemas
+      #gsettings-desktop-schemas
       gnome-calculator  # Still havn't found a better one
-      nix-search-cli
+      #nix-search-cli  # Use nh search instead
       inputs.nix-versions.packages.${system}.default
       android-tools # adb
       lm_sensors
@@ -413,7 +413,7 @@
     #};
     #programs.hermes-agent.desktop.enable = true;
 
-    virtualisation.waydroid.enable = true;
+    #virtualisation.waydroid.enable = true;
 
     programs.gamemode = {
       enable = true;
@@ -464,24 +464,24 @@
     services.fwupd.enable = true;
 
     # Input engines
-    i18n.inputMethod.ibus.engines = [
-      pkgs.ibus-engines.mozc
-    ];
+    #i18n.inputMethod.ibus.engines = [
+    #  pkgs.ibus-engines.mozc
+    #];
 
     # Emulation 😈
-    virtualisation.libvirtd.enable = true;
-    programs.virt-manager.enable = true;
+    #virtualisation.libvirtd.enable = true;
+    #programs.virt-manager.enable = true;
 
     # Open ports, for fun purposes
     networking.firewall.enable = false;
 
     # Fix Logseq bad old electron problem
-    nixpkgs.config.permittedInsecurePackages = [
-      #"electron-20.3.12"
-      #"electron-24.8.6"
-      #"electron-25.9.0"
-      #"freeimage-unstable-2021-11-01"
-    ];
+    #nixpkgs.config.permittedInsecurePackages = [
+    #  #"electron-20.3.12"
+    #  #"electron-24.8.6"
+    #  #"electron-25.9.0"
+    #  #"freeimage-unstable-2021-11-01"
+    #];
     #nixpkgs.overlays = [
     #  (
     #    final: prev: {
@@ -502,19 +502,24 @@
     fonts.packages =
       with pkgs;
       [
+        # Fallback fonts
         noto-fonts
         noto-fonts-cjk-sans
         noto-fonts-color-emoji
-        liberation_ttf
-        fira-code
-        fira-code-symbols
-        mplus-outline-fonts.githubRelease
-        dina-font
-        proggyfonts
-        orbitron
-        corefonts # Microsoft fonts
-      ]
-      ++ (builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts));
+
+        freefont_ttf # contains FreeSerif
+        nerd-fonts.go-mono # contains GoMono
+
+        #liberation_ttf
+        #fira-code
+        #fira-code-symbols
+        #mplus-outline-fonts.githubRelease
+        #dina-font
+        #proggyfonts
+        #orbitron
+        #corefonts # Microsoft fonts
+      ];
+      #++ (builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts));
 
     ## GPG / GnuPG
     #programs.gnupg.agent = {
@@ -538,7 +543,7 @@
     programs.wireshark.enable = true;
 
     # Firejail
-    programs.firejail.enable = true;
+    #programs.firejail.enable = true;
 
     ## Use encrypted cloudflare DNS
     #networking = {
@@ -557,30 +562,30 @@
       #dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
     };
     hardware.steam-hardware.enable = true; # To enable steam controller etc.
-    nixpkgs.config.packageOverrides = pkgs: {
-      steam = pkgs.steam.override {
-        extraEnv = {
-          MANGOHUD = "1";
-        };
-        extraPkgs =
-          pkgs: with pkgs; [
-            libXcursor
-            libXi
-            libXinerama
-            libXScrnSaver
-            libpng
-            libpulseaudio
-            libvorbis
-            stdenv.cc.cc.lib
-            libkrb5
-            keyutils
-            mesa-demos
-          ];
-      };
-    };
+    #nixpkgs.config.packageOverrides = pkgs: {
+    #  steam = pkgs.steam.override {
+    #    extraEnv = {
+    #      MANGOHUD = "1";
+    #    };
+    #    extraPkgs =
+    #      pkgs: with pkgs; [
+    #        libXcursor
+    #        libXi
+    #        libXinerama
+    #        libXScrnSaver
+    #        libpng
+    #        libpulseaudio
+    #        libvorbis
+    #        stdenv.cc.cc.lib
+    #        libkrb5
+    #        keyutils
+    #        mesa-demos
+    #      ];
+    #  };
+    #};
     environment.sessionVariables = {
       # Needed for gamescope to run in steam
-      ENABLE_VKBASALT = "1";
+      #ENABLE_VKBASALT = "1";
       # Always allow unfree nix packages :(
       NIXPKGS_ALLOW_UNFREE = "1";
     };
@@ -700,10 +705,10 @@
         "gamemode"
       ];
     };
-    users.groups.davfs2 = { };
+    #users.groups.davfs2 = { };
 
     # Needed for xremap home-manager config to work
-    hardware.uinput.enable = true;
+    #hardware.uinput.enable = true;
 
     ## Mullvad Service
     #services.mullvad-vpn.enable = true;
@@ -715,7 +720,7 @@
     xdg.portal.enable = true;
 
     # Required for rclone to mount with systemd?
-    programs.fuse.userAllowOther = true;
+    #programs.fuse.userAllowOther = true;
 
     # Collect all the garbage automatically!
     #nix.gc = {

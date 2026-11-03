@@ -81,7 +81,7 @@
     # Mangohud
     stylix.targets.mangohud.enable = false;
 
-    stylix.targets.noctalia.enable = true;
+    #stylix.targets.noctalia.enable = true;
 
     # Hyprland
     #stylix.targets.hyprland.enable = false;

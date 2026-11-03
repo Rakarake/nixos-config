@@ -9,7 +9,6 @@
     # Batter stats I think
     services.upower.enable = true;
     environment.systemPackages = with pkgs; [
-      inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
       swaylock
     ];
     security.pam.services.swaylock = {};
@@ -35,10 +34,6 @@
         ];
       };
     };
-
-    imports = [
-      inputs.noctalia.homeModules.default
-    ];
 
     home.packages = with pkgs; [
       #kitty
@@ -221,7 +216,7 @@
             style = "minimal";
             change_color_on_hover = false;
             empty_color = "on_surface";
-            focused_color = "on_surface";
+            focused_color = "hover";
             max_label_chars = 4;
             occupied_color = "on_surface";
             urgent_color = "on_surface";

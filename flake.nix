@@ -120,11 +120,6 @@
       inputs.home-manager.follows = "home-manager-unstable";
     };
 
-    noctalia = {
-      url = "github:noctalia-dev/noctalia";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
-
     app-manager = {
       url = "github:kem-a/AppManager";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
