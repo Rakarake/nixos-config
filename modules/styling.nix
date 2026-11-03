@@ -34,9 +34,6 @@
         terminal = 11;
       };
     };
-    home.packages = with pkgs; [
-      adw-gtk3
-    ];
 
     fonts.fontconfig = {
       enable = true;
