@@ -97,7 +97,7 @@ in
   ];
 
   # Linux kernel version
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  # boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Engage the msr crypto moment
   boot.kernelModules = [ "msr" ];
