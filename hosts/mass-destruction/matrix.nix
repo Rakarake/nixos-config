@@ -101,6 +101,8 @@ in
         msc4143_enabled = true;
         # MatrixRTC Transports Registry: Defines an endpoint that clients can use to query the available MatrixRTC transports (i.e. find your LiveKit SFU).
         msc4519_enabled = true;
+        # Sticky events
+        msc4354_enabled = true;
       };
 
       # The maximum allowed duration by which sent events can be delayed, as
