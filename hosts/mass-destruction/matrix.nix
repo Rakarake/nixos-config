@@ -103,6 +103,8 @@ in
         msc4519_enabled = true;
         # Sticky events
         msc4354_enabled = true;
+        # sliding sync?
+        msc4480_enabled = true;
       };
 
       # The maximum allowed duration by which sent events can be delayed, as
