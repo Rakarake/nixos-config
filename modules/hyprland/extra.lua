@@ -186,8 +186,17 @@ hl.bind(mainMod .. " + t",   hl.dsp.exec_cmd('grim -o DP-1 - | wl-copy'))
 hl.bind(mainMod .. "+ SHIFT + s",   hl.dsp.exec_cmd('grim -g "$(slurp -d)"'))
 hl.bind(mainMod .. "+ ALT + s",   hl.dsp.exec_cmd('tmp="$(mktemp)" ; grim -g "$(slurp -d)" - > "$tmp" && tesseract $tmp - --psm 3 -l eng+swe | wl-copy'))
 
+-- Mounting drives
+hl.bind(mainMod .. "+ SHIFT + ALT + m", hl.dsp.exec_cmd('device=$(udisksctl status | awk \'{if (NR >= 3) {printf $NF" - ";NF -= 3; print;}}\' | rofi -dmenu | awk -F "-" \'{print $1}\'); udisksctl mount -b /dev/$device'))
+
+-- Unmount
+hl.bind(mainMod .. "+ SHIFT + ALT + CTRL + m", hl.dsp.exec_cmd('device=$(udisksctl status | awk \'{if (NR >= 3) {printf $NF" - ";NF -= 3; print;}}\' | rofi -dmenu | awk -F "-" \'{print $1}\'); udisksctl unmount -b /dev/$device'))
+
+-- Go to usb drives
+hl.bind(mainMod .. " + CTRL + u", hl.dsp.exec_cmd('footclient yazi /run/media/rakarake'))
+
 -- TESTING
-hl.bind(mainMod .. " + ALT + SHIFT + u",   hl.dsp.exec_cmd('glonkers -s ~/GlonkingShaders/godly.glsl & sleep 3 ; pkill glonkers'))
+--hl.bind(mainMod .. " + ALT + SHIFT + u",   hl.dsp.exec_cmd('glonkers -s ~/GlonkingShaders/godly.glsl & sleep 3 ; pkill glonkers'))
 
 hl.bind(mainMod .. "+ ALT + v", hl.dsp.exec_cmd('wl-screenrec -o "$(rofi -dmenu -p "Reccord which screen? ")" --max-fps 60 --audio --audio-device "$(pactl get-default-sink).monitor"; wl-copy --type "text/uri-list" <<< file://$(realpath ~/screenrecord.mp4)'))
 hl.bind(mainMod .. "+ ALT + SHIFT + v", hl.dsp.exec_cmd('wl-screenrec -o "$(rofi -dmenu -p "Reccord which screen? ")" --max-fps 60 --audio --audio-device "$(pactl get-default-sink).monitor"; wl-copy --type "text/uri-list" <<< file://$(realpath ~/screenrecord.mp4)'))
