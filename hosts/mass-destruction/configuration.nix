@@ -184,16 +184,6 @@ in
     defaults.email = "scolipede2@hotmail.com";
   };
 
-  # Ollama stuff
-  services.ollama = {
-    host = "0.0.0.0";
-    enable = true;
-    package = pkgs.ollama-cuda;
-    environmentVariables = {
-    #stuff here
-    OLLAMA_CONTEXT_LENGTH = "262000";
-    };
-  };
   services.open-webui.enable = true;
 
 
