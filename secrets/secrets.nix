@@ -20,4 +20,6 @@ in
   "mdf-login.age".publicKeys = keys;
   # Nextcloud webdav login
   "rakarake-rclone-webdav.age".publicKeys = keys;
+  # llama.cpp access token (models preset ini file)
+  "sloppychika.age".publicKeys = keys;
 }

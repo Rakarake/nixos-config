@@ -303,22 +303,22 @@ in
     };
   };
 
-  nixpkgs.overlays = [ (final: prev: {
-    cinny-unwrapped = prev.cinny-unwrapped.overrideAttrs (old: rec {
-      version = "4.12.1";
-      src = prev.fetchFromGitHub {
-        owner = "cinnyapp";
-        repo = "cinny";
-        tag = "v${version}";
-        hash = "sha256-s9nu6hYe0OvRcp8n2cOJnhEzIV+nyjnfwTrY477XDT8=";
-      };
-      npmDepsHash = "sha256-e37tSrqrEXGH2uInFAiikHNwJ13gXlG50SeYF/HO0z4=";
-      npmDeps = prev.fetchNpmDeps {
-        inherit src;
-        hash = npmDepsHash;
-      };
-    });
-  } ) ];
+  #nixpkgs.overlays = [ (final: prev: {
+  #  cinny-unwrapped = prev.cinny-unwrapped.overrideAttrs (old: rec {
+  #    version = "4.12.1";
+  #    src = prev.fetchFromGitHub {
+  #      owner = "cinnyapp";
+  #      repo = "cinny";
+  #      tag = "v${version}";
+  #      hash = "sha256-s9nu6hYe0OvRcp8n2cOJnhEzIV+nyjnfwTrY477XDT8=";
+  #    };
+  #    npmDepsHash = "sha256-e37tSrqrEXGH2uInFAiikHNwJ13gXlG50SeYF/HO0z4=";
+  #    npmDeps = prev.fetchNpmDeps {
+  #      inherit src;
+  #      hash = npmDepsHash;
+  #    };
+  #  });
+  #} ) ];
 
   services.matrix-ooye = {
     enable = true;

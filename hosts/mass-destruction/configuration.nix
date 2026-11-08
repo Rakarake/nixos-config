@@ -13,6 +13,7 @@ let
 
   localPorts = {
     synapse = 8008;
+    llama-cpp = 4785;
   };
   # Open TCP/UDP ports
   ports = {
@@ -128,6 +129,7 @@ in
     waypipe
     openttd
     matrix-synapse
+    (llama-cpp.override { cudaSupport = true; })
   ];
 
   # SSH daemon
@@ -186,6 +188,99 @@ in
 
   services.open-webui.enable = true;
 
+  # Sloppy
+  age.secrets.sloppychika = {
+    file = ../../secrets/sloppychika.age;
+    owner = "llama-cpp";
+    group = "llama-cpp";
+  };
+  systemd.services.llama-cpp = {
+    environment = {
+      XDG_CACHE_HOME = "/var/cache/llama-cpp";
+      MESA_SHADER_CACHE_DIR = "/var/cache/llama-cpp";
+    };
+  };
+  services.llama-cpp = {
+    enable = true;
+    package = pkgs.llama-cpp.override { cudaSupport = true; };
+    port = localPorts.llama-cpp;
+    extraFlags = [
+      "--models-preset"
+      "${config.age.secrets.sloppychika.path}"
+    ];
+    #modelsPreset = {
+    #  "Qwen3.8-27B-UD-Q4_K_XL" = {
+    #    ctx-size = "78000";
+    #    sleep-idle-seconds = 240;
+    #    # Do we wanna set the context to something perticular? 180000 gives
+    #    # really bad performance.
+    #    #ctx-size = "180000";
+    #    #alias = "Qwen3.8-27B-UD-Q4_K_XL";  # display name
+    #    hf-repo = "unsloth/Qwen3.8-27B-GGUF";
+    #    hf-file = "Qwen3.8-27B-UD-Q4_K_XL.gguf";
+    #    # These values reccomended for "thinking mode"
+    #    temp = "1.0";
+    #    top-p = "0.95";
+    #    top-k = "20";
+    #    min-p = "0.0";
+    #  };
+    #  #"Qwen3.8-27B-UD-Q4_K_M" = {
+    #  #  ctx-size = "12000";
+    #  #  sleep-idle-seconds = 240;
+    #  #  # Do we wanna set the context to something perticular? 180000 gives
+    #  #  # really bad performance.
+    #  #  #ctx-size = "180000";
+    #  #  #alias = "Qwen3.8-27B-UD-Q4_K_XL";  # display name
+    #  #  hf-repo = "unsloth/Qwen3.8-27B-GGUF";
+    #  #  hf-file = "Qwen3.8-27B-UD-Q4_K_M.gguf";
+    #  #  # These values reccomended for "thinking mode"
+    #  #  temp = "1.0";
+    #  #  top-p = "0.95";
+    #  #  top-k = "20";
+    #  #  min-p = "0.0";
+    #  #};
+    #  "gemma-4-26B-A4B-it-UD-Q4_K_XL" = {
+    #    #ctx-size = "78000";
+    #    sleep-idle-seconds = 240;
+    #    hf-repo = "unsloth/gemma-4-26B-A4B-it-GGUF";
+    #    hf-file = "gemma-4-26B-A4B-it-UD-Q4_K_XL.gguf";
+    #    temp = "1.0";
+    #    top-p = "0.95";
+    #    top-k = "64";
+    #    ctx-size = "32768";
+    #    parallel = "1";
+    #    cache-type-k = "q8_0";
+    #    cache-type-v = "q8_0";
+    #  };
+    #};
+    #modelsPreset = {
+    #  "qwen3.8" = {
+    #    hf-repo = "ggml-org/Qwen3.8-27B-GGUF";
+    #    hf-file = "Qwen3.8-27B-UD-Q6_K_M.gguf";
+    #    alias = "qwen3.8";  # display name
+    #    # These values reccomended for "thinking mode"
+    #    #temp = "1.0";
+    #    #top-p = "0.95";
+    #    #top-k = "20";
+    #  };
+    #};
+
+    # Next nix version: use this style instead.
+    #settings = {
+    #  port = localPorts.llama-cpp;
+    #  models-preset = (pkgs.formats.ini { }).generate "models-preset.ini" {
+    #    "qwen3.8" = {
+    #      hf-repo = "ggml-org/Qwen3.8-27B-GGUF";
+    #      hf-file = "Qwen3.8-27B-UD-Q6_K_M.gguf";
+    #      alias = "qwen3.8";  # display name
+    #      # These values reccomended for "thinking mode"
+    #      #temp = "1.0";
+    #      #top-p = "0.95";
+    #      #top-k = "20";
+    #    };
+    #  };
+    #};
+  };
 
   # XMage networking stuff
   networking.extraHosts =
@@ -246,6 +341,16 @@ in
 
           auth_basic_user_file ${config.age.secrets.mdf-login.path};
         '';
+      };
+    };
+  };
+  # Let's get sloppy!
+  services.nginx.virtualHosts."slop.mdf.farm" = {
+    forceSSL = true;
+    enableACME = true;
+    locations = {
+      "/" = {
+        proxyPass = "http://localhost:${toString localPorts.llama-cpp}";
       };
     };
   };
