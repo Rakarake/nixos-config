@@ -199,60 +199,65 @@ in
       XDG_CACHE_HOME = "/var/cache/llama-cpp";
       MESA_SHADER_CACHE_DIR = "/var/cache/llama-cpp";
     };
+    serviceConfig = {
+      EnvironmentFile = config.age.secrets.sloppychika.path;
+    };
   };
+  # For some reason the user/groups are not created by services.llama-cpp.
+  users.users.llama-cpp = {
+    isSystemUser = true;
+    group = "llama-cpp";
+  };
+  users.groups.llama-cpp = {};
   services.llama-cpp = {
     enable = true;
     package = pkgs.llama-cpp.override { cudaSupport = true; };
     port = localPorts.llama-cpp;
-    extraFlags = [
-      "--models-preset"
-      "${config.age.secrets.sloppychika.path}"
-    ];
-    #modelsPreset = {
-    #  "Qwen3.8-27B-UD-Q4_K_XL" = {
-    #    ctx-size = "78000";
-    #    sleep-idle-seconds = 240;
-    #    # Do we wanna set the context to something perticular? 180000 gives
-    #    # really bad performance.
-    #    #ctx-size = "180000";
-    #    #alias = "Qwen3.8-27B-UD-Q4_K_XL";  # display name
-    #    hf-repo = "unsloth/Qwen3.8-27B-GGUF";
-    #    hf-file = "Qwen3.8-27B-UD-Q4_K_XL.gguf";
-    #    # These values reccomended for "thinking mode"
-    #    temp = "1.0";
-    #    top-p = "0.95";
-    #    top-k = "20";
-    #    min-p = "0.0";
-    #  };
-    #  #"Qwen3.8-27B-UD-Q4_K_M" = {
-    #  #  ctx-size = "12000";
-    #  #  sleep-idle-seconds = 240;
-    #  #  # Do we wanna set the context to something perticular? 180000 gives
-    #  #  # really bad performance.
-    #  #  #ctx-size = "180000";
-    #  #  #alias = "Qwen3.8-27B-UD-Q4_K_XL";  # display name
-    #  #  hf-repo = "unsloth/Qwen3.8-27B-GGUF";
-    #  #  hf-file = "Qwen3.8-27B-UD-Q4_K_M.gguf";
-    #  #  # These values reccomended for "thinking mode"
-    #  #  temp = "1.0";
-    #  #  top-p = "0.95";
-    #  #  top-k = "20";
-    #  #  min-p = "0.0";
-    #  #};
-    #  "gemma-4-26B-A4B-it-UD-Q4_K_XL" = {
-    #    #ctx-size = "78000";
-    #    sleep-idle-seconds = 240;
-    #    hf-repo = "unsloth/gemma-4-26B-A4B-it-GGUF";
-    #    hf-file = "gemma-4-26B-A4B-it-UD-Q4_K_XL.gguf";
-    #    temp = "1.0";
-    #    top-p = "0.95";
-    #    top-k = "64";
-    #    ctx-size = "32768";
-    #    parallel = "1";
-    #    cache-type-k = "q8_0";
-    #    cache-type-v = "q8_0";
-    #  };
-    #};
+    modelsPreset = {
+      "Qwen3.8-27B-UD-Q4_K_XL" = {
+        ctx-size = "78000";
+        sleep-idle-seconds = 240;
+        # Do we wanna set the context to something perticular? 180000 gives
+        # really bad performance.
+        #ctx-size = "180000";
+        #alias = "Qwen3.8-27B-UD-Q4_K_XL";  # display name
+        hf-repo = "unsloth/Qwen3.8-27B-GGUF";
+        hf-file = "Qwen3.8-27B-UD-Q4_K_XL.gguf";
+        # These values reccomended for "thinking mode"
+        temp = "1.0";
+        top-p = "0.95";
+        top-k = "20";
+        min-p = "0.0";
+      };
+      #"Qwen3.8-27B-UD-Q4_K_M" = {
+      #  ctx-size = "12000";
+      #  sleep-idle-seconds = 240;
+      #  # Do we wanna set the context to something perticular? 180000 gives
+      #  # really bad performance.
+      #  #ctx-size = "180000";
+      #  #alias = "Qwen3.8-27B-UD-Q4_K_XL";  # display name
+      #  hf-repo = "unsloth/Qwen3.8-27B-GGUF";
+      #  hf-file = "Qwen3.8-27B-UD-Q4_K_M.gguf";
+      #  # These values reccomended for "thinking mode"
+      #  temp = "1.0";
+      #  top-p = "0.95";
+      #  top-k = "20";
+      #  min-p = "0.0";
+      #};
+      "gemma-4-26B-A4B-it-UD-Q4_K_XL" = {
+        #ctx-size = "78000";
+        sleep-idle-seconds = 240;
+        hf-repo = "unsloth/gemma-4-26B-A4B-it-GGUF";
+        hf-file = "gemma-4-26B-A4B-it-UD-Q4_K_XL.gguf";
+        temp = "1.0";
+        top-p = "0.95";
+        top-k = "64";
+        ctx-size = "32768";
+        parallel = "1";
+        cache-type-k = "q8_0";
+        cache-type-v = "q8_0";
+      };
+    };
     #modelsPreset = {
     #  "qwen3.8" = {
     #    hf-repo = "ggml-org/Qwen3.8-27B-GGUF";
