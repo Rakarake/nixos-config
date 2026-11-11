@@ -214,21 +214,31 @@ in
     package = pkgs.llama-cpp.override { cudaSupport = true; };
     port = localPorts.llama-cpp;
     modelsPreset = {
-      "Qwen3.8-27B-UD-Q4_K_XL" = {
-        ctx-size = "78000";
+      "*" = {
         sleep-idle-seconds = 240;
-        # Do we wanna set the context to something perticular? 180000 gives
-        # really bad performance.
-        #ctx-size = "180000";
-        #alias = "Qwen3.8-27B-UD-Q4_K_XL";  # display name
-        #hf-repo = "unsloth/Qwen3.8-27B-GGUF";
-        #hf-file = "Qwen3.8-27B-UD-Q4_K_XL.gguf";
-        model = "/var/cache/llama-cpp/Qwen3.8-27B-UD-Q4_K_XL.gguf";
-        # These values reccomended for "thinking mode"
-        temp = "1.0";
-        top-p = "0.95";
-        top-k = "20";
-        min-p = "0.0";
+      };
+      "Qwen3.8-27B-UD-Q4_K_M" = {
+        model = "/var/cache/llama-cpp/Qwen3.8-27B-UD-Q4_K_M.gguf";
+      };
+      #"Qwen3.8-27B-UD-Q4_K_XL" = {
+      #  ctx-size = "78000";
+      #  # Do we wanna set the context to something perticular? 180000 gives
+      #  # really bad performance.
+      #  #ctx-size = "180000";
+      #  #alias = "Qwen3.8-27B-UD-Q4_K_XL";  # display name
+      #  #hf-repo = "unsloth/Qwen3.8-27B-GGUF";
+      #  #hf-file = "Qwen3.8-27B-UD-Q4_K_XL.gguf";
+      #  model = "/var/cache/llama-cpp/Qwen3.8-27B-UD-Q4_K_XL.gguf";
+      #  mmproj = "/var/cache/llama-cpp/Qwen3.8-27B-mmproj-BF16.gguf";
+      #  # These values reccomended for "thinking mode"
+      #  temp = "1.0";
+      #  top-p = "0.95";
+      #  top-k = "20";
+      #  min-p = "0.0";
+      #};
+      "gemma-4-E4B-it-Q4_K_M" = {
+        model = "/var/cache/llama-cpp/gemma-4-E4B-it-Q4_K_M.gguf";
+        mmproj = "/var/cache/llama-cpp/gemma-4-E4B-mmproj-BF16.gguf";
       };
       #"Qwen3.8-27B-UD-Q4_K_M" = {
       #  ctx-size = "12000";
