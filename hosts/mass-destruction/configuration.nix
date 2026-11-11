@@ -219,6 +219,10 @@ in
       };
       "Qwen3.8-27B-UD-Q4_K_M" = {
         model = "/var/cache/llama-cpp/Qwen3.8-27B-UD-Q4_K_M.gguf";
+        temp = "1.0";
+        top-p = "0.95";
+        top-k = "20";
+        min-p = "0.0";
       };
       #"Qwen3.8-27B-UD-Q4_K_XL" = {
       #  ctx-size = "78000";
