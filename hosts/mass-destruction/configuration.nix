@@ -226,6 +226,7 @@ in
       };
       "Qwen3.8-27B-abliterated-UD-DW-Q4_K_M" = {
         model = "/var/cache/llama-cpp/Qwen3.8-27B-abliterated-UD-DW-Q4_K_M.gguf";
+        mmproj = "/var/cache/llama-cpp/Qwen3.8-27B-mmproj-BF16.gguf";
         temp = "1.0";
         top-p = "0.95";
         top-k = "20";
