@@ -173,6 +173,7 @@ in
     p2pool
     xmrig
     monero-cli
+    openssl
   ];
 
   # Fonts
