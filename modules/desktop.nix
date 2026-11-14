@@ -143,6 +143,7 @@
       openrct2  # Open Roller Coaster Tycoon 2
       skim
       exiftool  # Used by yazi for checking exif info
+      p7zip-rar
 
       # Emulators
       #fceux -- put this in project flake instead, use retroarch for emulation
@@ -399,7 +400,7 @@
       lm_sensors
       steam-run
       # Hermes tui
-      inputs.hermes-agent.packages.${system}.default
+      #inputs.hermes-agent.packages.${system}.default
       openssl # Hermes need this in PATH...
     ];
 

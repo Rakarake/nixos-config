@@ -136,15 +136,6 @@ vim.opt.undofile = true
 -- Clear highlighting and everything at bottom
 vim.keymap.set('n', '<leader>p', '<cmd>nohlsearch<Bar>:echo<cr>')
 
--- LSP Configuration
--- See `:help vim.diagnostic.*` for documentation on any of the below functions
-local opts = { noremap=true, silent=true }
-vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
-vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
-vim.keymap.set('n', '<space>re', vim.lsp.buf.rename, opts)
-
 -- Turn on/off highlighting
 lsp_is_alive = true
 vim.keymap.set('n', '<leader>ld', function()
@@ -188,11 +179,18 @@ local on_attach = function(client, bufnr)
   --  print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   --end, bufopts)
   --vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
-  --vim.keymap.set('n', '<space>ro', vim.lsp.buf.rename, bufopts)
-  --vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
-  --vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+  vim.keymap.set('n', 'rf', vim.lsp.buf.references, bufopts)
+
+  vim.keymap.set('n', '<space>a', vim.lsp.buf.code_action, bufopts)
   vim.keymap.set('n', '<space>fm', vim.lsp.buf.format, bufopts)
+  vim.keymap.set('n', '<space>re', vim.lsp.buf.rename, bufopts)
+
+  vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, bufopts)
+  vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, bufopts)
+  vim.keymap.set('n', ']d', vim.diagnostic.goto_next, bufopts)
+  vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, bufopts)
 end
+
 
 -- luasnip setup
 local luasnip = require'luasnip'

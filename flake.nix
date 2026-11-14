@@ -18,10 +18,10 @@
     };
 
     # Slop
-    hermes-agent = {
-      url = "github:NousResearch/hermes-agent";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
+    #hermes-agent = {
+    #  url = "github:NousResearch/hermes-agent";
+    #  #inputs.nixpkgs.follows = "nixpkgs-unstable";
+    #};
 
     # UwU
     queercat = {

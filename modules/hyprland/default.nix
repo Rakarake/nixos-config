@@ -59,7 +59,7 @@
       swayidle
       ddcutil  # Monitor brightness
       inputs.whibit.packages.${system}.default
-      voxtype-onnx  # STT (Speech To Text)
+      #voxtype-onnx  # STT (Speech To Text)
     ];
 
     # Terminal
@@ -87,27 +87,27 @@
     '';
 
     # STT
-    services.voxtype = {
-      enable = true;
-      package = pkgs.voxtype-onnx;
-      loadModels = [ "parakeet-tdt-0.6b-v3-int8" ];
-      settings = {
-        output.notification = {
-          on_recording_start = false;
-          on_recording_stop = false;
-          on_transcription = false;
-        };
-        output = {
-          fallback_to_clipboard = true;
-          mode = "type";
-        };
-        engine = "parakeet";
-        parakeet = {
-          on_demand_loading = true;
-          model = "parakeet-tdt-0.6b-v3-int8";
-        };
-      };
-    };
+    #services.voxtype = {
+    #  enable = true;
+    #  package = pkgs.voxtype-onnx;
+    #  loadModels = [ "parakeet-tdt-0.6b-v3-int8" ];
+    #  settings = {
+    #    output.notification = {
+    #      on_recording_start = false;
+    #      on_recording_stop = false;
+    #      on_transcription = false;
+    #    };
+    #    output = {
+    #      fallback_to_clipboard = true;
+    #      mode = "type";
+    #    };
+    #    engine = "parakeet";
+    #    parakeet = {
+    #      on_demand_loading = true;
+    #      model = "parakeet-tdt-0.6b-v3-int8";
+    #    };
+    #  };
+    #};
 
     programs.yazi = {
       enable = true;
