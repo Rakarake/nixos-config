@@ -2,9 +2,24 @@
 # arguments.
 {
   description = "Super system amazing wow";
+  nixConfig = {
+    extra-substituters = [
+      "https://nixos-raspberrypi.cachix.org"
+    ];
+    extra-trusted-public-keys = [
+      "nixos-raspberrypi.cachix.org-1:4iMO9LXa8BqhU+Rpg6LQKiGa2lsNh/j2oiYLNOQ5sPI="
+    ];
+    connect-timeout = 5;
+  };
   inputs = {
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-26.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    
+    # Official collection of hardware configurations
+    nixos-hardware = {
+      url = "github:NixOS/nixos-hardware";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
 
     # Home manager
     home-manager-stable = {
@@ -22,6 +37,8 @@
     #  url = "github:NousResearch/hermes-agent";
     #  #inputs.nixpkgs.follows = "nixpkgs-unstable";
     #};
+    
+    nixos-raspberrypi.url = "github:nvmd/nixos-raspberrypi/main";
 
     # UwU
     queercat = {
