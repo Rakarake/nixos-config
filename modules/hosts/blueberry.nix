@@ -44,7 +44,21 @@ in {
            git
            fastfetch
            nh
+           openssh
          ];
+         networking.firewall.allowedTCPPorts = [ 22 ];
+         services.openssh = {
+           enable = true;
+           settings.PasswordAuthentication = false;
+           settings.KbdInteractiveAuthentication = false;
+           ports = [ 22 ];
+         };
+         users.users.root = {
+           openssh.authorizedKeys.keys = ssh-keys.rakarake;
+           openssh.authorizedKeys.keys = let ssh-keys = (import ../../ssh-keys.nix); in
+             ssh-keys.rakarake ++
+             ssh-keys.magarnicle;
+         };
       })
     ];
   };
