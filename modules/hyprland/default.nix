@@ -59,7 +59,8 @@
       swayidle
       ddcutil  # Monitor brightness
       inputs.whibit.packages.${system}.default
-      #voxtype-onnx  # STT (Speech To Text)
+      voxtype-onnx  # STT (Speech To Text)
+      piper-tts
     ];
 
     # Terminal
